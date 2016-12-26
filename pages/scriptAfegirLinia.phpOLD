@@ -1,0 +1,19 @@
+<?php
+$idFeina = $_POST["idFeina"];
+$idClient = $_POST["idClient"];
+$idProducte = $_POST["idProducte"];
+$preuProducte = $_POST["preuProducte"];
+$nomProducte = $_POST["nomProducte"];
+
+include "mysql.php";
+$sql = "INSERT INTO `productes_feines` (`id_feina_pf`, `id_producte_pf`, `nom_pf`, `preu_unitat_pf`, `unitats_pf`) VALUES ('$idFeina', '$idProducte', \"$nomProducte\", '$preuProducte', '1');";
+if ($conn->query($sql) === TRUE) {
+    echo "
+                            <script>
+                            window.location.replace(\"mostrarFeina.php?id=".$idFeina."\");
+                            </script>
+                            ";
+} else {
+    echo "ERROR: " . $sql . "<br>" . $conn->error;
+}
+?>
