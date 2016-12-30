@@ -9,7 +9,7 @@ $dbname = "maqfaplus";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-    die("ERROR AL CONNECTAR A LA BASE DE DADES: " . $conn->connect_error);
+    die("ERROR AL CONNECTAR A LA BASE DE DADES DEV: " . $conn->connect_error);
 }
 
 /*
