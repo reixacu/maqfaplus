@@ -23,6 +23,9 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="dist/switchery.css" />
+    <script src="dist/switchery.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -91,6 +94,14 @@ $idTreballador = $_GET["treballador"];
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+
+    <script>
+    var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+    elems.forEach(function(html) {
+      var switchery = new Switchery(html);
+    });
+    </script>
+
 </body>
 
 </html>
@@ -107,6 +118,7 @@ function printNewLines($idTreballador)
         <td class=\"noTanMiniText1\"><input type=\"date\" value=\"". date("Y-m-d") ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
         <td class=\"miniText\"><input class=\"form-control\" placeholder=\"h\"></td>
         <td><input class=\"form-control\" placeholder=\"Descripció del producte\"></td>
+        <td><input type=\"checkbox\" class=\"js-switch\" />
     </tr>";
   }
 }
