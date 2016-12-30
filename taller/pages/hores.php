@@ -23,6 +23,9 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="dist/switchery.css" />
+    <script src="dist/switchery.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,9 +34,10 @@
     <![endif]-->
     <style>
 
-      .noTanMiniText { width: 100px;}
-      .noTanMiniText1 { width: 100px;}
-      .miniText { width: 70px;}
+      .feina { width: 310px;}
+      .dia { width: 135px;}
+      .hores { width: 70px;}
+      .desc { width: 750px}
     </style>
 </head>
 
@@ -41,7 +45,9 @@
 $idTreballador = $_GET["treballador"];
 
  ?>
-
+<script>
+var peligro = 0;
+</script>
 <body>
 
     <div class="container">
@@ -55,7 +61,7 @@ $idTreballador = $_GET["treballador"];
                             Entrada d'hores
                         </div>
                         <div class="panel-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="supertaula">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -63,13 +69,14 @@ $idTreballador = $_GET["treballador"];
                                             <th>Dia</th>
                                             <th>Hores</th>
                                             <th>Detall</th>
+                                            <th>Acabada?</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php printNewLines($idTreballador); ?>
                                     </tbody>
                                 </table>
-								<button style='margin: 5px;' type='submit' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
+				                        <button onclick="novalinia()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
                             </div>
                         </div>
                     </div>
@@ -77,6 +84,57 @@ $idTreballador = $_GET["treballador"];
             </div>
         </div>
     </div>
+    <script>
+      function novalinia() {
+          /*var table = document.getElementById("supertaula");
+          var row = table.insertRow(0);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          cell1.innerHTML = "NEW CELL1";
+          cell2.innerHTML = "NEW CELL2";*/
+          var row = $("<tr>");
+          row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
+           .append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
+           .append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
+           .append($('<td class="desc"><input class="form-control" placeholder="Descripció de la feina"></td>'))
+           .append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
+
+        $("#supertaula tbody").append(row);
+
+        var nodes = document.querySelectorAll('.js-switch');
+        var last = nodes[nodes.length- 1];
+        var init = new Switchery(last);
+            }
+    </script>
+	<script>
+	var tableToObj = function( table ) {
+		var trs = table.rows,
+			trl = trs.length,
+			i = 0,
+			j = 0,
+			keys = [],
+			obj, ret = [];
+
+		for (; i < trl; i++) {
+			if (i == 0) {
+				for (; j < trs[i].children.length; j++) {
+					keys.push(trs[i].children[j].innerHTML);
+				}
+			} else {
+				obj = {};
+				for (j = 0; j < trs[i].children.length; j++) {
+					obj[keys[j]] = trs[i].children[j].innerHTML;
+				}
+				ret.push(obj);
+			}
+		}
+		return ret;
+	};
+
+	var testcane = tableToObj( document.getElementById('supertaula') );
+	document.write(testcane);
+	alert(testcane);
+	</script>
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -90,36 +148,47 @@ $idTreballador = $_GET["treballador"];
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+
+    <script>
+    var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+    elems.forEach(function(html) {
+      var switchery = new Switchery(html);
+    });
+    </script>
+
 </body>
 
 </html>
 <?php
 function printNewLines($idTreballador)
 {
-  for ($i = 1; $i <=5; $i++)
-  {
+
     echo
     "<tr>
-        <td class=\"noTanMiniText\">";
+        <td class=\"feina\">";
         printDesplegableFeinesActives();
         echo"</td>
-        <td class=\"noTanMiniText1\"><input type=\"date\" value=\"". date("Y-m-d") ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
-        <td class=\"miniText\"><input class=\"form-control\" placeholder=\"h\"></td>
-        <td><input class=\"form-control\" placeholder=\"Descripció del producte\"></td>
+        <td class=\"dia\"><input type=\"date\" value=\"". date("Y-m-d") ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
+        <td class=\"hores\"><input class=\"form-control\" placeholder=\"h\"></td>
+        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\"></td>
+        <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
     </tr>";
-  }
+
 }
 
 function printDesplegableFeinesActives()
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
+      echo "<option value=\"-1\"></option>";
+
       if ($result->num_rows > 0) {
       // output data of each row
         while($row = $result->fetch_assoc()) {
-          echo "<option>".$row["id_feina"]."- ".$row["descripcio_feina"]."</option>";
+          echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
         }
       };
+      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
   echo "</select>";
 }
 

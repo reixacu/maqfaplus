@@ -426,7 +426,7 @@ function mostrarFactures($sql) {
                                 </div>
                                     ";
     } else {
-        echo "No s'ha fet cap feina per aquest client";
+        echo "No s'ha trobat cap factura";
     }
     $conn->close();
 }

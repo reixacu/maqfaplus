@@ -47,7 +47,7 @@
     include "funcionsFeines.php";
     ?>
     <?php
-    $sql = "SELECT * FROM FEINES ORDER BY `feines`.`id_feina` DESC";
+    $sql = "SELECT * FROM `feines` ORDER BY `feines`.`id_feina` DESC";
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
