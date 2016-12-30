@@ -106,6 +106,35 @@ var peligro = 0;
         var init = new Switchery(last);
             }
     </script>
+	<script>
+	var tableToObj = function( table ) {
+		var trs = table.rows,
+			trl = trs.length,
+			i = 0,
+			j = 0,
+			keys = [],
+			obj, ret = [];
+
+		for (; i < trl; i++) {
+			if (i == 0) {
+				for (; j < trs[i].children.length; j++) {
+					keys.push(trs[i].children[j].innerHTML);
+				}
+			} else {
+				obj = {};
+				for (j = 0; j < trs[i].children.length; j++) {
+					obj[keys[j]] = trs[i].children[j].innerHTML;
+				}
+				ret.push(obj);
+			}
+		}
+		return ret;
+	};
+
+	var testcane = tableToObj( document.getElementById('supertaula') );
+	document.write(testcane);
+	alert(testcane);
+	</script>
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
