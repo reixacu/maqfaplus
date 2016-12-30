@@ -63,6 +63,7 @@ $idTreballador = $_GET["treballador"];
                                             <th>Dia</th>
                                             <th>Hores</th>
                                             <th>Detall</th>
+                                            <th>Acabada?</th>
                                         </tr>
                                     </thead>
                                     <tbody>
