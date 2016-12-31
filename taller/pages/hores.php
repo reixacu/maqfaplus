@@ -50,7 +50,6 @@ $idTreballador = $_GET["treballador"];
 var peligro = 0;
 </script>
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -85,43 +84,7 @@ var peligro = 0;
             </div>
         </div>
     </div>
-	<table id="Report">
- <thead>
-  <tr>
-   <th>Kod</th>
-   <th>Nazwa</th>
-   <th>Ilość</th>
-   <th>Netto / 1szt.</th>
-   <th>Suma brutto</th>
-  </tr>
- </thead>
-<tbody>
- <tr>
-  <td>00171 </td>
-  <td>SŁUP 50/1800 POŚREDNI(P) </td>
-  <td>5</td><td>97.00 PLN </td>
-  <td>394.31 PLN </td>
- </tr>
- <tr>
-  <td>00172</td>
-  <td>SŁUP 50/1800 NAROŻNY(P)</td>
-  <td>1</td><td>97.00 PLN</td>
-  <td>78.86 PLN</td>
- </tr>
- <tr>
-  <td>00173 </td>
-  <td>SŁUP 50/1800 KOŃCOWY(P) </td>
-  <td>1</td><td>97.00 PLN </td>
-  <td>78.86 PLN</td>
- </tr>
-</tbody>
-<tfoot style="font-weight: bold;">    
- <tr>
-  <th colspan="3" style="text-align: right;">Razem netto: 1955.85 PLN</th>
-  <th colspan="2" style="text-align: right;">Razem brutto: 2405.69 PLN</th>
- </tr>
- </tfoot>
-</table>
+
     <script>
       function novalinia() {
           /*var table = document.getElementById("supertaula");
