@@ -4,6 +4,7 @@ $username = "webadmin";
 $password = "olele1";
 $dbname = "maqfaplus";
 
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
