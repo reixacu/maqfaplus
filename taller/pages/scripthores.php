@@ -16,6 +16,19 @@ foreach ($array as &$valor)
 {
 	echo $valor['Feina'];
 }
+
+$count = sizeof($array);
+
+
+for( $i = 0 ; $i< $count ; $i++)
+{
+	echo "Feina: " . $array[$i]['Feina'];
+	echo "Dia: " . $array[$i]['Dia'];
+	echo "Hores: " . $array[$i]['Hores'];
+	echo "Detall: " . $array[$i]['Detall'];
+	echo "Acabada?: " . $array[$i]['Acabada?'];
+}
+
 echo sizeof($array);
 // encode the PHP variable to JSON and send it back on client-side
 //echo json_encode($v);
