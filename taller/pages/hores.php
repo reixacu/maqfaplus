@@ -61,8 +61,8 @@ var peligro = 0;
                             Entrada d'hores
                         </div>
                         <div class="panel-body">
-                            <table class="table-responsive" id="supertaula">
-                                <table class="table table-striped table-bordered table-hover">
+                            <div class="table-responsive">
+                                <table id="supertaula" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>Feina</th>
@@ -76,73 +76,83 @@ var peligro = 0;
                                         <?php printNewLines($idTreballador); ?>
                                     </tbody>
                                 </table>
-				                        <button onclick="novalinia()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
+				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
+				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-warning"></i> Tests</button>
+								<div id="r"></div>
                             </div>
-                        </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-      function novalinia() {
-          /*var table = document.getElementById("supertaula");
-          var row = table.insertRow(0);
-          var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          cell1.innerHTML = "NEW CELL1";
-          cell2.innerHTML = "NEW CELL2";*/
-          var row = $("<tr>");
-          row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
-           .append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
-           .append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
-           .append($('<td class="desc"><input class="form-control" placeholder="Descripció de la feina"></td>'))
-           .append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
-
-        $("#supertaula tbody").append(row);
-
-        var nodes = document.querySelectorAll('.js-switch');
-        var last = nodes[nodes.length- 1];
-        var init = new Switchery(last);
-            }
-    </script>
+	
 	<script>
-	/*var tableToObj = function( table ) {
-		var trs = table.rows,
-			trl = trs.length,
-			i = 0,
-			j = 0,
-			keys = [],
-			obj, ret = [];
+	function testguarro(){
+		var tableToObj = function( table ) {
+			var trs = table.rows,
+				trl = trs.length,
+				i = 0,
+				j = 0,
+				keys = [],
+				obj, ret = [];
 
-		for (; i < trl; i++) {
-			if (i == 0) {
-				for (; j < trs[i].children.length; j++) {
-					keys.push(trs[i].children[j].innerHTML);
+			for (; i < trl; i++) {
+				if (i == 0) {
+					for (; j < trs[i].children.length; j++) {
+						keys.push(trs[i].children[j].innerHTML);
+					}
+				} else {
+					obj = {};
+					for (j = 0; j < trs[i].children.length-1; j++) {
+						obj[keys[j]] = trs[i].children[j].children[0].value;
+					}
+					obj[keys[4]] = trs[i].children[4].children[0].checked;
+					ret.push(obj);
 				}
-			} else {
-				obj = {};
-				for (j = 0; j < trs[i].children.length; j++) {
-					obj[keys[j]] = trs[i].children[j].innerHTML;
-				}
-				ret.push(obj);
+			}
+			
+			return ret;
+		};
+
+		document.getElementById('r').innerHTML = JSON.stringify(tableToObj(document.getElementsByTagName('table')[0]));
+		
+		// Sending a receiving data in JSON format using GET method
+		//
+		xhr = new XMLHttpRequest();
+		var url = "scripthores.php?data=" + encodeURIComponent(JSON.stringify(tableToObj(document.getElementsByTagName('table')[0])));
+		xhr.open("GET", url, true);
+		xhr.setRequestHeader("Content-type", "application/json");
+		xhr.onreadystatechange = function () { 
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var json = JSON.parse(xhr.responseText);
+				console.log(json.email + ", " + json.password)
 			}
 		}
-		return ret;
-	};
-
-	var testcane = tableToObj( document.getElementById('supertaula') );
-	document.write(typeof(supertaula));
-	*/
-	
-	
-	var json = [];
-	$('#supertaula').find('tbody tr').each(alert("peligro"));
-	document.write(json[0]);
-	//alert(1234);
-
+		xhr.send();
+	}
 	</script>
+	
+	<script>
+	function novalinia() {
+		/*var table = document.getElementById("supertaula");
+		var row = table.insertRow(0);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		cell1.innerHTML = "NEW CELL1";
+		cell2.innerHTML = "NEW CELL2";*/
+		var row = $("<tr>");
+		row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
+			.append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
+			.append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
+			.append($('<td class="desc"><input class="form-control" placeholder="Descripció de la feina"></td>'))
+			.append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
+			$("#supertaula tbody").append(row);
+		var nodes = document.querySelectorAll('.js-switch');
+		var last = nodes[nodes.length- 1];
+		var init = new Switchery(last);
+	}
+    </script>
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -177,7 +187,7 @@ function printNewLines($idTreballador)
         printDesplegableFeinesActives();
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". date("Y-m-d") ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
-        <td class=\"hores\"><input class=\"form-control\" placeholder=\"h\"></td>
+        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\"></td>
         <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
     </tr>";
