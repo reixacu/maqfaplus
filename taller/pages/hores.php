@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="dist/switchery.css" />
     <script src="dist/switchery.js"></script>
+	<script src="jquery-3.1.1.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,7 +62,7 @@ var peligro = 0;
                             Entrada d'hores
                         </div>
                         <div class="panel-body">
-                            <div class="table-responsive" id="supertaula">
+                            <table class="table-responsive" id="supertaula">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -78,12 +79,49 @@ var peligro = 0;
                                 </table>
 				                        <button onclick="novalinia()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
                             </div>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+	<table id="Report">
+ <thead>
+  <tr>
+   <th>Kod</th>
+   <th>Nazwa</th>
+   <th>Ilość</th>
+   <th>Netto / 1szt.</th>
+   <th>Suma brutto</th>
+  </tr>
+ </thead>
+<tbody>
+ <tr>
+  <td>00171 </td>
+  <td>SŁUP 50/1800 POŚREDNI(P) </td>
+  <td>5</td><td>97.00 PLN </td>
+  <td>394.31 PLN </td>
+ </tr>
+ <tr>
+  <td>00172</td>
+  <td>SŁUP 50/1800 NAROŻNY(P)</td>
+  <td>1</td><td>97.00 PLN</td>
+  <td>78.86 PLN</td>
+ </tr>
+ <tr>
+  <td>00173 </td>
+  <td>SŁUP 50/1800 KOŃCOWY(P) </td>
+  <td>1</td><td>97.00 PLN </td>
+  <td>78.86 PLN</td>
+ </tr>
+</tbody>
+<tfoot style="font-weight: bold;">    
+ <tr>
+  <th colspan="3" style="text-align: right;">Razem netto: 1955.85 PLN</th>
+  <th colspan="2" style="text-align: right;">Razem brutto: 2405.69 PLN</th>
+ </tr>
+ </tfoot>
+</table>
     <script>
       function novalinia() {
           /*var table = document.getElementById("supertaula");
@@ -107,7 +145,7 @@ var peligro = 0;
             }
     </script>
 	<script>
-	var tableToObj = function( table ) {
+	/*var tableToObj = function( table ) {
 		var trs = table.rows,
 			trl = trs.length,
 			i = 0,
@@ -132,8 +170,15 @@ var peligro = 0;
 	};
 
 	var testcane = tableToObj( document.getElementById('supertaula') );
-	document.write(testcane);
-	alert(testcane);
+	document.write(typeof(supertaula));
+	*/
+	
+	
+	var json = [];
+	$('#supertaula').find('tbody tr').each(alert("peligro"));
+	document.write(json[0]);
+	//alert(1234);
+
 	</script>
 
     <!-- jQuery -->
