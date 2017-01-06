@@ -36,6 +36,7 @@ $nomClient = getClientCognomNomNoComerc($row["id_client_factura"]);
 $direccioClient = $row1["adreca_client"];
 $poblacioClient = $row1["poblacio_client"];
 $nifClient = $row1["nif_client"];
+$provinciaClient = $row1["provincia_client"];
 $numFactura = $row["numero_factura"];
 $baseImposable = number_format($row["base_imposable_factura"] / 100,2);
 $iva = $row["iva_factura"];
@@ -107,8 +108,8 @@ $html = '
 		<td style="text-align:right">
 			' . $nomClient . '
 			<br />' . $direccioClient . '
-			<br />' . $poblacioClient . '
-			<br />' . $cpClient . '
+			<br />' . $cpClient ." ". $poblacioClient . '
+			<br />' . $provinciaClient . '
 			<br />NIF ' . $nifClient . '
 		</td>
 	</tr>
@@ -160,7 +161,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 			// Tipus de línia sense preu. Són línies descriptives
 		$html = $html . '
 		<tr>
-		 <td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom">' . $rowDadesFactura["descripcio_df"] . '</td>
+		 <td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom"> ' . $rowDadesFactura["descripcio_df"] . '</td>
 			<td style="border-right: solid 1px #000;text-align:right"></td>
 			<td style="border-right: solid 1px #000;text-align:right"></td>
 			<td style="border-right: solid 1px #000;text-align:right"></td>
