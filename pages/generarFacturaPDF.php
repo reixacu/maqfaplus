@@ -32,7 +32,7 @@ $row1 = $result1->fetch_assoc();
 $resultDadesFactura = getLiniesFacturaData($idFactura);
 
 $dataFactura = getDataDMY($row["data_factura"]);
-$nomClient = getClientCognomNom($row["id_client_factura"]);
+$nomClient = getClientCognomNomNoComerc($row["id_client_factura"]);
 $direccioClient = $row1["adreca_client"];
 $poblacioClient = $row1["poblacio_client"];
 $nifClient = $row1["nif_client"];
@@ -98,18 +98,19 @@ $html = '
 		<td style="text-align:left">
 				XEVI FALGARONA COLL
 				<br /> Pol.Ind.La Canya
-				<br /> C/Roselló, 19, 17800
-				<br /> Olot, Girona
+				<br /> C/Roselló, 19
+				<br /> 17800 OLOT
+				<br /> (Girona)
 				<br /> Tel. 608556991
-				<br /> N.I.F. 46672373-Z
+				<br /> NIF 46672373-Z
 		</td>
 		<td style="text-align:right">
 			' . $nomClient . '
 			<br />' . $direccioClient . '
 			<br />' . $poblacioClient . '
 			<br />' . $cpClient . '
-			<br />N.I.F. ' . $nifClient . '
-		</td>		
+			<br />NIF ' . $nifClient . '
+		</td>
 	</tr>
 </table>
 <br />
@@ -137,12 +138,14 @@ $html = '
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="530" rowspan="'. ($quantitatElements + 1) . '"> </td>
+		<td height="510" rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
 
 for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
+	if ($rowDadesFactura["preu_total_df"] != "0")
+	{
 	$html = $html . '
 	<tr>
 	<td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom"> ' . $rowDadesFactura["descripcio_df"] . '</td>
@@ -151,6 +154,18 @@ for($i = 0; $i< $quantitatElements; $i++){
 		<td style="border-right: solid 1px #000;text-align:right"> ' . number_format($rowDadesFactura["preu_total_df"]/100,2) . ' € &nbsp; </td>
 		</tr>
 		';
+	} else {
+		{
+		$html = $html . '
+		<tr>
+		<td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom"> ' . $rowDadesFactura["descripcio_df"] . '</td>
+			<td style="border-right: solid 1px #000;text-align:right"></td>
+			<td style="border-right: solid 1px #000;text-align:right"></td>
+			<td style="border-right: solid 1px #000;text-align:right"></td>
+			</tr>
+			';
+		}
+	}
 }
 
 // output the HTML content

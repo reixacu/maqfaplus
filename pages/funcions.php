@@ -184,6 +184,35 @@ function getClientCognomNom($id)
     $conn->close();
     return $retorna;
 }
+function getClientCognomNomNoComerc($id)
+{
+    include "mysql.php";
+    $retorna;
+    switch (checkEsEmpresaById($id))
+    {
+        case 0:
+            $sql = "SELECT nom_client, cognom_client FROM clients WHERE id_client=$id;";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $retorna = $row["cognom_client"] . ", " . $row["nom_client"] ;
+            }
+            break;
+        case 1:
+            $sql = "SELECT rao_social_client FROM clients WHERE id_client=$id;";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $retorna = $row["rao_social_client"];
+            }
+            break;
+          default:
+            $retorna = 0 ;
+
+    }
+    $conn->close();
+    return $retorna;
+}
 function getNomFormaPagament($idPagament)
 {
 	include "mysql.php";
