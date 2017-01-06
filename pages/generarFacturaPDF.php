@@ -116,7 +116,7 @@ $html = '
 <br />
 <br />
 <br />
-<table style="width:100%" border="1">
+<table style="width:100%;" border="1">
 	<tr>
 		<td style="text-align:center;background-color:#DDDDDD;"><b>FRA Nº </b></td>
 		<td colspan="4"> ' . $numFactura . ' </td>
@@ -126,10 +126,10 @@ $html = '
 </table>
 <br />
 <br />
-<table border="1">
+<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
-		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANTITAT</b> </td>
+		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>PREU</b> </td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>IMPORT</b> </td>
 	</tr>
@@ -138,7 +138,7 @@ $html = '
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="510" rowspan="'. ($quantitatElements + 1) . '"> </td>
+		<td height="498" rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
 
@@ -146,6 +146,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
 	if ($rowDadesFactura["preu_total_df"] != "0")
 	{
+		// Tipus de línia amb preu quantitat i preu total
 	$html = $html . '
 	<tr>
 	<td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom"> ' . $rowDadesFactura["descripcio_df"] . '</td>
@@ -156,13 +157,14 @@ for($i = 0; $i< $quantitatElements; $i++){
 		';
 	} else {
 		{
+			// Tipus de línia sense preu. Són línies descriptives
 		$html = $html . '
 		<tr>
-		<td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom"> ' . $rowDadesFactura["descripcio_df"] . '</td>
+		 <td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom">' . $rowDadesFactura["descripcio_df"] . '</td>
 			<td style="border-right: solid 1px #000;text-align:right"></td>
 			<td style="border-right: solid 1px #000;text-align:right"></td>
 			<td style="border-right: solid 1px #000;text-align:right"></td>
-			</tr>
+		</tr>
 			';
 		}
 	}
