@@ -85,6 +85,12 @@ include "funcions.php";
                         <li>
                             <a href="totesFactures.php"><i class="fa fa-list"></i></i> Totes les factures</a>
                         </li>
+                        <li>
+                            <a href="facturesNoCobrades.php"><i class="fa fa-money"></i></i> Pendents de cobrament</a>
+                        </li>
+                        <li>
+                            <a href="facturesBorrador.php"><i class="fa fa-eraser"></i></i> Borradors</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

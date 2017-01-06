@@ -105,12 +105,13 @@ $html = '
 				<br /> Tel. 608556991
 				<br /> NIF 46672373-Z
 		</td>
-		<td style="text-align:right">
-			' . $nomClient . '
-			<br />' . $direccioClient . '
-			<br />' . $cpClient ." ". $poblacioClient . '
-			<br />' . $provinciaClient . '
-			<br />NIF ' . $nifClient . '
+		<td style="text-align:right">';
+			if ($nomClient != "") $html = $html . $nomClient;
+			if ($direccioClient != "") $html = $html . '<br />' . $direccioClient;
+			if ($cpClient != "" && $poblacioClient != "") $html = $html . '<br />' . $cpClient ." ". $poblacioClient;
+			if ($provinciaClient != "") $html = $html . '<br />' . $provinciaClient;
+			if ($nifClient != "") $html = $html . '<br />NIF ' . $nifClient;
+			$html = $html . '
 		</td>
 	</tr>
 </table>
