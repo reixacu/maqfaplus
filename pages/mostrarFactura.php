@@ -59,8 +59,8 @@
                 <div class=\"col-lg-12\">
                     <table style='margin-top: 20px;'>
                         <tr>
-                            <td><form action='totesFeines.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tornar a feines</button></form></td>
-                            <td><form action='eliminarFeina.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i> Eliminar feina</button></form></td>
+                            <td><form action='totesFactures.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tornar a factures</button></form></td>
+                            <!--<td><form action='eliminarFeina.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i> Eliminar feina</button></form></td>-->
                             <td><form action='generarFacturaPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir factura</button></form>
                         </tr>
                     </table>
