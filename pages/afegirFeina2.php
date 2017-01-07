@@ -55,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><i class="fa fa-pencil" aria-hidden="true"></i> Nova factura (<?php echo getClientCognomNom($idClient); ?>)</h1>
+                <h1 class="page-header"><i class="fa fa-pencil" aria-hidden="true"></i> Nova feina (<?php echo getClientCognomNom($idClient); ?>)</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -64,20 +64,11 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Formulari crear factura
+                        Formulari crear feina
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="scriptAfegirFactura.php" method="post">
+                        <form role="form" action="scriptAfegirFeina.php" method="post">
                             <div class="row">
-
-                                <div class="col-lg-6">
-                                    <h1>Detalls bàsics</h1>
-                                    <div class="form-group">
-                                        <label>Número de factura</label>
-                                        <p class="form-control-static">S'assignarà un cop generada la factura</p>
-                                        <p class="help-block">El valor podrà ser manual</p>
-                                    </div>
-                                </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1>Descripció</h1>
@@ -85,7 +76,7 @@
                                         <label>Comentari</label>
                                         <input name="descripcio" class="form-control" placeholder="Breu comentari (opcional)">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Crear borrador de la factura</button>
+                                    <button type="submit" class="btn btn-primary">Crear feina</button>
                                     <button type="reset" class="btn btn-warning btn-outline">Natejar els camps</button>
                                     <input type="hidden" name="idClient" value="<?php echo $idClient; ?>">
                                 </div>
