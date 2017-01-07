@@ -47,7 +47,7 @@
             <div class="col-lg-12">
                 <table style='margin-top: 20px;'>
                     <tr>
-                        <td><form type='submit' action='afegirFactura.php'><button style='margin: 5px;' type='submit' class="btn btn-primary"><i class="fa fa-arrow-left"></i> Selecciona un altre client</button></form></td>
+                        <td><form type='submit' action='afegirFeina.php'><button style='margin: 5px;' type='submit' class="btn btn-primary"><i class="fa fa-arrow-left"></i> Selecciona un altre client</button></form></td>
                     </tr>
                 </table>
             </div>
