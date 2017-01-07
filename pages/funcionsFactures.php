@@ -280,6 +280,11 @@ function printDataVencimentFactura($idFactura)
       {
         $data = $row["data_venciment_factura"];
       }
+      else
+      {
+        $data = $data('Y-m-d', strtotime($data. ' + 2 days'));
+
+      }
   }
   $conn->close();
   echo $data;
