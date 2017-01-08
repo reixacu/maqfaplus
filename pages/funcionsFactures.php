@@ -328,6 +328,7 @@ function printDataVencimentFactura($idFactura)
           }
           else if ($dia1 != 0)
           {
+            $diames = date("d", strtotime($data));
             if ($diames <= $dia1)
             {
               $data = date_create($data);
