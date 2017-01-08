@@ -1,5 +1,5 @@
 <?php
-$idClient = $_POST["id"];
+$idClient = $_POST["idClient"];
 $descripcio = $_POST["descripcio"];
 
 include "mysql.php";
