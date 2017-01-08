@@ -322,7 +322,7 @@ function printDataVencimentFactura($idFactura)
               $data = date_modify($data, '+1 month');
             }
           }
-          echo $data;
+          echo $data->format('Y-m-d');
         }
       }
   }
