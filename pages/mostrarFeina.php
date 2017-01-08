@@ -71,6 +71,18 @@
             </div>
             <!-- /.row -->
             <div class=\"row\">
+				<div class=\"col-lg-4\">
+                    <div class=\"panel panel-default\">
+                        <div class=\"panel-heading\">
+							Descripció
+						</div>
+						<div class=\"panel-body\">
+							AYY PAPI
+						</div>
+					</div>
+				</div>
+			</div>
+					
                 ";
             printEstatFeinaColum($id);
             echo "
@@ -80,7 +92,7 @@
                             Client
                         </div>
                         <!-- /.panel-heading -->
-                        <div class=\"panel-body\">
+						<div class=\"panel-body\">
                         <a href='mostrarClient.php?id=" . $row["id_client_feina"] . "'>
                             <h3><i class=\"fa fa-user\"></i> ";
                             echo getClientCognomNom($row["id_client_feina"]);
