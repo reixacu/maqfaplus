@@ -303,11 +303,23 @@ function printDataVencimentFactura($idFactura)
               $dia1 = $dia2;
               $dia2 = $temp;
             }
-            $diames = date("d-m", strtotime($data));
+            $diames = date("d", strtotime($data));
             if ($diames <= $dia2)
             {
-              echo "DATADATADATA".$data;
-              echo "DIAMESDIAMES".$diames;
+              if($diames <= $dia1)
+              {
+                $data = date_create($data);
+                $diesMod = $dia1-$diames;
+                $data = date_modify($data, '+'.$diesMod.' days');
+              }
+              else {
+                $data = date_create($data);
+                $diesMod = $dia2-$diames;
+                $data = date_modify($data, '+'.$diesMod.' days');
+              }
+            }
+            else {
+              $data = date_modify($data, '+1 month');
             }
           }
           //echo $data;
