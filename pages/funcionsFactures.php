@@ -305,9 +305,9 @@ function printDataVencimentFactura($idFactura)
             }
             $diames = date("d", strtotime($data));
             //DEBUGecho " ENTRO0 DIAMES - DIA1 ".$diames." - ".$dia1;
-            if ($diames <= $dia2)
+            if ($diames > $dia2)
             {
-              if($diames <= $dia1)
+              if($diames > $dia1)
               {
                 $data = date_create($data);
                 $diesMod = $dia1-$diames;
