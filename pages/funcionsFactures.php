@@ -303,7 +303,7 @@ function printDataVencimentFactura($idFactura)
               $dia1 = $dia2;
               $dia2 = $temp;
             }
-            $diames = date("d", $data)
+            $diames = date("d", $data);
             if ($diames <= $dia2)
             {
 
