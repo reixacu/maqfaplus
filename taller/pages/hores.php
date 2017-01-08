@@ -44,8 +44,7 @@
 
 <?php
 $idTreballador = $_GET["treballador"];
-
- ?>
+?>
 <script>
 var peligro = 0;
 </script>
