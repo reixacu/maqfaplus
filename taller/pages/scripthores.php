@@ -18,7 +18,7 @@ foreach ($array as &$valor)
 }
 
 $count = sizeof($array);
-
+/*
 include "mysql.php";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -41,7 +41,7 @@ for( $i = 0 ; $i< $count ; $i++)
 	
 }
 if($result){echo "Insercio correcte\n"};
-$conn->close();
+$conn->close();*/
 
 echo sizeof($array);
 // encode the PHP variable to JSON and send it back on client-side
