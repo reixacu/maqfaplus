@@ -284,12 +284,13 @@ function printDataVencimentFactura($idFactura)
       else
       {
         $idClient = $row["id_client_factura"];
+        $conn->close();
         include "mysql.php";
         //$sql1 = "SELECT `data_venciment_factura`, `id_client_factura` FROM `factures` WHERE `id_factura` = $idFactura";
-        $sql1 = "SELECT `dies_fins_pagament_client`, `dia_mensual_pagament_client`, `dia_mensual_pagament_2_client` FROM `clients` WHERE `id_client` = $idClient";
-        $result1 = $conn->query($sql1);
-        $row1 = $result1->fetch_assoc();
-        $diesAdd = $row1["dies_fins_pagament_client"];
+        $sql = "SELECT `dies_fins_pagament_client`, `dia_mensual_pagament_client`, `dia_mensual_pagament_2_client` FROM `clients` WHERE `id_client` = $idClient";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $diesAdd = $row["dies_fins_pagament_client"];
         $dia1 = $row1["dia_mensual_pagament_client"];
         $dia2 = $row1["dia_mensual_pagament_2_client"];
         $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
