@@ -65,24 +65,11 @@
             <!-- /.row -->
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <h1 class=\"page-header\"><i class=\"fa fa-tasks\"></i> Feina #". $row["id_feina"] . "</h1>
+                    <h1 class=\"page-header\"><i class=\"fa fa-tasks\"></i> Feina #". $row["id_feina"] . " | " . $row["descripcio_feina"] . "</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class=\"row\">
-				<div class=\"col-lg-4\">
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-							Descripció
-						</div>
-						<div class=\"panel-body\">
-							" . $row["descripcio_feina"] . "
-						</div>
-					</div>
-				</div>
-			</div>
-					
+            <!-- /.row -->					
                 ";
             printEstatFeinaColum($id);
             echo "
