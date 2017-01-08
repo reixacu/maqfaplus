@@ -212,6 +212,17 @@ function printNuvolProductes($idFeina, $idClient) {
         echo "Encara no hi ha cap producte";
     }
 }
+function modificarDescripcioFeina($idFeina, $descripcioFeina)
+{
+  include "mysql.php";
+  $sql = "UPDATE `feines` SET `descripcio_feina` = '$descripcioFeina' WHERE `feines`.`id_feina` = '$idFeina'";
+  if ($conn->query($sql) === TRUE) {
+      return true;
+  } else {
+      echo "ERROR: " . $sql . "<br>" . $conn->error;
+      return false;
+  }
+}
 
 
 
