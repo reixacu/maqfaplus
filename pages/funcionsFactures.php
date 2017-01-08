@@ -331,6 +331,7 @@ function printDataVencimentFactura($idFactura)
             $diames = date("d", strtotime($data));
             if ($diames <= $dia1)
             {
+              // TEST PASS
               $data = date_create($data);
               $diesMod = $dia2-$diames;
               $data = date_modify($data, '+'.$diesMod.' days');
@@ -341,6 +342,7 @@ function printDataVencimentFactura($idFactura)
               $any = $data->format('Y');
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
+              else("ENTROENTROENTROLOKO");
             }
           }
           else {
