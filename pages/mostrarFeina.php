@@ -65,7 +65,7 @@
             <!-- /.row -->
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <h1 class=\"page-header\"><i class=\"fa fa-tasks\"></i> Feina #". $row["id_feina"] . " | " . $row["descripcio_feina"] . "</h1> <link href=\"modificarDescripcioFeina.php\" class=\"fa fa-pencil\">
+                    <h1 class=\"page-header\"><i class=\"fa fa-tasks\"></i> Feina #". $row["id_feina"] . " | " . $row["descripcio_feina"] . " <link href=\"modificarDescripcioFeina.php\" class=\"fa fa-pencil\"></link></h1> 
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
