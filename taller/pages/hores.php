@@ -88,6 +88,8 @@ var peligro = 0;
     </div>
 	
 	<script>
+	<?php echo "$idTreballador=".$_GET["treballador"].";";
+	?>
 	function testguarro(){
 		var tableToObj = function( table ) {
 			var trs = table.rows,

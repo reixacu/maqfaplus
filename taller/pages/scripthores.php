@@ -19,19 +19,29 @@ foreach ($array as &$valor)
 
 $count = sizeof($array);
 
+include "mysql.php";
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("ERROR AL CONNECTAR AMB LA BASE DE DADES: " . $conn->connect_error);
+}
+echo "<div class=\"col-lg-6\">";
+
 for( $i = 0 ; $i< $count ; $i++)
 {
 	echo "Feina: " . $array[$i]['Feina'];//
 	echo "Dia: " . $array[$i]['Dia'];//
 	echo "Hores: " . $array[$i]['Hores'];//
-	echo "Detall: " . $array[$i]['Detall'];
-	echo "Acabada?: " . $array[$i]['Acabada?'];
+	echo "Detall: " . $array[$i]['Detall'];//
+	echo "Acabada?: " . $array[$i]['Acabada?']; //s'ha de posar a algun lloc que encara no existeix
 	
-	//$sql="INSERT INTO hores VALUES ('".$array[$i]['] .'")
 	$sql="INSERT INTO `maqfaplus`.`hores` (`id_hores`, `id_treballador_hores`, `id_feina_hores`, `hores_hores`, `detall_hores`, `dia_hores`, `dia_creacio_hores`, `timestamp_hores`) ";
-						$sql=$sql."VALUES (NULL, '', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$array[$i]['Dia']."', current_date, CURRENT_TIMESTAMP)"
+	$sql=$sql."VALUES (NULL, 'id treballador passat per get que hem de treure dalgun lloc', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$array[$i]['Detall']."','".$array[$i]['Dia']."', current_date, CURRENT_TIMESTAMP);";
+	$result = $conn->query($sql);
 	
 }
+if($result){echo "Insercio correcte\n"};
+$conn->close();
 
 echo sizeof($array);
 // encode the PHP variable to JSON and send it back on client-side
