@@ -36,7 +36,7 @@ for( $i = 0 ; $i< $count ; $i++)
 	echo "Acabada?: " . $array[$i]['Acabada?']; //s'ha de posar a algun lloc que encara no existeix
 	
 	$sql="INSERT INTO `maqfaplus`.`hores` (`id_hores`, `id_treballador_hores`, `id_feina_hores`, `hores_hores`, `detall_hores`, `dia_hores`, `dia_creacio_hores`, `timestamp_hores`) ";
-	$sql=$sql."VALUES (NULL, 'id treballador passat per get que hem de treure dalgun lloc', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$array[$i]['Detall']."','".$array[$i]['Dia']."', current_date, CURRENT_TIMESTAMP);";
+	$sql=$sql."VALUES (NULL, '".$_GET["idtreballador"]."', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$array[$i]['Detall']."','".$array[$i]['Dia']."', current_date, CURRENT_TIMESTAMP);";
 	$result = $conn->query($sql);
 	
 }
