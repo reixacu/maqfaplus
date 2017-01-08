@@ -343,7 +343,7 @@ function printDataVencimentFactura($idFactura)
             }
           }*/
           else {
-            $data = date_format($data, 'Y-m-d');
+            $data = date_create_from_format('Y-m-d',$data);
           }
           echo $data->format('Y-m-d');
         }
