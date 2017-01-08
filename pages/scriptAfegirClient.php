@@ -85,7 +85,7 @@
                         $conn = new mysqli($servername, $username, $password, $dbname);
                         // Check connection
                         if ($conn->connect_error) {
-                            die("ERROR AL CONNECTAR AMB LA BASE DE DAES: " . $conn->connect_error);
+                            die("ERROR AL CONNECTAR AMB LA BASE DE DADES: " . $conn->connect_error);
                         }
                         echo "<div class=\"col-lg-6\">";
 
@@ -121,7 +121,7 @@
                                 $errorComprovarEsEmpresa = false;
                                 break;
                             case 2:
-                                echo "ERROR 1000. CONSULTA EL MANUAL";
+                                echo "ERROR AL INSERIR";
                                 break;
                         }
                         $conn->close();
