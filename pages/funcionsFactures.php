@@ -325,7 +325,7 @@ function printDataVencimentFactura($idFactura)
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
             }
-          }/*
+          }
           else if ($dia1 != 0)
           {
             if ($diames <= $dia1)
@@ -341,7 +341,7 @@ function printDataVencimentFactura($idFactura)
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
             }
-          }*/
+          }
           else {
             $data = date_create_from_format('Y-m-d',$data);
           }
