@@ -68,7 +68,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary">Modificar feina</button>
                                     <button type="reset" class="btn btn-warning btn-outline">Natejar els camps</button>
-                                    <input type="hidden" name="idClient" value="<?php echo $idClient; ?>">
+                                    <input type="hidden" name="idClient" value="<?php echo $idFeina; ?>">
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
