@@ -327,7 +327,7 @@ function printDataVencimentFactura($idFactura)
             }
           }*/
           //echo $data->format('Y-m-d');
-          echo "is dis shit wokring?"
+          echo "is dis shit wokring?";
         }
       }
   }
