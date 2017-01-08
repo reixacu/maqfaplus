@@ -77,7 +77,7 @@
 							Descripció
 						</div>
 						<div class=\"panel-body\">
-							AYY PAPI
+							" . $row["descripcio_feina"] . "
 						</div>
 					</div>
 				</div>
