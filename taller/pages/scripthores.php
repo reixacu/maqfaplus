@@ -27,6 +27,11 @@ for( $i = 0 ; $i< $count ; $i++)
 	echo "Hores: " . $array[$i]['Hores'];
 	echo "Detall: " . $array[$i]['Detall'];
 	echo "Acabada?: " . $array[$i]['Acabada?'];
+	
+	//$sql="INSERT INTO hores VALUES ('".$array[$i]['] .'")
+	$sql="INSERT INTO `maqfaplus`.`hores` (`id_hores`, `id_treballador_hores`, `id_feina_hores`, `hores_hores`, `dia_hores`, `dia_creacio_hores`, `timestamp_hores`) ";
+	$sql=$sql."VALUES (NULL, '".$array[$i]['Hores']."', '".$array[$i]['Feina']."', '10', '2017-01-03', '2017-01-08', CURRENT_TIMESTAMP)"
+	
 }
 
 echo sizeof($array);
