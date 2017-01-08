@@ -292,8 +292,8 @@ function printDataVencimentFactura($idFactura)
         if ($result->num_rows > 0) {
           $row = $result->fetch_assoc();
           $diesAdd = $row["dies_fins_pagament_client"];
-          $dia1 = $row1["dia_mensual_pagament_client"];
-          $dia2 = $row1["dia_mensual_pagament_2_client"];
+          $dia1 = $row["dia_mensual_pagament_client"];
+          $dia2 = $row["dia_mensual_pagament_2_client"];
           $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
           if ($dia1 != 0 && $dia2 != 0)
           {
@@ -304,7 +304,9 @@ function printDataVencimentFactura($idFactura)
               $dia2 = $temp;
             }
             if ($data->format("d") <= $dia2)
-            {}
+            {
+
+            }
           }
           echo $data;
         }
