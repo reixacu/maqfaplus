@@ -259,7 +259,7 @@ function printDataFactura($idFactura)
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
-      if($row["data_factura"]!= "2001-01-01")
+      if($row["data_factura"]!= "2000-01-01")
       {
         $data = $row["data_factura"];
       }
@@ -272,17 +272,93 @@ function printDataVencimentFactura($idFactura)
 {
   $data = date("Y-m-d");
   include "mysql.php";
-  $sql = "SELECT `data_venciment_factura` FROM `factures` WHERE `id_factura` = $idFactura";
+  $sql = "SELECT `data_venciment_factura`, `id_client_factura` FROM `factures` WHERE `id_factura` = $idFactura";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
-      if($row["data_venciment_factura"]!= "2001-01-01")
+      if($row["data_venciment_factura"]!= "2000-01-01")
       {
         $data = $row["data_venciment_factura"];
+        echo $data;
+      }
+      else
+      {
+        $idClient = $row["id_client_factura"];
+        $conn->close();
+        include "mysql.php";
+        //$sql1 = "SELECT `data_venciment_factura`, `id_client_factura` FROM `factures` WHERE `id_factura` = $idFactura";
+        $sql = "SELECT `dies_fins_pagament_client`, `dia_mensual_pagament_client`, `dia_mensual_pagament_2_client` FROM `clients` WHERE `id_client` = $idClient";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $diesAdd = $row["dies_fins_pagament_client"];
+          $dia1 = $row["dia_mensual_pagament_client"];
+          $dia2 = $row["dia_mensual_pagament_2_client"];
+          $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
+          if ($dia1 != 0 && $dia2 != 0)
+          {
+            if ($dia1 > $dia2)
+            {
+              $temp = $dia1;
+              $dia1 = $dia2;
+              $dia2 = $temp;
+            }
+            $diames = date("d", strtotime($data));
+            //DEBUGecho " ENTRO0 DIAMES - DIA1 ".$diames." - ".$dia1;
+            if ($diames <= $dia2)
+            {
+              if($diames <= $dia1)
+              {
+                $data = date_create($data);
+                $diesMod = $dia1-$diames;
+                $data = date_modify($data, '+'.$diesMod.' days');
+              }
+              else {
+                $data = date_create($data);
+                $diesMod = $dia2-$diames;
+                $data = date_modify($data, '+'.$diesMod.' days');
+              }
+            }
+            else {
+              $data = date_modify(date_create($data), '+1 month');
+              $mes = $data->format('m');
+              $any = $data->format('Y');
+              //$data = strtotime($any.'-'.$mes.'-'.$dia1);
+              $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
+            }
+          }
+          else if ($dia1 != 0)
+          {
+            $diames = date("d", strtotime($data));
+            //DEBUG
+            //echo " ENTRO1 DIAMES - DIA1 ".$diames." - ".$dia1;
+            if (intval($diames) <= intval($dia1))
+            {
+              //DEBUG
+              //echo " ENTRO 3 ";
+              $data = date_create($data);
+              $diesMod = $dia1-$diames;
+              $data = date_modify($data, '+'.$diesMod.' days');
+
+            }
+            else {
+              $data = date_modify(date_create($data), '+1 month');
+              $mes = $data->format('m');
+              $any = $data->format('Y');
+              //$data = strtotime($any.'-'.$mes.'-'.$dia1);
+              $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
+              //DEBUG
+              //echo " ENTRO2 ";
+            }
+          }
+          else {
+            $data = date_create_from_format('Y-m-d',$data);
+          }
+          echo $data->format('Y-m-d');
+        }
       }
   }
   $conn->close();
-  echo $data;
 }
 /*
 function addDayswithdate($date,$days){
@@ -419,6 +495,96 @@ function mostrarFactures($sql) {
             } else {
               echo "<tr>ERROR</tr>";
             }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
+function mostrarFacturesPendents($sql) {
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Estat</th>
+                                            <th>Concepte</th>
+                                            <th>Client</th>
+                                            <th>Data factura</th>
+                                            <th>Data venciment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+			if(strtotime($row["data_venciment_factura"]) >= strtotime(date("Y-m-d H:i:s"))){
+              echo "<tr class=\"info\">
+                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
+                                                    <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent </td>
+                                                      <td>". $row["comentari_factura"] . "</td>
+                                                      <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                  </tr>";
+            }
+            else{
+              echo "<tr class=\"danger\">
+                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
+                                                    <td><i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i> Fora de termini</td>
+                                                      <td>". $row["comentari_factura"] . "</td>
+                                                      <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                  </tr>";
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
+function mostrarBorradorsFactures($sql) {
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table table-striped\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Concepte</th>
+                                            <th>Client</th>
+                                            <th>Data factura</th>
+                                            <th>Data venciment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+              echo "<tr>
+                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                      <td>". $row["comentari_factura"] . "</td>
+                                                      <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                  </tr>";
         }
         echo "
                                         </tbody>
