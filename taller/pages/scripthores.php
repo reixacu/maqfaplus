@@ -29,7 +29,19 @@ for( $i = 0 ; $i< $count ; $i++)
 	
 	//$sql="INSERT INTO hores VALUES ('".$array[$i]['] .'")
 	$sql="INSERT INTO `maqfaplus`.`hores` (`id_hores`, `id_treballador_hores`, `id_feina_hores`, `hores_hores`, `detall_hores`, `dia_hores`, `dia_creacio_hores`, `timestamp_hores`) ";
-						$sql=$sql."VALUES (NULL, '', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$array[$i]['Dia']."', current_date, CURRENT_TIMESTAMP)"
+						$sql=$sql."VALUES (NULL, 'obtenir la id del get', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$$array[$i]['Detall']."' ,'".$array[$i]['Dia']."', current_date, CURRENT_TIMESTAMP)"
+	
+	sdfasdfasdfsd
+	asdf
+	sdfasdfasdfsdsdfa
+	asdfasdf
+	asdffa
+	sdfasdfasdfsdfg
+	gh
+	jkuy
+	ibase_add_useruy
+	kil
+	iul
 	
 }
 
