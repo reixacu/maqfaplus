@@ -343,7 +343,7 @@ function printDataVencimentFactura($idFactura)
             else {
               echo " ENTRO 3 ";
               $data = date_create($data);
-              $diesMod = $dia2-$diames;
+              $diesMod = $dia1-$diames;
               $data = date_modify($data, '+'.$diesMod.' days');
             }
           }
