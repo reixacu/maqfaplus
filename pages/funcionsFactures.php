@@ -295,7 +295,7 @@ function printDataVencimentFactura($idFactura)
           $dia1 = $row["dia_mensual_pagament_client"];
           $dia2 = $row["dia_mensual_pagament_2_client"];
           $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
-          /*if ($dia1 != 0 && $dia2 != 0)
+          if ($dia1 != 0 && $dia2 != 0)
           {
             if ($dia1 > $dia2)
             {
@@ -325,9 +325,8 @@ function printDataVencimentFactura($idFactura)
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
             }
-          }*/
-          //echo $data->format('Y-m-d');
-          echo "2012-12-12";
+          }
+          echo $data->format('Y-m-d');
         }
       }
   }
