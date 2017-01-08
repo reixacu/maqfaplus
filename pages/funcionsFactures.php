@@ -342,7 +342,7 @@ function printDataVencimentFactura($idFactura)
               $any = $data->format('Y');
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
-              else("ENTROENTROENTROLOKO");
+              echo "ENTROENTROENTROLOKO";
             }
           }
           else {
