@@ -329,7 +329,7 @@ function printDataVencimentFactura($idFactura)
           else if ($dia1 != 0)
           {
             $diames = date("d", strtotime($data));
-            echo " ENTRO1 ";
+            echo " ENTRO1 DIAMES - DIA1 ".$diames." - ".$dia1;
             if ($diames <= $dia1)
             {
               // TEST PASS
