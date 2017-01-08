@@ -284,14 +284,78 @@ function printDataVencimentFactura($idFactura)
       else
       {
         $idClient = $row["id_client_factura"];
+        $conn->close();
         include "mysql.php";
         //$sql1 = "SELECT `data_venciment_factura`, `id_client_factura` FROM `factures` WHERE `id_factura` = $idFactura";
-        $sql1 = "SELECT `dies_fins_pagament_client`, `dia_mensual_pagament_client` FROM `clients` WHERE `id_client` = $idClient";
-        $result1 = $conn->query($sql1);
-        $row1 = $result1->fetch_assoc();
-        $diesAdd = $row1["dies_fins_pagament_client"];
-        $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
-        echo $data;
+        $sql = "SELECT `dies_fins_pagament_client`, `dia_mensual_pagament_client`, `dia_mensual_pagament_2_client` FROM `clients` WHERE `id_client` = $idClient";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $diesAdd = $row["dies_fins_pagament_client"];
+          $dia1 = $row["dia_mensual_pagament_client"];
+          $dia2 = $row["dia_mensual_pagament_2_client"];
+          $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
+          if ($dia1 != 0 && $dia2 != 0)
+          {
+            if ($dia1 > $dia2)
+            {
+              $temp = $dia1;
+              $dia1 = $dia2;
+              $dia2 = $temp;
+            }
+            $diames = date("d", strtotime($data));
+            //DEBUGecho " ENTRO0 DIAMES - DIA1 ".$diames." - ".$dia1;
+            if ($diames <= $dia2)
+            {
+              if($diames <= $dia1)
+              {
+                $data = date_create($data);
+                $diesMod = $dia1-$diames;
+                $data = date_modify($data, '+'.$diesMod.' days');
+              }
+              else {
+                $data = date_create($data);
+                $diesMod = $dia2-$diames;
+                $data = date_modify($data, '+'.$diesMod.' days');
+              }
+            }
+            else {
+              $data = date_modify(date_create($data), '+1 month');
+              $mes = $data->format('m');
+              $any = $data->format('Y');
+              //$data = strtotime($any.'-'.$mes.'-'.$dia1);
+              $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
+            }
+          }
+          else if ($dia1 != 0)
+          {
+            $diames = date("d", strtotime($data));
+            //DEBUG
+            //echo " ENTRO1 DIAMES - DIA1 ".$diames." - ".$dia1;
+            if (intval($diames) <= intval($dia1))
+            {
+              //DEBUG
+              //echo " ENTRO 3 ";
+              $data = date_create($data);
+              $diesMod = $dia1-$diames;
+              $data = date_modify($data, '+'.$diesMod.' days');
+
+            }
+            else {
+              $data = date_modify(date_create($data), '+1 month');
+              $mes = $data->format('m');
+              $any = $data->format('Y');
+              //$data = strtotime($any.'-'.$mes.'-'.$dia1);
+              $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
+              //DEBUG
+              //echo " ENTRO2 ";
+            }
+          }
+          else {
+            $data = date_create_from_format('Y-m-d',$data);
+          }
+          echo $data->format('Y-m-d');
+        }
       }
   }
   $conn->close();
@@ -482,7 +546,7 @@ function mostrarFacturesPendents($sql) {
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
                                                   </tr>";
-            } 
+            }
         }
         echo "
                                         </tbody>
