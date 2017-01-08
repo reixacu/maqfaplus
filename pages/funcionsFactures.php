@@ -306,7 +306,7 @@ function printDataVencimentFactura($idFactura)
             $diames = date("d", $data);
             if ($diames <= $dia2)
             {
-
+              echo "DATADATADATA".$diames;
             }
           }
           echo $data;
