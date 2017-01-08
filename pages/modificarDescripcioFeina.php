@@ -45,7 +45,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><i class="fa fa-pencil" aria-hidden="true"></i> Nova feina (<?php echo getClientCognomNom($idClient); ?>)</h1>
+                <h1 class="page-header"><i class="fa fa-pencil" aria-hidden="true"></i> Modificar feina (<?php echo getClientCognomNom($idClient); ?>)</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -54,10 +54,10 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Formulari crear feina
+                        Formulari modificar feina
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="scriptAfegirFeina.php" method="post">
+                        <form role="form" action="scriptModificarDescripcioFeina.php" method="post">
                             <div class="row">
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
@@ -66,7 +66,7 @@
                                         <label>Comentari</label>
                                         <input name="descripcio" class="form-control" placeholder="Breu comentari (opcional)">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Crear feina</button>
+                                    <button type="submit" class="btn btn-primary">Modificar feina</button>
                                     <button type="reset" class="btn btn-warning btn-outline">Natejar els camps</button>
                                     <input type="hidden" name="idClient" value="<?php echo $idClient; ?>">
                                 </div>
