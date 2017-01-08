@@ -289,23 +289,25 @@ function printDataVencimentFactura($idFactura)
         //$sql1 = "SELECT `data_venciment_factura`, `id_client_factura` FROM `factures` WHERE `id_factura` = $idFactura";
         $sql = "SELECT `dies_fins_pagament_client`, `dia_mensual_pagament_client`, `dia_mensual_pagament_2_client` FROM `clients` WHERE `id_client` = $idClient";
         $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $diesAdd = $row["dies_fins_pagament_client"];
-        $dia1 = $row1["dia_mensual_pagament_client"];
-        $dia2 = $row1["dia_mensual_pagament_2_client"];
-        $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
-        if ($dia1 != 0 && $dia2 != 0)
-        {
-          if ($dia1 > $dia2)
+        if ($result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $diesAdd = $row["dies_fins_pagament_client"];
+          $dia1 = $row1["dia_mensual_pagament_client"];
+          $dia2 = $row1["dia_mensual_pagament_2_client"];
+          $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
+          if ($dia1 != 0 && $dia2 != 0)
           {
-            $temp = $dia1;
-            $dia1 = $dia2;
-            $dia2 = $temp;
+            if ($dia1 > $dia2)
+            {
+              $temp = $dia1;
+              $dia1 = $dia2;
+              $dia2 = $temp;
+            }
+            if ($data->format("d") <= $dia2)
+            {}
           }
-          if ($data->format("d") <= $dia2)
-          {}
+          echo $data;
         }
-        echo $data;
       }
   }
   $conn->close();
