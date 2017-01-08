@@ -304,7 +304,7 @@ function printDataVencimentFactura($idFactura)
               $dia2 = $temp;
             }
             $data = strtotime($data);
-            if ($data->format("d") <= $dia2)
+            if ($data("d") <= $dia2)
             {
 
             }
