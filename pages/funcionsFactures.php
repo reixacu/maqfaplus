@@ -319,13 +319,13 @@ function printDataVencimentFactura($idFactura)
               }
             }
             else {
-              $data = date_modify($data, '+1 month');
+              $data = date_modify(strtotime($data), '+1 month');
+              $mes = date("d", strtotime($data));
+              $any = date("Y", strtotime($data));
+              echo $data->format($any.'-'.$mes.'-'.$dia1);
             }
           }
-          $mes = date("d", strtotime($data));
-          $any = date("Y", strtotime($data));
-          echo $data->format($any.'-'.$mes.'-'.$dia1);
-          
+          echo $data->format('Y-m-d');
         }
       }
   }
