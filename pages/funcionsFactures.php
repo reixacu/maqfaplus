@@ -329,6 +329,7 @@ function printDataVencimentFactura($idFactura)
           else if ($dia1 != 0)
           {
             $diames = date("d", strtotime($data));
+            echo " ENTRO1 ";
             if ($diames <= $dia1)
             {
               // TEST PASS
@@ -342,7 +343,7 @@ function printDataVencimentFactura($idFactura)
               $any = $data->format('Y');
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
-              echo "ENTROENTROENTROLOKO";
+              echo " ENTRO2 ";
             }
           }
           else {
