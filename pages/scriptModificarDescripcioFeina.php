@@ -9,6 +9,6 @@ if (modificarDescripcioFeina($idFeina, $descripcioFeina)) {
                             </script>
                             ";
 } else {
-    echo "ERROR";
+    echo "ERROR ".$idFeina;
 }
 ?>
