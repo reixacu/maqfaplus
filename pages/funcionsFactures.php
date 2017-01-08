@@ -333,18 +333,18 @@ function printDataVencimentFactura($idFactura)
             echo " ENTRO1 DIAMES - DIA1 ".$diames." - ".$dia1;
             if (intval($diames) <= intval($dia1))
             {
-              echo " ENTRO 3 ";
-              $data = date_create($data);
-              $diesMod = $dia2-$diames;
-              $data = date_modify($data, '+'.$diesMod.' days');
-            }
-            else {
               $data = date_modify(date_create($data), '+1 month');
               $mes = $data->format('m');
               $any = $data->format('Y');
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
               echo " ENTRO2 ";
+            }
+            else {
+              echo " ENTRO 3 ";
+              $data = date_create($data);
+              $diesMod = $dia2-$diames;
+              $data = date_modify($data, '+'.$diesMod.' days');
             }
           }
           else {
