@@ -39,8 +39,8 @@
 
     <?php
     include "menu.php";
-    $idFeina = $_GET["idFeina"]
-	$idClient = $_GET["idClient"]
+    $idFeina = $_GET["idFeina"];
+	$idClient = $_GET["idClient"];
     ?>
 
     <div id="page-wrapper">
