@@ -215,7 +215,7 @@ function printNuvolProductes($idFeina, $idClient) {
 function modificarDescripcioFeina($idFeina, $descripcioFeina)
 {
   include "mysql.php";
-  $sql = "UPDATE `feines` SET `descripcio_feina` = '$descripcioFeina' WHERE `feines.`id_feina` = '$idFeina'";
+  $sql = "UPDATE `feines` SET `descripcio_feina` = '$descripcioFeina' WHERE `feines`.`id_feina` = '$idFeina'";
   if ($conn->query($sql) === TRUE) {
       return true;
   } else {
