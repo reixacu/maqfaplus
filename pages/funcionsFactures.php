@@ -333,7 +333,7 @@ function printDataVencimentFactura($idFactura)
             echo " ENTRO1 DIAMES - DIA1 ".$diames." - ".$dia1;
             if (intval($diames) <= intval($dia1))
             {
-              // TEST PASS
+              echo " ENTRO 3 ";
               $data = date_create($data);
               $diesMod = $dia2-$diames;
               $data = date_modify($data, '+'.$diesMod.' days');
