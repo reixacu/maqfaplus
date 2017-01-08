@@ -326,7 +326,8 @@ function printDataVencimentFactura($idFactura)
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
             }
           }*/
-          echo $data->format('Y-m-d');
+          //echo $data->format('Y-m-d');
+          echo "is dis shit wokring?"
         }
       }
   }
