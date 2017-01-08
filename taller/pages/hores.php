@@ -44,8 +44,7 @@
 
 <?php
 $idTreballador = $_GET["treballador"];
-
- ?>
+?>
 <script>
 var peligro = 0;
 </script>
@@ -69,7 +68,7 @@ var peligro = 0;
                                             <th>Dia</th>
                                             <th>Hores</th>
                                             <th>Detall</th>
-                                            <th>Acabada?</th>
+                                            <th>Acabada</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,6 +87,7 @@ var peligro = 0;
     </div>
 	
 	<script>
+	<?php echo "var idTreballador=".$_GET["treballador"].";\n";?>
 	function testguarro(){
 		var tableToObj = function( table ) {
 			var trs = table.rows,
@@ -118,15 +118,14 @@ var peligro = 0;
 		document.getElementById('r').innerHTML = JSON.stringify(tableToObj(document.getElementsByTagName('table')[0]));
 		
 		// Sending a receiving data in JSON format using GET method
-		//
 		xhr = new XMLHttpRequest();
-		var url = "scripthores.php?data=" + encodeURIComponent(JSON.stringify(tableToObj(document.getElementsByTagName('table')[0])));
+		var url = "scripthores.php?idtreballador="+idTreballador+"&data=" + encodeURIComponent(JSON.stringify(tableToObj(document.getElementsByTagName('table')[0])));
 		xhr.open("GET", url, true);
 		xhr.setRequestHeader("Content-type", "application/json");
 		xhr.onreadystatechange = function () { 
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var json = JSON.parse(xhr.responseText);
-				console.log(json.email + ", " + json.password)
+				console.log(json.email + ", " + json.password);
 			}
 		}
 		xhr.send();
