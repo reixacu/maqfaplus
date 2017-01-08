@@ -325,7 +325,23 @@ function printDataVencimentFactura($idFactura)
               //$data = strtotime($any.'-'.$mes.'-'.$dia1);
               $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
             }
-          }
+          }/*
+          else if ($dia1 != 0)
+          {
+            if ($diames <= $dia1)
+            {
+              $data = date_create($data);
+              $diesMod = $dia2-$diames;
+              $data = date_modify($data, '+'.$diesMod.' days');
+            }
+            else {
+              $data = date_modify(date_create($data), '+1 month');
+              $mes = $data->format('m');
+              $any = $data->format('Y');
+              //$data = strtotime($any.'-'.$mes.'-'.$dia1);
+              $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
+            }
+          }*/
           echo $data->format('Y-m-d');
         }
       }
