@@ -26,7 +26,7 @@ if ($conn->connect_error)
 	die("ERROR AL CONNECTAR AMB LA BASE DE DADES: " . $conn->connect_error);
 
 $idTreballador1 = $_GET["idtreballador"];
-$sql="DELETE * FROM `maqfaplus`.`hores` WHERE `dia_creacio_hores`=CURRENT_DATE AND `id_treballador_hores`=$idTreballador";
+$sql="DELETE FROM `hores` WHERE `dia_creacio_hores`=CURRENT_DATE() AND `id_treballador_hores`=$idTreballador1;";
 $conn->query($sql);
 
 for( $i = 0 ; $i< $count ; $i++)
