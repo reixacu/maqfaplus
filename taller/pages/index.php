@@ -45,11 +45,11 @@
                       <?php
                       include "mysql.php";
 
-                      $sql = "SELECT `id_client`, `nif_client`, `nom_client`, `cognom_client`, `poblacio_client`, `es_empresa_client`, `rao_social_client`, `nom_comercial_client` FROM `clients`";
+                      $sql = "SELECT * FROM `treballadors`";
                       $result = $conn->query($sql);
                       if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-
+                          echo "<a href=\"hores.php?id=".$row["id_treballdor"]."\" type=\"button\" class=\"btn btn-primary btn-lg btn-block\">".$row["nom_treballdor"]."</a>";
                         }
                       } else {
                         echo "No s'ha trobat cap treballador";
