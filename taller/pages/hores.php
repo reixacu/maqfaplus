@@ -53,7 +53,7 @@ var peligro = 0;
         <div class="row">
             <div class="col-md-12">
                 EMPLEAT NUMERO <?php echo $_GET["treballador"]; ?><br />
-				<a href=".">Tornar enrrere</a>
+				<a href=".">Tornar enrrere</a><br /><br />
 
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
@@ -76,7 +76,7 @@ var peligro = 0;
                                         <?php printNewLines($idTreballador); ?>
                                     </tbody>
                                 </table>
-				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-default btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
+				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
 				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy"></i> Guardar</button>
 								<div id="r"></div>
                             </div>
