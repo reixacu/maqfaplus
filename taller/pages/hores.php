@@ -203,7 +203,7 @@ function printNewLines($idTreballador)
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". date("Y-m-d") ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
         <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\"></td>
-        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\">VACILADA</td>
+        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=\"Vacilada\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
     </tr>";
   }
