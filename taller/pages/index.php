@@ -39,18 +39,12 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Insereix el número de treballador</h3>
+                        <h3 class="panel-title">Selecció de treballador</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="hores.php" method="get">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" name="treballador" type="password">
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-lg btn-default btn-success btn-block">Entrar</button>
-                            </fieldset>
-                        </form>
+                      <div class="alert alert-info">
+                        <a href="hores.php" class="alert-link">Xevi</a>.
+                      </div>
                     </div>
                 </div>
             </div>
