@@ -187,11 +187,11 @@ function printNewLines($idTreballador)
 	  echo
     "<tr>
         <td class=\"feina\">";
-        printDesplegableFeinesActives1($default);
+        printDesplegableFeinesActives1($row["id_feina_hores"]);
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". $row["dia_hores"] ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
-        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\">". $row["hores_hores"] ."</td>
-        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\">".$row["detall_hores"]."</td>
+        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"] ."></td>
+        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=".$row["detall_hores"]."></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
     </tr>";
 	}
@@ -203,7 +203,7 @@ function printNewLines($idTreballador)
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". date("Y-m-d") ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
         <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\"></td>
-        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=\"Vacilada\"></td>
+        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
     </tr>";
   }
@@ -225,7 +225,7 @@ function printDesplegableFeinesActives()
   echo "</select>";
 }
 
-function printDesplegableFeinesActives1()
+function printDesplegableFeinesActives1($default)
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
