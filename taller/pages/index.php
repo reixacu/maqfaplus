@@ -42,9 +42,7 @@
                         <h3 class="panel-title">Selecció de treballador</h3>
                     </div>
                     <div class="panel-body">
-                      <div class="alert alert-info">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Xevi</button>
-                      </div>
+                      <button type="button" class="btn btn-primary btn-lg btn-block">Xevi</button>
                     </div>
                 </div>
             </div>
