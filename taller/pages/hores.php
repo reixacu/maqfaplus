@@ -85,7 +85,7 @@ var peligro = 0;
             </div>
         </div>
     </div>
-	
+
 	<script>
 	<?php echo "var idTreballador=".$_GET["treballador"].";\n";?>
 	function testguarro(){
@@ -111,18 +111,18 @@ var peligro = 0;
 					ret.push(obj);
 				}
 			}
-			
+
 			return ret;
 		};
 
 		document.getElementById('r').innerHTML = JSON.stringify(tableToObj(document.getElementsByTagName('table')[0]));
-		
+
 		// Sending a receiving data in JSON format using GET method
 		xhr = new XMLHttpRequest();
 		var url = "scripthores.php?idtreballador="+idTreballador+"&data=" + encodeURIComponent(JSON.stringify(tableToObj(document.getElementsByTagName('table')[0])));
 		xhr.open("GET", url, true);
 		xhr.setRequestHeader("Content-type", "application/json");
-		xhr.onreadystatechange = function () { 
+		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var json = JSON.parse(xhr.responseText);
 				console.log(json.email + ", " + json.password);
@@ -130,9 +130,9 @@ var peligro = 0;
 		}
 		xhr.send();
 	}
-	</script>
-	
-	<script>
+</script>
+
+<script>
 	function novalinia() {
 		/*var table = document.getElementById("supertaula");
 		var row = table.insertRow(0);
@@ -179,21 +179,53 @@ var peligro = 0;
 <?php
 function printNewLines($idTreballador)
 {
-
-    echo
+  include "mysql.php";
+  $sql = "SELECT * FROM `hores` WHERE `dia_creacio_hores` = CURDATE() ORDER BY `timestamp_hores` AND`id_treballador_hores`=$idTreballador;";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+	  echo
+    "<tr>
+        <td class=\"feina\">";
+        printDesplegableFeinesActives1($default);
+        echo"</td>
+        <td class=\"dia\"><input type=\"date\" value=\"". $row["dia_hores"] ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
+        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\">". $row["hores_hores"] ."</td>
+        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\">".$row["detall_hores"]."</td>
+        <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
+    </tr>";
+	}
+  } else {
+	echo
     "<tr>
         <td class=\"feina\">";
         printDesplegableFeinesActives();
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". date("Y-m-d") ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
         <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\"></td>
-        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\"></td>
+        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=\"Vacilada\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
     </tr>";
-
+  }
 }
 
 function printDesplegableFeinesActives()
+{
+  echo "<select class=\"form-control\">";
+  $result = getFeinesActivesIdDesc();
+      echo "<option value=\"-1\"></option>";
+
+      if ($result->num_rows > 0) {
+      // output data of each row
+        while($row = $result->fetch_assoc()) {
+          echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
+        }
+      };
+      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
+  echo "</select>";
+}
+
+function printDesplegableFeinesActives1()
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
