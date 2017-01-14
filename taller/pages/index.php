@@ -49,7 +49,7 @@
                       $result = $conn->query($sql);
                       if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                          echo "<a href=\"hores.php?id=".$row["id_treballador"]."\" type=\"button\" class=\"btn btn-primary btn-lg btn-block\">".$row["nom_treballdor"]."</a>";
+                          echo "<a href=\"hores.php?id=".$row["id_treballador"]."\" type=\"button\" class=\"btn btn-primary btn-lg btn-block\">".$row["nom_treballador"]."</a>";
                         }
                       } else {
                         echo "No s'ha trobat cap treballador";
