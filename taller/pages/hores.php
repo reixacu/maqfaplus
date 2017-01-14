@@ -180,7 +180,7 @@ var peligro = 0;
 function printNewLines($idTreballador)
 {
   include "mysql.php";
-  $sql = "SELECT * FROM `hores` WHERE `dia_creacio_hores` = CURDATE() AND `id_treballador_hores` = $idTreballador;";
+  $sql = "SELECT * FROM `hores` WHERE `dia_creacio_hores` = CURDATE() ORDER BY `timestamp_hores` AND`id_treballador_hores`=$idTreballador;";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
