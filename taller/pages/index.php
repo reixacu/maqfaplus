@@ -43,7 +43,7 @@
                     </div>
                     <div class="panel-body">
                       <div class="alert alert-info">
-                        <a href="hores.php" class="alert-link">Xevi</a>.
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Xevi</button>
                       </div>
                     </div>
                 </div>
