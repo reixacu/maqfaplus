@@ -77,7 +77,7 @@ var peligro = 0;
                                     </tbody>
                                 </table>
 				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
-				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy"></i> Guardar</button>
+				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
 								<div id="r"></div>
                             </div>
                         </div>
