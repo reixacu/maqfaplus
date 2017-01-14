@@ -54,9 +54,7 @@
                       } else {
                         echo "No s'ha trobat cap treballador";
                       }
-
                        ?>
-                      <a href="hores.php" type="button" class="btn btn-primary btn-lg btn-block">Xevi</a>
                     </div>
                 </div>
             </div>
