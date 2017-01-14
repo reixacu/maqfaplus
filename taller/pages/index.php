@@ -56,7 +56,7 @@
                       }
 
                        ?>
-                      <a type="button" class="btn btn-primary btn-lg btn-block">Xevi</a>
+                      <a href="hores.php" type="button" class="btn btn-primary btn-lg btn-block">Xevi</a>
                     </div>
                 </div>
             </div>
