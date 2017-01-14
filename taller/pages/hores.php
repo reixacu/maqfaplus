@@ -234,7 +234,12 @@ function printDesplegableFeinesActives1($default)
       if ($result->num_rows > 0) {
       // output data of each row
         while($row = $result->fetch_assoc()) {
-          echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
+			if ($row["id_feina"] == $default)
+			{
+				echo "<option value=\"".$row["id_feina"]."\" selected>".$row["descripcio_feina"]."</option>";
+			} else {
+				echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
+			}
         }
       };
       echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
