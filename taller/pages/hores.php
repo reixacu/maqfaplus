@@ -129,6 +129,7 @@ var peligro = 0;
 			}
 		}
 		xhr.send();
+		window.location = ".";
 	}
 </script>
 
@@ -150,7 +151,7 @@ var peligro = 0;
 		var nodes = document.querySelectorAll('.js-switch');
 		var last = nodes[nodes.length- 1];
 		var init = new Switchery(last);
-		window.location = ".";
+		
 	}
     </script>
 
