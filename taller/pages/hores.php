@@ -232,7 +232,7 @@ function printDesplegableFeinesActives1($default)
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
-      echo "<option value=\"-1\"></option>";
+      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
 
       if ($result->num_rows > 0) {
       // output data of each row
@@ -245,7 +245,7 @@ function printDesplegableFeinesActives1($default)
 			}
         }
       };
-      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
+
   echo "</select>";
 }
 
