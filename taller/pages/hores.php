@@ -77,7 +77,7 @@ var peligro = 0;
                                     </tbody>
                                 </table>
 				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
-				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy"></i> Guardar</button>
+				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
 								<div id="r"></div>
                             </div>
                         </div>
@@ -152,7 +152,7 @@ var peligro = 0;
 		var nodes = document.querySelectorAll('.js-switch');
 		var last = nodes[nodes.length- 1];
 		var init = new Switchery(last);
-		
+
 	}
     </script>
 
@@ -183,7 +183,7 @@ var peligro = 0;
 function printNewLines($idTreballador)
 {
   include "mysql.php";
-  $sql = "SELECT * FROM `hores` WHERE `dia_creacio_hores` = CURDATE() ORDER BY `timestamp_hores` AND`id_treballador_hores`=$idTreballador;";
+  $sql = "SELECT * FROM `hores` WHERE `dia_creacio_hores` = CURDATE() AND`id_treballador_hores`= $idTreballador ORDER BY `timestamp_hores`;";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
@@ -216,7 +216,7 @@ function printDesplegableFeinesActives()
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
-      echo "<option value=\"-1\"></option>";
+      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
 
       if ($result->num_rows > 0) {
       // output data of each row
@@ -224,7 +224,7 @@ function printDesplegableFeinesActives()
           echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
         }
       };
-      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
+
   echo "</select>";
 }
 
@@ -232,7 +232,7 @@ function printDesplegableFeinesActives1($default)
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
-      echo "<option value=\"-1\"></option>";
+      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
 
       if ($result->num_rows > 0) {
       // output data of each row
@@ -245,7 +245,7 @@ function printDesplegableFeinesActives1($default)
 			}
         }
       };
-      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
+
   echo "</select>";
 }
 
