@@ -27,9 +27,9 @@ function printTaulaLiniesFactura($id) {
                                             <input type=\"hidden\" name=\"idDf\" value=" . $row["id_df"] .">
                                             <input type=\"hidden\" name=\"idFactura\" value=" . $row["id_factura_df"] .">
                                             <th><input name=\"descripcioDf\" class=\"form-control\" value=\"" . $row["descripcio_df"] ."\"></th>
-                                            <th><input name=\"unitatsDf\" class=\"form-control\" value=\"" . $row["unitats_df"] ."\"></th>
+                                            <th><input name=\"unitatsDf\" class=\"form-control\" value=\"" . $row["unitats_df"]/ 100 ."\"></th>
                                             <th><input name=\"preuUnitatDf\" class=\"form-control\" value=\"" . $row["preu_unitat_df"] / 100 ."\"></th>
-                                            <th>". $row["preu_unitat_df"] * $row["unitats_df"] / 100 ."</th>
+                                            <th>". $row["preu_unitat_df"]/ 100 * $row["unitats_df"] / 100 ."</th>
                                             <th><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-floppy-o\"></i></button></th>
                                         </form>
                                             <th><form action='scriptEliminarLiniaFactura.php' method='post'><input type=\"hidden\" name=\"idFactura\" value=\"" . $row["id_factura_df"] ."\">
