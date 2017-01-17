@@ -1,7 +1,7 @@
 <?php
 $idDf = $_POST["idDf"];
 $descripcioDf = $_POST["descripcioDf"];
-$unitatsDf = $_POST["unitatsDf"];
+$unitatsDf = $_POST["unitatsDf"] * 100;
 $preuUnitatDf = $_POST["preuUnitatDf"] * 100;
 $idFactura = $_POST["idFactura"];
 

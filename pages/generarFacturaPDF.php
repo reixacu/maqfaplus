@@ -152,7 +152,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 	$html = $html . '
 	<tr>
 	<td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom"> ' . $rowDadesFactura["descripcio_df"] . '</td>
-		<td style="border-right: solid 1px #000;text-align:right"> ' . $rowDadesFactura["unitats_df"] . '  &nbsp; </td>
+		<td style="border-right: solid 1px #000;text-align:right"> ' . ($rowDadesFactura["unitats_df"]/100) . '  &nbsp; </td>
 		<td style="border-right: solid 1px #000;text-align:right"> ' . number_format($rowDadesFactura["preu_unitat_df"]/100,2) . ' € &nbsp; </td>
 		<td style="border-right: solid 1px #000;text-align:right"> ' . number_format($rowDadesFactura["preu_total_df"]/100,2) . ' € &nbsp; </td>
 		</tr>

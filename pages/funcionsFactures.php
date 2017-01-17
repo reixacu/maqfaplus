@@ -27,9 +27,9 @@ function printTaulaLiniesFactura($id) {
                                             <input type=\"hidden\" name=\"idDf\" value=" . $row["id_df"] .">
                                             <input type=\"hidden\" name=\"idFactura\" value=" . $row["id_factura_df"] .">
                                             <th><input name=\"descripcioDf\" class=\"form-control\" value=\"" . $row["descripcio_df"] ."\"></th>
-                                            <th><input name=\"unitatsDf\" class=\"form-control\" value=\"" . $row["unitats_df"] ."\"></th>
+                                            <th><input name=\"unitatsDf\" class=\"form-control\" value=\"" . $row["unitats_df"]/ 100 ."\"></th>
                                             <th><input name=\"preuUnitatDf\" class=\"form-control\" value=\"" . $row["preu_unitat_df"] / 100 ."\"></th>
-                                            <th>". $row["preu_unitat_df"] * $row["unitats_df"] / 100 ."</th>
+                                            <th>". $row["preu_unitat_df"]/ 100 * $row["unitats_df"] / 100 ."</th>
                                             <th><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-floppy-o\"></i></button></th>
                                         </form>
                                             <th><form action='scriptEliminarLiniaFactura.php' method='post'><input type=\"hidden\" name=\"idFactura\" value=\"" . $row["id_factura_df"] ."\">
@@ -596,6 +596,22 @@ function mostrarBorradorsFactures($sql) {
     }
     $conn->close();
 }
-
+function mostrarNumeroFactura($numDB) {
+  if ($numDB == NULL || $numDB == "")
+  {
+    include "mysql.php";
+    $sql = "SELECT CASE (SELECT COUNT(*) FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='17' GROUP BY SUBSTRING(`numero_factura`,5,2)='17') WHEN 0 THEN '001' ELSE CONCAT(LPAD((CAST(SUBSTR(`numero_factura`,1,3) AS UNSIGNED)+1), 3, '0'),'/17') END AS A FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='17' ORDER BY `numero_factura` DESC LIMIT 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0)
+    {
+      $row = $result->fetch_assoc();
+      echo $row["A"];
+    }
+  }
+  else
+  {
+    echo $numDB;
+  }
+}
 
  ?>
