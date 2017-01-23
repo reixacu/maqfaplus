@@ -25,20 +25,23 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error)
 	die("ERROR AL CONNECTAR AMB LA BASE DE DADES: " . $conn->connect_error);
 
-$sql="DELETE FROM `maqfaplus`.`hores` WHERE `dia_creacio_hores`=CURRENT_DATE";
+$idTreballador1 = $_GET["idtreballador"];
+$sql="DELETE FROM `hores` WHERE `dia_creacio_hores`=CURRENT_DATE() AND `id_treballador_hores`=$idTreballador1;";
 $conn->query($sql);
 
 for( $i = 0 ; $i< $count ; $i++)
 {
-	echo " Feina: " . $array[$i]['Feina'];//
-	echo " Dia: " . $array[$i]['Dia'];//
-	echo " Hores: " . $array[$i]['Hores'];//
-	echo " Detall: " . $array[$i]['Detall'];//
-	echo " Acabada: " . $array[$i]['Acabada']." \n"; //s'ha de posar a algun lloc que encara no existeix
-	
-	$sql="INSERT INTO `maqfaplus`.`hores` (`id_hores`, `id_treballador_hores`, `id_feina_hores`, `hores_hores`, `detall_hores`, `dia_hores`, `dia_creacio_hores`, `timestamp_hores`) ";
-	$sql=$sql."VALUES (NULL, '".$_GET["idtreballador"]."', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$array[$i]['Detall']."','".$array[$i]['Dia']."', CURRENT_DATE, CURRENT_TIMESTAMP);";
-	$result = $conn->query($sql);
+	if($array[$i]['Feina']!=-1){
+		echo " Feina: " . $array[$i]['Feina'];//
+		echo " Dia: " . $array[$i]['Dia'];//
+		echo " Hores: " . $array[$i]['Hores'];//
+		echo " Detall: " . $array[$i]['Detall'];//
+		echo " Acabada: " . $array[$i]['Acabada']." \n"; //s'ha de posar a algun lloc que encara no existeix
+
+		$sql="INSERT INTO `maqfaplus`.`hores` (`id_hores`, `id_treballador_hores`, `id_feina_hores`, `hores_hores`, `detall_hores`, `dia_hores`, `dia_creacio_hores`, `timestamp_hores`) ";
+		$sql=$sql."VALUES (NULL, '".$_GET["idtreballador"]."', '".$array[$i]['Feina']."', '".$array[$i]['Hores']."', '".$array[$i]['Detall']."','".$array[$i]['Dia']."', CURRENT_DATE, CURRENT_TIMESTAMP);";
+		$result = $conn->query($sql);
+	}
 }
 
 $conn->close();
