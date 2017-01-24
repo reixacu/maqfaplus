@@ -59,15 +59,14 @@ var peligro = 0;
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
+                                    <div class="huge"><?php printNomTreballador($idTreballador); ?></div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
+                                <span class="pull-right">Tornar i guardar</span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
@@ -344,4 +343,14 @@ function getFeinesActivesIdDesc()
   return $result;
 }
 
+function printNomTreballador($idTreb)
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `treballadors` WHERE `id_treballador` = $idTreb;";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+    echo row["nom_treballador"];
+  }
+}
 ?>
