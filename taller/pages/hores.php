@@ -217,7 +217,7 @@ function printNewLines($idTreballador)
         <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"] ."></td>
         <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=\"".$row["detall_hores"]."\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" ";
-        if ($checked == 1) echo "checked";
+        if ($checked == 1 || $checked) echo "checked";
         echo "/>
     </tr>";
 	}
