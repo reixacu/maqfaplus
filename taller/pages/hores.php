@@ -64,7 +64,7 @@ var peligro = 0;
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a onclick="testguarro()">
                             <div class="panel-footer">
                                 <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
                                 <span class="pull-right">Tornar i guardar</span>
