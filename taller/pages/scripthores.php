@@ -31,7 +31,7 @@ $conn->query($sql);
 
 for( $i = 0 ; $i< $count ; $i++)
 {
-	if($array[$i]['Hores']==""){
+	if($array[$i]['Hores']!=""){
 		echo " Feina: " . $array[$i]['Feina'];//
 		echo " Dia: " . $array[$i]['Dia'];//
 		echo " Hores: " . $array[$i]['Hores'];//
