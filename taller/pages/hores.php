@@ -50,6 +50,7 @@ var peligro = 0;
 </script>
 <body>
     <div class="container">
+      <br /><br />
       <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="panel panel-primary">
