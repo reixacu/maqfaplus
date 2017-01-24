@@ -150,7 +150,7 @@ var peligro = 0;
 			}
 		}
 		xhr.send();
-		//window.location = ".";
+		window.location = ".";
 	}
 </script>
 
