@@ -88,37 +88,32 @@ var peligro = 0;
             </div>
         <div class="row">
             <div class="col-md-12">
-                EMPLEAT NUMERO <?php echo $_GET["treballador"]; ?><br />
-				<a href=".">Tornar enrrere</a><br /><br />
-
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Entrada d'hores
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table id="supertaula" class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Feina</th>
-                                            <th>Dia</th>
-                                            <th>Hores</th>
-                                            <th>Detall</th>
-                                            <th>Acabada</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php printNewLines($idTreballador); ?>
-                                    </tbody>
-                                </table>
-				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
-				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
-								<div id="r"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          Entrada d'hores
+                      </div>
+                      <div class="panel-body">
+                          <div class="table-responsive">
+                              <table id="supertaula" class="table table-striped table-bordered table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>Feina</th>
+                                          <th>Dia</th>
+                                          <th>Hores</th>
+                                          <th>Detall</th>
+                                          <th>Acabada</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php printNewLines($idTreballador); ?>
+                                  </tbody>
+                              </table>
+			                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
+			                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
+							<div id="r"></div>
+                          </div>
+                      </div>
+                  </div>
             </div>
         </div>
     </div>
