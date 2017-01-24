@@ -353,4 +353,5 @@ function printNomTreballador($idTreb)
     echo row["nom_treballador"];
   }
 }
+}
 ?>
