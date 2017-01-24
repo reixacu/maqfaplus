@@ -50,39 +50,59 @@ var peligro = 0;
 </script>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                EMPLEAT NUMERO <?php echo $_GET["treballador"]; ?><br />
-				<a href=".">Tornar enrrere</a><br /><br />
-
-                <div class="col-lg-12">
+      <br /><br />
+      <div class="row">
+                <div class="col-lg-6 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Entrada d'hores
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table id="supertaula" class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Feina</th>
-                                            <th>Dia</th>
-                                            <th>Hores</th>
-                                            <th>Detall</th>
-                                            <th>Acabada</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php printNewLines($idTreballador); ?>
-                                    </tbody>
-                                </table>
-				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
-				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
-								<div id="r"></div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php printNomTreballador($idTreballador); ?></div>
+                                </div>
                             </div>
                         </div>
+                        <a onclick="testguarro()">
+                            <div class="panel-footer">
+                                <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
+                                <span class="pull-right">Tornar i guardar</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
+            </div>
+            <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          Entrada d'hores
+                      </div>
+                      <div class="panel-body">
+                          <div class="table-responsive">
+                              <table id="supertaula" class="table table-striped table-bordered table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>Feina</th>
+                                          <th>Dia</th>
+                                          <th>Hores</th>
+                                          <th>Detall</th>
+                                          <th>Acabada</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php printNewLines($idTreballador); ?>
+                                  </tbody>
+                              </table>
+			                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
+			                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
+							<div id="r"></div>
+                          </div>
+                      </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -258,4 +278,15 @@ function getFeinesActivesIdDesc()
   return $result;
 }
 
+function printNomTreballador($idTreb)
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `treballadors` WHERE `id_treballador` = $idTreb;";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+    echo $row["nom_treballador"];
+  }
+}
+}
 ?>
