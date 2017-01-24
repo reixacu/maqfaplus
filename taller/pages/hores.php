@@ -49,7 +49,8 @@ $idTreballador = $_GET["treballador"];
 var peligro = 0;
 </script>
 <body>
-    <div class="container"><div class="row">
+    <div class="container">
+      <div class="row">
                 <div class="col md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -86,6 +87,7 @@ var peligro = 0;
                     </div>
                 </div>
             </div>
+          </div>
         <div class="row">
             <div class="col-md-12">
                   <div class="panel panel-primary">
