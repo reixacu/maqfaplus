@@ -45,7 +45,7 @@
     <script type="text/javascript">
 /* code from qodo.co.uk */
 // create as many regular expressions here as you need:
-var digitsOnly = /[1234567890 ]/g;
+var digitsOnly = /[1234567890 A-Za-z\.\,]/g;
 var integerOnly = /[0-9\.]/g;
 var alphaOnly = /[A-Za-z]/g;
 
