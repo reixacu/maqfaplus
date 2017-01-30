@@ -37,7 +37,7 @@
 
       .feina { width: 310px;}
       .dia { width: 135px;}
-      .hores { width: 70px;}
+      .hores { width: 87px;}
       .desc { width: 750px}
     </style>
 </head>
@@ -214,7 +214,7 @@ function printNewLines($idTreballador)
         printDesplegableFeinesActives1($row["id_feina_hores"]);
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". $row["dia_hores"] ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
-        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"] ."></td>
+        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"]/100 ."></td>
         <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=\"".$row["detall_hores"]."\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" ";
         if ($checked == 1 || $checked) echo "checked";
