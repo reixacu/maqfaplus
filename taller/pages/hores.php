@@ -106,7 +106,14 @@ var peligro = 0;
             </div>
         </div>
     </div>
-
+    <script>
+      function filterInput(e) {
+       // Get the regular expression to test against for this particular object
+       regAllow = (e)?eval(e.allow):eval(event.srcElement.allow);
+       // Check for an allowed character, if not found, cancel the keypress's event bubbling
+       if (!String.fromCharCode(event.keyCode).match(regAllow)) event.returnValue=false;
+      }
+     </script>
 	<script>
 	<?php echo "var idTreballador=".$_GET["treballador"].";\n";?>
 	function testguarro(){
@@ -166,7 +173,7 @@ var peligro = 0;
 		row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
 			.append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
 			.append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
-			.append($('<td class="desc"><input class="form-control" pattern="[a-zA-Z0-9]" placeholder="Descripció de la feina"></td>'))
+			.append($('<td class="desc"><input class="form-control" onKeyPress="filterInput(this)" allow="/[A-Za-z0-9]/" placeholder="Descripció de la feina"></td>'))
 			.append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
 			$("#supertaula tbody").append(row);
 		var nodes = document.querySelectorAll('.js-switch');
