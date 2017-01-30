@@ -196,7 +196,7 @@ var peligro = 0;
 		row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
 			.append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
 			.append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
-			.append($('<td class="desc"><input class="form-control"onkeypress="return restrictCharacters(this, event, digitsOnly);" placeholder="Descripció de la feina"></td>'))
+			.append($('<td class="desc"><input class="form-control" onkeypress="return restrictCharacters(this, event, digitsOnly);" placeholder="Descripció de la feina"></td>'))
 			.append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
 			$("#supertaula tbody").append(row);
 		var nodes = document.querySelectorAll('.js-switch');
@@ -245,7 +245,7 @@ function printNewLines($idTreballador)
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". $row["dia_hores"] ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
         <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"]/100 ."></td>
-        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=\"".$row["detall_hores"]."\"></td>
+        <td class=\"desc\"><input class=\"form-control\" onkeypress=\"return restrictCharacters(this, event, digitsOnly);\" placeholder=\"Descripció de la feina\" value=\"".$row["detall_hores"]."\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" ";
         if ($checked == 1 || $checked) echo "checked";
         echo "/>
