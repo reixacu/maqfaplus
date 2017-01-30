@@ -40,6 +40,37 @@
       .hores { width: 87px;}
       .desc { width: 750px}
     </style>
+
+
+    <script type="text/javascript">
+/* code from qodo.co.uk */
+// create as many regular expressions here as you need:
+var digitsOnly = /[1234567890 A-Za-z\.\,\à\è\é\í\ò\ó\ù\ç]/g;
+var integerOnly = /[0-9\.]/g;
+var alphaOnly = /[A-Za-z]/g;
+
+function restrictCharacters(myfield, e, restrictionType) {
+	if (!e) var e = window.event
+	if (e.keyCode) code = e.keyCode;
+	else if (e.which) code = e.which;
+	var character = String.fromCharCode(code);
+
+	// if they pressed esc... remove focus from field...
+	if (code==27) { this.blur(); return false; }
+
+	// ignore if they are press other keys
+	// strange because code: 39 is the down key AND ' key...
+	// and DEL also equals .
+	if (!e.ctrlKey && code!=9 && code!=8 && code!=36 && code!=37 && code!=38 && (code!=39 || (code==39 && character=="'")) && code!=40) {
+		if (character.match(restrictionType)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+}
+</script>
 </head>
 
 <?php
@@ -106,7 +137,6 @@ var peligro = 0;
             </div>
         </div>
     </div>
-
 	<script>
 	<?php echo "var idTreballador=".$_GET["treballador"].";\n";?>
 	function testguarro(){
@@ -166,7 +196,7 @@ var peligro = 0;
 		row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
 			.append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
 			.append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
-			.append($('<td class="desc"><input class="form-control" placeholder="Descripció de la feina"></td>'))
+			.append($('<td class="desc"><input class="form-control" onkeypress="return restrictCharacters(this, event, digitsOnly);" placeholder="Descripció de la feina"></td>'))
 			.append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
 			$("#supertaula tbody").append(row);
 		var nodes = document.querySelectorAll('.js-switch');
@@ -215,7 +245,7 @@ function printNewLines($idTreballador)
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". $row["dia_hores"] ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
         <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"]/100 ."></td>
-        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=\"".$row["detall_hores"]."\"></td>
+        <td class=\"desc\"><input class=\"form-control\" onkeypress=\"return restrictCharacters(this, event, digitsOnly);\" placeholder=\"Descripció de la feina\" value=\"".$row["detall_hores"]."\"></td>
         <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" ";
         if ($checked == 1 || $checked) echo "checked";
         echo "/>
