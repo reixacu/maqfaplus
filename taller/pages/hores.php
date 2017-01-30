@@ -166,7 +166,7 @@ var peligro = 0;
 		row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
 			.append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
 			.append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
-			.append($('<td class="desc"><input class="form-control" pattern="^[a-zA-Z0-9]+$" placeholder="Descripció de la feina"></td>'))
+			.append($('<td class="desc"><input class="form-control" pattern="[a-zA-Z0-9]" placeholder="Descripció de la feina"></td>'))
 			.append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
 			$("#supertaula tbody").append(row);
 		var nodes = document.querySelectorAll('.js-switch');
