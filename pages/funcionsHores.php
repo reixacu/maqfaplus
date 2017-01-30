@@ -23,7 +23,7 @@ function getTotalHoresFeina($idFeina)
     if ($result->num_rows > 0)
     {
       $row = $result->fetch_assoc();
-      return $row["sum(`hores`.`hores_hores`)"];
+      return $row["sum(`hores`.`hores_hores`)"]/100;
     }
     else
     {
