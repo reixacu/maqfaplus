@@ -40,7 +40,8 @@ for( $i = 0 ; $i< $count ; $i++)
 		$esAcabadaB = $array[$i]['Acabada'];
 		$esAcabada = 0;
 		if ($esAcabadaB == true) $esAcabada = 1;
-		$horesdec = $array[$i]['Hores']*100;
+		$horesdec = str_replace(",", ".",$array[$i]['Hores'])
+		$horesdec = $horesdec*100;
 		$sql="INSERT INTO `maqfaplus`.`hores` (`id_hores`, `id_treballador_hores`, `id_feina_hores`, `hores_hores`, `detall_hores`, `dia_hores`, `dia_creacio_hores`, `timestamp_hores`, `feina_acabada_hores`) ";
 		$sql=$sql."VALUES (NULL, '".$_GET["idtreballador"]."', '".$array[$i]['Feina']."', '".$horesdec."', '".$array[$i]['Detall']."','".$array[$i]['Dia']."', CURRENT_DATE, CURRENT_TIMESTAMP, ". $esAcabada.");";
 		$result = $conn->query($sql);
