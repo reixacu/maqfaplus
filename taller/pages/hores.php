@@ -40,6 +40,37 @@
       .hores { width: 87px;}
       .desc { width: 750px}
     </style>
+
+    
+    <script type="text/javascript">
+/* code from qodo.co.uk */
+// create as many regular expressions here as you need:
+var digitsOnly = /[1234567890]/g;
+var integerOnly = /[0-9\.]/g;
+var alphaOnly = /[A-Za-z]/g;
+
+function restrictCharacters(myfield, e, restrictionType) {
+	if (!e) var e = window.event
+	if (e.keyCode) code = e.keyCode;
+	else if (e.which) code = e.which;
+	var character = String.fromCharCode(code);
+
+	// if they pressed esc... remove focus from field...
+	if (code==27) { this.blur(); return false; }
+
+	// ignore if they are press other keys
+	// strange because code: 39 is the down key AND ' key...
+	// and DEL also equals .
+	if (!e.ctrlKey && code!=9 && code!=8 && code!=36 && code!=37 && code!=38 && (code!=39 || (code==39 && character=="'")) && code!=40) {
+		if (character.match(restrictionType)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+}
+</script>
 </head>
 
 <?php
@@ -106,14 +137,6 @@ var peligro = 0;
             </div>
         </div>
     </div>
-    <script>
-      function filterInput(e) {
-       // Get the regular expression to test against for this particular object
-       regAllow = (e)?eval(e.allow):eval(event.srcElement.allow);
-       // Check for an allowed character, if not found, cancel the keypress's event bubbling
-       if (!String.fromCharCode(event.keyCode).match(regAllow)) event.returnValue=false;
-      }
-     </script>
 	<script>
 	<?php echo "var idTreballador=".$_GET["treballador"].";\n";?>
 	function testguarro(){
@@ -173,7 +196,7 @@ var peligro = 0;
 		row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
 			.append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
 			.append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
-			.append($('<td class="desc"><input class="form-control" onKeyPress="filterInput(this)" allow="/[A-Za-z0-9]/" placeholder="Descripció de la feina"></td>'))
+			.append($('<td class="desc"><input class="form-control"onkeypress="return restrictCharacters(this, event, digitsOnly);" placeholder="Descripció de la feina"></td>'))
 			.append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
 			$("#supertaula tbody").append(row);
 		var nodes = document.querySelectorAll('.js-switch');
