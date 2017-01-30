@@ -37,7 +37,7 @@
 
       .feina { width: 310px;}
       .dia { width: 135px;}
-      .hores { width: 70px;}
+      .hores { width: 87px;}
       .desc { width: 750px}
     </style>
 </head>
