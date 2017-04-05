@@ -96,6 +96,23 @@ include "funcions.php";
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="totesHores.php?id=3"><i class="fa fa-user"></i> Xevi</a>
+                        </li>
+                        <li>
+                            <a href="totesHores.php?id=5"><i class="fa fa-user"></i> Jati</a>
+                        </li>
+                        <li>
+                            <a href="totesHores.php?id=6"><i class="fa fa-user"></i> Jose</a>
+                        </li>
+                        <li>
+                            <a href="totesHores.php?id=7"><i class="fa fa-user"></i> Ferran</a>
+                        </li>
+                        <li>
+                            <a href="totesHores.php?id=8"><i class="fa fa-user"></i> Alex</a>
+                        </li>
+                    </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
