@@ -41,7 +41,7 @@
     include "menu.php";
     ?>
     <?php
-    $sql = "SELECT * FROM `hores` ORDER BY `hores`.`id_hores` DESC";
+    $sql = "SELECT * FROM `hores` ORDER BY `hores`.`dia_hores` DESC";
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">

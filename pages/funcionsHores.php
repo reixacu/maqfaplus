@@ -56,12 +56,13 @@ function eliminarHores($id)
 }
 
 function mostrarHores($sql) {
+    $ultima = date();
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo "
                           <div class=\"table-responsive\">
-                                <table class=\"table\">
+                                <table class=\"table-striped\">
                                     <thead>
                                         <tr>
                                             <th>Dia</th>
@@ -74,7 +75,12 @@ function mostrarHores($sql) {
                                     <tbody>
                                     ";
         while($row = $result->fetch_assoc()) {
-              echo "<tr class=\"success\">
+            if ($ultima < $row["dia_hores"])
+            {
+              echo "BIBA ESPAÑA";
+              $ultima = $row["dia_hores"]
+            }
+              echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
                                                       <td><a href='mostrarFeina.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</td>
                                                       <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</td>
