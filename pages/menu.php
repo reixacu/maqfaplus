@@ -96,20 +96,6 @@ include "funcions.php";
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="afegirFactura.php"><i class="fa fa-pencil"></i> Crear factura</a>
-                        </li>
-                        <li>
-                            <a href="totesFactures.php"><i class="fa fa-list"></i></i> Totes les factures</a>
-                        </li>
-                        <li>
-                            <a href="facturesNoCobrades.php"><i class="fa fa-money"></i></i> Pendents de cobrament</a>
-                        </li>
-                        <li>
-                            <a href="facturesBorrador.php"><i class="fa fa-eraser"></i></i> Borradors</a>
-                        </li>
-                    </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
