@@ -56,7 +56,7 @@
                     if ($id==0)
                     {
                         echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Totes les hores</h1></td>";
-                        else{
+                      }else{
                           echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Hores ". function getNomTreballador ($id) ."</h1></td>"
                         }
                         echo "
