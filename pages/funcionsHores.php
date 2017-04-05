@@ -109,8 +109,8 @@ function mostrarHores($sql, $idTreballador) {
             if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
-                                                      <td><a href='mostrarFeina.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</td>
-                                                      <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</td>
+                                                      <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
+                                                      <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</a></td>
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". $row["hores_hores"] . "</td>
                                                   </tr>";
