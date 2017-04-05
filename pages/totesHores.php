@@ -48,7 +48,7 @@
     }
     ?>
     <?php
-    if (id == 0)
+    if ($id == 0)
     {
       $sql = "SELECT * FROM `hores` ORDER BY `hores`.`dia_hores` DESC";
     } else {
