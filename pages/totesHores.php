@@ -74,7 +74,7 @@
             <div class=\"col-lg-12\">
                 <div class=\"panel panel-primary\">
                     <div class=\"panel-heading\">
-                        Totes les factures
+                        Control d'hores
                     </div>
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
