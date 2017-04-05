@@ -48,7 +48,13 @@
     }
     ?>
     <?php
-    $sql = "SELECT * FROM `hores` ORDER BY `hores`.`dia_hores` DESC";
+    if (id == 0)
+    {
+      $sql = "SELECT * FROM `hores` ORDER BY `hores`.`dia_hores` DESC";
+    } else {
+      $sql = "SELECT * FROM `hores` WHERE `id_treballador_hores` = $id ORDER BY `hores`.`dia_hores` DESC";
+    }
+
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
