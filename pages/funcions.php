@@ -47,6 +47,14 @@ function getFeinaData($idFeina)
     $conn->close();
     return $result;
 }
+function getTreballadorData($idTreballador)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM treballadors WHERE id_treballador=$idTreballador;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 function getFacturaData($idFactura)
 {
     include "mysql.php";
@@ -102,6 +110,37 @@ function getClientFeina ($id) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         return $row["id_client_feina"];
+    }
+}
+function getDescFeina ($id) {
+    $result = getFeinaData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["descripcio_feina"];
+    }
+    else {
+      return "Error al rebre la desc";
+    }
+}
+function getHoresTreballador ($id) {
+    $result = getTreballadorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["hores_dia_treballador"];
+    }
+    else {
+      return 8;
+    }
+}
+
+function getNomTreballador ($id) {
+    $result = getTreballadorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["nom_treballador"];
+    }
+    else {
+      return "Error amb el nom del treballador";
     }
 }
 // Comprova si el nom no és nul o la raó social no és nula

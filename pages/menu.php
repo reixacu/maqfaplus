@@ -95,6 +95,10 @@ include "funcions.php";
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="about.php"><i class="fa fa-info-circle fa-fw"></i></i> Informació MaqfaPlus</a>
                 </li>
             </ul>

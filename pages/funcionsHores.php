@@ -55,6 +55,78 @@ function eliminarHores($id)
     }
 }
 
+function mostrarHores($sql, $idTreballador) {
+    $ultima = date("Y-m-d");
+    $primer = true;
+    $totalHores= 0;
+    $totalExtra = 0;
+    if ($idTreballador != 0) {
+      $horesDiaTreballador = getHoresTreballador($idTreballador);
+    } else {
+      $horesDiaTreballador = 8;
+    }
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+
+        while($row = $result->fetch_assoc()) {
+
+
+            if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
+            {
+              if (!$primer) {echo "
+                                              </tbody>
+                                          </table>
+                                          <h3>Total Hores: ".$totalHores." - Total Extres: ".$totalExtra."</h3>
+                                      </div>
+                                          ";
+
+                                        }
+                                        $primer=false;
+                                        $totalHores = 0;
+                                        $totalExtra = 0;
+
+
+
+              echo "
+              <h1>".date_format(date_create($row["dia_hores"]), 'm-Y')."</h1>
+                                <div class=\"table-responsive\">
+                                      <table class=\"table table-striped\">
+                                          <thead>
+                                              <tr>
+                                                  <th>Dia</th>
+                                                  <th>Treballador</th>
+                                                  <th>Feina</th>
+                                                  <th>Detall</th>
+                                                  <th>Hores</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                          ";
+              $ultima = $row["dia_hores"];
+            }
+            $totalHores+=$row["hores_hores"];
+            if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
+              echo "<tr>
+                                                      <td>". getDataDMY($row["dia_hores"]) . "</td>
+                                                      <td><a href='mostrarFeina.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</td>
+                                                      <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</td>
+                                                      <td>". $row["detall_hores"] . "</td>
+                                                      <td>". $row["hores_hores"] . "</td>
+                                                  </tr>";
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                    <h3>Total Hores: ".$totalHores." - Total Extres: ".$totalExtra."</h3>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
 
 
  ?>
