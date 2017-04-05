@@ -63,8 +63,6 @@ function mostrarHores($sql) {
     if ($result->num_rows > 0) {
 
         while($row = $result->fetch_assoc()) {
-          echo date_format(date_create($ultima), 'Y-m');
-          echo date_format(date_create($row["dia_hores"]), 'Y-m');
             if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
               if (!$primer) {echo "
