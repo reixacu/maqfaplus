@@ -73,6 +73,7 @@ function mostrarHores($sql) {
                                         }
                                         $primer=false;
               echo "
+              <h1>".date_format(date_create($row["dia_hores"]), 'm-Y')."</h1>
                                 <div class=\"table-responsive\">
                                       <table class=\"table table-striped\">
                                           <thead>
