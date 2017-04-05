@@ -78,7 +78,7 @@ function mostrarHores($sql) {
             if ($ultima < $row["dia_hores"])
             {
               echo "BIBA ESPAÑA";
-              $ultima = $row["dia_hores"]
+              $ultima = $row["dia_hores"];
             }
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
