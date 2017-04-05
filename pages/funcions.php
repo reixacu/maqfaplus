@@ -50,7 +50,7 @@ function getFeinaData($idFeina)
 function getTreballadorData($idTreballador)
 {
     include "mysql.php";
-    $sql = "SELECT * FROM treballadors WHERE id_trebalador=$idTreballador;";
+    $sql = "SELECT * FROM treballadors WHERE id_treballador=$idTreballador;";
     $result = $conn->query($sql);
     $conn->close();
     return $result;
