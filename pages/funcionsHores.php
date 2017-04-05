@@ -60,7 +60,7 @@ function mostrarHores($sql, $idTreballador) {
     $primer = true;
     $totalHores= 0;
     $totalExtra = 0;
-    if ($treballador != 0) {
+    if ($idTreballador != 0) {
       $horesDiaTreballador = getHoresTreballador($idTreballador);
     } else {
       $horesDiaTreballador = 8;
