@@ -74,7 +74,7 @@ function mostrarHores($sql) {
                                         $primer=false;
               echo "
                                 <div class=\"table-responsive\">
-                                      <table class=\"table-striped\">
+                                      <table class=\"table table-striped\">
                                           <thead>
                                               <tr>
                                                   <th>Dia</th>
