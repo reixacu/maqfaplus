@@ -122,6 +122,16 @@ function getDescFeina ($id) {
       return "Error al rebre la desc";
     }
 }
+function getHoresTreballador ($id) {
+    $result = getTreballadorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["hores_dia_treballador"];
+    }
+    else {
+      return 8;
+    }
+}
 function getNomTreballador ($id) {
     $result = getTreballadorData($id);
     if ($result->num_rows > 0) {

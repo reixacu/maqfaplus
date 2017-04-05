@@ -55,23 +55,36 @@ function eliminarHores($id)
     }
 }
 
-function mostrarHores($sql) {
+function mostrarHores($sql, $idTreballador) {
     $ultima = date("Y-m-d");
     $primer = true;
+    $totalHores= 0;
+    $totalExtra = 0;
+    if ($treballador != 0) {
+      $horesDiaTreballador = getHoresTreballador($idTreballador);
+    } else {
+      $horesDiaTreballador = 8;
+    }
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 
         while($row = $result->fetch_assoc()) {
+          $totalHores+=$row["hores_hores"];
+          if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
+
             if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
               if (!$primer) {echo "
                                               </tbody>
                                           </table>
+                                          <h3>".$totalHores."-".$totalExtra."</h3>
                                       </div>
                                           ";
                                         }
                                         $primer=false;
+                                        $totalHores = 0;
+                                        $totalExtra = 0;
               echo "
               <h1>".date_format(date_create($row["dia_hores"]), 'm-Y')."</h1>
                                 <div class=\"table-responsive\">
