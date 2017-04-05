@@ -57,6 +57,7 @@ function eliminarHores($id)
 
 function mostrarHores($sql, $idTreballador) {
     $ultima = date("Y-m-d");
+    $ultima = date('Y-m-d', strtotime("+3 months", strtotime($ultima)));
     $primer = true;
     $totalHores= 0;
     $totalExtra = 0;
@@ -109,16 +110,16 @@ function mostrarHores($sql, $idTreballador) {
             if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
-                                                      <td><a href='mostrarFeina.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</td>
-                                                      <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</td>
+                                                      <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
+                                                      <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</a></td>
                                                       <td>". $row["detall_hores"] . "</td>
-                                                      <td>". $row["hores_hores"] . "</td>
+                                                      <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
         }
         echo "
                                         </tbody>
                                     </table>
-                                    <h3>Total Hores: ".$totalHores." - Total Extres: ".$totalExtra."</h3>
+                                    <h3>Total Hores: ". number_format($totalHores / 100,2)." - Total Extres: ".number_format($totalExtra / 100,2)."</h3>
                                 </div>
                                     ";
     } else {
