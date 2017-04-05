@@ -75,9 +75,9 @@ function mostrarHores($sql) {
                                     <tbody>
                                     ";
         while($row = $result->fetch_assoc()) {
-          echo $ultima;
-          echo $row["dia_hores"];
-            if (date_format(date_create($ultima), 'm-Y') > date_format(date_create($row["dia_hores"]), 'm-Y') )
+          echo date_format(date_create($ultima), 'Y-m');
+          echo date_format(date_create($row["dia_hores"]), 'Y-m');
+            if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
               echo "BIBA ESPAÑA";
               $ultima = $row["dia_hores"];
