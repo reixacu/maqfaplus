@@ -77,7 +77,7 @@ function mostrarHores($sql) {
         while($row = $result->fetch_assoc()) {
           echo $ultima;
           echo $row["dia_hores"];
-            if (date_create($ultima) < date_create($row["dia_hores"]))
+            if (date_create($ultima) > date_create($row["dia_hores"]))
             {
               echo "BIBA ESPAÑA";
               $ultima = $row["dia_hores"];
