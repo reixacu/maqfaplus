@@ -57,7 +57,7 @@ function eliminarHores($id)
 
 function mostrarHores($sql, $idTreballador) {
     $ultima = date("Y-m-d");
-    $ultima = date('Y-m-d', strtotime("+3 months", strtotime($effectiveDate)));
+    $ultima = date('Y-m-d', strtotime("+3 months", strtotime($ultima)));
     $primer = true;
     $totalHores= 0;
     $totalExtra = 0;
