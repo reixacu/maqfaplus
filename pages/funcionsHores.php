@@ -56,7 +56,7 @@ function eliminarHores($id)
 }
 
 function mostrarHores($sql) {
-    $ultima = date();
+    $ultima = date("Y-m-d");
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
