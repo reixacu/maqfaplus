@@ -76,7 +76,7 @@ function mostrarHores($sql) {
         while($row = $result->fetch_assoc()) {
               echo "<tr class=\"success\">
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
-                                                      <td><a href='mostrarFeina.php?id=".$row["id_teballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</td>
+                                                      <td><a href='mostrarFeina.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</td>
                                                       <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</td>
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". $row["hores_hores"] . "</td>

@@ -123,7 +123,7 @@ function getDescFeina ($id) {
     }
 }
 function getNomTreballador ($id) {
-    $result = getTreballaData($id);
+    $result = getTreballadorData($id);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         return $row["nom_treballador"];
