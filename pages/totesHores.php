@@ -57,7 +57,7 @@
                     {
                         echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Totes les hores</h1></td>";
                       }else{
-                          echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Hores ". function getNomTreballador($id) ."</h1></td>"
+                          echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Hores ". getNomTreballador($id) ."</h1></td>"
                         }
                         echo "
             </div>
