@@ -81,9 +81,6 @@ function mostrarHores($sql) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". $row["hores_hores"] . "</td>
                                                   </tr>";
-            } else {
-              echo "<tr>ERROR</tr>";
-            }
         }
         echo "
                                         </tbody>
