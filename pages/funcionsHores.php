@@ -67,12 +67,13 @@ function mostrarHores($sql) {
           echo date_format(date_create($row["dia_hores"]), 'Y-m');
             if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
-              if ($primer) {echo "
+              if (!$primer) {echo "
                                               </tbody>
                                           </table>
                                       </div>
                                           ";
-                                        $primer=false;}
+                                        }
+                                        $primer=false;
               echo "
                                 <div class=\"table-responsive\">
                                       <table class=\"table-striped\">
