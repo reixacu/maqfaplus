@@ -119,7 +119,7 @@ function getDescFeina ($id) {
         return $row["descripcio_feina"];
     }
     else {
-      return "Error al rebre la desc";
+      return "Altres";
     }
 }
 function getHoresTreballador ($id) {
