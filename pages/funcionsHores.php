@@ -118,6 +118,7 @@ function mostrarHores($sql, $idTreballador) {
         echo "
                                         </tbody>
                                     </table>
+                                    <h3>Total Hores: ".$totalHores." - Total Extres: ".$totalExtra."</h3>
                                 </div>
                                     ";
     } else {
