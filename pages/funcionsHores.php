@@ -55,6 +55,47 @@ function eliminarHores($id)
     }
 }
 
+function mostrarHores($sql) {
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table\">
+                                    <thead>
+                                        <tr>
+                                            <th>Dia</th>
+                                            <th>Treballador</th>
+                                            <th>Feina</th>
+                                            <th>Detall</th>
+                                            <th>Hores</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+              echo "<tr class=\"success\">
+                                                      <td>". getDataDMY($row["dia_hores"]) . "</td>
+                                                      <td><a href='mostrarFeina.php?id=".$row["id_teballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</td>
+                                                      <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</td>
+                                                      <td>". $row["detall_hores"] . "</td>
+                                                      <td>". $row["hores_hores"] . "</td>
+                                                  </tr>";
+            } else {
+              echo "<tr>ERROR</tr>";
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
 
 
  ?>
