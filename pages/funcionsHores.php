@@ -113,13 +113,13 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
                                                       <td><a href='mostrarFeina.php?id=".$row["id_feina_hores"]."'>". getDescFeina($row["id_feina_hores"]) . "</a></td>
                                                       <td>". $row["detall_hores"] . "</td>
-                                                      <td>". $row["hores_hores"] /100. "</td>
+                                                      <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
         }
         echo "
                                         </tbody>
                                     </table>
-                                    <h3>Total Hores: ".$totalHores/100." - Total Extres: ".$totalExtra/100."</h3>
+                                    <h3>Total Hores: ". number_format($totalHores / 100,2)" - Total Extres: ".number_format($totalExtra / 100,2)."</h3>
                                 </div>
                                     ";
     } else {
