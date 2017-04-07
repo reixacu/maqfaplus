@@ -104,6 +104,7 @@ function mostrarHores($sql, $idTreballador) {
             {
               $sumaUltimDia = 0;
               $ultimDia = $row["dia_hores"];
+              echo "HE ENTRAT " . $ultimDia;
             }
             $sumaUltimDia+=$row["hores_hores"];
             if ($sumaUltimDia>$horesDiaTreballador) $totalExtra+=$sumaUltimDia-$horesDiaTreballador;
