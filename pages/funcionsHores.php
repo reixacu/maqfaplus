@@ -118,12 +118,13 @@ function mostrarHores($sql, $idTreballador) {
                                                   </tr>";
                                                   $testaaa += $row["id_feina_hores"];
 
-                                                  if($testaaa > 8){
-                                                        $totalExtra = $testaaa - 8;
-
-                                                  }
+                                                
         }
 
+        if($testaaa > 8){
+              $totalExtra = $testaaa - 8;
+
+        }
         echo "
                                         </tbody>
                                     </table>
