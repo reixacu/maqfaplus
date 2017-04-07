@@ -55,6 +55,9 @@ function eliminarHores($id)
 function mostrarHores($sql, $idTreballador) {
     $ultima = date("Y-m-d");
     $ultima = date('Y-m-d', strtotime("+3 months", strtotime($ultima)));
+    $ultimDia = date("Y-m-d");
+    $ultimDia = date('Y-m-d', strtotime("+3 months", strtotime($ultimDia)));
+    $sumaUltimDia = 0;
     $primer = true;
     $totalHores= 0;
     $totalExtra = 0;
@@ -97,7 +100,12 @@ function mostrarHores($sql, $idTreballador) {
               $ultima = $row["dia_hores"];
             }
             $totalHores+=$row["hores_hores"];
-            if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
+            if (date_format(date_create($ultimDia), 'Y-m-d') > date_format(date_create($row["dia_hores"]), 'Y-m-d') )
+            {
+              $sumaUltimDia = 0;
+            }
+            $sumaUltimDia+=$row["hores_hores"];
+            if ($sumaUltimDia>$horesDiaTreballador) $totalExtra+=$sumaUltimDia-$horesDiaTreballador;
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
                                                       <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
