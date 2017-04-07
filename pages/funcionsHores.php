@@ -86,7 +86,7 @@ function mostrarHores($sql, $idTreballador) {
                                         $totalHores = 0;
                                         $totalExtra = 0;
                                         $totalExtraDia = 0;
-                                        $dia;
+                                        $dia = "";
                                         $repetit = false;
 
 
@@ -109,7 +109,6 @@ function mostrarHores($sql, $idTreballador) {
               $ultima = $row["dia_hores"];
             }
             $totalHores+=$row["hores_hores"];
-            $conthores += $horesDiaTreballador;
             if ($row["hores_hores"]>$horesDiaTreballador)
 
 
