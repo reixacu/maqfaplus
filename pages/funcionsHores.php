@@ -71,8 +71,8 @@ function mostrarHores($sql, $idTreballador) {
     if ($result->num_rows > 0) {
 
         while($row = $result->fetch_assoc()) {
+          $totalExtra = 0;
 
-          $testaaa = 0;
 
             if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
@@ -86,7 +86,6 @@ function mostrarHores($sql, $idTreballador) {
                                         }
                                         $primer=false;
                                         $totalHores = 0;
-                                        $totalExtra = 0;
 
 
 
@@ -108,7 +107,8 @@ function mostrarHores($sql, $idTreballador) {
               $ultima = $row["dia_hores"];
             }
             $totalHores+=$row["hores_hores"];
-            if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
+            if ($row["hores_hores"]>$horesDiaTreballador)
+            $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
                                                       <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
@@ -116,11 +116,7 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
-                                                  if( number_format($row["hores_hores"] / 100,2) > 8){
-                                                    $testaaa += number_format($row["hores_hores"] / 100,2) - 8;
 
-
-                                                  }
 
 
         }
@@ -128,7 +124,7 @@ function mostrarHores($sql, $idTreballador) {
         echo "
                                         </tbody>
                                     </table>
-                                    <h3>Total Hores: ". number_format($totalHores / 100,2)." - Total Extres: ".number_format($testaaa / 100,2)."</h3>
+                                    <h3>Total Hores: ". number_format($totalHores / 100,2)." - Total Extres: ".number_format($totalExtra / 100,2)."</h3>
                                 </div>
                                     ";
     } else {
