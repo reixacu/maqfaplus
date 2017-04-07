@@ -85,7 +85,7 @@ function mostrarHores($sql, $idTreballador) {
                                         $primer=false;
                                         $totalHores = 0;
                                         $totalExtra = 0;
-                                        $cont = 0;
+                                        $conthores = 0;
 
 
 
@@ -107,7 +107,7 @@ function mostrarHores($sql, $idTreballador) {
               $ultima = $row["dia_hores"];
             }
             $totalHores+=$row["hores_hores"];
-            if ($row["hores_hores"]>$horesDiaTreballador)$totalExtra+=$row["hores_hores"];
+            if ($row["hores_hores"]>$horesDiaTreballador)$totalExtra+=$row["hores_hores"]; $conthores += $horesDiaTreballador;
 
 
               echo "<tr>
@@ -117,10 +117,9 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
-            $cont += 1;
 
         }
-        $totalExtra = $totalExtra - $horesDiaTreballador * $cont;
+        $totalExtra = $totalExtra - $conthores;
 
         echo "
                                         </tbody>
