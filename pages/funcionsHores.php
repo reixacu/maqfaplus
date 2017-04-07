@@ -103,7 +103,7 @@ function mostrarHores($sql, $idTreballador) {
             if (date_format(date_create($ultimDia), 'Y-m-d') > date_format(date_create($row["dia_hores"]), 'Y-m-d') )
             {
               $sumaUltimDia = 0;
-              $ultimDia = date('Y-m-d');
+              $ultimDia = $row["dia_hores"];
             }
             $sumaUltimDia+=$row["hores_hores"];
             if ($sumaUltimDia>$horesDiaTreballador) $totalExtra+=$sumaUltimDia-$horesDiaTreballador;
