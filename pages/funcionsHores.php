@@ -119,7 +119,7 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
-                    if($row["dia_hores"] == $dia){
+                /*    if($row["dia_hores"] == $dia){
                           $totalExtraDia += $row["hores_hores"];
                           $repetit = true;
 
@@ -132,7 +132,7 @@ function mostrarHores($sql, $idTreballador) {
                     }
                     $totalExtra+=$row["hores_hores"] - $horesDiaTreballador;
                   }
-                  $dia = $row["dia_hores"];
+                  $dia = $row["dia_hores"];*/
 
 
         }
