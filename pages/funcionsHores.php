@@ -108,9 +108,8 @@ function mostrarHores($sql, $idTreballador) {
               $ultima = $row["dia_hores"];
             }
             $totalHores+=$row["hores_hores"];
-            if ($row["hores_hores"]>$horesDiaTreballador){
-               $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
-               
+            if ($row["hores_hores"]>$horesDiaTreballador)$totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
+
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
                                                       <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
