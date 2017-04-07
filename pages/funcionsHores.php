@@ -72,6 +72,7 @@ function mostrarHores($sql, $idTreballador) {
 
         while($row = $result->fetch_assoc()) {
 
+          $testaaa = 0;
 
             if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
@@ -86,7 +87,6 @@ function mostrarHores($sql, $idTreballador) {
                                         $primer=false;
                                         $totalHores = 0;
                                         $totalExtra = 0;
-                                        $testaaa = 0;
 
 
 
@@ -116,7 +116,7 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
-                                                  if($row["id_feina_hores"] > 8){
+                                                  if( number_format($row["hores_hores"] / 100,2) > 8){
                                                     $testaaa += $row["id_feina_hores"] - 8;
 
 
