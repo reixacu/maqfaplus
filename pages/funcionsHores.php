@@ -117,7 +117,7 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
                                                   if( number_format($row["hores_hores"] / 100,2) > 8){
-                                                    $testaaa += $row["id_feina_hores"] - 8;
+                                                    $testaaa += number_format($row["hores_hores"] / 100,2) - 8;
 
 
                                                   }
