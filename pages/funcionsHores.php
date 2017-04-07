@@ -1,5 +1,4 @@
 <?php
-
 function getHoresFeina($idFeina)
 {
     include "mysql.php";
@@ -46,7 +45,6 @@ function eliminarHores($id)
 {
     include "mysql.php";
     $sql = "DELETE FROM hores WHERE id_hores=$id";
-
     if (mysqli_query($conn, $sql)) {
         return true;
     } else {
@@ -54,24 +52,21 @@ function eliminarHores($id)
         return false;
     }
 }
-
 function mostrarHores($sql, $idTreballador) {
     $ultima = date("Y-m-d");
     $ultima = date('Y-m-d', strtotime("+3 months", strtotime($ultima)));
     $primer = true;
     $totalHores= 0;
+    $totalExtra = 0;
     if ($idTreballador != 0) {
       $horesDiaTreballador = getHoresTreballador($idTreballador);
     } else {
-      $horesDiaTreballador = 800;
+      $horesDiaTreballador = 8;
     }
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-
         while($row = $result->fetch_assoc()) {
-
-
             if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
               if (!$primer) {echo "
@@ -80,17 +75,10 @@ function mostrarHores($sql, $idTreballador) {
                                           <h3>Total Hores: ". number_format($totalHores / 100,2)." - Total Extres: ".number_format($totalExtra / 100,2)."</h3>
                                       </div>
                                           ";
-
                                         }
                                         $primer=false;
                                         $totalHores = 0;
                                         $totalExtra = 0;
-                                        $totalExtraDia = 0;
-                                        $dia = "";
-                                        $repetit = false;
-
-
-
               echo "
               <h1>".date_format(date_create($row["dia_hores"]), 'm-Y')."</h1>
                                 <div class=\"table-responsive\">
@@ -109,9 +97,7 @@ function mostrarHores($sql, $idTreballador) {
               $ultima = $row["dia_hores"];
             }
             $totalHores+=$row["hores_hores"];
-            if ($row["hores_hores"]>$horesDiaTreballador)
-
-
+            if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
                                                       <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
@@ -119,24 +105,7 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
-                /*    if($row["dia_hores"] == $dia){
-                          $totalExtraDia += $row["hores_hores"];
-                          $repetit = true;
-
-
-                    }
-                  else{
-                    if($repetit == true){
-                      $totalExtra += $totalExtraDia - 8;
-
-                    }
-                    $totalExtra+=$row["hores_hores"] - $horesDiaTreballador;
-                  }
-                  $dia = $row["dia_hores"];*/
-
-
         }
-
         echo "
                                         </tbody>
                                     </table>
@@ -148,7 +117,4 @@ function mostrarHores($sql, $idTreballador) {
     }
     $conn->close();
 }
-
-
-
  ?>
