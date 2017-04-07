@@ -64,7 +64,7 @@ function mostrarHores($sql, $idTreballador) {
     if ($idTreballador != 0) {
       $horesDiaTreballador = getHoresTreballador($idTreballador);
     } else {
-      $horesDiaTreballador = 8;
+      $horesDiaTreballador = 800;
     }
     include "mysql.php";
     $result = $conn->query($sql);
