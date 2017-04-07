@@ -86,6 +86,7 @@ function mostrarHores($sql, $idTreballador) {
                                         $primer=false;
                                         $totalHores = 0;
                                         $totalExtra = 0;
+                                        $testaaa = 0;
 
 
 
@@ -115,7 +116,14 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
+                                                  $testaaa += $row["id_feina_hores"];
+
+                                                  if($testaaa > 8){
+                                                        $totalExtra = $testaaa - 8;
+
+                                                  }
         }
+
         echo "
                                         </tbody>
                                     </table>
