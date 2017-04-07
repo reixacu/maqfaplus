@@ -107,6 +107,8 @@ function mostrarHores($sql, $idTreballador) {
               echo "HE ENTRAT " . $ultimDia;
             }
             $sumaUltimDia+=$row["hores_hores"];
+            echo "suma: " . $sumaUltimDia;
+
             if ($sumaUltimDia>$horesDiaTreballador) $totalExtra+=$sumaUltimDia-$horesDiaTreballador;
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
