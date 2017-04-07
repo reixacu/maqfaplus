@@ -64,7 +64,7 @@ function mostrarHores($sql, $idTreballador) {
     if ($idTreballador != 0) {
       $horesDiaTreballador = getHoresTreballador($idTreballador);
     } else {
-      $horesDiaTreballador = 8;
+      $horesDiaTreballador = 800;
     }
     include "mysql.php";
     $result = $conn->query($sql);
@@ -83,6 +83,7 @@ function mostrarHores($sql, $idTreballador) {
                                           ";
 
                                         }
+                                        $testaaa = 0;
                                         $primer=false;
                                         $totalHores = 0;
                                         $totalExtra = 0;
@@ -107,7 +108,8 @@ function mostrarHores($sql, $idTreballador) {
               $ultima = $row["dia_hores"];
             }
             $totalHores+=$row["hores_hores"];
-            if ($row["hores_hores"]>$horesDiaTreballador) $totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
+            if ($row["hores_hores"]>$horesDiaTreballador)$totalExtra+=$row["hores_hores"]-$horesDiaTreballador;
+
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
                                                       <td><a href='mostrarTreballador.php?id=".$row["id_treballador_hores"]."'>". getNomTreballador($row["id_treballador_hores"]) . "</a></td>
@@ -115,7 +117,10 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
+
+
         }
+
         echo "
                                         </tbody>
                                     </table>
