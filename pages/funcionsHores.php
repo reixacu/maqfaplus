@@ -92,6 +92,9 @@ function mostrarHores($sql, $idTreballador) {
                     <h3>Total Hores: ". number_format($sumaTotalMes / 100,2)." - Total Extres: ".number_format($sumaExtraMes / 100,2)."</h3>
                 </div>
                     ";
+              } else
+              {
+                $primer= false;
               }
               echo "
               <h1>".date_format(date_create($row["dia_hores"]), 'm-Y')."</h1>
