@@ -120,8 +120,9 @@ function imprimirMenuTreballadors()
       // output data of each row
       while($row = $result->fetch_assoc()) {
         $nom = $row["nom_treballador"];
+        $id = $row["id_treballador"];
         echo "<li>
-            <a href=\"totesHores.php?id=3\"><i class=\"fa fa-user\"></i> ".$nom."</a>
+            <a href=\"totesHores.php?id=".$id."\"><i class=\"fa fa-user\"></i> ".$nom."</a>
         </li>";
       }
     }
