@@ -58,6 +58,7 @@ function mostrarHores($sql, $idTreballador) {
     $ultimDia = date("Y-m-d");
     $ultimDia = date('Y-m-d', strtotime("+3 months", strtotime($ultimDia)));
     $sumaUltimDia = 0;
+    $sumaExtraDia = 0;
     $primer = true;
     $totalHores= 0;
     $totalExtra = 0;
@@ -72,6 +73,7 @@ function mostrarHores($sql, $idTreballador) {
         while($row = $result->fetch_assoc()) {
             if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
             {
+
               if (!$primer) {echo "
                                               </tbody>
                                           </table>
@@ -102,16 +104,16 @@ function mostrarHores($sql, $idTreballador) {
             $totalHores+=$row["hores_hores"];
             if (date_format(date_create($ultimDia), 'Y-m-d') > date_format(date_create($row["dia_hores"]), 'Y-m-d') )
             {
+              $totalExtra += $sumaExtraDia;
               $sumaUltimDia = 0;
+              $sumaExtraDia = 0;
               $ultimDia = $row["dia_hores"];
             }
 
             $sumaUltimDia+=$row["hores_hores"];
 
             if ($sumaUltimDia>$horesDiaTreballador){
-                $totalExtra+=$sumaUltimDia-$horesDiaTreballador;
-                echo "HE ENTRAT " . $ultimDia;
-
+                $sumaExtraDia=$sumaUltimDia-$horesDiaTreballador;
             }
 
               echo "<tr>
