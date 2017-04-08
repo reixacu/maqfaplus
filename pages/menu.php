@@ -97,21 +97,7 @@ include "funcions.php";
                 <li>
                     <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li>
-                            <a href="totesHores.php?id=3"><i class="fa fa-user"></i> Xevi</a>
-                        </li>
-                        <li>
-                            <a href="totesHores.php?id=5"><i class="fa fa-user"></i> Jati</a>
-                        </li>
-                        <li>
-                            <a href="totesHores.php?id=6"><i class="fa fa-user"></i> Jose</a>
-                        </li>
-                        <li>
-                            <a href="totesHores.php?id=7"><i class="fa fa-user"></i> Ferran</a>
-                        </li>
-                        <li>
-                            <a href="totesHores.php?id=8"><i class="fa fa-user"></i> Alex</a>
-                        </li>
+                        <?php imprimirMenuTreballadors();?>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
@@ -124,3 +110,20 @@ include "funcions.php";
     </div>
     <!-- /.navbar-static-side -->
 </nav>
+<?php
+function imprimirMenuTreballadors()
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `formes_pagament`";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $nom = $row["nom_treballador"];
+        echo "<li>
+            <a href=\"totesHores.php?id=3\"><i class=\"fa fa-user\"></i> ".$nom."</a>
+        </li>";
+      }
+    }
+}
+?>
