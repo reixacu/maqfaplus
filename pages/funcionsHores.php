@@ -53,15 +53,15 @@ function eliminarHores($id)
     }
 }
 function mostrarHores($sql, $idTreballador) {
-    $ultima = date("Y-m-d");
-    $ultima = date('Y-m-d', strtotime("+3 months", strtotime($ultima)));
     $ultimDia = date("Y-m-d");
     $ultimDia = date('Y-m-d', strtotime("+3 months", strtotime($ultimDia)));
-    $sumaUltimDia = 0;
+    $sumaTotalDia = 0;
     $sumaExtraDia = 0;
     $primer = true;
-    $totalHores= 0;
-    $totalExtra = 0;
+    $sumaTotalMes= 0;
+    $sumaExtraMes = 0;
+    $diaNou;
+    $mesNou;
     if ($idTreballador != 0) {
       $horesDiaTreballador = getHoresTreballador($idTreballador);
     } else {
@@ -71,19 +71,28 @@ function mostrarHores($sql, $idTreballador) {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            if (date_format(date_create($ultima), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') )
-            {
+            if (date_format(date_create($ultimDia), 'Y-m-d') > date_format(date_create($row["dia_hores"]), 'Y-m-d') ) $diaNou = true;
+            if (date_format(date_create($ultimDia), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') ) $mesNou = true;
 
-              if (!$primer) {echo "
-                                              </tbody>
-                                          </table>
-                                          <h3>Total Hores: ". number_format($totalHores / 100,2)." - Total Extres: ".number_format($totalExtra / 100,2)."</h3>
-                                      </div>
-                                          ";
-                                        }
-                                        $primer=false;
-                                        $totalHores = 0;
-                                        $totalExtra = 0;
+            if ($diaNou)
+            {
+              $ultimDia = $row["dia_hores"];
+              $sumaExtraMes+=$sumaExtraDia;
+              $sumaTotalMes+=$sumaTotalDia;
+              $sumaExtraDia = 0;
+              $sumaTotalDia = 0;
+            }
+
+            if($mesNou)
+            {
+              if (!$primer)
+              { echo "
+                        </tbody>
+                    </table>
+                    <h3>Total Hores: ". number_format($sumaTotalMes / 100,2)." - Total Extres: ".number_format($sumaExtraMes / 100,2)."</h3>
+                </div>
+                    ";
+              }
               echo "
               <h1>".date_format(date_create($row["dia_hores"]), 'm-Y')."</h1>
                                 <div class=\"table-responsive\">
@@ -99,22 +108,12 @@ function mostrarHores($sql, $idTreballador) {
                                           </thead>
                                           <tbody>
                                           ";
-              $ultima = $row["dia_hores"];
-            }
-            $totalHores+=$row["hores_hores"];
-            if (date_format(date_create($ultimDia), 'Y-m-d') > date_format(date_create($row["dia_hores"]), 'Y-m-d') )
-            {
-              $totalExtra += $sumaExtraDia;
-              $sumaUltimDia = 0;
-              $sumaExtraDia = 0;
-              $ultimDia = $row["dia_hores"];
+
             }
 
-            $sumaUltimDia+=$row["hores_hores"];
+            $sumaTotalDia+=$row["hores_hores"];
+            if ($sumaTotalDia > $horesDiaTreballador) $sumaExtraDia = $sumaTotalDia - $horesDiaTreballador;
 
-            if ($sumaUltimDia>$horesDiaTreballador){
-                $sumaExtraDia=$sumaUltimDia-$horesDiaTreballador;
-            }
 
               echo "<tr>
                                                       <td>". getDataDMY($row["dia_hores"]) . "</td>
@@ -123,7 +122,11 @@ function mostrarHores($sql, $idTreballador) {
                                                       <td>". $row["detall_hores"] . "</td>
                                                       <td>". number_format($row["hores_hores"] / 100,2). "</td>
                                                   </tr>";
+          $diaNou = false;
+          $mesNou = false;
         }
+        $sumaExtraMes+=$sumaExtraDia;
+        $sumaTotalMes+=$sumaTotalDia;
         echo "
                                         </tbody>
                                     </table>
@@ -131,7 +134,7 @@ function mostrarHores($sql, $idTreballador) {
                                 </div>
                                     ";
     } else {
-        echo "No s'ha trobat cap factura";
+        echo "No s'ha trobat cap hora";
     }
     $conn->close();
 }
