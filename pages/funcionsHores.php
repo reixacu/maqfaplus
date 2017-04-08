@@ -95,9 +95,9 @@ function mostrarHores($sql, $idTreballador) {
               } else
               {
                 $primer= false;
-                $sumaTotalMes = 0;
-                $sumaExtraMes = 0;
               }
+              $sumaTotalMes = 0;
+              $sumaExtraMes = 0;
               echo "
               <h1>".date_format(date_create($row["dia_hores"]), 'm-Y')."</h1>
                                 <div class=\"table-responsive\">
