@@ -114,7 +114,7 @@ include "funcions.php";
 function imprimirMenuTreballadors()
 {
   include "mysql.php";
-  $sql = "SELECT * FROM `formes_pagament`";
+  $sql = "SELECT * FROM `treballadors`";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       // output data of each row
