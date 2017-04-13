@@ -77,7 +77,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('dejavusans', '', 10);
+$pdf->SetFont('dejavusans', '', 9);
 
 // add a page
 $pdf->AddPage();
