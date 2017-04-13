@@ -77,7 +77,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('Arial Narrow', '', 9);
+$pdf->SetFont('dejavusans', '', 9);
 
 // add a page
 $pdf->AddPage();
@@ -128,7 +128,7 @@ $html = '
 </table>
 <br />
 <br />
-<table style="padding: 4px 4px 4px 1%;" border="1">
+<table style="padding: 3px 3px 3px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
