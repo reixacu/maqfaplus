@@ -77,7 +77,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('dejavusans', '', 10);
+$pdf->SetFont('dejavusans', '', 8);
 
 // add a page
 $pdf->AddPage();
@@ -128,7 +128,7 @@ $html = '
 </table>
 <br />
 <br />
-<table style="padding: 5px 5px 5px 1%;" border="1">
+<table style="padding: 3px 3px 3px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
@@ -203,7 +203,7 @@ $html = '
 		</table>
 ';
 
-$pdf->writeHTMLCell(0,0,15,250,$html, false,true, false, true, false, '');
+$pdf->writeHTMLCell(0,0,15,260,$html, false,true, false, true, false, '');
 
 // reset pointer to the last page
 $pdf->lastPage();

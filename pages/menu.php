@@ -95,6 +95,13 @@ include "funcions.php";
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <?php imprimirMenuTreballadors();?>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="about.php"><i class="fa fa-info-circle fa-fw"></i></i> Informació MaqfaPlus</a>
                 </li>
             </ul>
@@ -103,3 +110,21 @@ include "funcions.php";
     </div>
     <!-- /.navbar-static-side -->
 </nav>
+<?php
+function imprimirMenuTreballadors()
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `treballadors`";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $nom = $row["nom_treballador"];
+        $id = $row["id_treballador"];
+        echo "<li>
+            <a href=\"totesHores.php?id=".$id."\"><i class=\"fa fa-user\"></i> ".$nom."</a>
+        </li>";
+      }
+    }
+}
+?>
