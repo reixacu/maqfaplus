@@ -47,6 +47,14 @@ function getFeinaData($idFeina)
     $conn->close();
     return $result;
 }
+function getTreballadorData($idTreballador)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM treballadors WHERE id_treballador=$idTreballador;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 function getFacturaData($idFactura)
 {
     include "mysql.php";
@@ -102,6 +110,37 @@ function getClientFeina ($id) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         return $row["id_client_feina"];
+    }
+}
+function getDescFeina ($id) {
+    $result = getFeinaData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["descripcio_feina"];
+    }
+    else {
+      return "Altres / Varis";
+    }
+}
+function getHoresTreballador ($id) {
+    $result = getTreballadorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["hores_dia_treballador"];
+    }
+    else {
+      return 8;
+    }
+}
+
+function getNomTreballador ($id) {
+    $result = getTreballadorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["nom_treballador"];
+    }
+    else {
+      return "Error amb el nom del treballador";
     }
 }
 // Comprova si el nom no és nul o la raó social no és nula
@@ -430,6 +469,7 @@ function mostrarFeines($sql) {
                                             <th>#</th>
                                             <th>Estat</th>
                                             <th>Client</th>
+                                            <th>Descripció</th>
                                             <th>Data inici</th>
                                             <th>Data acabament</th>
                                             <th>Data facturació</th>
@@ -448,6 +488,7 @@ function mostrarFeines($sql) {
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
+                                                            <td></td>
                                                         </tr>";
                     break;
                 case 1:
@@ -455,6 +496,7 @@ function mostrarFeines($sql) {
                                                             <td><a href='mostrarFeina.php?id=".$row["id_feina"]."'>". $row["id_feina"] . "</td>
                                                             <td><i class=\"fa fa-cog fa-spin\"></i> Activa</td>
                                                             <td><a href='mostrarClient.php?id=" . $row["id_client_feina"] ."'>". getClientCognomNom($row["id_client_feina"]) . "</a></td>
+                                                            <td>". getDescFeina($row["id_feina"])  . "</td>
                                                             <td>". getDataDMY($row["inci_feina"]) . "</td>
                                                             <td></td>
                                                             <td></td>
@@ -465,6 +507,7 @@ function mostrarFeines($sql) {
                                                             <td><a href='mostrarFeina.php?id=".$row["id_feina"]."'>". $row["id_feina"] . "</td>
                                                             <td><i class=\"fa fa-check-square-o\"></i></i> Finalitzada</td>
                                                             <td><a href='mostrarClient.php?id=" . $row["id_client_feina"] ."'>". getClientCognomNom($row["id_client_feina"]) . "</a></td>
+                                                            <td>". getDescFeina($row["id_feina"])  . "</td>
                                                             <td>". getDataDMY($row["inci_feina"]) . "</td>
                                                             <td>". getDataDMY($row["acabament_feina"]) . "</td>
                                                             <td></td>
@@ -475,6 +518,7 @@ function mostrarFeines($sql) {
                                                             <td><a href='mostrarFeina.php?id=".$row["id_feina"]."'>". $row["id_feina"] . "</td>
                                                             <td><i class=\"fa fa-file-text\"></i> Facturada</td>
                                                             <td><a href='mostrarClient.php?id=" . $row["id_client_feina"] ."'>". getClientCognomNom($row["id_client_feina"]) . "</a></td>
+                                                            <td>". getDescFeina($row["id_feina"])  . "</td>
                                                             <td>". getDataDMY($row["inci_feina"]) . "</td>
                                                             <td>". getDataDMY($row["acabament_feina"]) . "</td>
                                                             <td>". getDataDMY($row["facturacio_feina"]) . "</td>
