@@ -203,7 +203,7 @@ $html = '
 		</table>
 ';
 
-$pdf->writeHTMLCell(0,0,15,250,$html, false,true, false, true, false, '');
+$pdf->writeHTMLCell(0,0,15,260,$html, false,true, false, true, false, '');
 
 // reset pointer to the last page
 $pdf->lastPage();
