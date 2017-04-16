@@ -1,6 +1,6 @@
 <?php
 $idFactura = $_GET["idFactura"];
-$estatAnteriorPagament = 0;
+$estatAnteriorPagament = 1;
 include "mysql.php";
 $sql = "
     UPDATE `factures`
