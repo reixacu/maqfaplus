@@ -70,7 +70,7 @@
                         if ($result->num_rows > 0) {
                             echo "
                                               <div class=\"table-responsive\">
-                                                    <table class=\"tabletable-striped table-bordered table-hover\" id=\"clients1\">
+                                                    <table class=\"table table-striped table-bordered table-hover\" id=\"clients1\">
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
