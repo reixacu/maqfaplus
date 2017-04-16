@@ -88,7 +88,7 @@
                                     }
                                 }
                             } else {
-                                echo "No hi ha cap client particular";
+                                echo "No hi ha cap client";
                             }
                             //SELECT `id_client`, `nif_client`, `nom_client`, `cognom_client` FROM `clients`
                             $conn->close();
