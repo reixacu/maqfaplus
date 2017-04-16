@@ -541,7 +541,7 @@ function mostrarFacturesPendents($sql) {
               echo "<tr class=\"danger\">
                                                       <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
                                                     <td><i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i> Fora de termini</td>
-                                                      <td>". $row["comentari_factura"] . "</td>
+                                                    <td><form method=\"get\" action=\"scriptCanviarEstatPagamentFacturaLlista.php\"><input type=\"hidden\" name=\"idFactura\" value=\"".$row["id_factura"]."\"><button type=\"submit\" class=\"btn btn-success\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i> Pagada</button></form></td>
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
