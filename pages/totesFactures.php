@@ -41,7 +41,7 @@
     include "menu.php";
     ?>
     <?php
-    $sql = "SELECT * FROM `factures` ORDER BY `factures`.`id_factura` DESC";
+    $sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != "" ORDER BY `factures`.`id_factura` DESC";
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
