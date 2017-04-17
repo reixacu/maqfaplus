@@ -117,39 +117,37 @@ function printRowDetallsAlbara($idFactura){
   if ($result->num_rows > 0) {
       // output data of each row
       $row = $result->fetch_assoc();
-      if($row["numero_factura"]!=""){
+      echo "<!-- panell dates factura -->
+      <div class=\"col-lg-6\">
+          <div class=\"panel panel-default\">
+              <div class=\"panel-heading\">
+                  Dates
+              </div>
+              <div class=\"panel-body\">
+                  <h2>" . getDataDMY($row["data_factura"]) ."</h2>
+              </div>
+          </div>
+      </div>
+      ";
+      echo "<!-- panell imports totals factura -->
+      <div class=\"col-lg-6\">
+          <div class=\"panel panel-default\">
+              <div class=\"panel-heading\">
+                  Imports
+              </div>
+              <div class=\"panel-body\">
+                  Preu base: " . getPriceString($row["base_imposable_factura"]) . "
+                  <br />
+                  Iva: " . getPriceString($row["import_iva_factura"]) . "
+                  <br />
+                  Import total: " . getPriceString($row["total_factura"]) . "
+              </div>
+          </div>
+      </div>
+  </div>
+      <!-- /.row -->
+  ";
 
-        echo "<!-- panell dates factura -->
-        <div class=\"col-lg-6\">
-            <div class=\"panel panel-default\">
-                <div class=\"panel-heading\">
-                    Dates
-                </div>
-                <div class=\"panel-body\">
-                    <h2>" . getDataDMY($row["data_factura"]) ."</h2>
-                </div>
-            </div>
-        </div>
-        ";
-        echo "<!-- panell imports totals factura -->
-        <div class=\"col-lg-6\">
-            <div class=\"panel panel-default\">
-                <div class=\"panel-heading\">
-                    Imports
-                </div>
-                <div class=\"panel-body\">
-                    Preu base: " . getPriceString($row["base_imposable_factura"]) . "
-                    <br />
-                    Iva: " . getPriceString($row["import_iva_factura"]) . "
-                    <br />
-                    Import total: " . getPriceString($row["total_factura"]) . "
-                </div>
-            </div>
-        </div>
-    </div>
-        <!-- /.row -->
-    ";
-    }
   }
 }
 
