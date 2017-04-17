@@ -60,6 +60,23 @@
             <div class=\"col-lg-12\">
                 <div class=\"panel panel-primary\">
                     <div class=\"panel-heading\">
+                        Filtre
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class=\"panel-body\">
+                      Test format css
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class=\"row\">
+            <div class=\"col-lg-12\">
+                <div class=\"panel panel-default\">
+                    <div class=\"panel-heading\">
                         Totes les factures
                     </div>
                     <!-- /.panel-heading -->
