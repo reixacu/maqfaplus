@@ -119,6 +119,8 @@
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         ";
+                        $totalBaseImp = 0;
+                        $totalIVA=0;
                         include "mysql.php";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
@@ -139,6 +141,8 @@
                                                         <tbody>
                                                         ";
                             while($row = $result->fetch_assoc()) {
+                                $totalBaseImp += $row["base_imposable_factura"];
+                                $totalIVA += $row["total_factura"];
                                 if ($row["numero_factura"] == "")
                                 {
                                         echo "<tr class=\"warning\">
@@ -177,6 +181,15 @@
                                 }
                             }
                             echo "
+                                                                <tr class=\"primary\">
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td>".  number_format($totalBaseImp / 100,2) . "€</td>
+                                                                    <td>".  number_format($totalIVA / 100,2) . "€</td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
