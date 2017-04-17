@@ -98,7 +98,7 @@
                 <!-- /.row -->
                 ";
 
-                printRowDetallsFactura($id);
+                printRowDetallsAlbara($id);
 
             echo "
                 <div class=\"col-lg-12\">
