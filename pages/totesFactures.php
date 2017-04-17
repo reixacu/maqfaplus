@@ -52,9 +52,20 @@
       $desde = date('Y-m-d', strtotime("-3 months", strtotime($fins)));
     }
 
+    if(isset($_GET['idClient'])) {
+      $idClient = $_GET['idClient'];
+    } else {
+      $idClient = 0;
+    }
+
     ?>
     <?php
-    $sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != '' ORDER BY `factures`.`id_factura` DESC";
+    if ($idClient == 0)
+    {
+      $sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != '' AND `factures`.`data_factura` >= '$desde' AND `factures`.`data_factura` <= '$fins' ORDER BY `factures`.`id_factura` DESC";
+    } else {
+      $sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != '' AND `factures`.`data_factura` >= '$desde' AND `factures`.`data_factura` <= '$fins' AND `factures`.`id_client_factura` = $idClient ORDER BY `factures`.`id_factura` DESC";
+    }
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
