@@ -69,7 +69,7 @@
                           TEST
                         </div>
                         <div class=\"col-lg-6\">
-                          TEST
+                          " . printFiltreDataForm("2017-03-07", "2017-03-10", 1) . "
                         </div>
                       </div>
                     </div>
@@ -226,3 +226,16 @@
 </body>
 
 </html>
+
+<?php
+function printFiltreDataForm($desde, $fins, $idClient)
+{
+  echo "
+  <form action=\".\" method=\"get\">
+    <input type=\"hidden\" value=\"".$idClient."\" name=\"idClient\">
+    <input type=\"date\" name=\"desde\" value=\".$desde.\">
+    <input type=\"date\" name=\"fins\" value=\".$fins.\">
+  </form>
+  ";
+}
+ ?>
