@@ -522,6 +522,7 @@ function mostrarFacturesPendents($sql) {
                                             <th>Client</th>
                                             <th>Data factura</th>
                                             <th>Data venciment</th>
+                                            <th>Import IVA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -535,6 +536,7 @@ function mostrarFacturesPendents($sql) {
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                   </tr>";
             }
             else{
@@ -545,6 +547,7 @@ function mostrarFacturesPendents($sql) {
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                   </tr>";
             }
         }

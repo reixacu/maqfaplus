@@ -2,7 +2,7 @@
 $id = $_GET["idFactura"];
 
 include "mysql.php";
-$sql = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, '$id', '', '100', '0')";
+$sql = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, '$id', '', '0', '0')";
 
 if ($conn->query($sql) === TRUE) {
     echo "
