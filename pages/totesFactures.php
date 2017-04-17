@@ -76,10 +76,10 @@
         <div class=\"row\">
             <div class=\"col-lg-12\">
                 <div class=\"panel panel-default\">
-                    <div class=\"panel-heading\">
+                    <!--<div class=\"panel-heading\">
                         Totes les factures
                     </div>
-                    <!-- /.panel-heading -->
+                    <!-- /.panel-heading -->-->
                     <div class=\"panel-body\">
                         ";
                         include "mysql.php";
