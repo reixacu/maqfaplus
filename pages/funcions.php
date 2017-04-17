@@ -63,6 +63,14 @@ function getFacturaData($idFactura)
     $conn->close();
     return $result;
 }
+function getAlbaraData($idFactura)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM albarans WHERE id_factura=$idFactura;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 function getLiniesFacturaData($idFactura)
 {
     include "mysql.php";
@@ -186,6 +194,17 @@ function getLastFeinaId() {
 function getLastFacturaId() {
     include "mysql.php";
     $sql = "SELECT `id_factura` FROM `factures` ORDER BY `factures`.`id_factura`  DESC";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $retorna = $row["id_factura"];
+    }
+    $conn->close();
+    return $retorna;
+}
+function getLastAlbaraId() {
+    include "mysql.php";
+    $sql = "SELECT `id_factura` FROM `albarans` ORDER BY `albarans`.`id_factura`  DESC";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
