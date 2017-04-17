@@ -279,14 +279,47 @@ function printModalClient($desde, $fins)
                                       <div class=\"modal-content\">
                                           <div class=\"modal-header\">
                                               <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                                              <h4 class=\"modal-title\" id=\"myModalLabel\">Modal title</h4>
+                                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar Client</h4>
                                           </div>
                                           <div class=\"modal-body\">
-                                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <table class=\"table table-striped table-bordered table-hover\" id=\"clients1\">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>NIF</th>
+                                                    <th>Tipus</th>
+                                                    <th>Raó social/Cognom</th>
+                                                    <th>Nom comercial/Nom</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                              ";
+                                              include "mysql.php";
+
+                                              $sql = "SELECT `id_client`, `nif_client`, `nom_client`, `cognom_client`, `poblacio_client`, `es_empresa_client`, `rao_social_client`, `nom_comercial_client` FROM `clients`";
+                                              $result = $conn->query($sql);
+                                              if ($result->num_rows > 0) {
+                                                  // output data of each row
+                                                  while($row = $result->fetch_assoc()) {
+                                                      if (!$row["es_empresa_client"]) {
+                                                          echo "<tr><td><a href='scriptAfegirFactura.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td></tr>";
+                                                      }
+                                                      else
+                                                      {
+                                                          echo "<tr><td><a href='scriptAfegirFactura.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td></tr>";
+                                                      }
+                                                  }
+                                              } else {
+                                                  echo "No hi ha cap client";
+                                              }
+                                              //SELECT `id_client`, `nif_client`, `nom_client`, `cognom_client` FROM `clients`
+                                              $conn->close();
+                                              echo "
+                                                </tbody>
+                                            </table>
                                           </div>
                                           <div class=\"modal-footer\">
-                                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
-                                              <button type=\"button\" class=\"btn btn-primary\">Save changes</button>
+                                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
                                           </div>
                                       </div>
                                       <!-- /.modal-content -->
