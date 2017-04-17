@@ -284,7 +284,7 @@ else {
     <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
         <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar un altre client
     </button>
-    <form method=\"get\" action=\"totesFactures.php\"><input type=\"hidden\" name=\"desde\" value=\""$desde."\"><input type=\"hidden\" name=\"fins\" value=\""$fins."\">
+    <form method=\"get\" action=\"totesFactures.php\"><input type=\"hidden\" name=\"desde\" value=\"".$desde."\"><input type=\"hidden\" name=\"fins\" value=\"".$fins."\">
     <button class=\"btn btn-warning btn-sm\" type\"submit\">
         Esborrar Filtre
     </button>
