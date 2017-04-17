@@ -79,7 +79,7 @@
                     <!--<div class=\"panel-heading\">
                         Totes les factures
                     </div>
-                    <!-- /.panel-heading -->-->
+                    <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         ";
                         include "mysql.php";
