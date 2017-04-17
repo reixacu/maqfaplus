@@ -187,8 +187,8 @@
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td></td>
-                                                                    <td>".  number_format($totalBaseImp / 100,2) . "€</td>
-                                                                    <td>".  number_format($totalIVA / 100,2) . "€</td>
+                                                                    <td><strong>".  number_format($totalBaseImp / 100,2) . "€</strong></td>
+                                                                    <td><strong>".  number_format($totalIVA / 100,2) . "€</strong></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
