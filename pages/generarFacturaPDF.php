@@ -110,7 +110,7 @@ $html = '
 			if ($direccioClient != "") $html = $html . '<br />' . $direccioClient;
 			if ($cpClient != "" && $poblacioClient != "") $html = $html . '<br />' . $cpClient ." ". $poblacioClient;
 			if ($provinciaClient != "") $html = $html . '<br />' . $provinciaClient;
-			if ($nifClient != "") $html = $html . '<br />NIF ' . $nifClient;
+			if ($nifClient != "") $html = $html . '<br />CIF ' . $nifClient;
 			$html = $html . '
 		</td>
 	</tr>
