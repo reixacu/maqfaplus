@@ -69,7 +69,9 @@
                           TEST
                         </div>
                         <div class=\"col-lg-6\">
-                          " . printFiltreDataForm("2017-03-07", "2017-03-10", 1) . "
+                          ";
+                            printFiltreDataForm("2017-03-07", "2017-03-10", 1);
+                            echo "
                         </div>
                       </div>
                     </div>
