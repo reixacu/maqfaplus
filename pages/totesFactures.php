@@ -207,10 +207,10 @@
 
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<!--
+
 <script>
     $(document).ready(function() {
-        $('#clients1').DataTable({
+        $('#clients11').DataTable({
             responsive: true,
             order: [[ 0, "desc" ]],
             language: {
@@ -249,7 +249,7 @@
     });
 </script>
 
--->
+
 
 </body>
 
@@ -282,7 +282,7 @@ function printModalClient($desde, $fins)
                                               <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar Client</h4>
                                           </div>
                                           <div class=\"modal-body\">
-                                            <table class=\"table table-striped table-bordered table-hover\" id=\"clients1\">
+                                            <table class=\"table table-striped table-bordered table-hover\" id=\"clients11\">
                                                 <thead>
                                                 <tr>
                                                     <th>#</th>
