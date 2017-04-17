@@ -277,7 +277,9 @@ function printModalClient($desde, $fins, $idClient)
                               </button>";
 }
 else {
+  echo "<h4>";
   echo getClientCognomNom($idClient);
+  echo "</h4>";
   echo "
     <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
         <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar un altre client
