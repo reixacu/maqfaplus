@@ -294,6 +294,6 @@ function printModalClient($desde, $fins)
                                   <!-- /.modal-dialog -->
                               </div>
                               <!-- /.modal -->
-  "
+  ";
 }
  ?>
