@@ -39,6 +39,16 @@
     <?php
     include "funcionsFactures.php";
     include "menu.php";
+    if(isset($_GET['desde'])) {
+      $desde = $_GET['desde']
+    } else {
+      $desde = date(Y-m-d);
+    }
+    if(isset($_GET['fins'])) {
+      $fins = $_GET['fins']
+    } else {
+      $fins = date('Y-m-d', strtotime("+3 months", strtotime($desde)));
+    }
     ?>
     <?php
     $sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != '' ORDER BY `factures`.`id_factura` DESC";
@@ -70,7 +80,7 @@
                         </div>
                         <div class=\"col-lg-6\">
                           ";
-                            printFiltreDataForm("2017-03-07", "2017-03-10", 1);
+                            printFiltreDataForm($desde, $fins, 1);
                             echo "
                         </div>
                       </div>
