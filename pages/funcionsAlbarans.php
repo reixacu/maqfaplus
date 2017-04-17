@@ -118,68 +118,21 @@ function printRowDetallsAlbara($idFactura){
       // output data of each row
       $row = $result->fetch_assoc();
       if($row["numero_factura"]!=""){
-        echo "<!-- panell pagament factura -->
-          <div class=\"row\">
-        <div class=\"col-lg-4 col-md-4\">";
-        if($row["pagament_realitzat_factura"]==0){echo "
-            <div class=\"panel panel-yellow\">
-                <!-- <div class=\"panel panel-primary\"> -->
-                <div class=\"panel-heading\">
-                    <div class=\"row\">
-                        <div class=\"col-xs-3\">
-                          <span class=\"fa-stack fa-3x\">
-                            <i class=\"fa fa-money fa-stack-1x\"></i>
-                            <i class=\"fa fa-ban fa-stack-2x text-danger\"></i>
-                          </span>
-                        </div>
-                        <div class=\"col-xs-9 text-right\">
-                            <div class=\"huge\">Per pagar</div>
-                            <div>La factura no s'ha pagat</div>
-                        </div>
-                    </div>
-                </div>";}
-                else{ echo "
-                  <div class=\"panel panel-primary\">
-                      <!-- <div class=\"panel panel-primary\"> -->
-                      <div class=\"panel-heading\">
-                          <div class=\"row\">
-                              <div class=\"col-xs-3\">
-                                  <i class=\"fa fa-money fa-5x\"></i>
-                              </div>
-                              <div class=\"col-xs-9 text-right\">
-                                  <div class=\"huge\">Pagada</div>
-                                  <div>La factura ja s'ha pagat</div>
-                              </div>
-                          </div>
-                      </div>";
-                  }
-                echo "
-                <a href=\"scriptCanviarEstatPagamentFactura.php?idFactura=". $idFactura . "&estatPagament="  . $row["pagament_realitzat_factura"] ."\">
-                    <div class=\"panel-footer\">
-                        <span class=\"pull-left\">Canviar estat del pagament</span>
-                        <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                        <div class=\"clearfix\"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        ";
+
         echo "<!-- panell dates factura -->
-        <div class=\"col-lg-4\">
+        <div class=\"col-lg-6\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading\">
                     Dates
                 </div>
                 <div class=\"panel-body\">
-                    Data factura: " . getDataDMY($row["data_factura"]) ."
-                    <br />
-                    Data venciment: " . getDataDMY($row["data_venciment_factura"]) ."
+                    <h2>" . getDataDMY($row["data_factura"]) ."</h2>
                 </div>
             </div>
         </div>
         ";
         echo "<!-- panell imports totals factura -->
-        <div class=\"col-lg-4\">
+        <div class=\"col-lg-6\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading\">
                     Imports
