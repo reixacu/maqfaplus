@@ -42,7 +42,7 @@
     if(isset($_GET['desde'])) {
       $desde = $_GET['desde'];
     } else {
-      $desde = date(Y-m-d);
+      $desde = date('Y-m-d');
     }
     if(isset($_GET['fins'])) {
       $fins = $_GET['fins'];
