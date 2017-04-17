@@ -39,16 +39,19 @@
     <?php
     include "funcionsFactures.php";
     include "menu.php";
-    if(isset($_GET['desde'])) {
-      $desde = $_GET['desde'];
-    } else {
-      $desde = date('Y-m-d');
-    }
+
     if(isset($_GET['fins'])) {
       $fins = $_GET['fins'];
     } else {
-      $fins = date('Y-m-d', strtotime("+3 months", strtotime($desde)));
+      $fins = date('Y-m-d');
     }
+
+    if(isset($_GET['desde'])) {
+      $desde = $_GET['desde'];
+    } else {
+      $desde = date('Y-m-d', strtotime("-3 months", strtotime($desde)));
+    }
+
     ?>
     <?php
     $sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != '' ORDER BY `factures`.`id_factura` DESC";
