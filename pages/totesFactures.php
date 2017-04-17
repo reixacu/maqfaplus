@@ -129,10 +129,11 @@
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Estat</th>
-                                                                <th>Concepte</th>
                                                                 <th>Client</th>
                                                                 <th>Data factura</th>
                                                                 <th>Data venciment</th>
+                                                                <th>Base imp.</th>
+                                                                <th>Total IVA</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -143,30 +144,33 @@
                                         echo "<tr class=\"warning\">
                                                                                 <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
                                                                                 <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
-                                                                                <td>". $row["comentari_factura"] . "</td>
                                                                                 <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                                 <td>". getDataDMY($row["data_factura"]) . "</td>
                                                                                 <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                                                <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                                                <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                                             </tr>";
                                 }
                                 else if ($row["pagament_realitzat_factura"] == 0){
                                   echo "<tr class=\"danger\">
                                                                           <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
                                                                         <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
-                                                                          <td>". $row["comentari_factura"] . "</td>
                                                                           <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                           <td>". getDataDMY($row["data_factura"]) . "</td>
                                                                           <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                                          <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                                          <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                                       </tr>";
                                 }
                                 else if ($row["pagament_realitzat_factura"] == 1){
                                   echo "<tr class=\"success\">
                                                                           <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
                                                                         <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
-                                                                          <td>". $row["comentari_factura"] . "</td>
                                                                           <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                           <td>". getDataDMY($row["data_factura"]) . "</td>
                                                                           <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                                          <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                                          <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                                       </tr>";
                                 } else {
                                   echo "<tr>ERROR</tr>";
