@@ -49,7 +49,7 @@
     if(isset($_GET['desde'])) {
       $desde = $_GET['desde'];
     } else {
-      $desde = date('Y-m-d', strtotime("-3 months", strtotime($desde)));
+      $desde = date('Y-m-d', strtotime("-3 months", strtotime($fins)));
     }
 
     ?>
