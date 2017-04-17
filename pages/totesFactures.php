@@ -235,8 +235,8 @@ function printFiltreDataForm($desde, $fins, $idClient)
   echo "
   <form action=\".\" method=\"get\">
     <input type=\"hidden\" value=\"".$idClient."\" name=\"idClient\">
-    <input type=\"date\" name=\"desde\" value=\".$desde.\">
-    <input type=\"date\" name=\"fins\" value=\".$fins.\">
+    <input type=\"date\" name=\"desde\" value=\"".$desde."\">
+    <input type=\"date\" name=\"fins\" value=\"".$fins."\">
   </form>
   ";
 }
