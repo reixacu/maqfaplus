@@ -155,6 +155,7 @@
 
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<!--
 <script>
     $(document).ready(function() {
         $('#clients1').DataTable({
@@ -195,6 +196,8 @@
         });
     });
 </script>
+
+-->
 
 </body>
 
