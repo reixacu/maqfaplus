@@ -64,7 +64,14 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
-                      Test format css
+                      <div class=\"row\">
+                        <div class=\"col-lg-6\">
+                          TEST
+                        </div>
+                        <div class=\"col-lg-6\">
+                          TEST
+                        </div>
+                      </div>
                     </div>
                     <!-- /.panel-body -->
                 </div>
