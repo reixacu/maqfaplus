@@ -91,7 +91,7 @@
                       <div class=\"row\">
                         <div class=\"col-lg-6\">
                           ";
-                          printModalClient($desde, $fins);
+                          printModalClient($desde, $fins, $idClient);
                           echo "
                         </div>
                         <div class=\"col-lg-6\">
@@ -267,12 +267,27 @@ function printFiltreDataForm($desde, $fins, $idClient)
   </form>
   ";
 }
-function printModalClient($desde, $fins)
+function printModalClient($desde, $fins, $idClient)
 {
+  if ($idClient == 0)
+  {
+                            echo "
+                              <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
+                                  <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar Client
+                              </button>";
+}
+else {
+  echo getClientCognomNom($idClient);
   echo "
-                            <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
-                                  Triar Client
-                              </button>
+    <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
+        <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar un altre client
+    </button>
+    <button class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
+        Esborrar Filtre
+    </button>
+    ";
+}
+                              echo "
                               <!-- Modal -->
                               <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
                                   <div class=\"modal-dialog modal-lg\">
