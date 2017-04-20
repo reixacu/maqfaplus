@@ -182,7 +182,7 @@ $html = '
 			<tr>
 				<td style="text-align:center;background-color:#DDDDDD;"><b> BASE IMPOSABLE </b></td>
 				<td style="text-align:center;background-color:#DDDDDD;"><b> IVA ' . $iva . '% </b></td>
-				<td style="text-align:center;background-color:#DDDDDD;"><b> TOTAL FACTURA </b></td>
+				<td style="text-align:center;background-color:#DDDDDD;"><b> TOTAL ALBARÀ </b></td>
 			</tr>
 			<tr>
 				<td style="text-align:center"> ' . $baseImposable . ' € </td>
