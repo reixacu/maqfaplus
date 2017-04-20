@@ -79,6 +79,14 @@ function getLiniesFacturaData($idFactura)
     $conn->close();
     return $result;
 }
+function getLiniesAlbaraData($idFactura)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM detalls_albarans WHERE id_factura_df=$idFactura;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 function getNumRowsDetallsFactura($idFactura)
 {
   include "mysql.php";

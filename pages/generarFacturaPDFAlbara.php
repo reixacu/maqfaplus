@@ -29,7 +29,7 @@ $row = $result->fetch_assoc();
 $result1 = getClientData($row["id_client_factura"]);
 $row1 = $result1->fetch_assoc();
 
-$resultDadesFactura = getLiniesFacturaData($idFactura);
+$resultDadesFactura = getLiniesAlbaraData($idFactura);
 
 $dataFactura = getDataDMY($row["data_factura"]);
 $nomClient = getClientCognomNomNoComerc($row["id_client_factura"]);
