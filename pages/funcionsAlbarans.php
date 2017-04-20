@@ -93,14 +93,14 @@ function printEstatAlbaraColum($id)
                               <i class=\"fa fa-check-circle fa-5x\"></i>
                           </div>
                           <div class=\"col-xs-9 text-right\">
-                              <div class=\"huge\">Factura nº ". $row["numero_factura"] ."</div>
-                              <div>La factura ja te assignat un número</div>
+                              <div class=\"huge\">Factura nº ". $row["id_factura_albara"] ."</div>
+                              <div>Ja s'ha creat una factura d'aquest albarà</div>
                           </div>
                       </div>
                   </div>
-                  <a href=\"canviarEstatFactura.php?id=". $id ."\">
+                  <a href=\"mostrarFactura.php?id=". $id ."\">
                       <div class=\"panel-footer\">
-                          <span class=\"pull-left\">Corretgir detalls de la factura</span>
+                          <span class=\"pull-left\">Veure la factura</span>
                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
                           <div class=\"clearfix\"></div>
                       </div>
