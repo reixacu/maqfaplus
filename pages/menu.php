@@ -95,6 +95,18 @@ include "funcions.php";
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-file-text-o fa-fw"></i> Albarans<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="afegirAlbara.php"><i class="fa fa-pencil"></i> Crear Albarà</a>
+                        </li>
+                        <li>
+                            <a href="totsAlbarans.php"><i class="fa fa-list"></i></i> Tots els albarans</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <?php imprimirMenuTreballadors();?>
