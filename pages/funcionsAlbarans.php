@@ -135,7 +135,7 @@ function printRowDetallsAlbara($idFactura){
                       <input name=\"ivaFactura\" class=\"form-control\" value=\"".$row["iva_factura"]."\">
                     </div>
                     <div class=\"col-lg-4\">
-                      <h2>" . getDataDMY($row["data_factura"]) ."</h2>
+                      <button type=\"submit\" class=\"btn btn-success btn-sm\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i> Guardar canvis</button>
                     </div>
                   </form>
                 </div>
