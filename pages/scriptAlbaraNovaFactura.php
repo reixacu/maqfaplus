@@ -26,11 +26,24 @@ if ($conn->query($sql) === TRUE) {
           echo "ERROR: " . $sql11 . "<br>" . $conn->error;
       }
     }
+
+    include "mysql.php";
+    $sql = "
+        UPDATE `albarans`
+          SET `id_factura_albara` =  ".getLastFacturaId()."
+          WHERE `albarans`.`id_factura` = '$idAlbara';
+          ";
+          if ($conn->query($sql) === TRUE) {
+          } else {
+              echo "ERROR: " . $sql . "<br>" . $conn->error;
+          }
+
     echo "
                             <script>
                             window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
                             </script>
                             ";
+
 } else {
     echo "ERROR: " . $sql . "<br>" . $conn->error;
 }
