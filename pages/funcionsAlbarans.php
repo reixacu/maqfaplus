@@ -144,7 +144,6 @@ function printRowDetallsAlbara($idFactura){
               </div>
           </div>
       </div>
-  </div>
       <!-- /.row -->
   ";
 
