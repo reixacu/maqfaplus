@@ -60,7 +60,7 @@
                     <table style='margin-top: 20px;'>
                         <tr>
                             <td><form action='totesFactures.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> WIPWIPWIP</button></form></td>
-                            <td><form action='generarFacturaPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir factura</button></form>
+                            <td><form action='generarAlbaraPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir factura</button></form>
                         </tr>
                     </table>
                 </div>
