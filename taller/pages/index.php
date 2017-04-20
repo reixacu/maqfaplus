@@ -35,6 +35,11 @@
 <body>
 
     <div class="container">
+      <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <img src="logo.jpg" />
+          </div>
+        </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
