@@ -200,7 +200,7 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output( 'factura_' . $numFactura . '.pdf', 'I');
+$pdf->Output( 'albara_' . $numFactura . '.pdf', 'I');
 
 //============================================================+
 // END OF FILE
