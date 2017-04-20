@@ -125,9 +125,9 @@ function printRowDetallsAlbara($idFactura){
               </div>
               <div class=\"panel-body\">
                 <div class=\"row\">
-                  <form>
+                  <form role=\"form\" action=\"scriptCanviarDataAlbara.php\" method=\"post\">
                     <div class=\"col-lg-4\">
-                      <input name=\"data\" type=\"date\" class=\"form-control\" value=\"".$row["data_factura"]."\">
+                      <input name=\"dataFactura\" type=\"date\" class=\"form-control\" value=\"".$row["data_factura"]."\">
                     </div>
                     <div class=\"col-lg-4\">
                       <div class=\"form-group input-group\">
@@ -135,6 +135,7 @@ function printRowDetallsAlbara($idFactura){
                       </div>
                     </div>
                     <div class=\"col-lg-4\">
+                      <input type=\"hidden\" name=\"idFactura\" value=\"".$row["id_factura"]."\">
                       <button type=\"submit\" class=\"btn btn-success btn-sm\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i> Guardar canvis</button>
                     </div>
                   </form>
