@@ -121,8 +121,8 @@ $html = '
 <br />
 <table style="width:100%;" border="1">
 	<tr>
-		<td style="text-align:center;background-color:#DDDDDD;"><b>ALBARÀ Nº </b></td>
-		<td colspan="4"> ' . $numFactura . ' </td>
+		<td colspan="2" style="text-align:center;background-color:#DDDDDD;"><b>ALBARÀ Nº </b></td>
+		<td colspan="3"> ' . $numFactura . ' </td>
 		<td style="text-align:center;background-color:#DDDDDD;"><b>DATA  </b></td>
 		<td colspan="4"> ' . $dataFactura . ' </td>
 	</tr>
