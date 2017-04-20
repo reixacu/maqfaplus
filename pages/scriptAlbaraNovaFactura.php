@@ -15,7 +15,7 @@ if ($conn->query($sql) === TRUE) {
   echo "a";
   $resultDadesFactura = getLiniesAlbaraData($idAlbara);
   var_dump($resultDadesFactura);
-  $quantitatElements = getNumRowsDetallsFactura($idAlbara);
+  $quantitatElements = getNumRowsDetallsAlbara($idAlbara);
   var_dump($quanitatElements);
   for($i = 0; $i< $quantitatElements; $i++){
   	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
