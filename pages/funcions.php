@@ -105,7 +105,7 @@ function getNumRowsDetallsFactura($idFactura)
 function getNumRowsDetallsAlbara($idFactura)
 {
   include "mysql.php";
-  $sql = "SELECT * FROM `detalls_albara` WHERE `id_factura_df` = $idFactura;";
+  $sql = "SELECT * FROM `detalls_albarans` WHERE `id_factura_df` = $idFactura;";
   $rowcount = 0;
   $result = $conn->query($sql);
   if ($result = mysqli_query($conn, $sql)) {
