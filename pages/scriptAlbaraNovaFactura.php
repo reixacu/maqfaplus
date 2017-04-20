@@ -14,22 +14,17 @@ $sql = "INSERT INTO `factures` (`id_factura`, `numero_factura`, `data_factura`, 
 if ($conn->query($sql) === TRUE) {
   echo "a";
   $resultDadesFactura = getLiniesAlbaraData($idAlbara);
-  var_dump($resultDadesFactura);
   $quantitatElements = getNumRowsDetallsAlbara($idAlbara);
-  var_dump($quanitatElements);
   for($i = 0; $i< $quantitatElements; $i++){
   	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
   		// Tipus de línia amb preu quantitat i preu total
-  	echo '
-  	<tr>
-  	<td colspan="4" height="35" style="border-right: solid 1px #000;vertical-align:bottom"> ' . $rowDadesFactura["descripcio_df"] . '</td>
-  		<td style="border-right: solid 1px #000;text-align:right"> ' . ($rowDadesFactura["unitats_df"]/100) . '  &nbsp; </td>
-  		<td style="border-right: solid 1px #000;text-align:right"> ' . number_format($rowDadesFactura["preu_unitat_df"]/100,2) . ' € &nbsp; </td>
-  		<td style="border-right: solid 1px #000;text-align:right"> ' . number_format($rowDadesFactura["preu_total_df"]/100,2) . ' € &nbsp; </td>
-  		</tr>
-  		';
+      include "mysql.php";
+      $sql11 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".getLastFacturaId().", `". $rowDadesFactura['descripcio_df']."`, ". $rowDadesFactura['unitats_df'].", ". $rowDadesFactura['preu_unitat_df'].")";
 
-  	}
+      if ($conn->query($sql11) === TRUE) {
+      } else {
+          echo "ERROR: " . $sql11 . "<br>" . $conn->error;
+      }
     /*echo "
                             <script>
                             window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
