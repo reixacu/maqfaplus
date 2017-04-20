@@ -25,6 +25,7 @@ if ($conn->query($sql) === TRUE) {
       } else {
           echo "ERROR: " . $sql11 . "<br>" . $conn->error;
       }
+    }
     /*echo "
                             <script>
                             window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
