@@ -70,9 +70,9 @@ function printEstatAlbaraColum($id)
                               </div>
                           </div>
                       </div>
-                      <a href=\"canviarEstatFactura.php?id=". $id ."\">
+                      <a href=\"scriptAlbaraNovaFactura.php?id=". $id ."\">
                           <div class=\"panel-footer\">
-                              <span class=\"pull-left\">Associar a factura OJO</span>
+                              <span class=\"pull-left\">Associar a una nova factura</span>
                               <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
                               <div class=\"clearfix\"></div>
                           </div>
