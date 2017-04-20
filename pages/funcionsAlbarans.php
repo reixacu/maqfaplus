@@ -304,7 +304,7 @@ function mostrarFacturesPendents($sql) {
     $conn->close();
 }
 
-function mostrarBorradorsFactures($sql) {
+function mostrarBorradorsAlbarans($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -314,21 +314,19 @@ function mostrarBorradorsFactures($sql) {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Concepte</th>
                                             <th>Client</th>
-                                            <th>Data factura</th>
-                                            <th>Data venciment</th>
+                                            <th>Data albara</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     ";
         while($row = $result->fetch_assoc()) {
               echo "<tr>
-                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
-                                                      <td>". $row["comentari_factura"] . "</td>
+                                                      <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
-                                                      <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                      <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                   </tr>";
         }
         echo "

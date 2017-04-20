@@ -37,7 +37,7 @@
 
 <div id="wrapper">
     <?php
-    include "funcionsFactures.php";
+    include "funcionsAlbarans.php";
     include "menu.php";
     ?>
     <?php
@@ -65,7 +65,7 @@
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         ";
-                        mostrarBorradorsFactures($sql);
+                        mostrarBorradorsAlbarans($sql);
                     echo "
                     </div>
                 </div>
