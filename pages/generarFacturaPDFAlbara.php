@@ -190,18 +190,6 @@ $html = '
 				<td style="text-align:center"> ' . $totalFactura . ' € </td>
 			</tr>
 		</table>
-		<br />
-		<br />
-		<table>
-			<tr>
-				<td> Forma pagament </td>
-				<td colspan="4"> ' . $formaPagament . '</td>
-			</tr>
-			<tr>
-				<td> Venciment </td>
-				<td colspan="4"> ' . $dataVenciment . ' </td>
-			</tr>
-		</table>
 ';
 
 $pdf->writeHTMLCell(0,0,15,250,$html, false,true, false, true, false, '');
