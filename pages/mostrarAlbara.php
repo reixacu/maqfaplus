@@ -69,7 +69,7 @@
             <!-- /.row -->
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <h1 class=\"page-header\"><i class=\"fa fa-file-text\" aria-hidden=\"true\"></i> Albarà #". $row["id_factura"] . "</h1>
+                    <h1 class=\"page-header\"><i class=\"fa fa-file-text-o\" aria-hidden=\"true\"></i> Albarà #". $row["id_factura"] . "</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -105,7 +105,7 @@
                 <div class=\"col-lg-12\">
                     <div class=\"panel panel-default\">
                         <div class=\"panel-heading\">
-                            Detalls de la Factura
+                            Detalls de l'albarà
                         </div>
                         <!-- /.panel-heading -->
                         <div class=\"panel-body\">
