@@ -45,7 +45,7 @@ $ivaFactura = number_format($row["import_iva_factura"] / 100,2);
 $totalFactura = number_format($row["total_factura"] / 100,2);
 //$dataVenciment = getDataDMY($row["data_venciment_factura"]);
 //$formaPagament= getNomFormaPagament($row["forma_pagament_factura"]);
-$quantitatElements = getNumRowsDetallsFactura($idFactura);
+$quantitatElements = getNumRowsDetallsAlbara($idFactura);
 $cpClient = $row1["cp_client"];
 //$quantitatElements = $resultDadesFactura->mysql_num_rows; //EMPLENAR ARRAYS
 
