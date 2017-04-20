@@ -102,6 +102,21 @@ function getNumRowsDetallsFactura($idFactura)
   $conn->close();
   return $rowcount;
 }
+function getNumRowsDetallsAlbara($idFactura)
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `detalls_albara` WHERE `id_factura_df` = $idFactura;";
+  $rowcount = 0;
+  $result = $conn->query($sql);
+  if ($result = mysqli_query($conn, $sql)) {
+      // Return the number of rows in result set
+      $rowcount = mysqli_num_rows($result);
+      // Free result set
+      mysqli_free_result($result);
+  }
+  $conn->close();
+  return $rowcount;
+}
 function changeEstatFeina($id, $estat) {
     include "mysql.php";
 
