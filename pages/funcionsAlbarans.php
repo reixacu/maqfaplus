@@ -131,8 +131,11 @@ function printRowDetallsAlbara($idFactura){
                       <input name=\"data\" type=\"date\" class=\"form-control\" value=\"".$row["data_factura"]."\">
                     </div>
                     <div class=\"col-lg-4\">
+
                       <h5>% IVA</h5>
-                      <input name=\"ivaFactura\" class=\"form-control\" value=\"".$row["iva_factura"]."\"><span class=\"input-group-addon\">%</span>
+                      <div class=\"form-group input-group\">
+                        <input name=\"ivaFactura\" class=\"form-control\" value=\"".$row["iva_factura"]."\"><span class=\"input-group-addon\">%</span>
+                      </div>
                     </div>
                     <div class=\"col-lg-4\">
                       <button type=\"submit\" class=\"btn btn-success btn-sm\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i> Guardar canvis</button>
