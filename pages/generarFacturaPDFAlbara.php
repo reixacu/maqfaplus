@@ -23,7 +23,7 @@ require_once('../tcpdf/tcpdf.php');
 
 $idFactura = $_GET["id"];
 
-$result = getFacturaData($idFactura);
+$result = getAlbaraData($idFactura);
 $row = $result->fetch_assoc();
 
 $result1 = getClientData($row["id_client_factura"]);
@@ -37,13 +37,14 @@ $direccioClient = $row1["adreca_client"];
 $poblacioClient = $row1["poblacio_client"];
 $nifClient = $row1["nif_client"];
 $provinciaClient = $row1["provincia_client"];
-$numFactura = $row["numero_factura"];
+//$numFactura = $row["numero_factura"];
+$numFactura = $row["id_factura"];
 $baseImposable = number_format($row["base_imposable_factura"] / 100,2);
 $iva = $row["iva_factura"];
 $ivaFactura = number_format($row["import_iva_factura"] / 100,2);
 $totalFactura = number_format($row["total_factura"] / 100,2);
-$dataVenciment = getDataDMY($row["data_venciment_factura"]);
-$formaPagament= getNomFormaPagament($row["forma_pagament_factura"]);
+//$dataVenciment = getDataDMY($row["data_venciment_factura"]);
+//$formaPagament= getNomFormaPagament($row["forma_pagament_factura"]);
 $quantitatElements = getNumRowsDetallsFactura($idFactura);
 $cpClient = $row1["cp_client"];
 //$quantitatElements = $resultDadesFactura->mysql_num_rows; //EMPLENAR ARRAYS
@@ -120,7 +121,7 @@ $html = '
 <br />
 <table style="width:100%;" border="1">
 	<tr>
-		<td style="text-align:center;background-color:#DDDDDD;"><b>FRA Nº </b></td>
+		<td style="text-align:center;background-color:#DDDDDD;"><b>ALBARÀ Nº </b></td>
 		<td colspan="4"> ' . $numFactura . ' </td>
 		<td style="text-align:center;background-color:#DDDDDD;"><b>DATA  </b></td>
 		<td colspan="4"> ' . $dataFactura . ' </td>
