@@ -124,7 +124,14 @@ function printRowDetallsAlbara($idFactura){
                   Data
               </div>
               <div class=\"panel-body\">
-                  <h2>" . getDataDMY($row["data_factura"]) ."</h2>
+                <div class=\"row\">
+                  <div class=\"col-lg-6\">
+                    <h2>" . getDataDMY($row["data_factura"]) ."</h2>
+                  </div>
+                  <div class=\"col-lg-6\">
+                    <h2>" . getDataDMY($row["data_factura"]) ."</h2>
+                  </div>
+                </div>
               </div>
           </div>
       </div>
