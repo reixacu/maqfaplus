@@ -27,7 +27,6 @@ if ($conn->query($sql) === TRUE) {
   		';
 
   	}
-  }
     /*echo "
                             <script>
                             window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
