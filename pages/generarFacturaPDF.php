@@ -211,7 +211,6 @@ for($i = 0; $i< $quantitatElements; $i++){
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="800"> </td>
 	</tr>
 ';
 		
