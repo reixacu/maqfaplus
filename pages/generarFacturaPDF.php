@@ -174,9 +174,9 @@ $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 	</tr>
 	<tr>
 		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
-		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td height="498" style="border-right: solid 1px #000;text-align:right"> </td>
+		<td height="498" style="border-right: solid 1px #000;text-align:right"> </td>
+		<td height="498" style="border-right: solid 1px #000;text-align:right"> </td>
 		<td height="498" rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
@@ -187,12 +187,11 @@ for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
 	$numLinies=$pdf->getNumLines($rowDadesFactura["descripcio_df"], 102);
 	//echo $numLinies;
-	if($numLinies>2){$alturaLinia=45+17*($numLinies-2);}
+	if($numLinies>2){$alturaLinia=40+15*($numLinies-2);}
 	else{
-		if($numLinies==2){$alturaLinia=45;}
-		else {$alturaLinia=39;}
+		if($numLinies==2){$alturaLinia=40;}
+		else {$alturaLinia=35;}
 	}
-	$alturaLinia= $alturaLinia / 39 * 35;
 	if($alturaLinia + $alturaAcumulada > ($alturaMaxima-35)){
 		$html = $html . '
 		</table>';
@@ -209,9 +208,9 @@ for($i = 0; $i< $quantitatElements; $i++){
 	</tr>
 	<tr>
 		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
-		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td height="500" style="border-right: solid 1px #000;text-align:right"> </td>
+		<td height="500" style="border-right: solid 1px #000;text-align:right"> </td>
+		<td height="500" style="border-right: solid 1px #000;text-align:right"> </td>
 		<td height="500" rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
