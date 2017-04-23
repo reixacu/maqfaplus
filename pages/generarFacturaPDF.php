@@ -197,6 +197,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
 		afegirPagina($pdf);
 		$alturaMaxima=500;
+		$alturaAcumulada=0;
 		$html='<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
