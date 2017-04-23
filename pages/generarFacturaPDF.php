@@ -192,8 +192,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		if($numLinies==2){$alturaLinia=45;}
 		else {$alturaLinia=39;}
 	}
-	$alturaLinia= $alturaLinia / 39 * 35;
-	if($alturaLinia + $alturaAcumulada > ($alturaMaxima-35)){
+	if($alturaLinia + $alturaAcumulada > ($alturaMaxima-70)){
 		$html = $html . '
 		</table>';
 		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
