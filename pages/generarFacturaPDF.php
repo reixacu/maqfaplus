@@ -210,6 +210,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 }
 
 // TANCAR LA fokin TAULA :D
+afegirPagina($html);
 $html = $html . '
 </table>';
 $pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
