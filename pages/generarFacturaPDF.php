@@ -186,7 +186,7 @@ $alturaLinia=35;
 for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
 	$numLinies=$pdf->getNumLines($rowDadesFactura["descripcio_df"], 300);
-	if($alturaLinia*$numLinies + $alturaAcumulada > ($alturaMaxima-$alturaLinia){
+	if($alturaLinia*$numLinies + $alturaAcumulada > ($alturaMaxima-$alturaLinia)){
 		$html = $html . '
 		</table>';
 		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
