@@ -182,7 +182,7 @@ $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 ';
 $alturaAcumulada=0;
 $alturaMaxima=498;
-$alturaLinia=35
+$alturaLinia=35;
 for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
 	$numLinies=$pdf->getNumLines($rowDadesFactura["descripcio_df"], 300);
