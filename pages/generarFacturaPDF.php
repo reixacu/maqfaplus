@@ -63,8 +63,8 @@ function afegirHeader(&$html, $nomClient, $direccioClient, $cpClient, $provincia
 <br />
 <br />';	
 }
-function afegirPagina(&$html){
-	$html=$html . '<br pagebreak="true"/>';
+function afegirPagina(&$pdf){
+	$pdf->AddPage();
 }
 function afegirFooter(&$pdf, $iva, $baseImposable, $ivaFactura, $totalFactura, $formaPagament, $dataVenciment){
 	$html = '
@@ -210,7 +210,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 }
 
 // TANCAR LA fokin TAULA :D
-afegirPagina($html);
+afegirPagina($pdf);
 $html = $html . '
 </table>';
 $pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
