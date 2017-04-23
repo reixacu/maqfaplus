@@ -182,11 +182,16 @@ $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 ';
 $alturaAcumulada=0;
 $alturaMaxima=498;
-$alturaLinia=35;
 for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
 	$numLinies=$pdf->getNumLines($rowDadesFactura["descripcio_df"], 300);
-	if($alturaLinia*$numLinies + $alturaAcumulada > ($alturaMaxima-$alturaLinia)){
+	echo $numLinies;
+	if($numLinies>2){$alturaLinia=45+17*($numLinies-2);}
+	else{
+		if($numLinies==2){$alturaLinia=45;}
+		else {$alturaLinia=39;}
+	}
+	if($alturaLinia + $alturaAcumulada > ($alturaMaxima-$alturaLinia)){
 		$html = $html . '
 		</table>';
 		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
@@ -210,7 +215,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		
 	}
 	else{
-		$alturaAcumulada+=$alturaLinia*$numLinies;
+		$alturaAcumulada+=$alturaLinia;
 	}
 	if ($rowDadesFactura["preu_total_df"] != "0")
 	{
