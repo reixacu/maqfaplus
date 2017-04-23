@@ -66,7 +66,7 @@ function afegirHeader(&$html, $nomClient, $direccioClient, $cpClient, $provincia
 function afegirPagina(&$html){
 	$html=$html . '<br pagebreak="true"/>'
 }
-afegirFooter(&$pdf, $iva, $baseImposable, $ivaFactura, $totalFactura, $formaPagament, $dataVenciment){
+function afegirFooter(&$pdf, $iva, $baseImposable, $ivaFactura, $totalFactura, $formaPagament, $dataVenciment){
 	$html = '
 		<table border="1">
 			<tr>
