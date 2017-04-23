@@ -15,6 +15,14 @@ if ($conn->query($sql) === TRUE) {
   echo "a";
   $resultDadesFactura = getLiniesAlbaraData($idAlbara);
   $quantitatElements = getNumRowsDetallsAlbara($idAlbara);
+  include "mysql.php";
+  $AlbaraNum = "Albarà Num. " . $idClient;
+  $sql111 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".getLastFacturaId().", '".$AlbaraNum."', 0, 0)";
+
+  if ($conn->query($sql111) === TRUE) {
+  } else {
+      echo "ERROR: " . $sql111 . "<br>" . $conn->error;
+  }
   for($i = 0; $i< $quantitatElements; $i++){
   	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
   		// Tipus de línia amb preu quantitat i preu total
