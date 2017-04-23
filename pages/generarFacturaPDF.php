@@ -210,7 +210,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		
 	}
 	else{
-		$alturaAcumulada+=$altura;
+		$alturaAcumulada+=$alturaLinia*$numLinies;
 	}
 	if ($rowDadesFactura["preu_total_df"] != "0")
 	{
