@@ -18,7 +18,53 @@
 
 include "funcions.php";
 require_once('../tcpdf/tcpdf.php');
-
+//funcions
+function afegirHeader($pdf){
+	$html = '
+<div style="text-align:left">
+	<img src="logo.jpg" alt="test alt attribute" width="200" height="118" border="0" />
+</div>
+<table style="width:100%">
+	<tr>
+		<td> </td>
+		<td style="text-align:right"><b>CLIENT </b> </td>
+	</tr>
+	<tr>
+		<td style="text-align:left">
+				XEVI FALGARONA COLL
+				<br /> Pol.Ind.La Canya
+				<br /> C/Roselló, 19
+				<br /> 17800 OLOT
+				<br /> (Girona)
+				<br /> Tel. 608556991
+				<br /> NIF 46672373-Z
+		</td>
+		<td style="text-align:right">';
+			if ($nomClient != "") $html = $html . $nomClient;
+			if ($direccioClient != "") $html = $html . '<br />' . $direccioClient;
+			if ($cpClient != "" && $poblacioClient != "") $html = $html . '<br />' . $cpClient ." ". $poblacioClient;
+			if ($provinciaClient != "") $html = $html . '<br />' . $provinciaClient;
+			if ($nifClient != "") $html = $html . '<br />CIF ' . $nifClient;
+			$html = $html . '
+		</td>
+	</tr>
+</table>
+<br />
+<br />
+<br />
+<table style="width:100%;" border="1">
+	<tr>
+		<td style="text-align:center;background-color:#DDDDDD;"><b>FRA Nº </b></td>
+		<td colspan="4"> ' . $numFactura . ' </td>
+		<td style="text-align:center;background-color:#DDDDDD;"><b>DATA  </b></td>
+		<td colspan="4"> ' . $dataFactura . ' </td>
+	</tr>
+</table>
+<br />
+<br />';
+	
+	$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');	
+}
 //vars
 
 $idFactura = $_GET["id"];
@@ -84,51 +130,9 @@ $pdf->AddPage();
 
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
-
+afegirHeader($pdf);
 // create some HTML content
-$html = '
-<div style="text-align:left">
-	<img src="logo.jpg" alt="test alt attribute" width="200" height="118" border="0" />
-</div>
-<table style="width:100%">
-	<tr>
-		<td> </td>
-		<td style="text-align:right"><b>CLIENT </b> </td>
-	</tr>
-	<tr>
-		<td style="text-align:left">
-				XEVI FALGARONA COLL
-				<br /> Pol.Ind.La Canya
-				<br /> C/Roselló, 19
-				<br /> 17800 OLOT
-				<br /> (Girona)
-				<br /> Tel. 608556991
-				<br /> NIF 46672373-Z
-		</td>
-		<td style="text-align:right">';
-			if ($nomClient != "") $html = $html . $nomClient;
-			if ($direccioClient != "") $html = $html . '<br />' . $direccioClient;
-			if ($cpClient != "" && $poblacioClient != "") $html = $html . '<br />' . $cpClient ." ". $poblacioClient;
-			if ($provinciaClient != "") $html = $html . '<br />' . $provinciaClient;
-			if ($nifClient != "") $html = $html . '<br />CIF ' . $nifClient;
-			$html = $html . '
-		</td>
-	</tr>
-</table>
-<br />
-<br />
-<br />
-<table style="width:100%;" border="1">
-	<tr>
-		<td style="text-align:center;background-color:#DDDDDD;"><b>FRA Nº </b></td>
-		<td colspan="4"> ' . $numFactura . ' </td>
-		<td style="text-align:center;background-color:#DDDDDD;"><b>DATA  </b></td>
-		<td colspan="4"> ' . $dataFactura . ' </td>
-	</tr>
-</table>
-<br />
-<br />
-<table style="padding: 5px 5px 5px 1%;" border="1">
+$html='<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
