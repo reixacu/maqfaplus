@@ -174,10 +174,10 @@ $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 	</tr>
 	<tr>
 		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
-		<td height="498" style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="498" style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="498" style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="498" rowspan="'. ($quantitatElements + 1) . '"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
 $alturaAcumulada=0;
@@ -208,10 +208,10 @@ for($i = 0; $i< $quantitatElements; $i++){
 	</tr>
 	<tr>
 		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
-		<td height="500" style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="500" style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="500" style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="500" rowspan="'. ($quantitatElements + 1) . '"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
 		
