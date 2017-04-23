@@ -63,7 +63,7 @@ function afegirHeader($pdf, $nomClient, $direccioClient, $cpClient, $provinciaCl
 <br />
 <br />';
 	
-	$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');	
+	$pdf->writeHTML($html,true, false, true, false, '');	
 }
 //vars
 
