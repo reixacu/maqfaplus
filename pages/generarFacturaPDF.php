@@ -165,7 +165,7 @@ $html="";
 afegirHeader($html, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura, $poblacioClient);
 
 // Crear taula per a les linies
-$html= $html . '<table height="498" style="padding: 5px 5px 5px 1%;" border="1">
+$html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
@@ -173,7 +173,7 @@ $html= $html . '<table height="498" style="padding: 5px 5px 5px 1%;" border="1">
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>IMPORT</b> </td>
 	</tr>
 	<tr>
-		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
+		<td colspan="4" height="500" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
@@ -199,7 +199,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		afegirPagina($pdf);
 		$alturaMaxima=500;
 		$alturaAcumulada=0;
-		$html='<table height="500" style="padding: 5px 5px 5px 1%; min-height: 10000px" border="1">
+		$html='<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
