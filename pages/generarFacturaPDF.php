@@ -197,7 +197,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		</table>';
 		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
 		afegirPagina($pdf);
-		$alturaMaxima=500;
+		$alturaMaxima=800;
 		$alturaAcumulada=0;
 		$html='<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
@@ -211,7 +211,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="498" style="display:none;"> </td>
+		<td height="800"> </td>
 	</tr>
 ';
 		
