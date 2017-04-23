@@ -46,11 +46,11 @@ if ($conn->query($sql) === TRUE) {
               echo "ERROR: " . $sql . "<br>" . $conn->error;
           }
 
-    echo "
+    /*echo "
                             <script>
                             window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
                             </script>
-                            ";
+                            ";*/
 
 } else {
     echo "ERROR: " . $sql . "<br>" . $conn->error;
