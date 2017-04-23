@@ -63,6 +63,39 @@ function afegirHeader(&$html, $nomClient, $direccioClient, $cpClient, $provincia
 <br />
 <br />';	
 }
+function afegirPagina(&$html){
+	$html=$html . '<br pagebreak="true"/>'
+}
+afegirFooter(&$pdf, $iva, $baseImposable, $ivaFactura, $totalFactura, $formaPagament, $dataVenciment){
+	$html = '
+		<table border="1">
+			<tr>
+				<td style="text-align:center;background-color:#DDDDDD;"><b> BASE IMPOSABLE </b></td>
+				<td style="text-align:center;background-color:#DDDDDD;"><b> IVA ' . $iva . '% </b></td>
+				<td style="text-align:center;background-color:#DDDDDD;"><b> TOTAL FACTURA </b></td>
+			</tr>
+			<tr>
+				<td style="text-align:center"> ' . $baseImposable . ' € </td>
+				<td style="text-align:center"> ' . $ivaFactura . ' € </td>
+				<td style="text-align:center"> ' . $totalFactura . ' € </td>
+			</tr>
+		</table>
+		<br />
+		<br />
+		<table>
+			<tr>
+				<td> Forma pagament </td>
+				<td colspan="4"> ' . $formaPagament . '</td>
+			</tr>
+			<tr>
+				<td> Venciment </td>
+				<td colspan="4"> ' . $dataVenciment . ' </td>
+			</tr>
+		</table>
+';
+
+$pdf->writeHTMLCell(0,0,15,250,$html, false,true, false, true, false, '');
+}
 //vars
 
 $idFactura = $_GET["id"];
@@ -130,7 +163,8 @@ $pdf->AddPage();
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 $html="";
 afegirHeader($html, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura, $poblacioClient);
-// create some HTML content
+
+// Crear taula per a les linies
 $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
@@ -175,38 +209,13 @@ for($i = 0; $i< $quantitatElements; $i++){
 	}
 }
 
-// output the HTML content
+// TANCAR LA fokin TAULA :D
 $html = $html . '
 </table>';
 $pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
-$html = '
-		<table border="1">
-			<tr>
-				<td style="text-align:center;background-color:#DDDDDD;"><b> BASE IMPOSABLE </b></td>
-				<td style="text-align:center;background-color:#DDDDDD;"><b> IVA ' . $iva . '% </b></td>
-				<td style="text-align:center;background-color:#DDDDDD;"><b> TOTAL FACTURA </b></td>
-			</tr>
-			<tr>
-				<td style="text-align:center"> ' . $baseImposable . ' € </td>
-				<td style="text-align:center"> ' . $ivaFactura . ' € </td>
-				<td style="text-align:center"> ' . $totalFactura . ' € </td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<table>
-			<tr>
-				<td> Forma pagament </td>
-				<td colspan="4"> ' . $formaPagament . '</td>
-			</tr>
-			<tr>
-				<td> Venciment </td>
-				<td colspan="4"> ' . $dataVenciment . ' </td>
-			</tr>
-		</table>
-';
 
-$pdf->writeHTMLCell(0,0,15,250,$html, false,true, false, true, false, '');
+//Afegir footer
+afegirFooter($pdf, $iva, $baseImposable, $ivaFactura, $totalFactura, $formaPagament, $dataVenciment);
 
 // reset pointer to the last page
 $pdf->lastPage();
