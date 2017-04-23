@@ -180,9 +180,38 @@ $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 		<td height="498" rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
-
+$alturaAcumulada=0;
+$alturaMaxima=498;
+$alturaLinia=35
 for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
+	$numLinies=$pdf->getNumLines($rowDadesFactura["descripcio_df"], 300);
+	if($alturaLinia*$numLinies + $alturaAcumulada > $alturaMaxima){
+		$html = $html . '
+		</table>';
+		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
+		afegirPagina($pdf);
+		$alturaMaxima=500
+		$html='<table style="padding: 5px 5px 5px 1%;" border="1">
+	<tr>
+		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
+		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
+		<td style="text-align:center;background-color:#DDDDDD;"> <b>PREU</b> </td>
+		<td style="text-align:center;background-color:#DDDDDD;"> <b>IMPORT</b> </td>
+	</tr>
+	<tr>
+		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td height="500" rowspan="'. ($quantitatElements + 1) . '"> </td>
+	</tr>
+';
+		
+	}
+	else{
+		$alturaAcumulada+=$altura;
+	}
 	if ($rowDadesFactura["preu_total_df"] != "0")
 	{
 		// Tipus de línia amb preu quantitat i preu total
@@ -210,7 +239,6 @@ for($i = 0; $i< $quantitatElements; $i++){
 }
 
 // TANCAR LA fokin TAULA :D
-afegirPagina($pdf);
 $html = $html . '
 </table>';
 $pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
