@@ -19,7 +19,7 @@
 include "funcions.php";
 require_once('../tcpdf/tcpdf.php');
 //funcions
-function afegirHeader($pdf){
+function afegirHeader($pdf, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura){
 	$html = '
 <div style="text-align:left">
 	<img src="logo.jpg" alt="test alt attribute" width="200" height="118" border="0" />
@@ -130,7 +130,7 @@ $pdf->AddPage();
 
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
-afegirHeader($pdf);
+afegirHeader($pdf, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura);
 // create some HTML content
 $html='<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
