@@ -98,7 +98,7 @@ function printEstatAlbaraColum($id)
                           </div>
                       </div>
                   </div>
-                  <a href=\"mostrarFactura.php?id=". $id ."\">
+                  <a href=\"mostrarFactura.php?id=". $row["id_factura_albara"] ."\">
                       <div class=\"panel-footer\">
                           <span class=\"pull-left\">Veure la factura</span>
                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
