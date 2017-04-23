@@ -77,7 +77,7 @@
                                     <h1>Numero factura</h1>
                                     <div class="form-group">
                                         <label>Serialització</label>
-                                        <input name="numeroFactura" class="form-control" placeholder="Número de factura" value="<?php echo $row["numero_factura"]; ?>">
+                                        <input name="numeroFactura" class="form-control" placeholder="Número de factura" value="<?php mostrarNumeroFactura($row["numero_factura"]); ?>">
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
