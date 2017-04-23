@@ -19,8 +19,8 @@
 include "funcions.php";
 require_once('../tcpdf/tcpdf.php');
 //funcions
-function afegirHeader($pdf, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura, $poblacioClient){
-	$html = '
+function afegirHeader($html){
+	$html = $html . '
 <div style="text-align:left">
 	<img src="logo.jpg" alt="test alt attribute" width="200" height="118" border="0" />
 </div>
@@ -61,9 +61,7 @@ function afegirHeader($pdf, $nomClient, $direccioClient, $cpClient, $provinciaCl
 	</tr>
 </table>
 <br />
-<br />';
-	
-	$pdf->writeHTML($html,true, false, true, false, '');	
+<br />';	
 }
 //vars
 
@@ -130,9 +128,10 @@ $pdf->AddPage();
 
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
-afegirHeader($pdf, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura, $poblacioClient);
+$html="";
+afegirHeader($html);
 // create some HTML content
-$html='<table style="padding: 5px 5px 5px 1%;" border="1">
+$html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
