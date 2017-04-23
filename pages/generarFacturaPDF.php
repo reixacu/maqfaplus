@@ -173,7 +173,7 @@ $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>IMPORT</b> </td>
 	</tr>
 	<tr>
-		<td colspan="4" height="500" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
+		<td colspan="4" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
@@ -205,13 +205,13 @@ for($i = 0; $i< $quantitatElements; $i++){
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>PREU</b> </td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>IMPORT</b> </td>
+		<td height="498"> </td>
 	</tr>
 	<tr>
 		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
 		
