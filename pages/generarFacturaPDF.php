@@ -185,7 +185,7 @@ $alturaMaxima=498;
 for($i = 0; $i< $quantitatElements; $i++){
 	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
 	$numLinies=$pdf->getNumLines($rowDadesFactura["descripcio_df"], 102);
-	echo $numLinies;
+	//echo $numLinies;
 	if($numLinies>2){$alturaLinia=45+17*($numLinies-2);}
 	else{
 		if($numLinies==2){$alturaLinia=45;}
