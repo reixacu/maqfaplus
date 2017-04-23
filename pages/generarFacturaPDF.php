@@ -199,7 +199,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		afegirPagina($pdf);
 		$alturaMaxima=500;
 		$alturaAcumulada=0;
-		$html='<table height="500" style="padding: 5px 5px 5px 1%;" border="1">
+		$html='<table height="500" style="padding: 5px 5px 5px 1%; min-height: 100px" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
