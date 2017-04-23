@@ -44,7 +44,7 @@
             <div class="col-lg-12">
                 <table cellpadding="10">
                     <tr>
-                        <td><h1 class="page-header"><i class="fa fa-globe"></i> Selecciona el client del qual vols crear la factura</h1></td>
+                        <td><h1 class="page-header"><i class="fa fa-globe"></i> Selecciona el client del qual vols crear l'albarà</h1></td>
                         <td><form class="page-header" action='afegirClient.php'> <button style="margin-top: 5px; margin-left: 15px" type='submit' class="btn btn-primary "><i class="fa fa-user-plus"></i> Afegir un client</button></form></td>
                     </tr>
                 </table>
@@ -80,11 +80,11 @@
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
                                     if (!$row["es_empresa_client"]) {
-                                        echo "<tr><td><a href='scriptAfegirFactura.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
+                                        echo "<tr><td><a href='scriptAfegirAlbara.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
                                     }
                                     else
                                     {
-                                        echo "<tr><td><a href='scriptAfegirFactura.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
+                                        echo "<tr><td><a href='scriptAfegirAlbara.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
                                     }
                                 }
                             } else {
