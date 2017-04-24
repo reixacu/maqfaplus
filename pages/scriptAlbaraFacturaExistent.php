@@ -24,7 +24,7 @@ for($i = 0; $i< $quantitatElements; $i++){
   $desc1 = str_replace("'", "''", $rowDadesFactura['descripcio_df']);
 		// Tipus de línia amb preu quantitat i preu total
     include "mysql.php";
-    $sql11 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".$facturaAntiga.", '". $desc1."', ". $rowDadesFactura['unitats_df'].", ". $rowDadesFactura['preu_unitat_df'].")";
+    $sql11 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`, `preu_total_df`) VALUES (NULL, ".$facturaAntiga.", '". $desc1."', ". $rowDadesFactura['unitats_df'].", ". $rowDadesFactura['preu_unitat_df']." , ". $rowDadesFactura['preu_total_df'].")";
 
     if ($conn->query($sql11) === TRUE) {
     } else {
