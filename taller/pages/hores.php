@@ -52,7 +52,8 @@ var peligro = 0;
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                EMPLEAT NUMERO <?php echo $_GET["treballador"]; ?>
+                EMPLEAT NUMERO <?php echo $_GET["treballador"]; ?><br />
+				<a href=".">Tornar enrrere</a><br /><br />
 
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
@@ -75,8 +76,8 @@ var peligro = 0;
                                         <?php printNewLines($idTreballador); ?>
                                     </tbody>
                                 </table>
-				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
-				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-warning"></i> Tests</button>
+				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
+				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy"></i> Guardar</button>
 								<div id="r"></div>
                             </div>
                         </div>
@@ -129,6 +130,7 @@ var peligro = 0;
 			}
 		}
 		xhr.send();
+		window.location = ".";
 	}
 </script>
 
@@ -150,6 +152,7 @@ var peligro = 0;
 		var nodes = document.querySelectorAll('.js-switch');
 		var last = nodes[nodes.length- 1];
 		var init = new Switchery(last);
+		
 	}
     </script>
 
@@ -234,7 +237,12 @@ function printDesplegableFeinesActives1($default)
       if ($result->num_rows > 0) {
       // output data of each row
         while($row = $result->fetch_assoc()) {
-          echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
+			if ($row["id_feina"] == $default)
+			{
+				echo "<option value=\"".$row["id_feina"]."\" selected>".$row["descripcio_feina"]."</option>";
+			} else {
+				echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
+			}
         }
       };
       echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
