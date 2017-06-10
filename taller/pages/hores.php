@@ -37,9 +37,40 @@
 
       .feina { width: 310px;}
       .dia { width: 135px;}
-      .hores { width: 70px;}
+      .hores { width: 87px;}
       .desc { width: 750px}
     </style>
+
+
+    <script type="text/javascript">
+/* code from qodo.co.uk */
+// create as many regular expressions here as you need:
+var digitsOnly = /[1234567890 A-Za-z\.\,\à\è\é\í\ò\ó\ù\ç]/g;
+var integerOnly = /[0-9\.]/g;
+var alphaOnly = /[A-Za-z]/g;
+
+function restrictCharacters(myfield, e, restrictionType) {
+	if (!e) var e = window.event
+	if (e.keyCode) code = e.keyCode;
+	else if (e.which) code = e.which;
+	var character = String.fromCharCode(code);
+
+	// if they pressed esc... remove focus from field...
+	if (code==27) { this.blur(); return false; }
+
+	// ignore if they are press other keys
+	// strange because code: 39 is the down key AND ' key...
+	// and DEL also equals .
+	if (!e.ctrlKey && code!=9 && code!=8 && code!=36 && code!=37 && code!=38 && (code!=39 || (code==39 && character=="'")) && code!=40) {
+		if (character.match(restrictionType)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+}
+</script>
 </head>
 
 <?php
@@ -50,43 +81,62 @@ var peligro = 0;
 </script>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                EMPLEAT NUMERO <?php echo $_GET["treballador"]; ?><br />
-				<a href=".">Tornar enrrere</a><br /><br />
-
-                <div class="col-lg-12">
+      <br /><br />
+      <div class="row">
+                <div class="col-lg-6 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Entrada d'hores
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table id="supertaula" class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Feina</th>
-                                            <th>Dia</th>
-                                            <th>Hores</th>
-                                            <th>Detall</th>
-                                            <th>Acabada</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php printNewLines($idTreballador); ?>
-                                    </tbody>
-                                </table>
-				                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
-				                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy"></i> Guardar</button>
-								<div id="r"></div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php printNomTreballador($idTreballador); ?></div>
+                                </div>
                             </div>
                         </div>
+                        <a onclick="testguarro()">
+                            <div class="panel-footer">
+                                <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
+                                <span class="pull-right">Tornar i guardar</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
+            <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          Entrada d'hores
+                      </div>
+                      <div class="panel-body">
+                          <div class="table-responsive">
+                              <table id="supertaula" class="table table-striped table-bordered table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>Feina</th>
+                                          <th>Dia</th>
+                                          <th>Hores</th>
+                                          <th>Detall</th>
+                                          <th>Acabada</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php printNewLines($idTreballador); ?>
+                                  </tbody>
+                              </table>
+			                <button onclick="novalinia()" style='margin: 5px;' class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i> Més línies</button>
+			                <button onclick="testguarro()" style='margin: 5px;' class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>
+							<div id="r"></div>
+                          </div>
+                      </div>
+                  </div>
+            </div>
         </div>
     </div>
-
 	<script>
 	<?php echo "var idTreballador=".$_GET["treballador"].";\n";?>
 	function testguarro(){
@@ -146,13 +196,13 @@ var peligro = 0;
 		row.append($('<td class="feina"><?php printDesplegableFeinesActives();?></td>'))
 			.append($('<td class="dia"><input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Descripció"></td>'))
 			.append($('<td class="hores"><input class="form-control" placeholder="h"></td>'))
-			.append($('<td class="desc"><input class="form-control" placeholder="Descripció de la feina"></td>'))
+			.append($('<td class="desc"><input class="form-control" onkeypress="return restrictCharacters(this, event, digitsOnly);" placeholder="Descripció de la feina"></td>'))
 			.append($('<td class="text-center"><input type="checkbox" class="js-switch" /></tr>'))
 			$("#supertaula tbody").append(row);
 		var nodes = document.querySelectorAll('.js-switch');
 		var last = nodes[nodes.length- 1];
 		var init = new Switchery(last);
-		
+
 	}
     </script>
 
@@ -183,19 +233,22 @@ var peligro = 0;
 function printNewLines($idTreballador)
 {
   include "mysql.php";
-  $sql = "SELECT * FROM `hores` WHERE `dia_creacio_hores` = CURDATE() ORDER BY `timestamp_hores` AND`id_treballador_hores`=$idTreballador;";
+  $sql = "SELECT * FROM `hores` WHERE `dia_creacio_hores` = CURDATE() AND`id_treballador_hores`= $idTreballador ORDER BY `timestamp_hores`;";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
+    $checked = $row["feina_acabada_hores"];
 	  echo
     "<tr>
         <td class=\"feina\">";
         printDesplegableFeinesActives1($row["id_feina_hores"]);
         echo"</td>
         <td class=\"dia\"><input type=\"date\" value=\"". $row["dia_hores"] ."\" class=\"form-control\" placeholder=\"Descripció\"></td>
-        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"] ."></td>
-        <td class=\"desc\"><input class=\"form-control\" placeholder=\"Descripció de la feina\" value=".$row["detall_hores"]."></td>
-        <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" />
+        <td class=\"hores\"><input id=\"hores\" class=\"form-control\" placeholder=\"h\" value=". $row["hores_hores"]/100 ."></td>
+        <td class=\"desc\"><input class=\"form-control\" onkeypress=\"return restrictCharacters(this, event, digitsOnly);\" placeholder=\"Descripció de la feina\" value=\"".$row["detall_hores"]."\"></td>
+        <td class=\"text-center\"><input type=\"checkbox\" class=\"js-switch\" ";
+        if ($checked == 1 || $checked) echo "checked";
+        echo "/>
     </tr>";
 	}
   } else {
@@ -216,7 +269,7 @@ function printDesplegableFeinesActives()
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
-      echo "<option value=\"-1\"></option>";
+      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
 
       if ($result->num_rows > 0) {
       // output data of each row
@@ -224,7 +277,7 @@ function printDesplegableFeinesActives()
           echo "<option value=\"".$row["id_feina"]."\">".$row["descripcio_feina"]."</option>";
         }
       };
-      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
+
   echo "</select>";
 }
 
@@ -232,7 +285,7 @@ function printDesplegableFeinesActives1($default)
 {
   echo "<select class=\"form-control\">";
   $result = getFeinesActivesIdDesc();
-      echo "<option value=\"-1\"></option>";
+      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
 
       if ($result->num_rows > 0) {
       // output data of each row
@@ -245,7 +298,7 @@ function printDesplegableFeinesActives1($default)
 			}
         }
       };
-      echo "<option value=\"0\" style=\"font-style: oblique;\">Altres/Varis</option>";
+
   echo "</select>";
 }
 
@@ -258,4 +311,15 @@ function getFeinesActivesIdDesc()
   return $result;
 }
 
+function printNomTreballador($idTreb)
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `treballadors` WHERE `id_treballador` = $idTreb;";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+    echo $row["nom_treballador"];
+  }
+}
+}
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-function printTaulaLiniesFactura($id) {
+function printTaulaLiniesAlbara($id) {
     include "mysql.php";
     //mysql_query("SET NAMES utf8;");
-    $sql = "SELECT * FROM `detalls_factures` WHERE `id_factura_df` = $id";
+    $sql = "SELECT * FROM `detalls_albarans` WHERE `id_factura_df` = $id";
     $result = $conn->query($sql);
 
 
@@ -23,7 +23,7 @@ function printTaulaLiniesFactura($id) {
                                     <tbody>";
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<tr>                <form action='scriptModificarLiniaFactura.php' method='post'>
+            echo "<tr>                <form action='scriptModificarLiniaAlbara.php' method='post'>
                                             <input type=\"hidden\" name=\"idDf\" value=" . $row["id_df"] .">
                                             <input type=\"hidden\" name=\"idFactura\" value=" . $row["id_factura_df"] .">
                                             <th><input name=\"descripcioDf\" class=\"form-control\" value=\"" . $row["descripcio_df"] ."\"></th>
@@ -32,7 +32,7 @@ function printTaulaLiniesFactura($id) {
                                             <th>". $row["preu_unitat_df"]/ 100 * $row["unitats_df"] / 100 ."</th>
                                             <th><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-floppy-o\"></i></button></th>
                                         </form>
-                                            <th><form action='scriptEliminarLiniaFactura.php' method='post'><input type=\"hidden\" name=\"idFactura\" value=\"" . $row["id_factura_df"] ."\">
+                                            <th><form action='scriptEliminarLiniaAlbara.php' method='post'><input type=\"hidden\" name=\"idFactura\" value=\"" . $row["id_factura_df"] ."\">
                                             <input type=\"hidden\" name=\"idDf\" value=" . $row["id_df"] ."><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i></button></form></th>
                                         </tr>";
         }
@@ -47,13 +47,13 @@ function printTaulaLiniesFactura($id) {
 }
 
 
-function printEstatFacturaColum($id)
+function printEstatAlbaraColum($id)
 {
-    $result = getFacturaData($id);
+    $result = getAlbaraData($id);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        if($row["numero_factura"] == "")
+        if($row["id_factura_albara"] == 0)
         {
               echo "
               <div class=\"col-lg-6 col-md-6\">
@@ -65,14 +65,14 @@ function printEstatFacturaColum($id)
                                   <i class=\"fa fa-exclamation-triangle fa-5x\"></i>
                               </div>
                               <div class=\"col-xs-9 text-right\">
-                                  <div class=\"huge\">Borrador</div>
-                                  <div>La factura no s'ha generat</div>
+                                  <div class=\"huge\">No facturat</div>
+                                  <div>No s'ha creat factura de l'albarà</div>
                               </div>
                           </div>
                       </div>
-                      <a href=\"canviarEstatFactura.php?id=". $id ."\">
+                      <a href=\"scriptAlbaraNovaFactura.php?id=". $id ."\">
                           <div class=\"panel-footer\">
-                              <span class=\"pull-left\">Finalitzar la factura</span>
+                              <span class=\"pull-left\">Associar a una nova factura</span>
                               <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
                               <div class=\"clearfix\"></div>
                           </div>
@@ -93,14 +93,14 @@ function printEstatFacturaColum($id)
                               <i class=\"fa fa-check-circle fa-5x\"></i>
                           </div>
                           <div class=\"col-xs-9 text-right\">
-                              <div class=\"huge\">Factura nº ". $row["numero_factura"] ."</div>
-                              <div>La factura ja te assignat un número</div>
+                              <div class=\"huge\">Factura nº ". $row["id_factura_albara"] ."</div>
+                              <div>Ja s'ha creat una factura d'aquest albarà</div>
                           </div>
                       </div>
                   </div>
-                  <a href=\"canviarEstatFactura.php?id=". $id ."\">
+                  <a href=\"mostrarFactura.php?id=". $row["id_factura_albara"] ."\">
                       <div class=\"panel-footer\">
-                          <span class=\"pull-left\">Corretgir detalls de la factura</span>
+                          <span class=\"pull-left\">Veure la factura</span>
                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
                           <div class=\"clearfix\"></div>
                       </div>
@@ -112,150 +112,65 @@ function printEstatFacturaColum($id)
     }
 }
 
-function printRowDetallsFactura($idFactura){
-  $result = getFacturaData($idFactura);
+function printRowDetallsAlbara($idFactura){
+  $result = getAlbaraData($idFactura);
   if ($result->num_rows > 0) {
       // output data of each row
       $row = $result->fetch_assoc();
-      if($row["numero_factura"]!=""){
-        echo "<!-- panell pagament factura -->
-          <div class=\"row\">
-        <div class=\"col-lg-4 col-md-4\">";
-        if($row["pagament_realitzat_factura"]==0){echo "
-            <div class=\"panel panel-yellow\">
-                <!-- <div class=\"panel panel-primary\"> -->
-                <div class=\"panel-heading\">
-                    <div class=\"row\">
-                        <div class=\"col-xs-3\">
-                          <span class=\"fa-stack fa-3x\">
-                            <i class=\"fa fa-money fa-stack-1x\"></i>
-                            <i class=\"fa fa-ban fa-stack-2x text-danger\"></i>
-                          </span>
-                        </div>
-                        <div class=\"col-xs-9 text-right\">
-                            <div class=\"huge\">Per pagar</div>
-                            <div>La factura no s'ha pagat</div>
-                        </div>
+      echo "<!-- panell dates factura -->
+      <div class=\"col-lg-6\">
+          <div class=\"panel panel-default\">
+              <div class=\"panel-heading\">
+                  Data i IVA
+              </div>
+              <div class=\"panel-body\">
+                <div class=\"row\">
+                  <form role=\"form\" action=\"scriptCanviarDataAlbara.php\" method=\"post\">
+                    <div class=\"col-lg-4\">
+                      <input name=\"dataFactura\" type=\"date\" class=\"form-control\" value=\"".$row["data_factura"]."\">
                     </div>
-                </div>";}
-                else{ echo "
-                  <div class=\"panel panel-primary\">
-                      <!-- <div class=\"panel panel-primary\"> -->
-                      <div class=\"panel-heading\">
-                          <div class=\"row\">
-                              <div class=\"col-xs-3\">
-                                  <i class=\"fa fa-money fa-5x\"></i>
-                              </div>
-                              <div class=\"col-xs-9 text-right\">
-                                  <div class=\"huge\">Pagada</div>
-                                  <div>La factura ja s'ha pagat</div>
-                              </div>
-                          </div>
-                      </div>";
-                  }
-                echo "
-                <a href=\"scriptCanviarEstatPagamentFactura.php?idFactura=". $idFactura . "&estatPagament="  . $row["pagament_realitzat_factura"] ."\">
-                    <div class=\"panel-footer\">
-                        <span class=\"pull-left\">Canviar estat del pagament</span>
-                        <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                        <div class=\"clearfix\"></div>
+                    <div class=\"col-lg-4\">
+                      <div class=\"form-group input-group\">
+                        <input name=\"ivaFactura\" class=\"form-control\" value=\"".$row["iva_factura"]."\"><span class=\"input-group-addon\">%</span>
+                      </div>
                     </div>
-                </a>
-            </div>
-        </div>
-        ";
-        echo "<!-- panell dates factura -->
-        <div class=\"col-lg-4\">
-            <div class=\"panel panel-default\">
-                <div class=\"panel-heading\">
-                    Dates
+                    <div class=\"col-lg-4\">
+                      <input type=\"hidden\" name=\"idFactura\" value=\"".$row["id_factura"]."\">
+                      <button type=\"submit\" class=\"btn btn-success btn-sm\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i> Guardar canvis</button>
+                    </div>
+                  </form>
                 </div>
-                <div class=\"panel-body\">
-                    Data factura: " . getDataDMY($row["data_factura"]) ."
-                    <br />
-                    Data venciment: " . getDataDMY($row["data_venciment_factura"]) ."
-                </div>
-            </div>
-        </div>
-        ";
-        echo "<!-- panell imports totals factura -->
-        <div class=\"col-lg-4\">
-            <div class=\"panel panel-default\">
-                <div class=\"panel-heading\">
-                    Imports
-                </div>
-                <div class=\"panel-body\">
-                    Preu base: " . getPriceString($row["base_imposable_factura"]) . "
-                    <br />
-                    Iva: " . getPriceString($row["import_iva_factura"]) . "
-                    <br />
-                    Import total: " . getPriceString($row["total_factura"]) . "
-                </div>
-            </div>
-        </div>
-    </div>
-        <!-- /.row -->
-    ";
-    }
+              </div>
+          </div>
+      </div>
+      ";
+      echo "<!-- panell imports totals factura -->
+      <div class=\"col-lg-6\">
+          <div class=\"panel panel-default\">
+              <div class=\"panel-heading\">
+                  Imports
+              </div>
+              <div class=\"panel-body\">
+                  Preu base: " . getPriceString($row["base_imposable_factura"]) . "
+                  <br />
+                  Iva: " . getPriceString($row["import_iva_factura"]) . "
+                  <br />
+                  Import total: " . getPriceString($row["total_factura"]) . "
+              </div>
+          </div>
+      </div>
+      <!-- /.row -->
+  ";
+
   }
 }
 
-function printRadioFormesPagamentClient($idClient, $idFactura)
-{
-  include "mysql.php";
-  $sql = "SELECT `forma_pagament_client` FROM `clients` WHERE `id_client` = $idClient";
-  $fdefault = "";
-  $fprefe = "";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      $fdefault = $row["forma_pagament_client"];
-      $fprefe = $fdefault;
-  }
-  $conn->close();
-  include "mysql.php";
-  $sql = "SELECT `forma_pagament_factura` FROM `factures` WHERE `id_factura` = $idFactura";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      if($row["forma_pagament_factura"]!= 0) $fdefault = $row["forma_pagament_factura"];
-  }
-  $conn->close();
-  include "mysql.php";
-  $sql = "SELECT * FROM `formes_pagament`";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-          if ($row["id_fp"] == $fdefault)
-          {
-            echo '
-            <div class="radio">
-                <label>
-                    <input type="radio" name="formaPagament" value="'.$row["id_fp"].'" checked="">'.$row["nom_fp"]; if($fprefe == $row["id_fp"]) {echo " (preferit client)";};
-                echo '</label>
-            </div>
-            ';
-          }
-          else
-          {
-            echo '
-            <div class="radio">
-                <label>
-                    <input type="radio" name="formaPagament" value="'.$row["id_fp"].'">'.$row["nom_fp"]; if($fprefe == $row["id_fp"]) {echo " (preferit client)";};
-                echo '</label>
-            </div>
-            ';
-          }
-      }
-   }
-   $conn->close();
-}
-function printDataFactura($idFactura)
+
+function printDataAlbara($idFactura)
 {
   $data = date("Y-m-d");
   include "mysql.php";
-  $sql = "SELECT `data_factura` FROM `factures` WHERE `id_factura` = $idFactura";
+  $sql = "SELECT `data_factura` FROM `albarans` WHERE `id_factura` = $idFactura";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
@@ -268,181 +183,8 @@ function printDataFactura($idFactura)
   echo $data;
 }
 
-function printDataVencimentFactura($idFactura)
-{
-  $data = date("Y-m-d");
-  include "mysql.php";
-  $sql = "SELECT `data_venciment_factura`, `id_client_factura` FROM `factures` WHERE `id_factura` = $idFactura";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      if($row["data_venciment_factura"]!= "2000-01-01")
-      {
-        $data = $row["data_venciment_factura"];
-        echo $data;
-      }
-      else
-      {
-        $idClient = $row["id_client_factura"];
-        $conn->close();
-        include "mysql.php";
-        //$sql1 = "SELECT `data_venciment_factura`, `id_client_factura` FROM `factures` WHERE `id_factura` = $idFactura";
-        $sql = "SELECT `dies_fins_pagament_client`, `dia_mensual_pagament_client`, `dia_mensual_pagament_2_client` FROM `clients` WHERE `id_client` = $idClient";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-          $row = $result->fetch_assoc();
-          $diesAdd = $row["dies_fins_pagament_client"];
-          $dia1 = $row["dia_mensual_pagament_client"];
-          $dia2 = $row["dia_mensual_pagament_2_client"];
-          $data = date('Y-m-d', strtotime($data. ' + '.$diesAdd.' days'));
-          if ($dia1 != 0 && $dia2 != 0)
-          {
-            if ($dia1 > $dia2)
-            {
-              $temp = $dia1;
-              $dia1 = $dia2;
-              $dia2 = $temp;
-            }
-            $diames = date("d", strtotime($data));
-            //DEBUGecho " ENTRO0 DIAMES - DIA1 ".$diames." - ".$dia1;
-            if ($diames <= $dia2)
-            {
-              if($diames <= $dia1)
-              {
-                $data = date_create($data);
-                $diesMod = $dia1-$diames;
-                $data = date_modify($data, '+'.$diesMod.' days');
-              }
-              else {
-                $data = date_create($data);
-                $diesMod = $dia2-$diames;
-                $data = date_modify($data, '+'.$diesMod.' days');
-              }
-            }
-            else {
-              $data = date_modify(date_create($data), '+1 month');
-              $mes = $data->format('m');
-              $any = $data->format('Y');
-              //$data = strtotime($any.'-'.$mes.'-'.$dia1);
-              $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
-            }
-          }
-          else if ($dia1 != 0)
-          {
-            $diames = date("d", strtotime($data));
-            //DEBUG
-            //echo " ENTRO1 DIAMES - DIA1 ".$diames." - ".$dia1;
-            if (intval($diames) <= intval($dia1))
-            {
-              //DEBUG
-              //echo " ENTRO 3 ";
-              $data = date_create($data);
-              $diesMod = $dia1-$diames;
-              $data = date_modify($data, '+'.$diesMod.' days');
 
-            }
-            else {
-              $data = date_modify(date_create($data), '+1 month');
-              $mes = $data->format('m');
-              $any = $data->format('Y');
-              //$data = strtotime($any.'-'.$mes.'-'.$dia1);
-              $data = date_create_from_format('Y-m-d', $any.'-'.$mes.'-'.$dia1);
-              //DEBUG
-              //echo " ENTRO2 ";
-            }
-          }
-          else {
-            $data = date_create_from_format('Y-m-d',$data);
-          }
-          echo $data->format('Y-m-d');
-        }
-      }
-  }
-  $conn->close();
-}
-/*
-function addDayswithdate($date,$days){
-    $date = strtotime("+".$days." days", strtotime($date));
-    return  date("Y-m-d", $date);
-}
-
-function nextDate($userDay, $currentDay){
-  $today = date('d',strtotime($currentDay)); // today
-  $target = date('Y-m-'.$userDay,strtotime($currentDay));  // target day
-  if($today <= $userDay){
-   $return = strtotime($target);
-  }
-  else{
-   $thisMonth = date('m',strtotime($currentDay)) + 1;
-   $thisYear = date('Y',strtotime($currentDay));
-   if($userDay >= 28 && $thisMonth == 2){
-       $userDay = 28;
-   }
-   while(!checkdate($thisMonth,$userDay,$thisYear)){
-     $thisMonth++;
-     if($thisMonth == 13){
-       $thisMonth = 1;
-       $thisYear++;
-     }
-   }
-   $return = strtotime($thisYear.'-'.$thisMonth.'-'.$userDay);
-  }
-  return $return;
-}
-
-function printDataVencimentFactura($idFactura){
-  $dataFactura = date("Y-m-d");
-  $dataFinalPagament= date("Y-m-d");
-  $diaPagamentClient;
-  $diesFinsPagament;
-
-  include "mysql.php";
-  $sql = "
-    SELECT `data_factura`
-      FROM `factures`
-      WHERE `id_factura` = $idFactura";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      if($row["data_factura"]!= "2001-01-01")
-      {
-        $dataFactura = $row["data_factura"];
-      }
-  }
-  $conn->close();
-
-  include "mysql.php";
-  $sql = "
-    SELECT `dies_fins_pagament`
-      FROM `clients` JOIN factures ON `factures`.`id_client_factura` = `clients`.`id_client`
-      WHERE `factures`.`id_factura` = $idFactura";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      if($row["dies_fins_pagament"]!= 0) $diesFinsPagament =  $row["dies_fins_pagament"];
-  }
-  $conn->close();
-
-  include "mysql.php";
-  $sql = "
-    SELECT `dia_mensual_pagament`
-      FROM `clients` JOIN factures ON `factures`.`id_client_factura` = `clients`.`id_client`
-      WHERE `factures`.`id_factura` = $idFactura";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      if($row["dia_mensual_pagament"]!= 0) $diaPagamentClient = $row["dia_mensual_pagament"];
-  }
-  $conn->close();
-
-  $dataAmbDiesAfegits = addDayswithdate($dataFactura, $diesFinsPagament);
-  $dataFinalPagament = nextDate($diaPagamentClient,$dataAmbDiesAfegits);
-
-  echo $dataFinalPagament;
-}*/
-
-
-function mostrarFactures($sql) {
+function mostrarAlbarans($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -562,7 +304,7 @@ function mostrarFacturesPendents($sql) {
     $conn->close();
 }
 
-function mostrarBorradorsFactures($sql) {
+function mostrarBorradorsAlbarans($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -572,21 +314,19 @@ function mostrarBorradorsFactures($sql) {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Concepte</th>
                                             <th>Client</th>
-                                            <th>Data factura</th>
-                                            <th>Data venciment</th>
+                                            <th>Data albara</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     ";
         while($row = $result->fetch_assoc()) {
               echo "<tr>
-                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
-                                                      <td>". $row["comentari_factura"] . "</td>
+                                                      <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
-                                                      <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                      <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                   </tr>";
         }
         echo "
@@ -599,22 +339,4 @@ function mostrarBorradorsFactures($sql) {
     }
     $conn->close();
 }
-function mostrarNumeroFactura($numDB) {
-  if ($numDB == NULL || $numDB == "")
-  {
-    include "mysql.php";
-    $sql = "SELECT CASE (SELECT COUNT(*) FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='17' GROUP BY SUBSTRING(`numero_factura`,5,2)='17') WHEN 0 THEN '001' ELSE CONCAT(LPAD((CAST(SUBSTR(`numero_factura`,1,3) AS UNSIGNED)+1), 3, '0'),'/17') END AS A FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='17' ORDER BY `numero_factura` DESC LIMIT 1";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0)
-    {
-      $row = $result->fetch_assoc();
-      echo $row["A"];
-    }
-  }
-  else
-  {
-    echo $numDB;
-  }
-}
-
  ?>

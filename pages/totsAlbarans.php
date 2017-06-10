@@ -37,19 +37,19 @@
 
 <div id="wrapper">
     <?php
-    include "funcionsFactures.php";
+    include "funcionsAlbarans.php";
     include "menu.php";
     ?>
     <?php
-    $sql = "SELECT * FROM `factures`  WHERE `pagament_realitzat_factura`=0 AND `numero_factura` != '' ORDER BY `factures`.`id_factura` DESC ";
+    $sql = "SELECT * FROM `albarans` ORDER BY `albarans`.`id_factura` DESC ";
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
             <div class=\"col-lg-12\">
                 <table cellpadding=\"10\">
                     <tr>
-                        <td><h1 class=\"page-header\"><i class=\"fa fa-money\"></i> Factures pendents de cobrar</h1></td>
-                        <td><form class=\"page-header\" action='afegirFactura.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir una factura</button></form></td>
+                        <td><h1 class=\"page-header\"><i class=\"fa fa-money\"></i> Albarans (En procés)</h1></td>
+                        <td><form class=\"page-header\" action='afegirAlbara.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir un albarà</button></form></td>
                     </tr>
                 </table>
             </div>
@@ -60,12 +60,12 @@
             <div class=\"col-lg-12\">
                 <div class=\"panel panel-primary\">
                     <div class=\"panel-heading\">
-                        Factures que no s'han cobrat
+                        Totes les factures
                     </div>
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         ";
-                        mostrarFacturesPendents($sql);
+                        mostrarBorradorsAlbarans($sql);
                     echo "
                     </div>
                 </div>

@@ -117,7 +117,7 @@ function printTaulaHoresFeina($idFeina)
                                         <input type=\"hidden\" name=\"idFeina\" value=" . $idFeina .">
                                         <th>".$row["dia_hores"]."</th>
                                         <th>".$row["nom_treballador"]."</th>
-                                        <th><input name=\"horesHores\" class=\"form-control\" value=\"" . $row["hores_hores"] ."\"></th>
+                                        <th><input name=\"horesHores\" class=\"form-control\" value=\"" . $row["hores_hores"]/100 ."\"></th>
                                         <th><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-floppy-o\"></i></button></th>
                                     </form>
 

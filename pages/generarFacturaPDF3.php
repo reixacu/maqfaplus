@@ -18,7 +18,84 @@
 
 include "funcions.php";
 require_once('../tcpdf/tcpdf.php');
+//funcions
+function afegirHeader(&$html, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura, $poblacioClient){
+	$html = $html . '
+<div style="text-align:left">
+	<img src="logo.jpg" alt="test alt attribute" width="200" height="118" border="0" />
+</div>
+<table style="width:100%">
+	<tr>
+		<td> </td>
+		<td style="text-align:right"><b>CLIENT </b> </td>
+	</tr>
+	<tr>
+		<td style="text-align:left">
+				XEVI FALGARONA COLL
+				<br /> Pol.Ind.La Canya
+				<br /> C/Roselló, 19
+				<br /> 17800 OLOT
+				<br /> (Girona)
+				<br /> Tel. 608556991
+				<br /> NIF 46672373-Z
+		</td>
+		<td style="text-align:right">';
+			if ($nomClient != "") $html = $html . $nomClient;
+			if ($direccioClient != "") $html = $html . '<br />' . $direccioClient;
+			if ($cpClient != "" && $poblacioClient != "") $html = $html . '<br />' . $cpClient ." ". $poblacioClient;
+			if ($provinciaClient != "") $html = $html . '<br />' . $provinciaClient;
+			if ($nifClient != "") $html = $html . '<br />CIF ' . $nifClient;
+			$html = $html . '
+		</td>
+	</tr>
+</table>
+<br />
+<br />
+<br />
+<table style="width:100%;" border="1">
+	<tr>
+		<td style="text-align:center;background-color:#DDDDDD;"><b>FRA Nº </b></td>
+		<td colspan="4"> ' . $numFactura . ' </td>
+		<td style="text-align:center;background-color:#DDDDDD;"><b>DATA  </b></td>
+		<td colspan="4"> ' . $dataFactura . ' </td>
+	</tr>
+</table>
+<br />
+<br />';
+}
+function afegirPagina(&$pdf){
+	$pdf->AddPage();
+}
+function afegirFooter(&$pdf, $iva, $baseImposable, $ivaFactura, $totalFactura, $formaPagament, $dataVenciment){
+	$html = '
+		<table border="1">
+			<tr>
+				<td style="text-align:center;background-color:#DDDDDD;"><b> BASE IMPOSABLE </b></td>
+				<td style="text-align:center;background-color:#DDDDDD;"><b> IVA ' . $iva . '% </b></td>
+				<td style="text-align:center;background-color:#DDDDDD;"><b> TOTAL FACTURA </b></td>
+			</tr>
+			<tr>
+				<td style="text-align:center"> ' . $baseImposable . ' € </td>
+				<td style="text-align:center"> ' . $ivaFactura . ' € </td>
+				<td style="text-align:center"> ' . $totalFactura . ' € </td>
+			</tr>
+		</table>
+		<br />
+		<br />
+		<table>
+			<tr>
+				<td> Forma pagament </td>
+				<td colspan="4"> ' . $formaPagament . '</td>
+			</tr>
+			<tr>
+				<td> Venciment </td>
+				<td colspan="4"> ' . $dataVenciment . ' </td>
+			</tr>
+		</table>
+';
 
+$pdf->writeHTMLCell(0,0,15,250,$html, false,true, false, true, false, '');
+}
 //vars
 
 $idFactura = $_GET["id"];
@@ -84,51 +161,45 @@ $pdf->AddPage();
 
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
+$html="";
+afegirHeader($html, $nomClient, $direccioClient, $cpClient, $provinciaClient, $nifClient, $numFactura, $dataFactura, $poblacioClient);
 
-// create some HTML content
-$html = '
-<div style="text-align:left">
-	<img src="logo.jpg" alt="test alt attribute" width="200" height="118" border="0" />
-</div>
-<table style="width:100%">
+// Crear taula per a les linies
+$html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
-		<td> </td>
-		<td style="text-align:right"><b>CLIENT </b> </td>
+		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
+		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
+		<td style="text-align:center;background-color:#DDDDDD;"> <b>PREU</b> </td>
+		<td style="text-align:center;background-color:#DDDDDD;"> <b>IMPORT</b> </td>
 	</tr>
 	<tr>
-		<td style="text-align:left">
-				XEVI FALGARONA COLL
-				<br /> Pol.Ind.La Canya
-				<br /> C/Roselló, 19
-				<br /> 17800 OLOT
-				<br /> (Girona)
-				<br /> Tel. 608556991
-				<br /> NIF 46672373-Z
-		</td>
-		<td style="text-align:right">';
-			if ($nomClient != "") $html = $html . $nomClient;
-			if ($direccioClient != "") $html = $html . '<br />' . $direccioClient;
-			if ($cpClient != "" && $poblacioClient != "") $html = $html . '<br />' . $cpClient ." ". $poblacioClient;
-			if ($provinciaClient != "") $html = $html . '<br />' . $provinciaClient;
-			if ($nifClient != "") $html = $html . '<br />CIF ' . $nifClient;
-			$html = $html . '
-		</td>
+		<td colspan="4" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td style="border-right: solid 1px #000;text-align:right"> </td>
+		<td rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
-</table>
-<br />
-<br />
-<br />
-<table style="width:100%;" border="1">
-	<tr>
-		<td style="text-align:center;background-color:#DDDDDD;"><b>FRA Nº </b></td>
-		<td colspan="4"> ' . $numFactura . ' </td>
-		<td style="text-align:center;background-color:#DDDDDD;"><b>DATA  </b></td>
-		<td colspan="4"> ' . $dataFactura . ' </td>
-	</tr>
-</table>
-<br />
-<br />
-<table style="padding: 5px 5px 5px 1%;" border="1">
+';
+$alturaAcumulada=0;
+$alturaMaxima=498;
+$alturaLinia=0;
+for($i = 0; $i< $quantitatElements; $i++){
+	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
+	$numLinies=$pdf->getNumLines($rowDadesFactura["descripcio_df"], 102);
+	//echo $numLinies;
+	if($numLinies>2){$alturaLinia=40+15*($numLinies-2);}
+	else{
+		if($numLinies==2){$alturaLinia=40;}
+		else {$alturaLinia=35;}
+	}
+	if($alturaLinia + $alturaAcumulada > ($alturaMaxima-35)){
+		$html = $html . '
+		</table>';
+		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
+		afegirPagina($pdf);
+		$alturaMaxima=800;
+		$alturaAcumulada=0;
+		$html='<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
 		<td colspan="4" style="text-align:center;background-color:#DDDDDD;"><b>CONCEPTE </b></td>
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>QUANT.</b> </td>
@@ -140,12 +211,13 @@ $html = '
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td height="498" rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
 
-for($i = 0; $i< $quantitatElements; $i++){
-	$rowDadesFactura = $resultDadesFactura->fetch_assoc();
+	}
+	else{
+		$alturaAcumulada+=$alturaLinia;
+	}
 	if ($rowDadesFactura["preu_total_df"] != "0")
 	{
 		// Tipus de línia amb preu quantitat i preu total
@@ -172,38 +244,13 @@ for($i = 0; $i< $quantitatElements; $i++){
 	}
 }
 
-// output the HTML content
+// TANCAR LA fokin TAULA :D
 $html = $html . '
 </table>';
 $pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
-$html = '
-		<table border="1">
-			<tr>
-				<td style="text-align:center;background-color:#DDDDDD;"><b> BASE IMPOSABLE </b></td>
-				<td style="text-align:center;background-color:#DDDDDD;"><b> IVA ' . $iva . '% </b></td>
-				<td style="text-align:center;background-color:#DDDDDD;"><b> TOTAL FACTURA </b></td>
-			</tr>
-			<tr>
-				<td style="text-align:center"> ' . $baseImposable . ' € </td>
-				<td style="text-align:center"> ' . $ivaFactura . ' € </td>
-				<td style="text-align:center"> ' . $totalFactura . ' € </td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<table>
-			<tr>
-				<td> Forma pagament </td>
-				<td colspan="4"> ' . $formaPagament . '</td>
-			</tr>
-			<tr>
-				<td> Venciment </td>
-				<td colspan="4"> ' . $dataVenciment . ' </td>
-			</tr>
-		</table>
-';
 
-$pdf->writeHTMLCell(0,0,15,250,$html, false,true, false, true, false, '');
+//Afegir footer
+afegirFooter($pdf, $iva, $baseImposable, $ivaFactura, $totalFactura, $formaPagament, $dataVenciment);
 
 // reset pointer to the last page
 $pdf->lastPage();

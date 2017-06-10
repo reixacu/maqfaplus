@@ -37,21 +37,35 @@
 
 <div id="wrapper">
     <?php
-    include "funcionsFactures.php";
+    include "funcionsHores.php";
     include "menu.php";
+    if ($_GET["id"] != NULL)
+    {
+        $id = $_GET["id"];
+    }
+    else {
+      $id = 0;
+    }
     ?>
     <?php
-    $sql = "SELECT * FROM `factures`  WHERE `pagament_realitzat_factura`=0 AND `numero_factura` != '' ORDER BY `factures`.`id_factura` DESC ";
+    if ($id == 0)
+    {
+      $sql = "SELECT * FROM `hores` ORDER BY `hores`.`dia_hores` DESC";
+    } else {
+      $sql = "SELECT * FROM `hores` WHERE `id_treballador_hores` = $id ORDER BY `hores`.`dia_hores` DESC";
+    }
+
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
-            <div class=\"col-lg-12\">
-                <table cellpadding=\"10\">
-                    <tr>
-                        <td><h1 class=\"page-header\"><i class=\"fa fa-money\"></i> Factures pendents de cobrar</h1></td>
-                        <td><form class=\"page-header\" action='afegirFactura.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir una factura</button></form></td>
-                    </tr>
-                </table>
+            <div class=\"col-lg-12\">";
+                    if ($id==0)
+                    {
+                        echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Totes les hores</h1></td>";
+                      }else{
+                          echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Hores ". getNomTreballador($id) ."</h1></td>";
+                        }
+                        echo "
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -60,12 +74,12 @@
             <div class=\"col-lg-12\">
                 <div class=\"panel panel-primary\">
                     <div class=\"panel-heading\">
-                        Factures que no s'han cobrat
+                        Control d'hores
                     </div>
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         ";
-                        mostrarFacturesPendents($sql);
+                        mostrarHores($sql, $id);
                     echo "
                     </div>
                 </div>
