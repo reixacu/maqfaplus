@@ -142,7 +142,7 @@
                             while($row = $result->fetch_assoc()) {
                                 $totalBaseImp += $row["base_imposable_factura"];
                                 $totalIVA += $row["total_factura"];
-                                if ($row["id_factura_albara"] == "0") //tipus de la comparacio?
+                                if ($row["id_factura_albara"] == "0")
                                 {
                                         echo "<tr class=\"warning\">
                                                                                 <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
