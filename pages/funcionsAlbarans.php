@@ -120,10 +120,10 @@ function printEstatAlbaraColum($id)
 function printModalClient($idAlbara)
 {
 
-                            echo "
+                            /*echo "
                               <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
                                   <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar factura
-                              </button>";
+                              </button>";*/
 
                               echo "<a data-toggle=\"modal\" data-target=\"#myModal\">
                                         <div class="panel-footer" >
