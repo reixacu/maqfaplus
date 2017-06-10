@@ -49,7 +49,7 @@
     if ($_GET["id"] != NULL)
     {
         $id = $_GET["id"];
-        $result = getAlbaraData($id);
+        $result = getPressupostData($id);
         echo '<div id="page-wrapper">';
         if ($result->num_rows > 0) {
             // output data of each row
@@ -59,8 +59,8 @@
                 <div class=\"col-lg-12\">
                     <table style='margin-top: 20px;'>
                         <tr>
-                            <td><form action='totsAlbarans.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tots els albarans</button></form></td>
-                            <td><form action='generarAlbaraPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir albarà</button></form>
+                            <td><form action='totsPressupostos.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tots els presspostos</button></form></td>
+                            <td><form action='generarPressupostPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> WARNIN</button></form>
                         </tr>
                     </table>
                 </div>
@@ -69,7 +69,7 @@
             <!-- /.row -->
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <h1 class=\"page-header\"><i class=\"fa fa-file-text-o\" aria-hidden=\"true\"></i> Albarà #". $row["id_factura"] . "</h1>
+                    <h1 class=\"page-header\"><i class=\"fa fa-file-text-o\" aria-hidden=\"true\"></i> Pressupost #". $row["id_factura"] . "</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -105,11 +105,11 @@
                 <div class=\"col-lg-12\">
                     <div class=\"panel panel-default\">
                         <div class=\"panel-heading\">
-                            Detalls de l'albarà
+                            Detalls del pressupost
                         </div>
                         <!-- /.panel-heading -->
                         <div class=\"panel-body\">
-                            <form action='scriptAfegirLiniaAlbara.php' method='get'><input type=\"hidden\" name=\"idFactura\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_factura"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-plus-square\"></i> Afegir línia</button></form><br />
+                            <form action='scriptAfegirLiniaPressupost.php' method='get'><input type=\"hidden\" name=\"idFactura\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_factura"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-plus-square\"></i> Afegir línia</button></form><br />
                             <h3>Productes</h3>";
                             printTaulaLiniesPressupost($id);
             echo "
@@ -123,7 +123,7 @@
             <!-- /.row -->
             ";
         } else {
-            echo "No s'ha trobat l'albarà especificat'";
+            echo "No s'ha trobat el pressupost especificat'";
         }
 
         echo "</div>";
@@ -132,7 +132,7 @@
     {
         echo "
         <div id=\"page-wrapper\">
-        <h1>Error, no s'ha seleccionat cap albarà.</h1>
+        <h1>Error, no s'ha seleccionat cap pressupost.</h1>
         </div>";
     }
 

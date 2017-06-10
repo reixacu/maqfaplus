@@ -93,7 +93,7 @@ function printEstatPressupostColum($id)
                           echo "
                           </div>
                           <div class=\"modal-footer\">
-                              <a type=\"button\" href=\"scriptAlbaraNovaFactura.php?idAlbara=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a una nova factura</a>
+                              <a type=\"button\" href=\"scriptPressupostNovaFactura.php?idPressupost=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a una nova factura</a>
                               <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
                           </div>
                       </div>
@@ -121,7 +121,7 @@ function printEstatPressupostColum($id)
                           </div>
                       </div>
                   </div>
-                  <a href=\"mostrarFactura.php?id=". $row["id_factura_albara"] ."\">
+                  <a href=\"mostrarFactura.php?id=". $row["id_factura_pressupost"] ."\">
                       <div class=\"panel-footer\">
                           <span class=\"pull-left\">Veure la factura</span>
                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
@@ -163,7 +163,7 @@ function printEstatPressupostColum($id)
     }
 }
 
-function printModalTotesFactures($idAlbara){
+function printModalTotesFactures($idPressupost){
     $totalBaseImp = 0;
     $totalIVA=0;
     include "mysql.php";
@@ -191,7 +191,7 @@ function printModalTotesFactures($idAlbara){
             if ($row["numero_factura"] == "")
             {
                     echo "<tr class=\"warning\">
-                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><a href='scriptPressupostFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
                                                       <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -200,7 +200,7 @@ function printModalTotesFactures($idAlbara){
             }
             else if ($row["pagament_realitzat_factura"] == 0){
               echo "<tr class=\"danger\">
-                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["numero_factura"] . "</td>
+                                                      <td><a href='scriptPressupostFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["numero_factura"] . "</td>
                                                       <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -209,7 +209,7 @@ function printModalTotesFactures($idAlbara){
             }
             else if ($row["pagament_realitzat_factura"] == 1){
               echo "<tr class=\"success\">
-                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["numero_factura"] . "</td>
+                                                      <td><a href='scriptPressupostFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["numero_factura"] . "</td>
                                                       <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -230,7 +230,7 @@ function printModalTotesFactures($idAlbara){
     $conn->close();
 }
 
-function printBotoModalClient($idAlbara)
+function printBotoModalClient($idPressupost)
 {
   echo "
   <a data-toggle=\"modal\" data-target=\"#myModal\">
@@ -257,7 +257,7 @@ function printRowDetallsPressupost($idFactura){
               </div>
               <div class=\"panel-body\">
                 <div class=\"row\">
-                  <form role=\"form\" action=\"scriptCanviarDataAlbara.php\" method=\"post\">
+                  <form role=\"form\" action=\"scriptCanviarDataPressupost.php\" method=\"post\">
                     <div class=\"col-lg-4\">
                       <input name=\"dataFactura\" type=\"date\" class=\"form-control\" value=\"".$row["data_factura"]."\">
                     </div>
@@ -298,11 +298,11 @@ function printRowDetallsPressupost($idFactura){
 }
 
 
-function printDataAlbara($idFactura)
+function printDataPressupost($idFactura)
 {
   $data = date("Y-m-d");
   include "mysql.php";
-  $sql = "SELECT `data_factura` FROM `albarans` WHERE `id_factura` = $idFactura";
+  $sql = "SELECT `data_factura` FROM `pressupostos` WHERE `id_factura` = $idFactura";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
@@ -316,7 +316,7 @@ function printDataAlbara($idFactura)
 }
 
 
-function mostrarAlbarans($sql) {
+function mostrarPressupostns($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -436,7 +436,7 @@ function mostrarFacturesPendents($sql) {
     $conn->close();
 }
 
-function mostrarBorradorsAlbarans($sql) {
+function mostrarBorradorsPressupostos($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -447,14 +447,14 @@ function mostrarBorradorsAlbarans($sql) {
                                         <tr>
                                             <th>#</th>
                                             <th>Client</th>
-                                            <th>Data albara</th>
+                                            <th>Data Pressupost</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     ";
         while($row = $result->fetch_assoc()) {
               echo "<tr>
-                                                      <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                      <td><a href='mostrarPressupost.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
