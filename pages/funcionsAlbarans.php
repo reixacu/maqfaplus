@@ -70,7 +70,9 @@ function printEstatAlbaraColum($id)
                               </div>
                           </div>
                       </div>
+                      ";
                       printModalClient($desde, $fins, $idClient);
+                      echo "
                       <!--
                       <a href=\"scriptAlbaraNovaFactura.php?id=". $id ."\">
                           <div class=\"panel-footer\">
