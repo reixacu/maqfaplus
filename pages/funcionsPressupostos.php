@@ -78,7 +78,7 @@ function printEstatPressupostColum($id)
               ";
               echo "
               <!-- Modal -->
-              <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+              <div class=\"modal fade\" id=\"modalFactures\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
                   <div class=\"modal-dialog modal-lg\">
                       <div class=\"modal-content\">
                           <div class=\"modal-header\">
@@ -112,7 +112,14 @@ function printEstatPressupostColum($id)
                           <div class=\"modal-body\">
                           ";
                           #INICI BODY MODAL
-
+                          echo "
+                                                      <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#modalFactures\">
+                                                          Factura
+                                                      </button>
+                                                      <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#modalAlbarans\">
+                                                          Factura
+                                                      </button>
+                          ";
                           #FI BODY MODAL
                           echo "
                           </div>
