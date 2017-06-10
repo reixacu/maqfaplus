@@ -156,7 +156,7 @@
                                 else {
                                   echo "<tr class=\"success\">
                                                                           <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
-                                                                        <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Facturat</td>
+                                                                        <td><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i> Facturat</td>
                                                                           <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                           <td>". getDataDMY($row["data_factura"]) . "</td>
                                                                           <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
