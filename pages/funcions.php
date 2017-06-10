@@ -67,7 +67,7 @@ function printNumeroFactura($id) {
     $result = getFacturaData($id);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if ($row["numero_factura"] != 0)
+        if ($row["numero_factura"] != "0")
         {
           return $row["numero_factura"];
         } else {
