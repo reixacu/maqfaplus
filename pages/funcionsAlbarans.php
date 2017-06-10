@@ -121,7 +121,7 @@ function printModalTotesFactures(){
     $totalBaseImp = 0;
     $totalIVA=0;
     include "mysql.php";
-    $sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != '' AND `factures`.`data_factura` >= '$desde' AND `factures`.`data_factura` <= '$fins' ORDER BY `factures`.`id_factura` DESC";
+    $sql = "SELECT * FROM `factures` ORDER BY `factures`.`id_factura` DESC";
     //$sql = "SELECT * FROM `factures` WHERE `factures`.`numero_factura` != '' AND `factures`.`data_factura` >= '$desde' AND `factures`.`data_factura` <= '$fins' AND `factures`.`id_client_factura` = $idClient ORDER BY `factures`.`id_factura` DESC";
 
     $result = $conn->query($sql);
