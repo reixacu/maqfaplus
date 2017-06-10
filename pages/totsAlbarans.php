@@ -74,7 +74,7 @@
             <div class=\"col-lg-12\">
                 <table cellpadding=\"10\">
                     <tr>
-                        <td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Totes les albarans</h1></td>
+                        <td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Tots els albarans</h1></td>
                         <td><form class=\"page-header\" action='afegirFactura.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir una factura</button></form></td>
                     </tr>
                 </table>
@@ -133,7 +133,6 @@
                                                                 <th>Estat</th>
                                                                 <th>Client</th>
                                                                 <th>Data factura</th>
-                                                                <th>Data venciment</th>
                                                                 <th>Base imp.</th>
                                                                 <th>Total IVA</th>
                                                             </tr>
@@ -143,41 +142,26 @@
                             while($row = $result->fetch_assoc()) {
                                 $totalBaseImp += $row["base_imposable_factura"];
                                 $totalIVA += $row["total_factura"];
-                                if ($row["numero_factura"] == "")
+                                if ($row["id_factura_albara"] == "0") //tipus de la comparacio?
                                 {
                                         echo "<tr class=\"warning\">
-                                                                                <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
-                                                                                <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
+                                                                                <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                                                <td><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> No facturat</td>
                                                                                 <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                                 <td>". getDataDMY($row["data_factura"]) . "</td>
-                                                                                <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
                                                                                 <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
                                                                                 <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                                             </tr>";
                                 }
-                                else if ($row["pagament_realitzat_factura"] == 0){
-                                  echo "<tr class=\"danger\">
-                                                                          <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
-                                                                        <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
-                                                                          <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
-                                                                          <td>". getDataDMY($row["data_factura"]) . "</td>
-                                                                          <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
-                                                                          <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
-                                                                          <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
-                                                                      </tr>";
-                                }
-                                else if ($row["pagament_realitzat_factura"] == 1){
+                                else {
                                   echo "<tr class=\"success\">
-                                                                          <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
-                                                                        <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
+                                                                          <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                                        <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Facturat</td>
                                                                           <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                           <td>". getDataDMY($row["data_factura"]) . "</td>
-                                                                          <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
                                                                           <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
                                                                           <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                                       </tr>";
-                                } else {
-                                  echo "<tr>ERROR</tr>";
                                 }
                             }
                             echo "
