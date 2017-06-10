@@ -49,7 +49,7 @@ function printTaulaLiniesPressupost($id) {
 
 function printEstatPressupostColum($id)
 {
-    $result = getAlbaraData($id);
+    $result = getPressupostData($id);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
@@ -235,7 +235,7 @@ function printBotoModalClient($idAlbara)
   echo "
   <a data-toggle=\"modal\" data-target=\"#myModal\">
       <div class=\"panel-footer\">
-          <span class=\"pull-left\">Associar a una factura</span>
+          <span class=\"pull-left\">Associar a una factura o albarà</span>
           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
           <div class=\"clearfix\"></div>
       </div>
