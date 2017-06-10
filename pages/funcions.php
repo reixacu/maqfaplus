@@ -163,6 +163,7 @@ function getHoresTreballador ($id) {
       return 8;
     }
 }
+
 function getNomTreballador ($id) {
     $result = getTreballadorData($id);
     if ($result->num_rows > 0) {
