@@ -238,7 +238,7 @@ function getLastAlbaraId() {
 }
 function getLastPressupostId() {
     include "mysql.php";
-    $sql = "SELECT `idAlbara` FROM `pressupostos` ORDER BY `pressupostos`.`id_factura`  DESC";
+    $sql = "SELECT `id_factura` FROM `pressupostos` ORDER BY `pressupostos`.`id_factura`  DESC";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
