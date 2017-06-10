@@ -69,7 +69,7 @@
             <!-- /.row -->
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <h1 class=\"page-header\"><i class=\"fa fa-file-text-o\" aria-hidden=\"true\"></i> Pressupost #". $row["id_factura"] . "</h1>
+                    <h1 class=\"page-header\"><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i> Pressupost #". $row["id_factura"] . "</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
