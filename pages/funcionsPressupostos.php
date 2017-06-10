@@ -88,7 +88,7 @@ function printEstatPressupostColum($id)
                           <div class=\"modal-body\">
                           ";
                           #INICI BODY MODAL
-                            //printModalTotesFactures($id);
+                            printModalTotesFactures($id);
                           #FI BODY MODAL
                           echo "
                           </div>
