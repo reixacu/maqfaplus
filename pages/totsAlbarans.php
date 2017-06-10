@@ -132,7 +132,7 @@
                                                                 <th>#</th>
                                                                 <th>Estat</th>
                                                                 <th>Client</th>
-                                                                <th>Data factura</th>
+                                                                <th>Data albara</th>
                                                                 <th>Base imp.</th>
                                                                 <th>Total IVA</th>
                                                             </tr>
