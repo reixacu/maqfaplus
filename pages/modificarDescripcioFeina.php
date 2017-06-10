@@ -68,7 +68,7 @@
                                         <input name="descripcio" class="form-control" placeholder="Breu comentari (opcional)">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Modificar feina</button>
-                                    <button type="reset" class="btn btn-warning btn-outline">Natejar els camps</button>
+                                    <button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>
                                     <input type="hidden" name="idFeina" value="<?php echo $idFeina; ?>">
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
