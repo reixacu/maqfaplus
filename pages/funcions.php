@@ -63,10 +63,30 @@ function getFacturaData($idFactura)
     $conn->close();
     return $result;
 }
+function printNumeroFactura($id) {
+    $result = getFacturaData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row["numero_factura"] != 0)
+        {
+          return $row["numero_factura"];
+        } else {
+          return $row["id_factura"];
+        }
+    }
+}
 function getAlbaraData($idFactura)
 {
     include "mysql.php";
     $sql = "SELECT * FROM albarans WHERE id_factura=$idFactura;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
+function getPressupostData($idFactura)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM pressupostos WHERE id_factura=$idFactura;";
     $result = $conn->query($sql);
     $conn->close();
     return $result;
@@ -83,6 +103,14 @@ function getLiniesAlbaraData($idFactura)
 {
     include "mysql.php";
     $sql = "SELECT * FROM detalls_albarans WHERE id_factura_df=$idFactura;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
+function getLiniesPressupostData($idFactura)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM detalls_pressupostos WHERE id_factura_df=$idFactura;";
     $result = $conn->query($sql);
     $conn->close();
     return $result;
@@ -106,6 +134,21 @@ function getNumRowsDetallsAlbara($idFactura)
 {
   include "mysql.php";
   $sql = "SELECT * FROM `detalls_albarans` WHERE `id_factura_df` = $idFactura;";
+  $rowcount = 0;
+  $result = $conn->query($sql);
+  if ($result = mysqli_query($conn, $sql)) {
+      // Return the number of rows in result set
+      $rowcount = mysqli_num_rows($result);
+      // Free result set
+      mysqli_free_result($result);
+  }
+  $conn->close();
+  return $rowcount;
+}
+function getNumRowsDetallsPressupost($idFactura)
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `detalls_pressupostos` WHERE `id_factura_df` = $idFactura;";
   $rowcount = 0;
   $result = $conn->query($sql);
   if ($result = mysqli_query($conn, $sql)) {
@@ -228,6 +271,17 @@ function getLastFacturaId() {
 function getLastAlbaraId() {
     include "mysql.php";
     $sql = "SELECT `id_factura` FROM `albarans` ORDER BY `albarans`.`id_factura`  DESC";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $retorna = $row["id_factura"];
+    }
+    $conn->close();
+    return $retorna;
+}
+function getLastPressupostId() {
+    include "mysql.php";
+    $sql = "SELECT `id_factura` FROM `pressupostos` ORDER BY `pressupostos`.`id_factura`  DESC";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
