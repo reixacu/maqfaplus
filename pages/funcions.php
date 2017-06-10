@@ -107,6 +107,14 @@ function getLiniesAlbaraData($idFactura)
     $conn->close();
     return $result;
 }
+function getLiniesPressupostData($idFactura)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM detalls_pressupostos WHERE id_factura_df=$idFactura;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 function getNumRowsDetallsFactura($idFactura)
 {
   include "mysql.php";
@@ -126,6 +134,21 @@ function getNumRowsDetallsAlbara($idFactura)
 {
   include "mysql.php";
   $sql = "SELECT * FROM `detalls_albarans` WHERE `id_factura_df` = $idFactura;";
+  $rowcount = 0;
+  $result = $conn->query($sql);
+  if ($result = mysqli_query($conn, $sql)) {
+      // Return the number of rows in result set
+      $rowcount = mysqli_num_rows($result);
+      // Free result set
+      mysqli_free_result($result);
+  }
+  $conn->close();
+  return $rowcount;
+}
+function getNumRowsDetallsPressupost($idFactura)
+{
+  include "mysql.php";
+  $sql = "SELECT * FROM `detalls_pressupostos` WHERE `id_factura_df` = $idFactura;";
   $rowcount = 0;
   $result = $conn->query($sql);
   if ($result = mysqli_query($conn, $sql)) {
