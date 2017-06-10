@@ -12,7 +12,6 @@ $idClient = $row["id_client_factura"];
 
 $sql = "INSERT INTO `factures` (`id_factura`, `numero_factura`, `data_factura`, `data_venciment_factura`, `pagament_realitzat_factura`, `comentari_factura`, `id_client_factura`, `iva_factura`, `base_imposable_factura`) VALUES (NULL, '', '2000-01-01', '2000-01-01', '0', '', '$idClient', '21', '0');";
 if ($conn->query($sql) === TRUE) {
-  echo "a";
   $resultDadesFactura = getLiniesAlbaraData($idAlbara);
   $quantitatElements = getNumRowsDetallsAlbara($idAlbara);
   include "mysql.php";
@@ -28,7 +27,7 @@ if ($conn->query($sql) === TRUE) {
     $desc1 = str_replace("'", "''", $rowDadesFactura['descripcio_df']);
   		// Tipus de línia amb preu quantitat i preu total
       include "mysql.php";
-      $sql11 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".getLastFacturaId().", '". $desc1."', ". $rowDadesFactura['unitats_df'].", ". $rowDadesFactura['preu_unitat_df'].")";
+      $sql11 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`, `preu_total_df`) VALUES (NULL, ".getLastFacturaId().", '". $desc1."', ". $rowDadesFactura['unitats_df'].", ". $rowDadesFactura['preu_unitat_df']." , ". $rowDadesFactura['preu_total_df'].")";
 
       if ($conn->query($sql11) === TRUE) {
       } else {
@@ -47,11 +46,11 @@ if ($conn->query($sql) === TRUE) {
               echo "ERROR: " . $sql . "<br>" . $conn->error;
           }
 
-    /*echo "
+    echo "
                             <script>
                             window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
                             </script>
-                            ";*/
+                            ";
 
 } else {
     echo "ERROR: " . $sql . "<br>" . $conn->error;

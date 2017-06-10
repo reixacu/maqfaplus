@@ -173,7 +173,7 @@ $html= $html . '<table style="padding: 5px 5px 5px 1%;" border="1">
 		<td style="text-align:center;background-color:#DDDDDD;"> <b>IMPORT</b> </td>
 	</tr>
 	<tr>
-		<td colspan="4" height="10" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
+		<td colspan="4" style="border-right: solid 1px #000;vertical-align:bottom"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
@@ -197,7 +197,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 		</table>';
 		$pdf->writeHTMLCell(0,0,15,10,$html, false,true, false, true, false, '');
 		afegirPagina($pdf);
-		$alturaMaxima=500;
+		$alturaMaxima=800;
 		$alturaAcumulada=0;
 		$html='<table style="padding: 5px 5px 5px 1%;" border="1">
 	<tr>
@@ -211,7 +211,6 @@ for($i = 0; $i< $quantitatElements; $i++){
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
 		<td style="border-right: solid 1px #000;text-align:right"> </td>
-		<td rowspan="'. ($quantitatElements + 1) . '"> </td>
 	</tr>
 ';
 
