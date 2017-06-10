@@ -1,7 +1,7 @@
 <?php
 include "mysql.php";
 include "funcions.php";
-$idAlbara = $_GET["id"];
+$idAlbara = $_GET["idAlbara"];
 $result = getAlbaraData($idAlbara);
 $row = $result->fetch_assoc();
 $facturaAntiga = $_GET["facturaAntiga"];
@@ -35,7 +35,7 @@ for($i = 0; $i< $quantitatElements; $i++){
   include "mysql.php";
   $sql = "
       UPDATE `albarans`
-        SET `id_factura_albara` =  ".getLastFacturaId()."
+        SET `id_factura_albara` =  ".$facturaAntiga."
         WHERE `albarans`.`id_factura` = '$idAlbara';
         ";
         if ($conn->query($sql) === TRUE) {
@@ -45,7 +45,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 
   echo "
                           <script>
-                          window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
+                          window.location.replace(\"mostrarFactura.php?id=".$facturaAntiga."\");
                           </script>
                           ";
 

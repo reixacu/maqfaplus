@@ -70,15 +70,38 @@ function printEstatAlbaraColum($id)
                               </div>
                           </div>
                       </div>
-                      <a href=\"scriptAlbaraNovaFactura.php?id=". $id ."\">
-                          <div class=\"panel-footer\">
-                              <span class=\"pull-left\">Associar a una nova factura</span>
-                              <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                              <div class=\"clearfix\"></div>
-                          </div>
-                      </a>
+                      ";
+                      printBotoModalClient($id);
+                      echo "
                   </div>
               </div>
+              ";
+              echo "
+              <!-- Modal -->
+              <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+                  <div class=\"modal-dialog modal-lg\">
+                      <div class=\"modal-content\">
+                          <div class=\"modal-header\">
+                              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar factures</h4>
+                          </div>
+                          <div class=\"modal-body\">
+                          ";
+                          #INICI BODY MODAL
+                            printModalTotesFactures($id);
+                          #FI BODY MODAL
+                          echo "
+                          </div>
+                          <div class=\"modal-footer\">
+                              <a type=\"button\" href=\"scriptAlbaraNovaFactura.php?idAlbara=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a una nova factura</a>
+                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
+                          </div>
+                      </div>
+                      <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+              </div>
+              <!-- /.modal -->
               ";
         }
         else
@@ -111,6 +134,87 @@ function printEstatAlbaraColum($id)
         }
     }
 }
+
+function printModalTotesFactures($idAlbara){
+    $totalBaseImp = 0;
+    $totalIVA=0;
+    include "mysql.php";
+    $sql = "SELECT * FROM `factures` ORDER BY `factures`.`id_factura` DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table table-striped table-bordered table-hover\" id=\"factures1\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Estat</th>
+                                            <th>Client</th>
+                                            <th>Data factura</th>
+                                            <th>Total IVA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+            $totalBaseImp += $row["base_imposable_factura"];
+            $totalIVA += $row["total_factura"];
+            if ($row["numero_factura"] == "")
+            {
+                    echo "<tr class=\"warning\">
+                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+            else if ($row["pagament_realitzat_factura"] == 0){
+              echo "<tr class=\"danger\">
+                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+            else if ($row["pagament_realitzat_factura"] == 1){
+              echo "<tr class=\"success\">
+                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            } else {
+              echo "<tr>ERROR</tr>";
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
+function printBotoModalClient($idAlbara)
+{
+  echo "
+  <a data-toggle=\"modal\" data-target=\"#myModal\">
+      <div class=\"panel-footer\">
+          <span class=\"pull-left\">Associar a una factura</span>
+          <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
+          <div class=\"clearfix\"></div>
+      </div>
+  </a>
+  ";
+}
+
 
 function printRowDetallsAlbara($idFactura){
   $result = getAlbaraData($idFactura);
