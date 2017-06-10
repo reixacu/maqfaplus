@@ -117,32 +117,98 @@ function printEstatAlbaraColum($id)
     }
 }
 
+function printModalTotesFactures(){
+    $totalBaseImp = 0;
+    $totalIVA=0;
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table table-striped table-bordered table-hover\" id=\"clients1\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Estat</th>
+                                            <th>Client</th>
+                                            <th>Data factura</th>
+                                            <th>Data venciment</th>
+                                            <th>Base imp.</th>
+                                            <th>Total IVA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+            $totalBaseImp += $row["base_imposable_factura"];
+            $totalIVA += $row["total_factura"];
+            if ($row["numero_factura"] == "")
+            {
+                    echo "<tr class=\"warning\">
+                                                            <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                            <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
+                                                            <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                            <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                            <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                            <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                            <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                        </tr>";
+            }
+            else if ($row["pagament_realitzat_factura"] == 0){
+              echo "<tr class=\"danger\">
+                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
+                                                    <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
+                                                      <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                      <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+            else if ($row["pagament_realitzat_factura"] == 1){
+              echo "<tr class=\"success\">
+                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
+                                                    <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
+                                                      <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>". getDataDMY($row["data_venciment_factura"]) . "</td>
+                                                      <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            } else {
+              echo "<tr>ERROR</tr>";
+            }
+        }
+        echo "
+                                            <tr class=\"primary\">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><strong>".  number_format($totalBaseImp / 100,2) . "€</strong></td>
+                                                <td><strong>".  number_format($totalIVA / 100,2) . "€</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
 function printModalClient($idAlbara)
 {
-
-                            /*echo "
-                              <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
-                                  <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar factura
-                              </button>";*/
-
-                            /*  echo "<button data-toggle=\"modal\" data-target=\"#myModal\>
-                                      <div class=\"panel-footer\">
-                                          <span class=\"pull-left\">Associar a una nova factura</span>
-                                          <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                                          <div class=\"clearfix\"></div>
-                                      </div>
-                                  </button>";*/
-
                                   echo "
-
                                   <a data-toggle=\"modal\" data-target=\"#myModal\">
                                       <div class=\"panel-footer\">
-                                          <span class=\"pull-left\">Associar a una nova factura</span>
+                                          <span class=\"pull-left\">Associar a una factura</span>
                                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
                                           <div class=\"clearfix\"></div>
                                       </div>
                                   </a>
-
                                   ";
 
                               echo "
@@ -155,9 +221,16 @@ function printModalClient($idAlbara)
                                               <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar Client</h4>
                                           </div>
                                           <div class=\"modal-body\">
+                                          ";
+                                          #INICI BODY MODAL
 
+                                            printModalTotesFactures();
+
+                                          #FI BODY MODAL
+                                          echo "
                                           </div>
                                           <div class=\"modal-footer\">
+                                                <!-- boto de crear factura? -->
                                               <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
                                           </div>
                                       </div>
