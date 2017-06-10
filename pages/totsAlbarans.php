@@ -75,7 +75,7 @@
                 <table cellpadding=\"10\">
                     <tr>
                         <td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Tots els albarans</h1></td>
-                        <td><form class=\"page-header\" action='afegirFactura.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir una factura</button></form></td>
+                        <td><form class=\"page-header\" action='afegirAlbara.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir un albara</button></form></td>
                     </tr>
                 </table>
             </div>
@@ -165,21 +165,12 @@
                                 }
                             }
                             echo "
-                                                                <tr class=\"primary\">
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td><strong>".  number_format($totalBaseImp / 100,2) . "€</strong></td>
-                                                                    <td><strong>".  number_format($totalIVA / 100,2) . "€</strong></td>
-                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                         ";
                         } else {
-                            echo "No s'ha trobat cap factura";
+                            echo "No s'ha trobat cap albarà";
                         }
                         $conn->close();
                     echo "
