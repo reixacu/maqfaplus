@@ -42,7 +42,7 @@
     <?php
     include "menu.php";
     include_once "funcionsHores.php";
-    //include_once "funcionsAlbarans.php";
+    include_once "funcionsPressupostos.php";
     include_once "funcionsFeines.php";
     ?>
     <?php
