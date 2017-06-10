@@ -187,44 +187,44 @@ function printModalTotesFactures($idAlbara){
 
 function printModalClient($idAlbara)
 {
-                                  echo "
-                                  <a data-toggle=\"modal\" data-target=\"#myModal\">
-                                      <div class=\"panel-footer\">
-                                          <span class=\"pull-left\">Associar a una factura</span>
-                                          <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                                          <div class=\"clearfix\"></div>
-                                      </div>
-                                  </a>
-                                  ";
+  echo "
+  <a data-toggle=\"modal\" data-target=\"#myModal\">
+      <div class=\"panel-footer\">
+          <span class=\"pull-left\">Associar a una factura</span>
+          <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
+          <div class=\"clearfix\"></div>
+      </div>
+  </a>
+  ";
 
-                              echo "
-                              <!-- Modal -->
-                              <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
-                                  <div class=\"modal-dialog modal-lg\">
-                                      <div class=\"modal-content\">
-                                          <div class=\"modal-header\">
-                                              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar Client</h4>
-                                          </div>
-                                          <div class=\"modal-body\">
-                                          ";
-                                          #INICI BODY MODAL
+  echo "
+  <!-- Modal -->
+  <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+      <div class=\"modal-dialog modal-lg\">
+          <div class=\"modal-content\">
+              <div class=\"modal-header\">
+                  <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                  <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar Client</h4>
+              </div>
+              <div class=\"modal-body\">
+              ";
+              #INICI BODY MODAL
 
-                                            printModalTotesFactures($idAlbara);
+                printModalTotesFactures($idAlbara);
 
-                                          #FI BODY MODAL
-                                          echo "
-                                          </div>
-                                          <div class=\"modal-footer\">
-                                                <!-- boto de crear factura? -->
-                                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
-                                          </div>
-                                      </div>
-                                      <!-- /.modal-content -->
-                                  </div>
-                                  <!-- /.modal-dialog -->
-                              </div>
-                              <!-- /.modal -->
+              #FI BODY MODAL
+              echo "
+              </div>
+              <div class=\"modal-footer\">
+                  <a type=\"button\" href=\"scriptAlbaraNovaFactura.php?idAlbara=". $idAlbara ."\" class=\"btn btn-default\" data-dismiss=\"modal\">Associar a una nova factura</a>
+                  <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
+              </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
   ";
 }
 
