@@ -236,6 +236,17 @@ function getLastAlbaraId() {
     $conn->close();
     return $retorna;
 }
+function getLastPressupostId() {
+    include "mysql.php";
+    $sql = "SELECT `idAlbara` FROM `pressupostos` ORDER BY `pressupostos`.`id_factura`  DESC";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $retorna = $row["id_factura"];
+    }
+    $conn->close();
+    return $retorna;
+}
 function getClientCognomNom($id)
 {
     include "mysql.php";
