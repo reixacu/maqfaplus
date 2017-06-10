@@ -117,7 +117,7 @@ function printEstatAlbaraColum($id)
     }
 }
 
-function printModalTotesFactures(){
+function printModalTotesFactures($idAlbara){
     $totalBaseImp = 0;
     $totalIVA=0;
     include "mysql.php";
@@ -146,16 +146,16 @@ function printModalTotesFactures(){
             if ($row["numero_factura"] == "")
             {
                     echo "<tr class=\"warning\">
-                                                            <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
-                                                            <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
-                                                            <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
-                                                            <td>". getDataDMY($row["data_factura"]) . "</td>
-                                                            <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
-                                                        </tr>";
+                                                      <td><a href='mostrarFactura.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
             }
             else if ($row["pagament_realitzat_factura"] == 0){
               echo "<tr class=\"danger\">
-                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
+                                                    <td><a href='mostrarFactura.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
                                                     <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -164,7 +164,7 @@ function printModalTotesFactures(){
             }
             else if ($row["pagament_realitzat_factura"] == 1){
               echo "<tr class=\"success\">
-                                                      <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
+                                                    <td><a href='mostrarFactura.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
                                                     <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -210,7 +210,7 @@ function printModalClient($idAlbara)
                                           ";
                                           #INICI BODY MODAL
 
-                                            printModalTotesFactures();
+                                            printModalTotesFactures($idAlbara);
 
                                           #FI BODY MODAL
                                           echo "
