@@ -60,7 +60,7 @@
                     <table style='margin-top: 20px;'>
                         <tr>
                             <td><form action='totsPressupostos.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tots els presspostos</button></form></td>
-                            <td><form action='generarPressupostPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> WARNIN</button></form>
+                            <td><form action='generarPressupostPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir pressupost</button></form>
                         </tr>
                     </table>
                 </div>
