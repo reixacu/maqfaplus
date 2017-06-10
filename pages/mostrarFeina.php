@@ -71,7 +71,7 @@
                     <table><td><tr>
                       <i class=\"fa fa-tasks\"></i> Feina #". $row["id_feina"] . " | " . $row["descripcio_feina"] . "
                       </tr><tr><form class=\"form-inline\" action='modificarDescripcioFeina.php' method='get'><input type=\"hidden\" name=\"idFeina\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_feina"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-pencil\"></i></button></form></tr>
-</td></table>
+                      </td></table>
                     </h1>
 
                 </div>
