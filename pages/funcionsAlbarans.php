@@ -119,28 +119,12 @@ function printEstatAlbaraColum($id)
 
 function printModalClient($idAlbara)
 {
-  if ($idAlbara == 0)
-  {
+
                             echo "
                               <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
-                                  <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar Client
+                                  <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar factura
                               </button>";
-}
-else {
-  echo "<h4>";
-  echo "wip";//getClientCognomNom($idAlbara);
-  echo "</h4>";
-  echo "
-    <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
-        <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar un altre client
-    </button>
-    <form method=\"get\" action=\"totesFactures.php\"><input type=\"hidden\" name=\"desde\" value=\"".$desde."\"><input type=\"hidden\" name=\"fins\" value=\"".$fins."\">
-    <button class=\"btn btn-warning btn-sm\" type\"submit\">
-        Esborrar Filtre
-    </button>
-    </form>
-    ";
-}
+
                               echo "
                               <!-- Modal -->
                               <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
@@ -151,41 +135,7 @@ else {
                                               <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar Client</h4>
                                           </div>
                                           <div class=\"modal-body\">
-                                            <table class=\"table table-striped table-bordered table-hover\" id=\"clients11\">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>NIF</th>
-                                                    <th>Tipus</th>
-                                                    <th>Raó social/Cognom</th>
-                                                    <th>Nom comercial/Nom</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                              ";
-                                              include "mysql.php";
 
-                                              $sql = "SELECT `id_client`, `nif_client`, `nom_client`, `cognom_client`, `poblacio_client`, `es_empresa_client`, `rao_social_client`, `nom_comercial_client` FROM `clients`";
-                                              $result = $conn->query($sql);
-                                              if ($result->num_rows > 0) {
-                                                  // output data of each row
-                                                  while($row = $result->fetch_assoc()) {
-                                                      if (!$row["es_empresa_client"]) {
-                                                          echo "<tr><td><a href='totesFactures.php?desde=".$desde."&fins=".$fins."&idAlbara=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td></tr>";
-                                                      }
-                                                      else
-                                                      {
-                                                          echo "<tr><td><a href='totesFactures.php?desde=".$desde."&fins=".$fins."&idAlbara=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td></tr>";
-                                                      }
-                                                  }
-                                              } else {
-                                                  echo "No hi ha cap client";
-                                              }
-                                              //SELECT `id_client`, `nif_client`, `nom_client`, `cognom_client` FROM `clients`
-                                              $conn->close();
-                                              echo "
-                                                </tbody>
-                                            </table>
                                           </div>
                                           <div class=\"modal-footer\">
                                               <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
