@@ -120,18 +120,18 @@ function printEstatAlbaraColum($id)
 function printModalClient($idAlbara)
 {
 
-                            /*echo "
+                            echo "
                               <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
                                   <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar factura
-                              </button>";*/
+                              </button>";
 
-                              echo "<button data-toggle=\"modal\" data-target=\"#myModal\>
+                            /*  echo "<button data-toggle=\"modal\" data-target=\"#myModal\>
                                       <div class=\"panel-footer\">
                                           <span class=\"pull-left\">Associar a una nova factura</span>
                                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
                                           <div class=\"clearfix\"></div>
                                       </div>
-                                  </button>";
+                                  </button>";*/
 
                               echo "
                               <!-- Modal -->
