@@ -45,7 +45,7 @@ for($i = 0; $i< $quantitatElements; $i++){
 
   echo "
                           <script>
-                          window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
+                          //window.location.replace(\"mostrarFactura.php?id=".getLastFacturaId()."\");
                           </script>
                           ";
 
