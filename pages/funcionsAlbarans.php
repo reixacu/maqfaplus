@@ -128,7 +128,7 @@ function printModalClient($idAlbara)
 }
 else {
   echo "<h4>";
-  echo "wip"//getClientCognomNom($idAlbara);
+  echo "wip";//getClientCognomNom($idAlbara);
   echo "</h4>";
   echo "
     <button class=\"btn btn-primary btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">
