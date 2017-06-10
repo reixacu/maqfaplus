@@ -64,7 +64,7 @@
     <?php
     if ($idClient == 0)
     {
-      $sql = "SELECT * FROM `idAlbaraa` WHERE `albarans`.`numero_factura` != '' AND `albarans`.`data_factura` >= '$desde' AND `albarans`.`data_factura` <= '$fins' ORDER BY `albarans`.`id_factura` DESC";
+      $sql = "SELECT * FROM `albarans` WHERE `albarans`.`numero_factura` != '' AND `albarans`.`data_factura` >= '$desde' AND `albarans`.`data_factura` <= '$fins' ORDER BY `albarans`.`id_factura` DESC";
     } else {
       $sql = "SELECT * FROM `albarans` WHERE `albarans`.`numero_factura` != '' AND `albarans`.`data_factura` >= '$desde' AND `albarans`.`data_factura` <= '$fins' AND `albarans`.`id_client_factura` = $idClient ORDER BY `albarans`.`id_factura` DESC";
     }
