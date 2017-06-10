@@ -44,7 +44,7 @@
             <div class="col-lg-12">
                 <table cellpadding="10">
                     <tr>
-                        <td><h1 class="page-header"><i class="fa fa-globe"></i> Selecciona el client del qual vols crear l'albarà</h1></td>
+                        <td><h1 class="page-header"><i class="fa fa-globe"></i> Selecciona el client del qual vols crear el pressupost</h1></td>
                         <td><form class="page-header" action='afegirClient.php'> <button style="margin-top: 5px; margin-left: 15px" type='submit' class="btn btn-primary "><i class="fa fa-user-plus"></i> Afegir un client</button></form></td>
                     </tr>
                 </table>
