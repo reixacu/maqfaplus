@@ -146,7 +146,7 @@ function printModalTotesFactures($idAlbara){
             if ($row["numero_factura"] == "")
             {
                     echo "<tr class=\"warning\">
-                                                      <td><a href='scriptAlbaraNovaFactura.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
                                                       <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -155,7 +155,7 @@ function printModalTotesFactures($idAlbara){
             }
             else if ($row["pagament_realitzat_factura"] == 0){
               echo "<tr class=\"danger\">
-                                                      <td><a href='scriptAlbaraNovaFactura.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
                                                       <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -164,7 +164,7 @@ function printModalTotesFactures($idAlbara){
             }
             else if ($row["pagament_realitzat_factura"] == 1){
               echo "<tr class=\"success\">
-                                                      <td><a href='scriptAlbaraNovaFactura.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
                                                       <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
