@@ -1,7 +1,7 @@
 <?php
 include "mysql.php";
 include "funcions.php";
-$idAlbara = $_GET["id"];
+$idAlbara = $_GET["idAlbara"];
 $result = getAlbaraData($idAlbara);
 $row = $result->fetch_assoc();
 $facturaAntiga = $_GET["facturaAntiga"];
