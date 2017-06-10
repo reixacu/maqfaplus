@@ -70,6 +70,8 @@ function printEstatAlbaraColum($id)
                               </div>
                           </div>
                       </div>
+                      printModalClient($desde, $fins, $idClient);
+                      <!--
                       <a href=\"scriptAlbaraNovaFactura.php?id=". $id ."\">
                           <div class=\"panel-footer\">
                               <span class=\"pull-left\">Associar a una nova factura</span>
@@ -77,6 +79,7 @@ function printEstatAlbaraColum($id)
                               <div class=\"clearfix\"></div>
                           </div>
                       </a>
+                      -->
                   </div>
               </div>
               ";
