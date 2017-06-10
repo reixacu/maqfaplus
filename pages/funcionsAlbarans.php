@@ -139,7 +139,6 @@ function printModalTotesFactures($idAlbara){
     $totalBaseImp = 0;
     $totalIVA=0;
     include "mysql.php";
-    include_once "funcionsFactures.php";
     $sql = "SELECT * FROM `factures` ORDER BY `factures`.`id_factura` DESC";
 
     $result = $conn->query($sql);
