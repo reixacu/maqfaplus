@@ -113,6 +113,7 @@ function printEstatPressupostColum($id)
                           ";
                           #INICI BODY MODAL
                           echo "
+                          <br /><br /><br />
                                   <span class=\"pull-left\">
                                                       <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#modalFactures\">
                                                           <i class=\"fa fa-file-text\" aria-hidden=\"true\"></i> Factura
