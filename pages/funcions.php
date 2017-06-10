@@ -63,10 +63,30 @@ function getFacturaData($idFactura)
     $conn->close();
     return $result;
 }
+function printNumeroFactura($id) {
+    $result = getFacturaData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row["numero_factura"] != 0)
+        {
+          echo $row["numero_factura"];
+        } else {
+          echo $row["id_factura"];
+        }
+    }
+}
 function getAlbaraData($idFactura)
 {
     include "mysql.php";
     $sql = "SELECT * FROM albarans WHERE id_factura=$idFactura;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
+function getPressupostData($idFactura)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM pressupostos WHERE id_factura=$idFactura;";
     $result = $conn->query($sql);
     $conn->close();
     return $result;

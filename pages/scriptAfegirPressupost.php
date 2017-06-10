@@ -8,7 +8,7 @@ $sql = "INSERT INTO `pressupostos` (`id_factura`, `data_factura`, `id_client_fac
 if ($conn->query($sql) === TRUE) {
     echo "
                             <script>
-                            window.location.replace(\"mostrarAlbara.php?id=".getLastPressupostId()."\");
+                              window.location.replace(\"mostrarPressupost.php?id=".getLastPressupostId()."\");
                             </script>
                             ";
 } else {
