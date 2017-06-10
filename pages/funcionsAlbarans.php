@@ -128,7 +128,7 @@ function printModalTotesFactures(){
     if ($result->num_rows > 0) {
         echo "
                           <div class=\"table-responsive\">
-                                <table class=\"table table-striped table-bordered table-hover\" id=\"clients1\">
+                                <table class=\"table table-striped table-bordered table-hover\" id=\"factures1\">
                                     <thead>
                                         <tr>
                                             <th>#</th>
