@@ -71,7 +71,7 @@ function printEstatAlbaraColum($id)
                           </div>
                       </div>
                       ";
-                      printModalClient($id);
+                      printBotoModalClient($id);
                       echo "
                   </div>
               </div>
@@ -83,7 +83,7 @@ function printEstatAlbaraColum($id)
                       <div class=\"modal-content\">
                           <div class=\"modal-header\">
                               <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar Client</h4>
+                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar factures</h4>
                           </div>
                           <div class=\"modal-body\">
                           ";
@@ -205,7 +205,7 @@ function printModalTotesFactures($idAlbara){
     $conn->close();
 }
 
-function printModalClient($idAlbara)
+function printBotoModalClient($idAlbara)
 {
   echo "
   <a data-toggle=\"modal\" data-target=\"#myModal\">
