@@ -114,10 +114,10 @@ function printEstatPressupostColum($id)
                           #INICI BODY MODAL
                           echo "
                                                       <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#modalFactures\">
-                                                          Factura
+                                                          <i class=\"fa fa-file-text\" aria-hidden=\"true\"></i> Factura
                                                       </button>
                                                       <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#modalAlbarans\">
-                                                          Factura
+                                                          <i class=\"fa fa-file-text-o\" aria-hidden=\"true\"></i> Albarà
                                                       </button>
                           ";
                           #FI BODY MODAL
