@@ -125,7 +125,7 @@ function printModalClient($idAlbara)
                                   <i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar factura
                               </button>";*/
 
-                              echo "<a href=\"caca.com\" data-toggle=\"modal\" data-target=\"#myModal\>
+                              echo "<a data-toggle=\"modal\" data-target=\"#myModal\>
                                       <div class=\"panel-footer\">
                                           <span class=\"pull-left\">Associar a una nova factura</span>
                                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
