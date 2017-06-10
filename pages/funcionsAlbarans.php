@@ -143,7 +143,7 @@ function printModalClient($idAlbara)
                                       </div>
                                   </a>
 
-                                  "
+                                  ";
 
                               echo "
                               <!-- Modal -->
