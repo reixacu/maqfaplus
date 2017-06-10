@@ -102,6 +102,29 @@ function printEstatPressupostColum($id)
                   <!-- /.modal-dialog -->
               </div>
               <!-- /.modal -->
+              <div class=\"modal fade\" id=\"modal1\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modal1\" aria-hidden=\"true\">
+                  <div class=\"modal-dialog modal-sm\">
+                      <div class=\"modal-content\">
+                          <div class=\"modal-header\">
+                              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                              <h4 class=\"modal-title\" id=\"myModalLabel\">A què vols associar el pressupost?</h4>
+                          </div>
+                          <div class=\"modal-body\">
+                          ";
+                          #INICI BODY MODAL
+
+                          #FI BODY MODAL
+                          echo "
+                          </div>
+                          <div class=\"modal-footer\">
+                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
+                          </div>
+                      </div>
+                      <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+              </div>
+              <!-- /.modal -->
               ";
         }
         else if ($row["id_factura_pressupost"] != 0)
@@ -233,7 +256,7 @@ function printModalTotesFactures($idPressupost){
 function printBotoModalClient($idPressupost)
 {
   echo "
-  <a data-toggle=\"modal\" data-target=\"#myModal\">
+  <a data-toggle=\"modal\" data-target=\"#modal1\">
       <div class=\"panel-footer\">
           <span class=\"pull-left\">Associar a una factura o albarà</span>
           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
