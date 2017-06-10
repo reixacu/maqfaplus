@@ -69,9 +69,9 @@ function printNumeroFactura($id) {
         $row = $result->fetch_assoc();
         if ($row["numero_factura"] != 0)
         {
-          echo $row["numero_factura"];
+          return $row["numero_factura"];
         } else {
-          echo $row["id_factura"];
+          return $row["id_factura"];
         }
     }
 }
