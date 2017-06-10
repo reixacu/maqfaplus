@@ -80,11 +80,11 @@
                                 // output data of each row
                                 while($row = $result->fetch_assoc()) {
                                     if (!$row["es_empresa_client"]) {
-                                        echo "<tr><td><a href='scriptAfegirAlbara.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
+                                        echo "<tr><td><a href='scriptAfegirPressupost.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
                                     }
                                     else
                                     {
-                                        echo "<tr><td><a href='scriptAfegirAlbara.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
+                                        echo "<tr><td><a href='scriptAfegirPressupost.php?idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td><td>" . $row["poblacio_client"] . "</td></tr>";
                                     }
                                 }
                             } else {

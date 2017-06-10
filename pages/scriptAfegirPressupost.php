@@ -4,7 +4,7 @@ $idClient = $_GET["idClient"];
 
 include "mysql.php";
 include "funcions.php";
-$sql = "INSERT INTO `albarans` (`id_factura`, `data_factura`, `id_client_factura`, `iva_factura`, `base_imposable_factura`, `id_factura_albara`) VALUES (NULL, CURDATE(), '$idClient', '21', '0', '0');";
+$sql = "INSERT INTO `pressupostos` (`id_factura`, `data_factura`, `id_client_factura`, `iva_factura`, `base_imposable_factura`, `id_factura_albara`) VALUES (NULL, CURDATE(), '$idClient', '21', '0', '0');";
 if ($conn->query($sql) === TRUE) {
     echo "
                             <script>
