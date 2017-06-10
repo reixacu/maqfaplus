@@ -62,7 +62,7 @@
                             <div class="row">
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Descripció</h1>
+                                    <h1>DescripciÃ³</h1>
                                     <div class="form-group">
                                         <label>Comentari</label>
                                         <input name="descripcio" class="form-control" placeholder="Breu comentari (opcional)">
