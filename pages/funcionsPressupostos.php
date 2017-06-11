@@ -101,6 +101,30 @@ function printEstatPressupostColum($id)
                   </div>
                   <!-- /.modal-dialog -->
               </div>
+              <!-- Modal -->
+              <div class=\"modal fade\" id=\"modalAlbarans\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+                  <div class=\"modal-dialog modal-lg\">
+                      <div class=\"modal-content\">
+                          <div class=\"modal-header\">
+                              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar albarans</h4>
+                          </div>
+                          <div class=\"modal-body\">
+                          ";
+                          #INICI BODY MODAL
+                            printModalTotsAlbarans($id);
+                          #FI BODY MODAL
+                          echo "
+                          </div>
+                          <div class=\"modal-footer\">
+                              <a type=\"button\" href=\"scriptPressupostNouAlbara.php?idPressupost=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a un nou albarà</a>
+                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
+                          </div>
+                      </div>
+                      <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+              </div>
               <!-- /.modal -->
               <div class=\"modal fade\" id=\"modal1\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modal1\" aria-hidden=\"true\">
                   <div class=\"modal-dialog modal-sm\">
@@ -261,6 +285,62 @@ function printModalTotesFactures($idPressupost){
                                     ";
     } else {
         echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
+function printModalTotsAlbarans($idPressupost){
+    $totalBaseImp = 0;
+    $totalIVA=0;
+    include "mysql.php";
+    $sql = "SELECT * FROM `albarans` ORDER BY `albarans`.`id_factura` DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table table-striped table-bordered table-hover\" id=\"factures2\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Estat</th>
+                                            <th>Client</th>
+                                            <th>Data albara</th>
+                                            <th>Total IVA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+            $totalBaseImp += $row["base_imposable_factura"];
+            $totalIVA += $row["total_factura"];
+            if ($row["id_factura_albara"] == "0")
+            {
+                    echo "<tr class=\"warning\">
+                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> No facturat</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+            else{
+              echo "<tr class=\"success\">
+                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i> Facturat</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap albara";
     }
     $conn->close();
 }
