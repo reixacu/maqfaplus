@@ -112,7 +112,7 @@ function printEstatPressupostColum($id)
                           <div class=\"modal-body\">
                           ";
                           #INICI BODY MODAL
-                            //printModalTotsAlbarans($id);
+                            printModalTotsAlbarans($id);
                           #FI BODY MODAL
                           echo "
                           </div>
@@ -285,6 +285,62 @@ function printModalTotesFactures($idPressupost){
                                     ";
     } else {
         echo "No s'ha trobat cap factura";
+    }
+    $conn->close();
+}
+
+function printModalTotsAlbarans($idPressupost){
+    $totalBaseImp = 0;
+    $totalIVA=0;
+    include "mysql.php";
+    $sql = "SELECT * FROM `albarans` WHERE `albarans`.`data_factura` >= '$desde' AND `albarans`.`data_factura` <= '$fins' AND `albarans`.`id_client_factura` = $idClient ORDER BY `albarans`.`id_factura` DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table table-striped table-bordered table-hover\" id=\"factures1\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Estat</th>
+                                            <th>Client</th>
+                                            <th>Data albara</th>
+                                            <th>Total IVA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+            $totalBaseImp += $row["base_imposable_factura"];
+            $totalIVA += $row["total_factura"];
+            if ($row["id_factura_albara"] == "0")
+            {
+                    echo "<tr class=\"warning\">
+                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+            else{
+              echo "<tr class=\"danger\">
+                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["numero_factura"] . "</td>
+                                                      <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap albara";
     }
     $conn->close();
 }
