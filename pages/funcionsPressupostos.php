@@ -318,16 +318,16 @@ function printModalTotsAlbarans($idPressupost){
             {
                     echo "<tr class=\"warning\">
                                                       <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
-                                                      <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
+                                                      <td><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> No facturat</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                   </tr>";
             }
             else{
-              echo "<tr class=\"danger\">
-                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["numero_factura"] . "</td>
-                                                      <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
+              echo "<tr class=\"success\">
+                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i> Facturat</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
