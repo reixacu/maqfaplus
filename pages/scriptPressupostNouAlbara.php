@@ -49,7 +49,7 @@ if ($conn->query($sql) === TRUE) {
 
     echo "
                             <script>
-                            window.location.replace(\"mostrarFactura.php?id=".getLastAlbaraId()."\");
+                            window.location.replace(\"mostrarAlbara.php?id=".getLastAlbaraId()."\");
                             </script>
                             ";
 
