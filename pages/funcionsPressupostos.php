@@ -117,7 +117,7 @@ function printEstatPressupostColum($id)
                           echo "
                           </div>
                           <div class=\"modal-footer\">
-                              <a type=\"button\" href=\"scriptPressupostNouAlbara.php?idPressupost=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a una nova factura</a>
+                              <a type=\"button\" href=\"scriptPressupostNouAlbara.php?idPressupost=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a un nou albarà</a>
                               <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
                           </div>
                       </div>
