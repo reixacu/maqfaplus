@@ -74,8 +74,8 @@
             <div class=\"col-lg-12\">
                 <table cellpadding=\"10\">
                     <tr>
-                        <td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Tots els albarans</h1></td>
-                        <td><form class=\"page-header\" action='afegirAlbara.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir un albara</button></form></td>
+                        <td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Tots els pressupostos</h1></td>
+                        <td><form class=\"page-header\" action='afegirPressupost.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir un pressupost</button></form></td>
                     </tr>
                 </table>
             </div>
