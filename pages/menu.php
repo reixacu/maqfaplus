@@ -138,7 +138,7 @@ include "funcions.php";
 function imprimirMenuTreballadors()
 {
   include "mysql.php";
-  $sql = "SELECT * FROM `treballadors`";
+  $sql = "SELECT * FROM `treballadors` WHERE `amagar_treballador` = 0";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       // output data of each row
