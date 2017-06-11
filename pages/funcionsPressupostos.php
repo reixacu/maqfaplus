@@ -293,7 +293,7 @@ function printModalTotsAlbarans($idPressupost){
     $totalBaseImp = 0;
     $totalIVA=0;
     include "mysql.php";
-    $sql = "SELECT * FROM `albarans` WHERE `albarans`.`data_factura` >= '$desde' AND `albarans`.`data_factura` <= '$fins' AND `albarans`.`id_client_factura` = $idClient ORDER BY `albarans`.`id_factura` DESC";
+    $sql = "SELECT * FROM `albarans`";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
