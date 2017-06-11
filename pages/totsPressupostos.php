@@ -264,7 +264,7 @@
 function printFiltreDataForm($desde, $fins, $idClient)
 {
   echo "
-  <form action=\"totsAlbarans.php\" method=\"get\">
+  <form action=\"totsPressupostos.php\" method=\"get\">
     <input type=\"hidden\" value=\"".$idClient."\" name=\"idClient\">
     <input type=\"date\" name=\"desde\" value=\"".$desde."\"> fins
     <input type=\"date\" name=\"fins\" value=\"".$fins."\">
@@ -326,11 +326,11 @@ else {
                                                   // output data of each row
                                                   while($row = $result->fetch_assoc()) {
                                                       if (!$row["es_empresa_client"]) {
-                                                          echo "<tr><td><a href='totsAlbarans.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td></tr>";
+                                                          echo "<tr><td><a href='totsPressupostos.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td></tr>";
                                                       }
                                                       else
                                                       {
-                                                          echo "<tr><td><a href='totsAlbarans.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td></tr>";
+                                                          echo "<tr><td><a href='totsPressupostos.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td></tr>";
                                                       }
                                                   }
                                               } else {
