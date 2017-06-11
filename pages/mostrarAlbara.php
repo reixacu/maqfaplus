@@ -199,6 +199,46 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#factures2').DataTable({
+            responsive: true,
+            order: [[ 0, "desc" ]],
+            language: {
+                processing:   "Processant...",
+                lengthMenu:   "Mostra _MENU_ registres",
+                zeroRecords:  "No s'han trobat registres.",
+                info:         "Mostrant de _START_ a _END_ de _TOTAL_ registres",
+                infoEmpty:    "Mostrant de 0 a 0 de 0 registres",
+                tnfoFiltered: "(filtrat de _MAX_ total registres)",
+                infoPostFix:  "",
+                search:       "Filtrar: ",
+                url:          "",
+                paginate: {
+                    first:    "Primer",
+                    previous: "Anterior",
+                    next:     "Següent",
+                    last:     "Últim"
+                }
+            },
+            "fnDrawCallback": function () {
+
+                $('#clients1 tbody tr').click(function () {
+
+                    // get position of the selected row
+                    var position = cell.fnGetPosition(this);
+
+                    // value of the first column (can be hidden)
+                    var id = table.fnGetData(position)[0];
+
+                    // redirect
+                    document.location.href = "?q=node/6?id=" + id;
+                });
+
+            }
+        });
+    });
+</script>
 
 
 </body>

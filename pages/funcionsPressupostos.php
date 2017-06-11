@@ -293,13 +293,13 @@ function printModalTotsAlbarans($idPressupost){
     $totalBaseImp = 0;
     $totalIVA=0;
     include "mysql.php";
-    $sql = "SELECT * FROM `albarans`";
+    $sql = "SELECT * FROM `albarans` ORDER BY `albarans`.`id_factura` DESC";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo "
                           <div class=\"table-responsive\">
-                                <table class=\"table table-striped table-bordered table-hover\" id=\"factures1\">
+                                <table class=\"table table-striped table-bordered table-hover\" id=\"factures2\">
                                     <thead>
                                         <tr>
                                             <th>#</th>
