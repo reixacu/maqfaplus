@@ -101,6 +101,30 @@ function printEstatPressupostColum($id)
                   </div>
                   <!-- /.modal-dialog -->
               </div>
+              <!-- Modal -->
+              <div class=\"modal fade\" id=\"modalAlbarans\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+                  <div class=\"modal-dialog modal-lg\">
+                      <div class=\"modal-content\">
+                          <div class=\"modal-header\">
+                              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar albarans</h4>
+                          </div>
+                          <div class=\"modal-body\">
+                          ";
+                          #INICI BODY MODAL
+                            printModalTotsAlbarans($id);
+                          #FI BODY MODAL
+                          echo "
+                          </div>
+                          <div class=\"modal-footer\">
+                              <a type=\"button\" href=\"scriptPressupostNouAlbara.php?idPressupost=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a una nova factura</a>
+                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
+                          </div>
+                      </div>
+                      <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+              </div>
               <!-- /.modal -->
               <div class=\"modal fade\" id=\"modal1\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modal1\" aria-hidden=\"true\">
                   <div class=\"modal-dialog modal-sm\">
