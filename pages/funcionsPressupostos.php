@@ -112,7 +112,7 @@ function printEstatPressupostColum($id)
                           <div class=\"modal-body\">
                           ";
                           #INICI BODY MODAL
-                            printModalTotsAlbarans($id);
+                            //printModalTotsAlbarans($id);
                           #FI BODY MODAL
                           echo "
                           </div>
