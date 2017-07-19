@@ -36,57 +36,43 @@
 <body>
 
 <div id="wrapper">
-
     <?php
+    include "funcionsAlbarans.php";
     include "menu.php";
-    $idFeina = $_GET["idFeina"];
-	$idClient = $_GET["idClient"];
     ?>
-
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header"><i class="fa fa-pencil" aria-hidden="true"></i> Modificar feina (<?php echo getClientCognomNom($idClient); ?>)</h1>
+    <?php
+    $sql = "SELECT * FROM `albarans` ORDER BY `albarans`.`id_factura` DESC ";
+    echo "
+    <div id=\"page-wrapper\">
+        <div class=\"row\">
+            <div class=\"col-lg-12\">
+                <table cellpadding=\"10\">
+                    <tr>
+                        <td><h1 class=\"page-header\"><i class=\"fa fa-money\"></i> Albarans (En procés)</h1></td>
+                        <td><form class=\"page-header\" action='afegirAlbara.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir un albarà</button></form></td>
+                    </tr>
+                </table>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Formulari modificar feina
+        <div class=\"row\">
+            <div class=\"col-lg-12\">
+                <div class=\"panel panel-primary\">
+                    <div class=\"panel-heading\">
+                        Totes les factures
                     </div>
-                    <div class="panel-body">
-                        <form role="form" action="scriptModificarDescripcioFeina.php" method="post">
-                            <div class="row">
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                    <h1>Descripció</h1>
-                                    <div class="form-group">
-                                        <label>Comentari</label>
-                                        <input name="descripcio" class="form-control" placeholder="Breu comentari (opcional)">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Modificar feina</button>
-                                    <button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>
-                                    <input type="hidden" name="idFeina" value="<?php echo $idFeina; ?>">
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </form>
-
+                    <!-- /.panel-heading -->
+                    <div class=\"panel-body\">
+                        ";
+                        mostrarBorradorsAlbarans($sql);
+                    echo "
                     </div>
-                    <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
             </div>
-            <!-- /.col-lg-12 -->
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /#page-wrapper -->
-
+    </div>";
+    ?>
 </div>
 <!-- /#wrapper -->
 

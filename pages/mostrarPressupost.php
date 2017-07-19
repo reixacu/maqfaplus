@@ -42,14 +42,14 @@
     <?php
     include "menu.php";
     include_once "funcionsHores.php";
-    include_once "funcionsAlbarans.php";
+    include_once "funcionsPressupostos.php";
     include_once "funcionsFeines.php";
     ?>
     <?php
     if ($_GET["id"] != NULL)
     {
         $id = $_GET["id"];
-        $result = getAlbaraData($id);
+        $result = getPressupostData($id);
         echo '<div id="page-wrapper">';
         if ($result->num_rows > 0) {
             // output data of each row
@@ -59,8 +59,8 @@
                 <div class=\"col-lg-12\">
                     <table style='margin-top: 20px;'>
                         <tr>
-                            <td><form action='totsAlbarans.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tots els albarans</button></form></td>
-                            <td><form action='generarAlbaraPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir albarà</button></form>
+                            <td><form action='totsPressupostos.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tots els presspostos</button></form></td>
+                            <td><form action='generarPressupostPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir pressupost</button></form>
                         </tr>
                     </table>
                 </div>
@@ -69,14 +69,14 @@
             <!-- /.row -->
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <h1 class=\"page-header\"><i class=\"fa fa-file-text-o\" aria-hidden=\"true\"></i> Albarà #". $row["id_factura"] . "</h1>
+                    <h1 class=\"page-header\"><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i> Pressupost #". $row["id_factura"] . "</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class=\"row\">
                 ";
-            printEstatAlbaraColum($id);
+            printEstatPressupostColum($id);
             echo "
                 <div class=\"col-lg-6\">
                     <div class=\"panel panel-default\">
@@ -98,20 +98,20 @@
                 <!-- /.row -->
                 ";
 
-                printRowDetallsAlbara($id);
+                printRowDetallsPressupost($id);
 
             echo "
               <div class=\"row\">
                 <div class=\"col-lg-12\">
                     <div class=\"panel panel-default\">
                         <div class=\"panel-heading\">
-                            Detalls de l'albarà
+                            Detalls del pressupost
                         </div>
                         <!-- /.panel-heading -->
                         <div class=\"panel-body\">
-                            <form action='scriptAfegirLiniaAlbara.php' method='get'><input type=\"hidden\" name=\"idFactura\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_factura"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-plus-square\"></i> Afegir línia</button></form><br />
+                            <form action='scriptAfegirLiniaPressupost.php' method='get'><input type=\"hidden\" name=\"idFactura\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_factura"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-plus-square\"></i> Afegir línia</button></form><br />
                             <h3>Productes</h3>";
-                            printTaulaLiniesAlbara($id);
+                            printTaulaLiniesPressupost($id);
             echo "
                         </div>
                         <!-- /.panel-body -->
@@ -123,7 +123,7 @@
             <!-- /.row -->
             ";
         } else {
-            echo "No s'ha trobat l'albarà especificat'";
+            echo "No s'ha trobat el pressupost especificat'";
         }
 
         echo "</div>";
@@ -132,7 +132,7 @@
     {
         echo "
         <div id=\"page-wrapper\">
-        <h1>Error, no s'ha seleccionat cap albarà.</h1>
+        <h1>Error, no s'ha seleccionat cap pressupost.</h1>
         </div>";
     }
 
@@ -199,7 +199,46 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#factures2').DataTable({
+            responsive: true,
+            order: [[ 0, "desc" ]],
+            language: {
+                processing:   "Processant...",
+                lengthMenu:   "Mostra _MENU_ registres",
+                zeroRecords:  "No s'han trobat registres.",
+                info:         "Mostrant de _START_ a _END_ de _TOTAL_ registres",
+                infoEmpty:    "Mostrant de 0 a 0 de 0 registres",
+                tnfoFiltered: "(filtrat de _MAX_ total registres)",
+                infoPostFix:  "",
+                search:       "Filtrar: ",
+                url:          "",
+                paginate: {
+                    first:    "Primer",
+                    previous: "Anterior",
+                    next:     "Següent",
+                    last:     "Últim"
+                }
+            },
+            "fnDrawCallback": function () {
 
+                $('#clients1 tbody tr').click(function () {
+
+                    // get position of the selected row
+                    var position = cell.fnGetPosition(this);
+
+                    // value of the first column (can be hidden)
+                    var id = table.fnGetData(position)[0];
+
+                    // redirect
+                    document.location.href = "?q=node/6?id=" + id;
+                });
+
+            }
+        });
+    });
+</script>
 
 
 </body>

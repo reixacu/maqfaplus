@@ -1,8 +1,8 @@
 <?php
 include "mysql.php";
 include "funcions.php";
-$idAlbara = $_GET["idAlbara"];
-$result = getAlbaraData($idAlbara);
+$idPressupost = $_GET["idPressupost"];
+$result = getPressupostData($idPressupost);
 $row = $result->fetch_assoc();
 
 
@@ -12,11 +12,11 @@ $idClient = $row["id_client_factura"];
 
 $sql = "INSERT INTO `factures` (`id_factura`, `numero_factura`, `data_factura`, `data_venciment_factura`, `pagament_realitzat_factura`, `comentari_factura`, `id_client_factura`, `iva_factura`, `base_imposable_factura`) VALUES (NULL, '', '2000-01-01', '2000-01-01', '0', '', '$idClient', '21', '0');";
 if ($conn->query($sql) === TRUE) {
-  $resultDadesFactura = getLiniesAlbaraData($idAlbara);
-  $quantitatElements = getNumRowsDetallsAlbara($idAlbara);
+  $resultDadesFactura = getLiniesPressupostData($idPressupost);
+  $quantitatElements = getNumRowsDetallsPressupost($idPressupost);
   include "mysql.php";
-  $AlbaraNum = "Albarà Num. " . $row["id_factura"];
-  $sql111 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".getLastFacturaId().", '".$AlbaraNum."', 0, 0)";
+  $PressupostNum = "Pressupost Num. " . $row["id_factura"];
+  $sql111 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".getLastFacturaId().", '".$PressupostNum."', 0, 0)";
 
   if ($conn->query($sql111) === TRUE) {
   } else {
@@ -37,9 +37,9 @@ if ($conn->query($sql) === TRUE) {
 
     include "mysql.php";
     $sql = "
-        UPDATE `albarans`
-          SET `id_factura_albara` =  ".getLastFacturaId()."
-          WHERE `albarans`.`id_factura` = '$idAlbara';
+        UPDATE `pressupostos`
+          SET `id_factura_pressupost` =  ".getLastFacturaId()."
+          WHERE `pressupostos`.`id_factura` = '$idPressupost';
           ";
           if ($conn->query($sql) === TRUE) {
           } else {

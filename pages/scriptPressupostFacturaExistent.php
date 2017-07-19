@@ -1,19 +1,19 @@
 <?php
 include "mysql.php";
 include "funcions.php";
-$idAlbara = $_GET["idAlbara"];
-$result = getAlbaraData($idAlbara);
+$idPressupost = $_GET["idPressupost"];
+$result = getPressupostData($idPressupost);
 $row = $result->fetch_assoc();
 $facturaAntiga = $_GET["facturaAntiga"];
 
 $idClient = $row["id_client_factura"];
 //$descripcio = $_POST["descripcio"];
 
-$resultDadesFactura = getLiniesAlbaraData($idAlbara);
-$quantitatElements = getNumRowsDetallsAlbara($idAlbara);
+$resultDadesFactura = getLiniesPressupostData($idPressupost);
+$quantitatElements = getNumRowsDetallsPressupost($idPressupost);
 include "mysql.php";
-$AlbaraNum = "Albarà Num. " . $row["id_factura"];
-$sql111 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".$facturaAntiga.", '".$AlbaraNum."', 0, 0)";
+$PressupostNum = "Pressupost Num. " . $row["id_factura"];
+$sql111 = "INSERT INTO `detalls_factures` (`id_df`, `id_factura_df`, `descripcio_df`, `unitats_df`, `preu_unitat_df`) VALUES (NULL, ".$facturaAntiga.", '".$PressupostNum."', 0, 0)";
 
 if ($conn->query($sql111) === TRUE) {
 } else {
@@ -34,9 +34,9 @@ for($i = 0; $i< $quantitatElements; $i++){
 
   include "mysql.php";
   $sql = "
-      UPDATE `albarans`
-        SET `id_factura_albara` =  ".$facturaAntiga."
-        WHERE `albarans`.`id_factura` = '$idAlbara';
+      UPDATE `pressupostos`
+        SET `id_factura_pressupost` =  ".$facturaAntiga."
+        WHERE `pressupostos`.`id_factura` = '$idPressupost';
         ";
         if ($conn->query($sql) === TRUE) {
         } else {

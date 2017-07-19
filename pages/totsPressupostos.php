@@ -64,9 +64,9 @@
     <?php
     if ($idClient == 0)
     {
-      $sql = "SELECT * FROM `albarans` WHERE `albarans`.`data_factura` >= '$desde' AND `albarans`.`data_factura` <= '$fins' ORDER BY `albarans`.`id_factura` DESC";
+      $sql = "SELECT * FROM `pressupostos` WHERE `pressupostos`.`data_factura` >= '$desde' AND `pressupostos`.`data_factura` <= '$fins' ORDER BY `pressupostos`.`id_factura` DESC";
     } else {
-      $sql = "SELECT * FROM `albarans` WHERE `albarans`.`data_factura` >= '$desde' AND `albarans`.`data_factura` <= '$fins' AND `albarans`.`id_client_factura` = $idClient ORDER BY `albarans`.`id_factura` DESC";
+      $sql = "SELECT * FROM `pressupostos` WHERE `pressupostos`.`data_factura` >= '$desde' AND `pressupostos`.`data_factura` <= '$fins' AND `pressupostos`.`id_client_factura` = $idClient ORDER BY `pressupostos`.`id_factura` DESC";
     }
     echo "
     <div id=\"page-wrapper\">
@@ -74,8 +74,8 @@
             <div class=\"col-lg-12\">
                 <table cellpadding=\"10\">
                     <tr>
-                        <td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Tots els albarans</h1></td>
-                        <td><form class=\"page-header\" action='afegirAlbara.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir un albara</button></form></td>
+                        <td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Tots els pressupostos</h1></td>
+                        <td><form class=\"page-header\" action='afegirPressupost.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir un pressupost</button></form></td>
                     </tr>
                 </table>
             </div>
@@ -132,7 +132,7 @@
                                                                 <th>#</th>
                                                                 <th>Estat</th>
                                                                 <th>Client</th>
-                                                                <th>Data albara</th>
+                                                                <th>Data Pressupost</th>
                                                                 <th>Base imp.</th>
                                                                 <th>Total IVA</th>
                                                             </tr>
@@ -142,10 +142,10 @@
                             while($row = $result->fetch_assoc()) {
                                 $totalBaseImp += $row["base_imposable_factura"];
                                 $totalIVA += $row["total_factura"];
-                                if ($row["id_factura_albara"] == "0")
+                                if($row["id_albara_pressupost"] == 0 && $row["id_factura_pressupost"] == 0 )
                                 {
                                         echo "<tr class=\"warning\">
-                                                                                <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                                                <td><a href='mostrarPressupost.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
                                                                                 <td><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> No facturat</td>
                                                                                 <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                                 <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -153,10 +153,21 @@
                                                                                 <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
                                                                             </tr>";
                                 }
+                                else if ($row["id_factura_pressupost"] != 0)
+                                {
+                                  echo "<tr class=\"success\">
+                                                                          <td><a href='mostrarPressupost.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                                        <td><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i> Facturat</td>
+                                                                          <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                                          <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                                          <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
+                                                                          <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                                      </tr>";
+                                }
                                 else {
                                   echo "<tr class=\"success\">
-                                                                          <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
-                                                                        <td><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i> Facturat</td>
+                                                                          <td><a href='mostrarPressupost.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                                        <td><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i> Albarà assoc.</td>
                                                                           <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                                           <td>". getDataDMY($row["data_factura"]) . "</td>
                                                                           <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
@@ -253,7 +264,7 @@
 function printFiltreDataForm($desde, $fins, $idClient)
 {
   echo "
-  <form action=\"totsAlbarans.php\" method=\"get\">
+  <form action=\"totsPressupostos.php\" method=\"get\">
     <input type=\"hidden\" value=\"".$idClient."\" name=\"idClient\">
     <input type=\"date\" name=\"desde\" value=\"".$desde."\"> fins
     <input type=\"date\" name=\"fins\" value=\"".$fins."\">
@@ -315,11 +326,11 @@ else {
                                                   // output data of each row
                                                   while($row = $result->fetch_assoc()) {
                                                       if (!$row["es_empresa_client"]) {
-                                                          echo "<tr><td><a href='totsAlbarans.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td></tr>";
+                                                          echo "<tr><td><a href='totsPressupostos.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-user\"></i> Particular</td><td>" . $row["cognom_client"] . "</td><td>" . $row["nom_client"] . "</td></tr>";
                                                       }
                                                       else
                                                       {
-                                                          echo "<tr><td><a href='totsAlbarans.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td></tr>";
+                                                          echo "<tr><td><a href='totsPressupostos.php?desde=".$desde."&fins=".$fins."&idClient=" . $row["id_client"] . "'>" . $row["id_client"] . "</a></td><td>" . $row["nif_client"] . "</td><td><i class=\"fa fa-industry\"></i> Empresa</td><td>" . $row["rao_social_client"] . "</td><td>" . $row["nom_comercial_client"] . "</td></tr>";
                                                       }
                                                   }
                                               } else {

@@ -107,6 +107,18 @@ include "funcions.php";
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-lightbulb-o fa-fw"></i> Pressupostos<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="afegirPressupost.php"><i class="fa fa-pencil"></i> Crear Pressupost</a>
+                        </li>
+                        <li>
+                            <a href="totsPressupostos.php"><i class="fa fa-list"></i></i> Tots els pressupostos</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <?php imprimirMenuTreballadors();?>
@@ -126,7 +138,7 @@ include "funcions.php";
 function imprimirMenuTreballadors()
 {
   include "mysql.php";
-  $sql = "SELECT * FROM `treballadors`";
+  $sql = "SELECT * FROM `treballadors` WHERE `amagar_treballador` = 0";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       // output data of each row

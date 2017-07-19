@@ -1,9 +1,9 @@
 <?php
 
-function printTaulaLiniesAlbara($id) {
+function printTaulaLiniesPressupost($id) {
     include "mysql.php";
     //mysql_query("SET NAMES utf8;");
-    $sql = "SELECT * FROM `detalls_albarans` WHERE `id_factura_df` = $id";
+    $sql = "SELECT * FROM `detalls_pressupostos` WHERE `id_factura_df` = $id";
     $result = $conn->query($sql);
 
 
@@ -23,7 +23,7 @@ function printTaulaLiniesAlbara($id) {
                                     <tbody>";
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<tr>                <form action='scriptModificarLiniaAlbara.php' method='post'>
+            echo "<tr>                <form action='scriptModificarLiniaPressupost.php' method='post'>
                                             <input type=\"hidden\" name=\"idDf\" value=" . $row["id_df"] .">
                                             <input type=\"hidden\" name=\"idFactura\" value=" . $row["id_factura_df"] .">
                                             <th><input name=\"descripcioDf\" class=\"form-control\" value=\"" . $row["descripcio_df"] ."\"></th>
@@ -32,7 +32,7 @@ function printTaulaLiniesAlbara($id) {
                                             <th>". $row["preu_unitat_df"]/ 100 * $row["unitats_df"] / 100 ."</th>
                                             <th><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-floppy-o\"></i></button></th>
                                         </form>
-                                            <th><form action='scriptEliminarLiniaAlbara.php' method='post'><input type=\"hidden\" name=\"idFactura\" value=\"" . $row["id_factura_df"] ."\">
+                                            <th><form action='scriptEliminarLiniaPressupost.php' method='post'><input type=\"hidden\" name=\"idFactura\" value=\"" . $row["id_factura_df"] ."\">
                                             <input type=\"hidden\" name=\"idDf\" value=" . $row["id_df"] ."><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i></button></form></th>
                                         </tr>";
         }
@@ -47,13 +47,13 @@ function printTaulaLiniesAlbara($id) {
 }
 
 
-function printEstatAlbaraColum($id)
+function printEstatPressupostColum($id)
 {
-    $result = getAlbaraData($id);
+    $result = getPressupostData($id);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        if($row["id_factura_albara"] == 0)
+        if($row["id_albara_pressupost"] == 0 && $row["id_factura_pressupost"] == 0 )
         {
               echo "
               <div class=\"col-lg-6 col-md-6\">
@@ -66,7 +66,7 @@ function printEstatAlbaraColum($id)
                               </div>
                               <div class=\"col-xs-9 text-right\">
                                   <div class=\"huge\">No facturat</div>
-                                  <div>No s'ha creat factura de l'albarà</div>
+                                  <div>No s'ha creat factura ni albarà del pressupost</div>
                               </div>
                           </div>
                       </div>
@@ -78,7 +78,7 @@ function printEstatAlbaraColum($id)
               ";
               echo "
               <!-- Modal -->
-              <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+              <div class=\"modal fade\" id=\"modalFactures\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
                   <div class=\"modal-dialog modal-lg\">
                       <div class=\"modal-content\">
                           <div class=\"modal-header\">
@@ -93,7 +93,66 @@ function printEstatAlbaraColum($id)
                           echo "
                           </div>
                           <div class=\"modal-footer\">
-                              <a type=\"button\" href=\"scriptAlbaraNovaFactura.php?idAlbara=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a una nova factura</a>
+                              <a type=\"button\" href=\"scriptPressupostNovaFactura.php?idPressupost=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a una nova factura</a>
+                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
+                          </div>
+                      </div>
+                      <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+              </div>
+              <!-- Modal -->
+              <div class=\"modal fade\" id=\"modalAlbarans\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+                  <div class=\"modal-dialog modal-lg\">
+                      <div class=\"modal-content\">
+                          <div class=\"modal-header\">
+                              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                              <h4 class=\"modal-title\" id=\"myModalLabel\">Filtrar albarans</h4>
+                          </div>
+                          <div class=\"modal-body\">
+                          ";
+                          #INICI BODY MODAL
+                            printModalTotsAlbarans($id);
+                          #FI BODY MODAL
+                          echo "
+                          </div>
+                          <div class=\"modal-footer\">
+                              <a type=\"button\" href=\"scriptPressupostNouAlbara.php?idPressupost=". $id ."\" class=\"btn btn-success\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Associar a un nou albarà</a>
+                              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
+                          </div>
+                      </div>
+                      <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+              </div>
+              <!-- /.modal -->
+              <div class=\"modal fade\" id=\"modal1\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modal1\" aria-hidden=\"true\">
+                  <div class=\"modal-dialog modal-sm\">
+                      <div class=\"modal-content\">
+                          <div class=\"modal-header\">
+                              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                              <h4 class=\"modal-title\" id=\"myModalLabel\">A què vols associar el pressupost?</h4>
+                          </div>
+                          <div class=\"modal-body\">
+                          ";
+                          #INICI BODY MODAL
+                          echo "
+                                  <span class=\"pull-left\">
+                                                      <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#modalFactures\">
+                                                          <i class=\"fa fa-file-text\" aria-hidden=\"true\"></i> Factura
+                                                      </button>
+                                  </span>
+                                  <span class=\"pull-right\">
+                                                      <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#modalAlbarans\">
+                                                          <i class=\"fa fa-file-text-o\" aria-hidden=\"true\"></i> Albarà
+                                                      </button>
+                                   </span>
+                                   <br /><br />
+                          ";
+                          #FI BODY MODAL
+                          echo "
+                          </div>
+                          <div class=\"modal-footer\">
                               <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Tancar</button>
                           </div>
                       </div>
@@ -103,6 +162,34 @@ function printEstatAlbaraColum($id)
               </div>
               <!-- /.modal -->
               ";
+        }
+        else if ($row["id_factura_pressupost"] != 0)
+        {
+          echo "
+          <div class=\"col-lg-6 col-md-6\">
+              <div class=\"panel panel-green\">
+                  <!-- <div class=\"panel panel-primary\"> -->
+                  <div class=\"panel-heading\">
+                      <div class=\"row\">
+                          <div class=\"col-xs-3\">
+                              <i class=\"fa fa-check-circle fa-5x\"></i>
+                          </div>
+                          <div class=\"col-xs-9 text-right\">
+                              <div class=\"huge\">Factura nº ". printNumeroFactura($row["id_factura_pressupost"]) ."</div>
+                              <div>Ja s'ha creat una factura d'aquest pressupost</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href=\"mostrarFactura.php?id=". $row["id_factura_pressupost"] ."\">
+                      <div class=\"panel-footer\">
+                          <span class=\"pull-left\">Veure la factura</span>
+                          <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
+                          <div class=\"clearfix\"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          ";
         }
         else
         {
@@ -116,14 +203,14 @@ function printEstatAlbaraColum($id)
                               <i class=\"fa fa-check-circle fa-5x\"></i>
                           </div>
                           <div class=\"col-xs-9 text-right\">
-                              <div class=\"huge\">Factura nº ". $row["id_factura_albara"] ."</div>
-                              <div>Ja s'ha creat una factura d'aquest albarà</div>
+                              <div class=\"huge\">Albarà nº ". $row["id_albara_pressupost"] ."</div>
+                              <div>Ja s'ha creat un albarà d'aquest pressupost</div>
                           </div>
                       </div>
                   </div>
-                  <a href=\"mostrarFactura.php?id=". $row["id_factura_albara"] ."\">
+                  <a href=\"mostrarFactura.php?id=". $row["id_albara_pressupost"] ."\">
                       <div class=\"panel-footer\">
-                          <span class=\"pull-left\">Veure la factura</span>
+                          <span class=\"pull-left\">Veure l'albarà'</span>
                           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
                           <div class=\"clearfix\"></div>
                       </div>
@@ -135,7 +222,7 @@ function printEstatAlbaraColum($id)
     }
 }
 
-function printModalTotesFactures($idAlbara){
+function printModalTotesFactures($idPressupost){
     $totalBaseImp = 0;
     $totalIVA=0;
     include "mysql.php";
@@ -163,7 +250,7 @@ function printModalTotesFactures($idAlbara){
             if ($row["numero_factura"] == "")
             {
                     echo "<tr class=\"warning\">
-                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["id_factura"] . "</td>
+                                                      <td><a href='scriptPressupostFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
                                                       <td><i class=\"fa fa-eraser\" aria-hidden=\"true\"></i> Borrador</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -172,7 +259,7 @@ function printModalTotesFactures($idAlbara){
             }
             else if ($row["pagament_realitzat_factura"] == 0){
               echo "<tr class=\"danger\">
-                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["numero_factura"] . "</td>
+                                                      <td><a href='scriptPressupostFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["numero_factura"] . "</td>
                                                       <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Pendent de cobrament</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -181,7 +268,7 @@ function printModalTotesFactures($idAlbara){
             }
             else if ($row["pagament_realitzat_factura"] == 1){
               echo "<tr class=\"success\">
-                                                      <td><a href='scriptAlbaraFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idAlbara=".$idAlbara."'>". $row["numero_factura"] . "</td>
+                                                      <td><a href='scriptPressupostFacturaExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["numero_factura"] . "</td>
                                                       <td><i class=\"fa fa-money\" aria-hidden=\"true\"></i> Cobrada</td>
                                                       <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
@@ -202,12 +289,68 @@ function printModalTotesFactures($idAlbara){
     $conn->close();
 }
 
-function printBotoModalClient($idAlbara)
+function printModalTotsAlbarans($idPressupost){
+    $totalBaseImp = 0;
+    $totalIVA=0;
+    include "mysql.php";
+    $sql = "SELECT * FROM `albarans` ORDER BY `albarans`.`id_factura` DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table table-striped table-bordered table-hover\" id=\"factures2\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Estat</th>
+                                            <th>Client</th>
+                                            <th>Data albara</th>
+                                            <th>Total IVA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+            $totalBaseImp += $row["base_imposable_factura"];
+            $totalIVA += $row["total_factura"];
+            if ($row["id_factura_albara"] == "0")
+            {
+                    echo "<tr class=\"warning\">
+                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> No facturat</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+            else{
+              echo "<tr class=\"success\">
+                                                      <td><a href='scriptPressupostAlbaraExistent.php?facturaAntiga=".$row["id_factura"]."&idPressupost=".$idPressupost."'>". $row["id_factura"] . "</td>
+                                                      <td><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i> Facturat</td>
+                                                      <td>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
+                                                      <td>". getDataDMY($row["data_factura"]) . "</td>
+                                                      <td>".  number_format($row["total_factura"] / 100,2) . "€</td>
+                                                  </tr>";
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No s'ha trobat cap albara";
+    }
+    $conn->close();
+}
+
+function printBotoModalClient($idPressupost)
 {
   echo "
-  <a data-toggle=\"modal\" data-target=\"#myModal\">
+  <a data-toggle=\"modal\" data-target=\"#modal1\">
       <div class=\"panel-footer\">
-          <span class=\"pull-left\">Associar a una factura</span>
+          <span class=\"pull-left\">Associar a una factura o albarà</span>
           <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
           <div class=\"clearfix\"></div>
       </div>
@@ -216,8 +359,8 @@ function printBotoModalClient($idAlbara)
 }
 
 
-function printRowDetallsAlbara($idFactura){
-  $result = getAlbaraData($idFactura);
+function printRowDetallsPressupost($idFactura){
+  $result = getPressupostData($idFactura);
   if ($result->num_rows > 0) {
       // output data of each row
       $row = $result->fetch_assoc();
@@ -229,7 +372,7 @@ function printRowDetallsAlbara($idFactura){
               </div>
               <div class=\"panel-body\">
                 <div class=\"row\">
-                  <form role=\"form\" action=\"scriptCanviarDataAlbara.php\" method=\"post\">
+                  <form role=\"form\" action=\"scriptCanviarDataPressupost.php\" method=\"post\">
                     <div class=\"col-lg-4\">
                       <input name=\"dataFactura\" type=\"date\" class=\"form-control\" value=\"".$row["data_factura"]."\">
                     </div>
@@ -270,11 +413,11 @@ function printRowDetallsAlbara($idFactura){
 }
 
 
-function printDataAlbara($idFactura)
+function printDataPressupost($idFactura)
 {
   $data = date("Y-m-d");
   include "mysql.php";
-  $sql = "SELECT `data_factura` FROM `albarans` WHERE `id_factura` = $idFactura";
+  $sql = "SELECT `data_factura` FROM `pressupostos` WHERE `id_factura` = $idFactura";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
@@ -288,7 +431,7 @@ function printDataAlbara($idFactura)
 }
 
 
-function mostrarAlbarans($sql) {
+function mostrarPressupostns($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -408,7 +551,7 @@ function mostrarFacturesPendents($sql) {
     $conn->close();
 }
 
-function mostrarBorradorsAlbarans($sql) {
+function mostrarBorradorsPressupostos($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -419,14 +562,14 @@ function mostrarBorradorsAlbarans($sql) {
                                         <tr>
                                             <th>#</th>
                                             <th>Client</th>
-                                            <th>Data albara</th>
+                                            <th>Data Pressupost</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     ";
         while($row = $result->fetch_assoc()) {
               echo "<tr>
-                                                      <td><a href='mostrarAlbara.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
+                                                      <td><a href='mostrarPressupost.php?id=".$row["id_factura"]."'>". $row["id_factura"] . "</td>
                                                       <td><a href='mostrarClient.php?id=" . $row["id_client_factura"] ."'>". getClientCognomNom($row["id_client_factura"]) . "</a></td>
                                                       <td>". getDataDMY($row["data_factura"]) . "</td>
                                                       <td>".  number_format($row["base_imposable_factura"] / 100,2) . "€</td>
