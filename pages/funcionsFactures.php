@@ -509,6 +509,8 @@ function mostrarFactures($sql) {
 
 function mostrarFacturesPendents($sql) {
     include "mysql.php";
+    $totalBaseImp = 0;
+    $totalIVA=0;
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo "
@@ -528,6 +530,8 @@ function mostrarFacturesPendents($sql) {
                                     <tbody>
                                     ";
         while($row = $result->fetch_assoc()) {
+          $totalBaseImp += $row["base_imposable_factura"];
+          $totalIVA += $row["total_factura"];
 			if(strtotime($row["data_venciment_factura"]) >= strtotime(date("Y-m-d H:i:s"))){
               echo "<tr class=\"info\">
                                                       <td><a href='mostrarFactura.php?id=".$row["id_factura"]."'>". $row["numero_factura"] . "</td>
@@ -552,6 +556,15 @@ function mostrarFacturesPendents($sql) {
             }
         }
         echo "
+        <tr class=\"primary\">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>".  number_format($totalBaseImp / 100,2) . "€</strong></td>
+            <td><strong>".  number_format($totalIVA / 100,2) . "€</strong></td>
+        </tr>
                                         </tbody>
                                     </table>
                                 </div>
