@@ -42,6 +42,7 @@
     include "mysql.php";
     $mode=$_GET["mode"]; //0 - afegir, 1 - modificar, 2 - mostrar
     $id=$_GET["id"];
+    if($id==NULL) $id=2;
     if($mode!=0){ //mode mostrar
       $result = getClientData($id);
       $row = $result->fetch_assoc();
@@ -100,14 +101,14 @@
                                     </div>
                                     <div class="panel-body">
                                         <!-- Nav tabs -->
-                                        <ul class="nav nav-tabs">
+                                        <!--<ul class="nav nav-tabs">
                                             <li class="active"><a href="#empresa" data-toggle="tab"><i class="fa fa-industry"></i> Empresa</a>
                                             </li>
                                             <li><a href="#particular" data-toggle="tab"><i class="fa fa-user"></i> Particular</a>
                                             </li>
                                         </ul>
                                         <!-- Tab panes -->
-                                        <div class="tab-content">
+                                        <!--<div class="tab-content">-
                                             <div class="tab-pane fade" id="particular">
                                                 <div class="form-group">
                                                     <br />
@@ -119,7 +120,7 @@
                                                     <input name="cognoms" class="form-control" placeholder="Cognoms del client">
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade in active" id="empresa">
+                                            <div class="tab-pane fade in active" id="empresa">-->
                                                 <div class="form-group">
                                                     <br />
                                                     <label>Raó social:</label>
@@ -173,7 +174,7 @@
                                                     ?>
 
                                                 </div>
-                                            </div>
+                                            <!--</div>-->
                                         </div>
                                     </div>
                                 </div>
