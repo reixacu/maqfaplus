@@ -43,7 +43,9 @@
     $mode=$_GET["mode"]; //0 - afegir, 1 - modificar, 2 - mostrar
     $id=$_GET["id"];
     if($mode!=0 && $mode!=1){ //mode mostrar
-      $mode=3;
+      $mode=2;
+      $result = getClientData($id);
+      $row = $result->fetch_assoc();
     }
     ?>
 
@@ -105,8 +107,7 @@
                                           if($mode==0) echo '<p class="form-control-static">S\'assignarà al crear</p>';
                                           elseif($mode==1) echo '<input name="numclient" class="form-control" placeholder="WIIIIIIIIIP">';
                                           else {
-                                            $sql = "SELECT * FROM feines WHERE `id_client_feina` = $id ORDER BY `feines`.`id_feina` DESC";
-                                            mostrarFeines($sql);
+                                            echo '<p class="form-control-static">'. $row["id_client"].'</p>';
                                           }
                                         ?>
                                     </div>
