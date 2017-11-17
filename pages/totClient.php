@@ -113,7 +113,7 @@
                                         <label>NIF</label>
                                         <?php
                                           if($mode==0) echo '<input name="nif" class="form-control" placeholder="00000000A">';
-                                          elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'.'$row["nif_client"]'.'">';
+                                          elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'.$row["nif_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["nif_client"].'</p>';
                                         ?>
 
@@ -147,7 +147,7 @@
                                                     <label>Raó social:</label>
                                                     <?php
                                                       if($mode==0) echo '<input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">';
-                                                      elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'.'$row["rao_social_client"]'.'">';
+                                                      elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'.$row["rao_social_client"].'">';
                                                       else echo '<p class="form-control-static">'. $row["rao_social_client"].'</p>';
                                                     ?>
                                                 </div>
