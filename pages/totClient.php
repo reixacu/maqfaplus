@@ -39,7 +39,12 @@
 
     <?php
     include "menu.php";
+    include "mysql.php";
     $mode=$_GET["mode"]; //0 - afegir, 1 - modificar, 2 - mostrar
+    $id=$_GET["id"];
+    if($mode!=0 && $mode!=1){ //mode mostrar
+      $mode=3;
+    }
     ?>
 
     <div id="page-wrapper">
@@ -56,18 +61,16 @@
         <div class="row">
             <div class="col-lg-12">
                 <?php
-                  if($mode==0){
-                    echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Afegir un nou client</h1>';
-                }
-                  elseif($mode==1){
-                    echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Modificar client</h1>';
-                }
-                  else{
-                  echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Mostrar client</h1>';
-                }
-                  /*if($mode==0) echo "<h1 class="page-header"><i class="fa fa-user-plus"></i> Afegir un nou client</h1>";
-                  elseif($mode==1) echo "<h1 class="page-header"><i class="fa fa-user-plus"></i> Modificar client</h1>";
-                  else echo "<h1 class="page-header"><i class="fa fa-user-plus"></i> Mostrar client</h1>";*/
+                  if($mode==0) echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Afegir un nou client</h1>';
+                  elseif($mode==1) echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Modificar client</h1>';
+                  else echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Mostrar client</h1>';
+                  /*
+                  <?php
+                    if($mode==0) echo '';
+                    elseif($mode==1) echo '';
+                    else echo '';
+                  ?>
+                  */
                   /*
                   if($mode==0){
 
@@ -98,7 +101,14 @@
                                     <h1>Dades bàsiques</h1>
                                     <div class="form-group">
                                         <label>Número de client</label>
-                                        <p class="form-control-static">S'assignarà al crear</p>
+                                        <?php
+                                          if($mode==0) echo '<p class="form-control-static">S\'assignarà al crear</p>';
+                                          elseif($mode==1) echo '<input name="numclient" class="form-control" placeholder="WIIIIIIIIIP">';
+                                          else {
+                                            $sql = "SELECT * FROM feines WHERE `id_client_feina` = $id ORDER BY `feines`.`id_feina` DESC";
+                                            mostrarFeines($sql);
+                                          }
+                                        ?>
                                     </div>
                                     <div class="form-group">
                                         <label>NIF</label>
