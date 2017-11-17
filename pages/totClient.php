@@ -74,12 +74,19 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Formulari afegir client
+                        <?php
+                          if($mode==0) echo 'Formulari afegir client';
+                          elseif($mode==1) echo 'Formulari modificar client';
+                          else echo 'Dades client';
+                        ?>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="scriptAfegirClient.php" method="post">
+                      <?php
+                        if($mode==0) echo '<form role="form" action="scriptAfegirClient.php" method="post">';
+                        elseif($mode==1) echo '<form role="form" action="scriptEditarClient.php" method="post">';
+                        else echo '<form role="form" action="RES.php" method="post">';
+                      ?>
                             <div class="row">
-
                                 <div class="col-lg-6">
                                     <h1>Dades bàsiques</h1>
                                     <div class="form-group">
@@ -182,15 +189,30 @@
 										</div>
 										<div class="form-group">
                         <label>Dies fins pagament (nº dies)</label>
-                        <input name="diesFinsPagament" class="form-control" placeholder="Dies fins que el client hagi d'efectuar el pagament">
+                        <?php
+                          if($mode==0) echo '<input name="diesFinsPagament" class="form-control" placeholder="Dies fins que el client hagi d\'efectuar el pagament">';
+                          elseif($mode==1) echo '<input name="diesFinsPagament" class="form-control" value="'. $row["dies_fins_pagament_client"].'">';
+                          else echo '<p class="form-control-static">'. $row["dies_fins_pagament_client"].'</p>';
+                        ?>
+
                     </div>
 										<div class="form-group">
                         <label>Dia mensual de pagament</label>
-                        <input name="diaMensualPagament" class="form-control" placeholder="Dia preferit del client per als pagaments">
+                        <?php
+                          if($mode==0) echo '<input name="diaMensualPagament" class="form-control" placeholder="Dia preferit del client per als pagaments">';
+                          elseif($mode==1) echo '<input name="diaMensualPagament" class="form-control" value="'. $row["dia_mensual_pagament_client"].'">';
+                          else echo '<p class="form-control-static">'. $row["dia_mensual_pagament_client"].'</p>';
+                        ?>
+
                     </div>
 										<div class="form-group">
                         <label>IBAN</label>
-                        <input name="IBAN" class="form-control" placeholder="IBAN">
+                        <?php
+                          if($mode==0) echo '<input name="IBAN" class="form-control" placeholder="IBAN">';
+                          elseif($mode==1) echo '<input name="IBAN" class="form-control" value="'. $row["numero_conta_client"].'">';
+                          else echo '<p class="form-control-static">'. $row["numero_conta_client"].'</p>';
+                        ?>
+
                     </div>
 
                                 </div>
@@ -199,23 +221,48 @@
                                     <h1>Detalls contacte</h1>
                                     <div class="form-group">
                                         <label>Correu electrònic</label>
-                                        <input name="mail" class="form-control">
+                                        <?php
+                                          if($mode==0) echo '<input name="mail" class="form-control">';
+                                          elseif($mode==1) echo '<input name="mail" class="form-control" value="'. $row["email_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["email_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 1</label>
-                                        <input name="fix1" class="form-control" placeholder="Telèfon fix principal">
+                                        <?php
+                                          if($mode==0) echo '<input name="fix1" class="form-control" placeholder="Telèfon fix principal">';
+                                          elseif($mode==1) echo '<input name="fix1" class="form-control" value="'. $row["fix1_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["fix1_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 2</label>
-                                        <input name="fix2" class="form-control" placeholder="Telèfon fix secundari">
+                                        <?php
+                                          if($mode==0) echo '<input name="fix2" class="form-control" placeholder="Telèfon fix secundari">';
+                                          elseif($mode==1) echo '<input name="fix2" class="form-control" value="'. $row["fix2_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["fix2_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 1</label>
-                                        <input name="mobil1" class="form-control" placeholder="Telèfon mòbil principal">
+                                        <?php
+                                          if($mode==0) echo '<input name="mobil1" class="form-control" placeholder="Telèfon mòbil principal">';
+                                          elseif($mode==1) echo '<input name="mobil1" class="form-control" value="'. $row["mobil1_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["mobil1_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 2</label>
-                                        <input name="mobil2" class="form-control" placeholder="Telèfon mòbil secundari">
+                                        <?php
+                                          if($mode==0) echo '<input name="mobil2" class="form-control" placeholder="Telèfon mòbil secundari">';
+                                          elseif($mode==1) echo '<input name="mobil2" class="form-control" value="'. $row["mobil2_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["mobil2_client"].'</p>';
+                                        ?>
+
                                     </div>
                                 </div>
 
@@ -276,10 +323,25 @@
                                 <div class="col-lg-6">
                                     <h1>Comentaris</h1>
                                     <div class="form-group">
-                                        <textarea name="comentari" class="form-control" rows="3"></textarea>
+                                      <?php
+                                        if($mode==0) echo '<textarea name="comentari" class="form-control" rows="3"></textarea>';
+                                        elseif($mode==1) echo '<textarea name="comentari" class="form-control" rows="3" value='. $row["comentari_client"].'></textarea>';
+                                        else echo '<p class="form-control-static">'. $row["comentari_client"].'</p>';
+                                      ?>
+
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Crear el client</button>
-                                    <button type="reset" class="btn btn-warning btn-outline">Natejar els camps</button>
+                                    <?php
+                                      if($mode==0){
+                                        <button type="submit" class="btn btn-primary">Crear el client</button>
+                                        <button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>
+                                      }
+                                      elseif($mode==1){
+                                        <button type="submit" class="btn btn-primary">Modificar dades client</button>
+                                        <button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>
+                                      }
+                                      else{ //el mostrar no té botons
+                                      }
+                                      ?>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
