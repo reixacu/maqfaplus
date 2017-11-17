@@ -65,24 +65,6 @@
                   if($mode==0) echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Afegir un nou client</h1>';
                   elseif($mode==1) echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Modificar client</h1>';
                   else echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Mostrar client</h1>';
-                  /*
-                  <?php
-                    if($mode==0) echo '';
-                    elseif($mode==1) echo '';
-                    else echo '';
-                  ?>
-                  */
-                  /*
-                  if($mode==0){
-
-                }
-                  elseif($mode==1){
-
-                }
-                  else{
-
-                }
-                  */
                  ?>
             </div>
             <!-- /.col-lg-12 -->
@@ -103,8 +85,8 @@
                                     <div class="form-group">
                                         <label>Número de client</label>
                                         <?php
-                                          if($mode==0) echo '<input name="numclient" class="form-control" placeholder="WIIIIIIIIIP">';
-                                          elseif($mode==1) echo '<input name="numclient" class="form-control" placeholder="WIIIIIIIIIP">'; //AIXO NO HA DE SER MODIFICABLE
+                                          if($mode==0) echo '<p class="form-control-static">S\'assignarà al crear</p>';
+                                          elseif($mode==1) echo '<p class="form-control-static">'. $row["id_client"].'</p>';
                                           else echo '<p class="form-control-static">'. $row["id_client"].'</p>';
                                         ?>
                                     </div>
@@ -115,18 +97,15 @@
                                           elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'. $row["nif_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["nif_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="panel-body">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-tabs">
-
                                             <li class="active"><a href="#empresa" data-toggle="tab"><i class="fa fa-industry"></i> Empresa</a>
                                             </li>
                                             <li><a href="#particular" data-toggle="tab"><i class="fa fa-user"></i> Particular</a>
                                             </li>
                                         </ul>
-
                                         <!-- Tab panes -->
                                         <div class="tab-content">
                                             <div class="tab-pane fade" id="particular">
@@ -153,23 +132,46 @@
                                                 <div class="form-group">
                                                     <br />
                                                     <label>Nom comercial:</label>
-                                                    <input name="nomComercial" class="form-control">
+                                                    <?php
+                                                      if($mode==0) echo '<input name="nomComercial" class="form-control">';
+                                                      elseif($mode==1) echo '<input name="nomComercial" class="form-control" value="'. $row["nom_comercial_client"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["nom_comercial_client"].'</p>';
+                                                    ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Persona de contacte 1</label>
-                                                    <input name="p1" class="form-control" placeholder="Persona de contacte principal">
+                                                    <?php
+                                                      if($mode==0) echo '<input name="p1" class="form-control" placeholder="Persona de contacte principal">';
+                                                      elseif($mode==1) echo '<input name="p1" class="form-control" value="'. $row["persona_contacte1_client"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["persona_contacte1_client"].'</p>';
+                                                    ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Correu persona de contacte 1</label>
-                                                    <input name="p1Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 1">
+                                                    <?php
+                                                      if($mode==0) echo '<input name="p1Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 1">';
+                                                      elseif($mode==1) echo '<input name="p1Mail" class="form-control" value="'. $row["p1Mail"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["p1Mail"].'</p>';
+                                                    ?>
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Persona de contacte 2</label>
-                                                    <input name="p2" class="form-control" placeholder="Persona de contacte alternativa">
+                                                    <?php
+                                                      if($mode==0) echo '<input name="p2" class="form-control" placeholder="Persona de contacte alternativa">';
+                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["p2"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["p2"].'</p>';
+                                                    ?>
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Correu persona de contacte 2</label>
-                                                    <input name="p2Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 2">
+                                                    <?php
+                                                      if($mode==0) echo '<input name="p2Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 2">';
+                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["p2Mail"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["p2Mail"].'</p>';
+                                                    ?>
+
                                                 </div>
                                             </div>
                                         </div>
