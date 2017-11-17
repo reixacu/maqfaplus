@@ -332,12 +332,12 @@
                                     </div>
                                     <?php
                                       if($mode==0){
-                                        <button type="submit" class="btn btn-primary">Crear el client</button>
-                                        <button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>
+                                        echo '<button type="submit" class="btn btn-primary">Crear el client</button>';
+                                        echo '<button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>';
                                       }
                                       elseif($mode==1){
-                                        <button type="submit" class="btn btn-primary">Modificar dades client</button>
-                                        <button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>
+                                        echo '<button type="submit" class="btn btn-primary">Modificar dades client</button>';
+                                        echo '<button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>';
                                       }
                                       else{ //el mostrar no té botons
                                       }
