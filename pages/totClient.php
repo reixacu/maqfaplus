@@ -104,16 +104,19 @@
                                     <div class="form-group">
                                         <label>Número de client</label>
                                         <?php
-                                          if($mode==0) echo '<p class="form-control-static">S\'assignarà al crear</p>';
-                                          elseif($mode==1) echo '<input name="numclient" class="form-control" placeholder="WIIIIIIIIIP">';
-                                          else {
-                                            echo '<p class="form-control-static">'. $row["id_client"].'</p>';
-                                          }
+                                          if($mode==0) echo '<input name="numclient" class="form-control" placeholder="WIIIIIIIIIP">';
+                                          elseif($mode==1) echo '<input name="numclient" class="form-control" placeholder="WIIIIIIIIIP">'; //AIXO NO HA DE SER MODIFICABLE
+                                          else echo '<p class="form-control-static">'. $row["id_client"].'</p>';
                                         ?>
                                     </div>
                                     <div class="form-group">
                                         <label>NIF</label>
-                                        <input name="nif" class="form-control" placeholder="00000000A">
+                                        <?php
+                                          if($mode==0) echo '<input name="nif" class="form-control" placeholder="00000000A">';
+                                          elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'.'$row["nif_client"]'.'">';
+                                          else echo '<p class="form-control-static">'. $row["nif_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="panel-body">
                                         <!-- Nav tabs -->
@@ -142,7 +145,11 @@
                                                 <div class="form-group">
                                                     <br />
                                                     <label>Raó social:</label>
-                                                    <input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">
+                                                    <?php
+                                                      if($mode==0) echo '<input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">';
+                                                      elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'.'$row["rao_social_client"]'.'">';
+                                                      else echo '<p class="form-control-static">'. $row["rao_social_client"].'</p>';
+                                                    ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <br />
