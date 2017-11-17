@@ -153,7 +153,6 @@
                                                       elseif($mode==1) echo '<input name="p1Mail" class="form-control" value="'. $row["p1_email_client"].'">';
                                                       else echo '<p class="form-control-static">'. $row["p1_email_client"].'</p>';
                                                     ?>
-
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Persona de contacte 2</label>
@@ -162,7 +161,6 @@
                                                       elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["persona_contacte2_client"].'">';
                                                       else echo '<p class="form-control-static">'. $row["persona_contacte2_client"].'</p>';
                                                     ?>
-
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Correu persona de contacte 2</label>
@@ -171,7 +169,6 @@
                                                       elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["p2_email_client"].'">';
                                                       else echo '<p class="form-control-static">'. $row["p2_email_client"].'</p>';
                                                     ?>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -184,17 +181,17 @@
 											<?php printRadioFormesPagamentClient1(0); ?>
 										</div>
 										<div class="form-group">
-                                            <label>Dies fins pagament (nº dies)</label>
-                                            <input name="diesFinsPagament" class="form-control" placeholder="Dies fins que el client hagi d'efectuar el pagament">
-                                        </div>
+                        <label>Dies fins pagament (nº dies)</label>
+                        <input name="diesFinsPagament" class="form-control" placeholder="Dies fins que el client hagi d'efectuar el pagament">
+                    </div>
 										<div class="form-group">
-                                            <label>Dia mensual de pagament</label>
-                                            <input name="diaMensualPagament" class="form-control" placeholder="Dia preferit del client per als pagaments">
-                                        </div>
+                        <label>Dia mensual de pagament</label>
+                        <input name="diaMensualPagament" class="form-control" placeholder="Dia preferit del client per als pagaments">
+                    </div>
 										<div class="form-group">
-                                            <label>IBAN</label>
-                                            <input name="IBAN" class="form-control" placeholder="IBAN">
-                                        </div>
+                        <label>IBAN</label>
+                        <input name="IBAN" class="form-control" placeholder="IBAN">
+                    </div>
 
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -231,23 +228,48 @@
                                     <h1>Adreça</h1>
                                     <div class="form-group">
                                         <label>Carrer i número</label>
-                                        <input name="direccio" class="form-control" placeholder="Carrer, número, escala, pis, porta">
+                                        <?php
+                                          if($mode==0) echo '<input name="direccio" class="form-control" placeholder="Carrer, número, escala, pis, porta">';
+                                          elseif($mode==1) echo '<input name="direccio" class="form-control" value="'. $row["adreca_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["adreca_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Població</label>
-                                        <input name="poblacio" class="form-control">
+                                        <?php
+                                          if($mode==0) echo '<input name="poblacio" class="form-control">';
+                                          elseif($mode==1) echo '<input name="poblacio" class="form-control" value="'. $row["poblacio_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["poblacio_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Codi Postal</label>
-                                        <input name="cp" class="form-control">
+                                        <?php
+                                          if($mode==0) echo '<input name="cp" class="form-control">';
+                                          elseif($mode==1) echo '<input name="cp" class="form-control" value="'. $row["cp_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["cp_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Província</label>
-                                        <input name="provincia" class="form-control">
+                                        <?php
+                                          if($mode==0) echo '<input name="provincia" class="form-control">';
+                                          elseif($mode==1) echo '<input name="provincia" class="form-control" value="'. $row["provincia_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["provincia_client"].'</p>';
+                                        ?>
+
                                     </div>
                                     <div class="form-group">
                                         <label>País</label>
-                                        <input name="pais" class="form-control">
+                                        <?php
+                                          if($mode==0) echo '<input name="pais" class="form-control">';
+                                          elseif($mode==1) echo '<input name="pais" class="form-control" value="'. $row["pais_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["pais_client"].'</p>';
+                                        ?>
+
                                     </div>
                                 </div>
 
