@@ -150,8 +150,8 @@
                                                     <label>Correu persona de contacte 1</label>
                                                     <?php
                                                       if($mode==0) echo '<input name="p1Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 1">';
-                                                      elseif($mode==1) echo '<input name="p1Mail" class="form-control" value="'. $row["p1Mail"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["p1Mail"].'</p>';
+                                                      elseif($mode==1) echo '<input name="p1Mail" class="form-control" value="'. $row["p1_email_client"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["p1_email_client"].'</p>';
                                                     ?>
 
                                                 </div>
@@ -159,8 +159,8 @@
                                                     <label>Persona de contacte 2</label>
                                                     <?php
                                                       if($mode==0) echo '<input name="p2" class="form-control" placeholder="Persona de contacte alternativa">';
-                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["p2"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["p2"].'</p>';
+                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["persona_contacte2_client"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["persona_contacte2_client"].'</p>';
                                                     ?>
 
                                                 </div>
@@ -168,8 +168,8 @@
                                                     <label>Correu persona de contacte 2</label>
                                                     <?php
                                                       if($mode==0) echo '<input name="p2Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 2">';
-                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["p2Mail"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["p2Mail"].'</p>';
+                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["p2_email_client"].'">';
+                                                      else echo '<p class="form-control-static">'. $row["p2_email_client"].'</p>';
                                                     ?>
 
                                                 </div>
