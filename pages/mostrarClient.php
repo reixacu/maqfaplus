@@ -40,10 +40,8 @@
       $row = $result->fetch_assoc();
     }
 
-
-
     function mostrarcamp($mode,$nomcamp,$valorbd,$placeholder){
-        echo $id;
+        //echo $id;
         if($mode==0) echo '<input name="'.$nomcamp.'" class="form-control" placeholder="'.$placeholder.'">';
         elseif($mode==1) echo '<input name="'.$nomcamp.'" class="form-control" value="'.$valorbd.'">';
         else echo '<p class="form-control-static">'.$valorbd.'</p>';
@@ -114,7 +112,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>NIF</label>
-                                        <?php mostrarcamp($mode,"nif",$row["nif_client"],"00000000A");?>
+                                        <?php mostrarcamp($mode,"nif",$mode!=1?$row["nif_client"]:"","00000000A");?>
                                     </div>
                                     <div class="form-group">
                                         <br />
