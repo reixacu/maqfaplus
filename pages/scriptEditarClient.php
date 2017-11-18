@@ -58,8 +58,8 @@
                         include "mysql.php";
                         $id = $_POST["id"];
                         $nif = $_POST["nif"];
-                        $nom = $_POST["nom"];
-                        $cognoms = $_POST["cognoms"];
+                        $nom="";//$nom = $_POST["nom"];
+                        $cognoms="";//$cognoms = $_POST["cognoms"];
                         $raoSocial = $_POST["raoSocial"];
                         $nomComercial = $_POST["nomComercial"];
                         $p1 = $_POST["p1"];
