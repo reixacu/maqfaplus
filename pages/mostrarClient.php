@@ -121,44 +121,23 @@
                                     <div class="form-group">
                                         <br />
                                         <label>Nom comercial:</label>
-                                        <?php mostrarcamp($mode,"nomComercial",$row["nom_comercial_client"],"");?>
-                                        <?php
-                                          if($mode==0) echo '<input name="nomComercial" class="form-control">';
-                                          elseif($mode==1) echo '<input name="nomComercial" class="form-control" value="'. $row["nom_comercial_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["nom_comercial_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"nomComercial",$row["nom_comercial_client"]," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Persona de contacte 1</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="p1" class="form-control" placeholder="Persona de contacte principal">';
-                                          elseif($mode==1) echo '<input name="p1" class="form-control" value="'. $row["persona_contacte1_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["persona_contacte1_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"p1",$row["persona_contacte1_client"],"Persona de contacte principal");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Correu persona de contacte 1</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="p1Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 1">';
-                                          elseif($mode==1) echo '<input name="p1Mail" class="form-control" value="'. $row["p1_email_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["p1_email_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"p1Mail",$row["p1_email_client"],"Correu electrònic de la persona de contacte 1");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Persona de contacte 2</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="p2" class="form-control" placeholder="Persona de contacte alternativa">';
-                                          elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["persona_contacte2_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["persona_contacte2_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"p2",$row["persona_contacte2_client"],"Persona de contacte alternativa");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Correu persona de contacte 2</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="p2Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 2">';
-                                          elseif($mode==1) echo '<input name="p2Mail" class="form-control" value="'. $row["p2_email_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["p2_email_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"p2Mail",$row["p2_email_client"],"Correu electrònic de la persona de contacte 2");?>
                                     </div>
                                 </div>
 								<div class="col-lg-6">
@@ -173,27 +152,15 @@
 										</div>
 										<div class="form-group">
                         <label>Dies fins pagament (nº dies)</label>
-                        <?php
-                          if($mode==0) echo '<input name="diesFinsPagament" class="form-control" placeholder="Dies fins que el client hagi d\'efectuar el pagament">';
-                          elseif($mode==1) echo '<input name="diesFinsPagament" class="form-control" value="'. $row["dies_fins_pagament_client"].'">';
-                          else echo '<p class="form-control-static">'. $row["dies_fins_pagament_client"].'</p>';
-                        ?>
+                        <?php mostrarcamp($mode,"diesFinsPagament",$row["dies_fins_pagament_client"],"Dies fins que el client hagi d'efectuar el pagament");?>
                     </div>
 										<div class="form-group">
                         <label>Dia mensual de pagament</label>
-                        <?php
-                          if($mode==0) echo '<input name="diaMensualPagament" class="form-control" placeholder="Dia preferit del client per als pagaments">';
-                          elseif($mode==1) echo '<input name="diaMensualPagament" class="form-control" value="'. $row["dia_mensual_pagament_client"].'">';
-                          else echo '<p class="form-control-static">'. $row["dia_mensual_pagament_client"].'</p>';
-                        ?>
+                        <?php mostrarcamp($mode,"diaMensualPagament",$row["dia_mensual_pagament_client"],"Dia preferit del client per als pagaments");?>
                     </div>
 										<div class="form-group">
                         <label>IBAN</label>
-                        <?php
-                          if($mode==0) echo '<input name="IBAN" class="form-control" placeholder="IBAN">';
-                          elseif($mode==1) echo '<input name="IBAN" class="form-control" value="'. $row["numero_conta_client"].'">';
-                          else echo '<p class="form-control-static">'. $row["numero_conta_client"].'</p>';
-                        ?>
+                        <?php mostrarcamp($mode,"IBAN",$row["numero_conta_client"],"IBAN");?>
                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -201,43 +168,23 @@
                                     <h1>Detalls contacte</h1>
                                     <div class="form-group">
                                         <label>Correu electrònic</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="mail" class="form-control">';
-                                          elseif($mode==1) echo '<input name="mail" class="form-control" value="'. $row["email_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["email_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"mail",$row["email_client"]," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 1</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="fix1" class="form-control" placeholder="Telèfon fix principal">';
-                                          elseif($mode==1) echo '<input name="fix1" class="form-control" value="'. $row["fix1_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["fix1_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"fix1",$row["fix1_client"],"Telèfon fix principal");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 2</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="fix2" class="form-control" placeholder="Telèfon fix secundari">';
-                                          elseif($mode==1) echo '<input name="fix2" class="form-control" value="'. $row["fix2_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["fix2_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"fix2",$row["fix2_client"],"Telèfon fix secundari");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 1</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="mobil1" class="form-control" placeholder="Telèfon mòbil principal">';
-                                          elseif($mode==1) echo '<input name="mobil1" class="form-control" value="'. $row["mobil1_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["mobil1_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"mobil1",$row["mobil1_client"],"Telèfon mòbil principal");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 2</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="mobil2" class="form-control" placeholder="Telèfon mòbil secundari">';
-                                          elseif($mode==1) echo '<input name="mobil2" class="form-control" value="'. $row["mobil2_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["mobil2_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"mobil2",$row["mobil2_client"],"Telèfon mòbil secundari");?>
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -248,43 +195,23 @@
                                     <h1>Adreça</h1>
                                     <div class="form-group">
                                         <label>Carrer i número</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="direccio" class="form-control" placeholder="Carrer, número, escala, pis, porta">';
-                                          elseif($mode==1) echo '<input name="direccio" class="form-control" value="'. $row["adreca_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["adreca_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"direccio",$row["adreca_client"],"Carrer, número, escala, pis, porta");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Població</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="poblacio" class="form-control">';
-                                          elseif($mode==1) echo '<input name="poblacio" class="form-control" value="'. $row["poblacio_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["poblacio_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"poblacio",$row["poblacio_client"]," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Codi Postal</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="cp" class="form-control">';
-                                          elseif($mode==1) echo '<input name="cp" class="form-control" value="'. $row["cp_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["cp_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"cp",$row["cp_client"]," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Província</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="provincia" class="form-control">';
-                                          elseif($mode==1) echo '<input name="provincia" class="form-control" value="'. $row["provincia_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["provincia_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"provincia",$row["provincia_client"]," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>País</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="pais" class="form-control">';
-                                          elseif($mode==1) echo '<input name="pais" class="form-control" value="'. $row["pais_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["pais_client"].'</p>';
-                                        ?>
+                                        <?php mostrarcamp($mode,"pais",$row["pais_client"]," ");?>
                                     </div>
                                 </div>
 
