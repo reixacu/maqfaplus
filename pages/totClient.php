@@ -47,7 +47,6 @@
       $row = $result->fetch_assoc();
     }
     ?>
-
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -185,7 +184,11 @@
                                     <h1>Detalls pagament</h1>
 									<div class="form-group">
 											<label>Forma de pagament</label>
-											<?php printRadioFormesPagamentClient1(0); ?>
+											<?php
+                        if($mode==0) printRadioFormesPagamentClient1(0);
+                        elseif($mode==1) printRadioFormesPagamentClient1($id);
+                        else printRadioFormesPagamentClient2($id);
+                       ?>
 										</div>
 										<div class="form-group">
                         <label>Dies fins pagament (nº dies)</label>
@@ -194,7 +197,6 @@
                           elseif($mode==1) echo '<input name="diesFinsPagament" class="form-control" value="'. $row["dies_fins_pagament_client"].'">';
                           else echo '<p class="form-control-static">'. $row["dies_fins_pagament_client"].'</p>';
                         ?>
-
                     </div>
 										<div class="form-group">
                         <label>Dia mensual de pagament</label>
@@ -203,7 +205,6 @@
                           elseif($mode==1) echo '<input name="diaMensualPagament" class="form-control" value="'. $row["dia_mensual_pagament_client"].'">';
                           else echo '<p class="form-control-static">'. $row["dia_mensual_pagament_client"].'</p>';
                         ?>
-
                     </div>
 										<div class="form-group">
                         <label>IBAN</label>
@@ -212,9 +213,7 @@
                           elseif($mode==1) echo '<input name="IBAN" class="form-control" value="'. $row["numero_conta_client"].'">';
                           else echo '<p class="form-control-static">'. $row["numero_conta_client"].'</p>';
                         ?>
-
                     </div>
-
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
@@ -226,7 +225,6 @@
                                           elseif($mode==1) echo '<input name="mail" class="form-control" value="'. $row["email_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["email_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 1</label>
@@ -235,7 +233,6 @@
                                           elseif($mode==1) echo '<input name="fix1" class="form-control" value="'. $row["fix1_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["fix1_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 2</label>
@@ -244,7 +241,6 @@
                                           elseif($mode==1) echo '<input name="fix2" class="form-control" value="'. $row["fix2_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["fix2_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 1</label>
@@ -253,7 +249,6 @@
                                           elseif($mode==1) echo '<input name="mobil1" class="form-control" value="'. $row["mobil1_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["mobil1_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 2</label>
@@ -262,12 +257,9 @@
                                           elseif($mode==1) echo '<input name="mobil2" class="form-control" value="'. $row["mobil2_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["mobil2_client"].'</p>';
                                         ?>
-
                                     </div>
                                 </div>
-
                                 <!-- /.col-lg-6 (nested) -->
-
                             </div>
                             <div class="row">
                                 <!-- /.col-lg-6 (nested) -->
@@ -280,7 +272,6 @@
                                           elseif($mode==1) echo '<input name="direccio" class="form-control" value="'. $row["adreca_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["adreca_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>Població</label>
@@ -289,7 +280,6 @@
                                           elseif($mode==1) echo '<input name="poblacio" class="form-control" value="'. $row["poblacio_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["poblacio_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>Codi Postal</label>
@@ -298,7 +288,6 @@
                                           elseif($mode==1) echo '<input name="cp" class="form-control" value="'. $row["cp_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["cp_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>Província</label>
@@ -307,7 +296,6 @@
                                           elseif($mode==1) echo '<input name="provincia" class="form-control" value="'. $row["provincia_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["provincia_client"].'</p>';
                                         ?>
-
                                     </div>
                                     <div class="form-group">
                                         <label>País</label>
@@ -316,7 +304,6 @@
                                           elseif($mode==1) echo '<input name="pais" class="form-control" value="'. $row["pais_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["pais_client"].'</p>';
                                         ?>
-
                                     </div>
                                 </div>
 
@@ -328,7 +315,6 @@
                                         elseif($mode==1) echo '<textarea name="comentari" class="form-control" rows="3" value='. $row["comentari_client"].'></textarea>';
                                         else echo '<p class="form-control-static">'. $row["comentari_client"].'</p>';
                                       ?>
-
                                     </div>
                                     <?php
                                       if($mode==0){
