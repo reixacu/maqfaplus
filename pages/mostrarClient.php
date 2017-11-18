@@ -40,8 +40,10 @@
       $row = $result->fetch_assoc();
     }
 
+
+
     function mostrarcamp($mode,$nomcamp,$valorbd,$placeholder){
-        echo $row["nif"];
+        echo $id;
         if($mode==0) echo '<input name="'.$nomcamp.'" class="form-control" placeholder="'.$placeholder.'">';
         elseif($mode==1) echo '<input name="'.$nomcamp.'" class="form-control" value="'.$valorbd.'">';
         else echo '<p class="form-control-static">'.$valorbd.'</p>';
