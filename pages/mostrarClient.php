@@ -40,7 +40,8 @@
     <?php
     include "menu.php";
     include "mysql.php";
-    $mode=$_GET["mode"]; //0 - afegir, 1 - modificar, 2 - mostrar
+    if($_GET["mode"]==NULL)
+      $mode=2; //0 - afegir, 1 - modificar, 2 - mostrar
     $id=$_GET["id"];
     if($mode!=0){ //mode mostrar
       $result = getClientData($id);
