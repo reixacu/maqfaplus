@@ -42,8 +42,8 @@
     include "mysql.php";
     if(!isset($_GET["mode"])) $mode=2; //0 - afegir, 1 - modificar, 2 - mostrar
     else $mode=$_GET["mode"];
-    $id=$_GET["id"];
     if($mode!=0){ //mode mostrar
+      $id=$_GET["id"];
       $result = getClientData($id);
       $row = $result->fetch_assoc();
     }
