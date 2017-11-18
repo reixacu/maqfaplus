@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ca">
-
 <head>
 
     <meta charset="utf-8">
@@ -11,16 +10,12 @@
 
     <title>MaqfaPlus</title>
     <link href="../images/favicon.ico" type="image/x-icon" rel="shorcut icon" />
-
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -32,410 +27,234 @@
     <![endif]-->
 
 </head>
-
 <body>
-
 <div id="wrapper">
     <?php
     include "menu.php";
-    ?>
-    <?php
-    if ($_GET["id"] != NULL)
-    {
-        $id = $_GET["id"];
-        $result = getClientData($id);
-        echo '<div id="page-wrapper">';
-        if ($result->num_rows > 0) {
-            // output data of each row
-            $row = $result->fetch_assoc();
-            if($row["es_empresa_client"] == 0)
-            {
-                echo"
-                <div class=\"row\">
-                    <div class=\"col-lg-12\">
-                        <table style='margin-top: 20px;'>
-                            <tr>
-                                <td><form action='clients.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tornar a clients</button></form></td>
-                                <td><form action='editarClient.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-pencil\"></i> Editar client</button></form></td>
-                                <td><form action='eliminarClient.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i> Eliminar client</button></form></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class=\"row\">
-                    <div class=\"col-lg-12\">
-                        <h1 class=\"page-header\"><i class=\"fa fa-user\"></i> #". $row["id_client"] . " - " . $row["cognom_client"] . ", " . $row["nom_client"] . "</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class=\"row\">
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-primary\">
-                            <div class=\"panel-heading\">
-                                Dades bàsiques
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                                <h3>Número de client:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["id_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>NIF:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["nif_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Nom:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["nom_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Cognoms:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["cognom_client"] . "</strong></p>
-                                </blockquote>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-primary\">
-                            <div class=\"panel-heading\">
-                                Detalls de contacte
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                            <h3>Correu electrònic:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["email_client"] . "</strong></p>
-                                </blockquote>
-                                ";
-                if ($row["fix1_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon fix 1:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["fix1_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                if ($row["fix2_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon fix 2:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["fix2_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                if ($row["mobil1_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon mòbil 1:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["mobil1_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                if ($row["mobil2_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon mòbil 2:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["mobil2_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                echo "
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-primary\">
-                            <div class=\"panel-heading\">
-                                Adreça
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                                <h3>Direcció:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["adreca_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Població:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["poblacio_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Codi postal:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["cp_client"] . "</strong></p>
-                                </blockquote>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                     ";
-                if ($row["comentari_client"] != "")
-                {
-                    echo "
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-yellow\">
-                            <div class=\"panel-heading\">
-                                Comentaris
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                                <p class='text-primary'><strong>". $row["comentari_client"] . "</strong></p>
-                                </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                            ";
-                }
-                echo "
-                    <div class=\"col-lg-12\">
-                        <div class=\"panel panel-green\">
-                            <div class=\"panel-heading\">
-                                Feines realitzades al client
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-
-                                ";
-                                include "mysql.php";
-                                $sql = "SELECT * FROM feines WHERE `id_client_feina` = $id ORDER BY `feines`.`id_feina` DESC";
-                                mostrarFeines($sql);
-
-
-
-
-                                echo "
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                ";
-            }
-            else
-            {
-                // ************************************* EMPRESA *********************************
-                echo"
-                <div class=\"row\">
-                    <div class=\"col-lg-12\">
-                        <table style='margin-top: 20px;'>
-                            <tr>
-                                <td><form action='clients.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tornar a clients</button></form></td>
-                                <td><form action='editarClient.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-pencil\"></i> Editar client</button></form></td>
-                                <td><form action='eliminarClient.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i> Eliminar client</button></form></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class=\"row\">
-                    <div class=\"col-lg-12\">
-                        <h1 class=\"page-header\"><i class=\"fa fa-industry\"></i> #". $row["id_client"] . " - " . $row["rao_social_client"] . "</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class=\"row\">
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-primary\">
-                            <div class=\"panel-heading\">
-                                Dades bàsiques
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                                <h3>Número de client:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["id_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>NIF:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["nif_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Raó social:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["rao_social_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Nom comercial:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["nom_comercial_client"] . "</strong></p>
-                                </blockquote>
-                                ";
-                if ($row["persona_contacte1_client"] != "")
-                {
-                    echo "
-                                <h3>Persona de contacte 1:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["persona_contacte1_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                if ($row["persona_contacte2_client"] != "")
-                {
-                    echo "
-                                <h3>Persona de contacte 2:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["persona_contacte2_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                echo "
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-primary\">
-                            <div class=\"panel-heading\">
-                                Detalls de contacte
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                            <h3>Correu electrònic:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["email_client"] . "</strong></p>
-                                </blockquote>
-                                ";
-                if ($row["fix1_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon fix 1:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["fix1_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                if ($row["fix2_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon fix 2:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["fix2_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                if ($row["mobil1_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon mòbil 1:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["mobil1_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                if ($row["mobil2_client"] != "")
-                {
-                    echo "
-                                <h3>Telèfon mòbil 2:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["mobil2_client"] . "</strong></p>
-                                </blockquote>";
-                }
-                echo "
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-primary\">
-                            <div class=\"panel-heading\">
-                                Adreça
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                                <h3>Direcció:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["adreca_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Població:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["poblacio_client"] . "</strong></p>
-                                </blockquote>
-                                <h3>Codi postal:</h3>
-                                <blockquote>
-                                    <p class='text-primary'><strong>". $row["cp_client"] . "</strong></p>
-                                </blockquote>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                     ";
-                if ($row["comentari_client"] != "")
-                {
-                    echo "
-                    <div class=\"col-lg-4\">
-                        <div class=\"panel panel-yellow\">
-                            <div class=\"panel-heading\">
-                                Comentaris
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-                                <p class='text-primary'><strong>". $row["comentari_client"] . "</strong></p>
-                                </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                            ";
-                }
-                echo "
-                    <div class=\"col-lg-12\">
-                        <div class=\"panel panel-green\">
-                            <div class=\"panel-heading\">
-                                Feines realitzades a l'empresa
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class=\"panel-body\">
-
-                                ";
-                $sql = "SELECT * FROM feines WHERE `id_client_feina` = $id ORDER BY `feines`.`id_feina` DESC";
-                mostrarFeines($sql);
-
-
-
-                echo "
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                ";
-            }
-        } else {
-            echo "No s'ho trobat el client especificat";
-        }
-        
-        echo "</div>";
-    }
-    else
-    {
-        echo "
-        <div id=\"page-wrapper\">
-        <h1>Error, no s'ha seleccionat cap client.</h1>
-        </div>";
+    include "mysql.php";
+    if(!isset($_GET["mode"])) $mode=2; //0 - afegir, 1 - modificar, 2 - mostrar
+    else $mode=$_GET["mode"];
+    if($mode!=0){ //mode mostrar
+      $id=$_GET["id"];
+      $result = getClientData($id);
+      $row = $result->fetch_assoc();
     }
 
-
-
+    function mostrarcamp($mode,$nomcamp,$valorbd,$placeholder){
+        //echo $id;
+        if($mode==0) echo '<input name="'.$nomcamp.'" class="form-control" placeholder="'.$placeholder.'">';
+        elseif($mode==1) echo '<input name="'.$nomcamp.'" class="form-control" value="'.$valorbd.'">';
+        else echo '<p class="form-control-static">'.$valorbd.'</p>';
+    }
     ?>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <table style='margin-top: 20px;'>
+                    <tr>
+                        <td><form type='submit' action='clients.php'>
+                          <button style='margin: 5px;' type='submit' class="btn btn-primary">
+                            <i class="fa fa-arrow-left"></i>
+                              Tornar a clients
+                          </button></form></td>
+                          <?php
+                            if($mode==2)
+                            echo '<td><form action="mostrarClient.php" method="get">
+                              <input type="hidden" name="mode" value="1">
+                              <input type="hidden" name="id" value="'.$id.'">
+                              <button style="margin: 5px;" type="submit" class="btn btn-info">
+                                <i class="fa fa-pencil"></i>
+                                Editar client</button>
+                              </form></td>';
+                          ?>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <?php
+                  if($mode==0) echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Afegir un nou client</h1>';
+                  elseif($mode==1) echo '<h1 class="page-header"><i class="fa fa-pencil"></i> Modificar client</h1>';
+                  else echo '<h1 class="page-header"><i class="fa fa-industry"></i> Mostrar client</h1>';
+                 ?>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <?php
+                          if($mode==0) echo 'Formulari afegir client';
+                          elseif($mode==1) echo 'Formulari modificar client';
+                          else echo 'Dades client';
+                        ?>
+                    </div>
+                    <div class="panel-body">
+                      <?php
+                        if($mode==0) echo '<form role="form" action="scriptAfegirClient.php" method="post">';
+                        elseif($mode==1) echo '<form role="form" action="scriptEditarClient.php" method="post">';
+                        else echo '<form role="form" action="RES.php" method="post">';
+                      ?>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h1>Dades bàsiques</h1>
+                                    <div class="form-group">
+                                        <label>Número de client</label>
+                                        <?php
+                                          if($mode==0) echo '<p class="form-control-static">S\'assignarà al crear</p>';
+                                          elseif($mode==1) echo '<p class="form-control-static">'. $row["id_client"].'</p>';
+                                          else echo '<p class="form-control-static">'. $row["id_client"].'</p>';
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>NIF</label>
+                                        <?php mostrarcamp($mode,"nif",$mode!=0?$row["nif_client"]:"","00000000A");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <br />
+                                        <label>Raó social:</label>
+                                          <?php mostrarcamp($mode,"raoSocial",$mode!=0?$row["rao_social_client"]:"","Raó social (obligatori)");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <br />
+                                        <label>Nom comercial:</label>
+                                        <?php mostrarcamp($mode,"nomComercial",$mode!=0?$row["nom_comercial_client"]:""," ");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Persona de contacte 1</label>
+                                        <?php mostrarcamp($mode,"p1",$mode!=0?$row["persona_contacte1_client"]:"","Persona de contacte principal");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Correu persona de contacte 1</label>
+                                        <?php mostrarcamp($mode,"p1Mail",$mode!=0?$row["p1_email_client"]:"","Correu electrònic de la persona de contacte 1");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Persona de contacte 2</label>
+                                        <?php mostrarcamp($mode,"p2",$mode!=0?$row["persona_contacte2_client"]:"","Persona de contacte alternativa");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Correu persona de contacte 2</label>
+                                        <?php mostrarcamp($mode,"p2Mail",$mode!=0?$row["p2_email_client"]:"","Correu electrònic de la persona de contacte 2");?>
+                                    </div>
+                                </div>
+								<div class="col-lg-6">
+                                    <h1>Detalls pagament</h1>
+									<div class="form-group">
+											<label>Forma de pagament</label>
+											<?php
+                        if($mode==0) printRadioFormesPagamentClient1(0);
+                        elseif($mode==1) printRadioFormesPagamentClient1($id);
+                        else printRadioFormesPagamentClient2($id);
+                       ?>
+										</div>
+										<div class="form-group">
+                        <label>Dies fins pagament (nº dies)</label>
+                        <?php mostrarcamp($mode,"diesFinsPagament",$mode!=0?$row["dies_fins_pagament_client"]:"","Dies fins que el client hagi d'efectuar el pagament");?>
+                    </div>
+										<div class="form-group">
+                        <label>Dia mensual de pagament</label>
+                        <?php mostrarcamp($mode,"diaMensualPagament",$mode!=0?$row["dia_mensual_pagament_client"]:"","Dia preferit del client per als pagaments");?>
+                    </div>
+										<div class="form-group">
+                        <label>IBAN</label>
+                        <?php mostrarcamp($mode,"IBAN",$mode!=0?$row["numero_conta_client"]:"","IBAN");?>
+                    </div>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <h1>Detalls contacte</h1>
+                                    <div class="form-group">
+                                        <label>Correu electrònic</label>
+                                        <?php mostrarcamp($mode,"mail",$mode!=0?$row["email_client"]:""," ");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telèfon Fix 1</label>
+                                        <?php mostrarcamp($mode,"fix1",$mode!=0?$row["fix1_client"]:"","Telèfon fix principal");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telèfon Fix 2</label>
+                                        <?php mostrarcamp($mode,"fix2",$mode!=0?$row["fix2_client"]:"","Telèfon fix secundari");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telèfon Mòbil 1</label>
+                                        <?php mostrarcamp($mode,"mobil1",$mode!=0?$row["mobil1_client"]:"","Telèfon mòbil principal");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telèfon Mòbil 2</label>
+                                        <?php mostrarcamp($mode,"mobil2",$mode!=0?$row["mobil2_client"]:"","Telèfon mòbil secundari");?>
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <div class="row">
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <h1>Adreça</h1>
+                                    <div class="form-group">
+                                        <label>Carrer i número</label>
+                                        <?php mostrarcamp($mode,"direccio",$mode!=0?$row["adreca_client"]:"","Carrer, número, escala, pis, porta");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Població</label>
+                                        <?php mostrarcamp($mode,"poblacio",$mode!=0?$row["poblacio_client"]:""," ");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Codi Postal</label>
+                                        <?php mostrarcamp($mode,"cp",$mode!=0?$row["cp_client"]:""," ");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Província</label>
+                                        <?php mostrarcamp($mode,"provincia",$mode!=0?$row["provincia_client"]:""," ");?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>País</label>
+                                        <?php mostrarcamp($mode,"pais",$mode!=0?$row["pais_client"]:""," ");?>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <h1>Comentaris</h1>
+                                    <div class="form-group">
+                                      <?php
+                                        if($mode==0) echo '<textarea name="comentari" class="form-control" rows="3"></textarea>';
+                                        elseif($mode==1) echo '<textarea name="comentari" class="form-control" rows="3" value='. $row["comentari_client"].'></textarea>';
+                                        else echo '<p class="form-control-static">'. $row["comentari_client"].'</p>';
+                                      ?>
+                                    </div>
+                                    <?php
+                                      if($mode==0){
+                                        echo '<button type="submit" class="btn btn-primary">Crear el client</button>';
+                                        echo '<button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>';
+                                      }
+                                      elseif($mode==1){
+                                        echo '<input type="hidden" name="id" value="'.$id.'">';
+                                        echo '<button type="submit" class="btn btn-primary">Modificar dades client</button>';
+                                        echo '<button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>';
+                                      }
+                                      else{ //el mostrar no té botons
+                                      }
+                                      ?>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </form>
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
 </div>
 <!-- /#wrapper -->
 

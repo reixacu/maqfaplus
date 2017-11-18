@@ -257,7 +257,7 @@ include "funcions.php";
                     <a href="#"><i class="fa fa-user fa-fw"></i> Clients<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="afegirClient.php"><i class="fa fa-user-plus"></i> Afegir client</a>
+                            <a href="mostrarClient.php?mode=0"><i class="fa fa-user-plus"></i> Afegir client</a>
                         </li>
                         <li>
                             <a href="clients.php"><i class="fa fa-users"></i> Tots els clients</a>
