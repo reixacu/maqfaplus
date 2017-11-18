@@ -40,7 +40,7 @@
       $row = $result->fetch_assoc();
     }
 
-    function mostrarcamp($mode,$valorbd,$nomcamp,$placeholder){
+    function mostrarcamp($mode,$nomcamp,$valorbd,$placeholder){
         if($mode==0) echo '<input name="'.$nomcamp.'" class="form-control" placeholder="'.$placeholder.'">';
         elseif($mode==1) echo '<input name="'.$nomcamp.'" class="form-control" value="'.$valorbd.'">';
         else echo '<p class="form-control-static">'.$valorbd.'</p>';
@@ -111,23 +111,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label>NIF</label>
-                                        <?php //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                                          mostrarcamp($mode,$row["nif_client"],"nif","00000000A");
-                                        ?>
+                                        <?php mostrarcamp($mode,"nif",$row["nif_client"],"00000000A");?>
                                     </div>
                                     <div class="form-group">
                                         <br />
                                         <label>Raó social:</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">';
-                                          elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'. $row["rao_social_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["rao_social_client"].'</p>';
-                                          //imprimirCamp($row["asd"], $mode, "raoSocial");
-                                        ?>
+                                          <?php mostrarcamp($mode,"raoSocial",$row["rao_social_client"],"Raó social (obligatori)");?>
                                     </div>
                                     <div class="form-group">
                                         <br />
                                         <label>Nom comercial:</label>
+                                        <?php mostrarcamp($mode,"nomComercial",$row["nom_comercial_client"],"");?>
                                         <?php
                                           if($mode==0) echo '<input name="nomComercial" class="form-control">';
                                           elseif($mode==1) echo '<input name="nomComercial" class="form-control" value="'. $row["nom_comercial_client"].'">';
