@@ -100,7 +100,7 @@
                                         <label>NIF</label>
                                         <?php
                                           if($mode==0) echo '<input name="nif" class="form-control" placeholder="00000000A">';
-                                          elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'. $row["nif_client"].'">';
+                                          elseif($mode==1) echo '<input name="nif" class="form-control" value="'. $row["nif_client"].'">';
                                           else echo '<p class="form-control-static">'. $row["nif_client"].'</p>';
                                         ?>
                                     </div>
@@ -172,7 +172,7 @@
                                                     <label>Correu persona de contacte 2</label>
                                                     <?php
                                                       if($mode==0) echo '<input name="p2Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 2">';
-                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["p2_email_client"].'">';
+                                                      elseif($mode==1) echo '<input name="p2Mail" class="form-control" value="'. $row["p2_email_client"].'">';
                                                       else echo '<p class="form-control-static">'. $row["p2_email_client"].'</p>';
                                                     ?>
                                                 </div>
@@ -322,6 +322,7 @@
                                         echo '<button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>';
                                       }
                                       elseif($mode==1){
+                                        echo '<input type="hidden" name="id" value="'.$id.'">';
                                         echo '<button type="submit" class="btn btn-primary">Modificar dades client</button>';
                                         echo '<button type="reset" class="btn btn-warning btn-outline">Netejar els camps</button>';
                                       }
