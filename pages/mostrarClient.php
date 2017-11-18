@@ -131,7 +131,7 @@
                                                     <input name="cognoms" class="form-control" placeholder="Cognoms del client">
                                                 </div>
                                             </div>-->
-                                            <div class="tab-pane fade in active" id="empresa">
+                                            <!--<div class="tab-pane fade in active" id="empresa">-->
                                                 <div class="form-group">
                                                     <br />
                                                     <label>Raó social:</label>
@@ -183,7 +183,7 @@
                                                       else echo '<p class="form-control-static">'. $row["p2_email_client"].'</p>';
                                                     ?>
                                                 </div>
-                                            </div>
+                                            <!--</div>-->
                                         <!--</div>-->
                                     <!--</div>-->
                                 </div>
