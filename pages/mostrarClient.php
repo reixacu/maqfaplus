@@ -58,13 +58,16 @@
                             <i class="fa fa-arrow-left"></i>
                               Tornar a clients
                           </button></form></td>
-                          <form action="mostrarClient.php" method="get">
-                            <input type="hidden" name="id" value="<?php echo $id ?>">
-                            <input type="hidden" name="mode" value="1">
-                            <button style="margin: 5px;" type="submit" class="btn btn-info">
-                              <i class="fa fa-pencil"></i>
-                              Editar client</button>
-                          </form>
+                          <?php
+                            if($mode==2)
+                            echo '<td><form action="mostrarClient.php" method="get">
+                              <input type="hidden" name="id" value="'.$id.'">
+                              <input type="hidden" name="mode" value="1">
+                              <button style="margin: 5px;" type="submit" class="btn btn-info">
+                                <i class="fa fa-pencil"></i>
+                                Editar client</button>
+                              </form></td>';
+                          ?>
                     </tr>
                 </table>
             </div>
