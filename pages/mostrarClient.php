@@ -63,8 +63,8 @@
             <div class="col-lg-12">
                 <?php
                   if($mode==0) echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Afegir un nou client</h1>';
-                  elseif($mode==1) echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Modificar client</h1>';
-                  else echo '<h1 class="page-header"><i class="fa fa-user-plus"></i> Mostrar client</h1>';
+                  elseif($mode==1) echo '<h1 class="page-header"><i class="fa fa-pencil"></i> Modificar client</h1>';
+                  else echo '<h1 class="page-header"><i class="fa fa-industry"></i> Mostrar client</h1>';
                  ?>
             </div>
             <!-- /.col-lg-12 -->
