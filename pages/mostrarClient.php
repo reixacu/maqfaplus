@@ -111,17 +111,16 @@
                                           else echo '<p class="form-control-static">'. $row["nif_client"].'</p>';
                                         ?>
                                     </div>
-                                    <div class="panel-body">
-                                        <!-- Nav tabs -->
+                                    <!--<div class="panel-body">
                                         <ul class="nav nav-tabs">
                                             <li class="active"><a href="#empresa" data-toggle="tab"><i class="fa fa-industry"></i> Empresa</a>
                                             </li>
                                             <li><a href="#particular" data-toggle="tab"><i class="fa fa-user"></i> Particular</a>
                                             </li>
-                                        </ul>
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade" id="particular">
+                                        </ul>-->
+
+                                        <!--<div class="tab-content">
+                                        --><div class="tab-pane fade" id="particular">
                                                 <div class="form-group">
                                                     <br />
                                                     <label>Nom client particular</label>
@@ -140,6 +139,7 @@
                                                       if($mode==0) echo '<input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">';
                                                       elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'. $row["rao_social_client"].'">';
                                                       else echo '<p class="form-control-static">'. $row["rao_social_client"].'</p>';
+                                                      imprimirCamp($row["asd"], $mode, "raoSocial");
                                                     ?>
                                                 </div>
                                                 <div class="form-group">
@@ -184,8 +184,8 @@
                                                     ?>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        <!--</div>-->
+                                    <!--</div>-->
                                 </div>
 								<div class="col-lg-6">
                                     <h1>Detalls pagament</h1>
