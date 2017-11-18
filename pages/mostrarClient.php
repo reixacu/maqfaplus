@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>NIF</label>
-                                        <?php mostrarcamp($mode,"nif",$mode!=1?$row["nif_client"]:"","00000000A");?>
+                                        <?php mostrarcamp($mode,"nif",$mode!=0?$row["nif_client"]:"","00000000A");?>
                                     </div>
                                     <div class="form-group">
                                         <br />
