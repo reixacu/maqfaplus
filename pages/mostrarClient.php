@@ -120,7 +120,7 @@
                                         </ul>-->
 
                                         <!--<div class="tab-content">
-                                        --><div class="tab-pane fade" id="particular">
+                                        <div class="tab-pane fade" id="particular">
                                                 <div class="form-group">
                                                     <br />
                                                     <label>Nom client particular</label>
@@ -130,7 +130,7 @@
                                                     <label>Cognoms</label>
                                                     <input name="cognoms" class="form-control" placeholder="Cognoms del client">
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div class="tab-pane fade in active" id="empresa">
                                                 <div class="form-group">
                                                     <br />
