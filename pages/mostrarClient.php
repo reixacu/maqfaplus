@@ -117,28 +117,28 @@
                                     <div class="form-group">
                                         <br />
                                         <label>Raó social:</label>
-                                          <?php mostrarcamp($mode,"raoSocial",$row["rao_social_client"],"Raó social (obligatori)");?>
+                                          <?php mostrarcamp($mode,"raoSocial",$mode!=0?$row["rao_social_client"]:"","Raó social (obligatori)");?>
                                     </div>
                                     <div class="form-group">
                                         <br />
                                         <label>Nom comercial:</label>
-                                        <?php mostrarcamp($mode,"nomComercial",$row["nom_comercial_client"]," ");?>
+                                        <?php mostrarcamp($mode,"nomComercial",$mode!=0?$row["nom_comercial_client"]:""," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Persona de contacte 1</label>
-                                        <?php mostrarcamp($mode,"p1",$row["persona_contacte1_client"],"Persona de contacte principal");?>
+                                        <?php mostrarcamp($mode,"p1",$mode!=0?$row["persona_contacte1_client"]:"","Persona de contacte principal");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Correu persona de contacte 1</label>
-                                        <?php mostrarcamp($mode,"p1Mail",$row["p1_email_client"],"Correu electrònic de la persona de contacte 1");?>
+                                        <?php mostrarcamp($mode,"p1Mail",$mode!=0?$row["p1_email_client"]:"","Correu electrònic de la persona de contacte 1");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Persona de contacte 2</label>
-                                        <?php mostrarcamp($mode,"p2",$row["persona_contacte2_client"],"Persona de contacte alternativa");?>
+                                        <?php mostrarcamp($mode,"p2",$mode!=0?$row["persona_contacte2_client"]:"","Persona de contacte alternativa");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Correu persona de contacte 2</label>
-                                        <?php mostrarcamp($mode,"p2Mail",$row["p2_email_client"],"Correu electrònic de la persona de contacte 2");?>
+                                        <?php mostrarcamp($mode,"p2Mail",$mode!=0?$row["p2_email_client"]:"","Correu electrònic de la persona de contacte 2");?>
                                     </div>
                                 </div>
 								<div class="col-lg-6">
@@ -153,15 +153,15 @@
 										</div>
 										<div class="form-group">
                         <label>Dies fins pagament (nº dies)</label>
-                        <?php mostrarcamp($mode,"diesFinsPagament",$row["dies_fins_pagament_client"],"Dies fins que el client hagi d'efectuar el pagament");?>
+                        <?php mostrarcamp($mode,"diesFinsPagament",$mode!=0?$row["dies_fins_pagament_client"]:"","Dies fins que el client hagi d'efectuar el pagament");?>
                     </div>
 										<div class="form-group">
                         <label>Dia mensual de pagament</label>
-                        <?php mostrarcamp($mode,"diaMensualPagament",$row["dia_mensual_pagament_client"],"Dia preferit del client per als pagaments");?>
+                        <?php mostrarcamp($mode,"diaMensualPagament",$mode!=0?$row["dia_mensual_pagament_client"]:"","Dia preferit del client per als pagaments");?>
                     </div>
 										<div class="form-group">
                         <label>IBAN</label>
-                        <?php mostrarcamp($mode,"IBAN",$row["numero_conta_client"],"IBAN");?>
+                        <?php mostrarcamp($mode,"IBAN",$mode!=0?$row["numero_conta_client"]:"","IBAN");?>
                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -169,23 +169,23 @@
                                     <h1>Detalls contacte</h1>
                                     <div class="form-group">
                                         <label>Correu electrònic</label>
-                                        <?php mostrarcamp($mode,"mail",$row["email_client"]," ");?>
+                                        <?php mostrarcamp($mode,"mail",$mode!=0?$row["email_client"]:""," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 1</label>
-                                        <?php mostrarcamp($mode,"fix1",$row["fix1_client"],"Telèfon fix principal");?>
+                                        <?php mostrarcamp($mode,"fix1",$mode!=0?$row["fix1_client"]:"","Telèfon fix principal");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Fix 2</label>
-                                        <?php mostrarcamp($mode,"fix2",$row["fix2_client"],"Telèfon fix secundari");?>
+                                        <?php mostrarcamp($mode,"fix2",$mode!=0?$row["fix2_client"]:"","Telèfon fix secundari");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 1</label>
-                                        <?php mostrarcamp($mode,"mobil1",$row["mobil1_client"],"Telèfon mòbil principal");?>
+                                        <?php mostrarcamp($mode,"mobil1",$mode!=0?$row["mobil1_client"]:"","Telèfon mòbil principal");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Telèfon Mòbil 2</label>
-                                        <?php mostrarcamp($mode,"mobil2",$row["mobil2_client"],"Telèfon mòbil secundari");?>
+                                        <?php mostrarcamp($mode,"mobil2",$mode!=0?$row["mobil2_client"]:"","Telèfon mòbil secundari");?>
                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -196,23 +196,23 @@
                                     <h1>Adreça</h1>
                                     <div class="form-group">
                                         <label>Carrer i número</label>
-                                        <?php mostrarcamp($mode,"direccio",$row["adreca_client"],"Carrer, número, escala, pis, porta");?>
+                                        <?php mostrarcamp($mode,"direccio",$mode!=0?$row["adreca_client"]:"","Carrer, número, escala, pis, porta");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Població</label>
-                                        <?php mostrarcamp($mode,"poblacio",$row["poblacio_client"]," ");?>
+                                        <?php mostrarcamp($mode,"poblacio",$mode!=0?$row["poblacio_client"]:""," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Codi Postal</label>
-                                        <?php mostrarcamp($mode,"cp",$row["cp_client"]," ");?>
+                                        <?php mostrarcamp($mode,"cp",$mode!=0?$row["cp_client"]:""," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>Província</label>
-                                        <?php mostrarcamp($mode,"provincia",$row["provincia_client"]," ");?>
+                                        <?php mostrarcamp($mode,"provincia",$mode!=0?$row["provincia_client"]:""," ");?>
                                     </div>
                                     <div class="form-group">
                                         <label>País</label>
-                                        <?php mostrarcamp($mode,"pais",$row["pais_client"]," ");?>
+                                        <?php mostrarcamp($mode,"pais",$mode!=0?$row["pais_client"]:""," ");?>
                                     </div>
                                 </div>
 
