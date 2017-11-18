@@ -40,7 +40,7 @@
     <?php
     include "menu.php";
     include "mysql.php";
-    if($_GET["mode"]==NULL)
+    if(!isset($_GET["mode"]))
       $mode=2; //0 - afegir, 1 - modificar, 2 - mostrar
     $id=$_GET["id"];
     if($mode!=0){ //mode mostrar
