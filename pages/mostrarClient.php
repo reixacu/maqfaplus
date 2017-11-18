@@ -111,81 +111,57 @@
                                           else echo '<p class="form-control-static">'. $row["nif_client"].'</p>';
                                         ?>
                                     </div>
-                                    <!--<div class="panel-body">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#empresa" data-toggle="tab"><i class="fa fa-industry"></i> Empresa</a>
-                                            </li>
-                                            <li><a href="#particular" data-toggle="tab"><i class="fa fa-user"></i> Particular</a>
-                                            </li>
-                                        </ul>-->
-
-                                        <!--<div class="tab-content">
-                                        <div class="tab-pane fade" id="particular">
-                                                <div class="form-group">
-                                                    <br />
-                                                    <label>Nom client particular</label>
-                                                    <input name="nom" class="form-control" placeholder="Nom del client (obligatori)">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Cognoms</label>
-                                                    <input name="cognoms" class="form-control" placeholder="Cognoms del client">
-                                                </div>
-                                            </div>-->
-                                            <!--<div class="tab-pane fade in active" id="empresa">-->
-                                                <div class="form-group">
-                                                    <br />
-                                                    <label>Raó social:</label>
-                                                    <?php
-                                                      if($mode==0) echo '<input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">';
-                                                      elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'. $row["rao_social_client"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["rao_social_client"].'</p>';
-                                                      //imprimirCamp($row["asd"], $mode, "raoSocial");
-                                                    ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <br />
-                                                    <label>Nom comercial:</label>
-                                                    <?php
-                                                      if($mode==0) echo '<input name="nomComercial" class="form-control">';
-                                                      elseif($mode==1) echo '<input name="nomComercial" class="form-control" value="'. $row["nom_comercial_client"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["nom_comercial_client"].'</p>';
-                                                    ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Persona de contacte 1</label>
-                                                    <?php
-                                                      if($mode==0) echo '<input name="p1" class="form-control" placeholder="Persona de contacte principal">';
-                                                      elseif($mode==1) echo '<input name="p1" class="form-control" value="'. $row["persona_contacte1_client"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["persona_contacte1_client"].'</p>';
-                                                    ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Correu persona de contacte 1</label>
-                                                    <?php
-                                                      if($mode==0) echo '<input name="p1Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 1">';
-                                                      elseif($mode==1) echo '<input name="p1Mail" class="form-control" value="'. $row["p1_email_client"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["p1_email_client"].'</p>';
-                                                    ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Persona de contacte 2</label>
-                                                    <?php
-                                                      if($mode==0) echo '<input name="p2" class="form-control" placeholder="Persona de contacte alternativa">';
-                                                      elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["persona_contacte2_client"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["persona_contacte2_client"].'</p>';
-                                                    ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Correu persona de contacte 2</label>
-                                                    <?php
-                                                      if($mode==0) echo '<input name="p2Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 2">';
-                                                      elseif($mode==1) echo '<input name="p2Mail" class="form-control" value="'. $row["p2_email_client"].'">';
-                                                      else echo '<p class="form-control-static">'. $row["p2_email_client"].'</p>';
-                                                    ?>
-                                                </div>
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
+                                    <div class="form-group">
+                                        <br />
+                                        <label>Raó social:</label>
+                                        <?php
+                                          if($mode==0) echo '<input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">';
+                                          elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'. $row["rao_social_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["rao_social_client"].'</p>';
+                                          //imprimirCamp($row["asd"], $mode, "raoSocial");
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <br />
+                                        <label>Nom comercial:</label>
+                                        <?php
+                                          if($mode==0) echo '<input name="nomComercial" class="form-control">';
+                                          elseif($mode==1) echo '<input name="nomComercial" class="form-control" value="'. $row["nom_comercial_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["nom_comercial_client"].'</p>';
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Persona de contacte 1</label>
+                                        <?php
+                                          if($mode==0) echo '<input name="p1" class="form-control" placeholder="Persona de contacte principal">';
+                                          elseif($mode==1) echo '<input name="p1" class="form-control" value="'. $row["persona_contacte1_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["persona_contacte1_client"].'</p>';
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Correu persona de contacte 1</label>
+                                        <?php
+                                          if($mode==0) echo '<input name="p1Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 1">';
+                                          elseif($mode==1) echo '<input name="p1Mail" class="form-control" value="'. $row["p1_email_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["p1_email_client"].'</p>';
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Persona de contacte 2</label>
+                                        <?php
+                                          if($mode==0) echo '<input name="p2" class="form-control" placeholder="Persona de contacte alternativa">';
+                                          elseif($mode==1) echo '<input name="p2" class="form-control" value="'. $row["persona_contacte2_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["persona_contacte2_client"].'</p>';
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Correu persona de contacte 2</label>
+                                        <?php
+                                          if($mode==0) echo '<input name="p2Mail" class="form-control" placeholder="Correu electrònic de la persona de contacte 2">';
+                                          elseif($mode==1) echo '<input name="p2Mail" class="form-control" value="'. $row["p2_email_client"].'">';
+                                          else echo '<p class="form-control-static">'. $row["p2_email_client"].'</p>';
+                                        ?>
+                                    </div>
                                 </div>
 								<div class="col-lg-6">
                                     <h1>Detalls pagament</h1>
