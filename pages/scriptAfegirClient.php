@@ -131,8 +131,8 @@
                             <div class=\"col-lg-12\">
                                 <table style='margin-top: 20px;'>
                                     <tr>
-                                        <td><form action='afegirClient.php'><button type='submit' class=\"btn btn-primary\">Afegir un altre client</button></form></td>
-                                        <td><form type='submit' action='editarClient.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . getClientIdFromNIF($nif) . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-pencil\"></i> Editar client</button></form></td>
+                                        <td><form action=\"mostrarClient.php\" method=\"get\"><input type=\"hidden\" name=\"mode\" value=\"0\"><button type='submit' class=\"btn btn-primary\">Afegir un altre client</button></form></td>
+                                        <td><form action=\"mostrarClient.php\" method=\"get\"><input type=\"hidden\" name=\"mode\" value=\"1\"><input type=\"hidden\" name=\"id\" value=\"" . getClientIdFromNIF($nif) . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-pencil\"></i> Editar client</button></form></td>
                                     </tr>
                                 </table>
                                 <br />
