@@ -53,7 +53,18 @@
             <div class="col-lg-12">
                 <table style='margin-top: 20px;'>
                     <tr>
-                        <td><form type='submit' action='clients.php'><button style='margin: 5px;' type='submit' class="btn btn-primary"><i class="fa fa-arrow-left"></i> Tornar a clients</button></form></td>
+                        <td><form type='submit' action='clients.php'>
+                          <button style='margin: 5px;' type='submit' class="btn btn-primary">
+                            <i class="fa fa-arrow-left"></i>
+                              Tornar a clients
+                          </button></form></td>
+                          <form action="mostrarClient.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $id ?>">
+                            <input type="hidden" name="mode" value="1">
+                            <button style="margin: 5px;" type="submit" class="btn btn-info">
+                              <i class="fa fa-pencil"></i>
+                              Editar client</button>
+                          </form>
                     </tr>
                 </table>
             </div>
