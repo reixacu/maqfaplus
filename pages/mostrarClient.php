@@ -41,6 +41,7 @@
     }
 
     function mostrarcamp($mode,$nomcamp,$valorbd,$placeholder){
+        echo $row["nif"];
         if($mode==0) echo '<input name="'.$nomcamp.'" class="form-control" placeholder="'.$placeholder.'">';
         elseif($mode==1) echo '<input name="'.$nomcamp.'" class="form-control" value="'.$valorbd.'">';
         else echo '<p class="form-control-static">'.$valorbd.'</p>';
