@@ -39,6 +39,12 @@
       $result = getClientData($id);
       $row = $result->fetch_assoc();
     }
+
+    function mostrarcamp($mode,$valorbd,$nomcamp,$placeholder){
+        if($mode==0) echo '<input name="'.$nomcamp.'" class="form-control" placeholder="'.$placeholder.'">';
+        elseif($mode==1) echo '<input name="'.$nomcamp.'" class="form-control" value="'.$valorbd.'">';
+        else echo '<p class="form-control-static">'.$valorbd.'</p>';
+    }
     ?>
     <div id="page-wrapper">
         <div class="row">
@@ -105,10 +111,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>NIF</label>
-                                        <?php
-                                          if($mode==0) echo '<input name="nif" class="form-control" placeholder="00000000A">';
-                                          elseif($mode==1) echo '<input name="nif" class="form-control" value="'. $row["nif_client"].'">';
-                                          else echo '<p class="form-control-static">'. $row["nif_client"].'</p>';
+                                        <?php //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                          mostrarcamp($mode,$row["nif_client"],"nif","00000000A");
                                         ?>
                                     </div>
                                     <div class="form-group">
