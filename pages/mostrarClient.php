@@ -139,7 +139,7 @@
                                                       if($mode==0) echo '<input name="raoSocial" class="form-control" placeholder="Raó social (obligatori)">';
                                                       elseif($mode==1) echo '<input name="raoSocial" class="form-control" value="'. $row["rao_social_client"].'">';
                                                       else echo '<p class="form-control-static">'. $row["rao_social_client"].'</p>';
-                                                      imprimirCamp($row["asd"], $mode, "raoSocial");
+                                                      //imprimirCamp($row["asd"], $mode, "raoSocial");
                                                     ?>
                                                 </div>
                                                 <div class="form-group">
