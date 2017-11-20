@@ -71,10 +71,7 @@
               </div>
               <!-- /.row -->
               <div class=\"row\">
-                  ";
-              printEstatFacturaColum($id);
-              echo "
-                  <div class=\"col-lg-6\">
+                  <div class=\"col-lg-12\">
                       <div class=\"panel panel-default\">
                           <div class=\"panel-heading\">
                               Client
