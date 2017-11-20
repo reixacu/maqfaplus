@@ -62,6 +62,8 @@
                             <td><form action='totesFactures.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tornar a factures</button></form></td>
                             <!--<td><form action='eliminarFeina.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i> Eliminar feina</button></form></td>-->
                             <td><form action='generarFacturaPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir factura</button></form>
+                            <td><form action='enviarMailFactura.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-envelope \"></i> Enviar factura</button></form>
+
                         </tr>
                     </table>
                 </div>
