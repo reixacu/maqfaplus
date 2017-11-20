@@ -89,8 +89,9 @@
                               </div>
                               <div class=\"form-group\">
                                   <label>Missatge:</label>
-                                  <textarea name=\"cos\" class=\"form-control\" rows=\"9\">Bones,&#10;&#10;Adjuntem la factura nuero ".$row["numero_factura"]."&#10;&#10;Salutacions,&#10;Gemma</textarea>
+                                  <textarea name=\"cos\" class=\"form-control\" rows=\"8\">Bones,&#10;&#10;Adjuntem la factura nuero ".$row["numero_factura"]."&#10;&#10;Salutacions,&#10;Gemma</textarea>
                               </div>
+                              <button type=\"submit\" class=\"btn btn-success\">Enviar correu</button>
                           </div>
                           <!-- /.panel-body -->
                       </div>
