@@ -703,5 +703,17 @@ function printRadioFormesPagamentClient2($idClient) //copy paste per culpa den r
    }
    $conn->close();
 }
-
+function printEmailClient($id)
+{
+  $data = date("Y-m-d");
+  include "mysql.php";
+  $sql = "SELECT `email_client` FROM `clients` WHERE `id_client` = $id";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+        $data = $row["email_client"];
+  }
+  $conn->close();
+  echo $data;
+}
 ?>
