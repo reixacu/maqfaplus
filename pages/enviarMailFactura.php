@@ -81,12 +81,20 @@
                           <div class=\"panel-body\">
                               <div class=\"form-group\">
                                   <label>Destinatari:</label>
-                                  <input name=\"numeroFactura\" class=\"form-control\" placeholder=\"Número de factura\" value=\"".printEmailClient($row["id_client_factura"])."\">
+                                  <input name=\"destinatari\" class=\"form-control\" value=\"".printEmailClient($row["id_client_factura"])."\">
                               </div>
-                              <form action='scriptAfegirLiniaFactura.php' method='get'><input type=\"hidden\" name=\"idFactura\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_factura"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-plus-square\"></i> Afegir línia</button></form><br />
-                              ";
-                              printTaulaLiniesFactura($id);
-              echo "
+                              <div class=\"form-group\">
+                                  <label>Destinatari:</label>
+                                  <input name=\"destinatari\" class=\"form-control\" value=\"Factura n ".$row["numero_factura"]."\">
+                              </div>
+                              <div class=\"form-group\">
+                                  <textarea name=\"cos\" class=\"form-control\" rows=\"3\" value=\"Bones,
+                                  
+                                  Adjuntem la factura nuero ".$row["numero_factura"]."
+
+                                  Salutacions,
+                                  Gemma\"></textarea>
+                              </div>
                           </div>
                           <!-- /.panel-body -->
                       </div>
