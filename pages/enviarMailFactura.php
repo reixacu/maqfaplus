@@ -65,7 +65,7 @@
               <!-- /.row -->
               <div class=\"row\">
                   <div class=\"col-lg-12\">
-                      <h1 class=\"page-header\"><i class=\"fa fa-file-text\" aria-hidden=\"true\"></i> Factura #". $row["id_factura"] . "</h1>
+                      <h1 class=\"page-header\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i> Enviar factura #". $row["id_factura"] . "</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
