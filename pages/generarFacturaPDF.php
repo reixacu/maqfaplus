@@ -211,7 +211,7 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output( '/home/factura_' . $idFactura . '.pdf', 'F');
+$pdf->Output( '/home/reixacu/factura_' . $idFactura . '.pdf', 'F');
 $pdf->Output( 'factura_' . $numFactura . '.pdf', 'I');
 
 //============================================================+
