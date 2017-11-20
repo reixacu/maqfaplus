@@ -79,7 +79,7 @@
                           </div>
                           <!-- /.panel-heading -->
                           <div class=\"panel-body\">
-                              <form role=\"form\" action=\"scriptEnviarMail.php\" method=\"post\">
+                              <form role=\"form\" action=\"scriptEnviarEmail.php\" method=\"post\">
                                   <div class=\"form-group\">
                                       <label>Destinatari:</label>
                                       <input name=\"destinatari\" class=\"form-control\" value=\"".printEmailClient($row["id_client_factura"])."\">
