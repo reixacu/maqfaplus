@@ -79,19 +79,21 @@
                           </div>
                           <!-- /.panel-heading -->
                           <div class=\"panel-body\">
-                              <div class=\"form-group\">
-                                  <label>Destinatari:</label>
-                                  <input name=\"destinatari\" class=\"form-control\" value=\"".printEmailClient($row["id_client_factura"])."\">
-                              </div>
-                              <div class=\"form-group\">
-                                  <label>Assumpte:</label>
-                                  <input name=\"assumpte\" class=\"form-control\" value=\"Factura n ".$row["numero_factura"]."\">
-                              </div>
-                              <div class=\"form-group\">
-                                  <label>Missatge:</label>
-                                  <textarea name=\"cos\" class=\"form-control\" rows=\"7\">Bones,&#10;&#10;Adjuntem la factura numero ".$row["numero_factura"]."&#10;&#10;Salutacions,&#10;Gemma</textarea>
-                              </div>
-                              <button type=\"submit\" class=\"btn btn-success\">Enviar correu</button>
+                              <form role=\"form\" action=\"scriptEnviarMail.php\" method=\"post\">
+                                  <div class=\"form-group\">
+                                      <label>Destinatari:</label>
+                                      <input name=\"destinatari\" class=\"form-control\" value=\"".printEmailClient($row["id_client_factura"])."\">
+                                  </div>
+                                  <div class=\"form-group\">
+                                      <label>Assumpte:</label>
+                                      <input name=\"assumpte\" class=\"form-control\" value=\"Factura n ".$row["numero_factura"]."\">
+                                  </div>
+                                  <div class=\"form-group\">
+                                      <label>Missatge:</label>
+                                      <textarea name=\"cos\" class=\"form-control\" rows=\"7\">Bones,&#10;&#10;Adjuntem la factura numero ".$row["numero_factura"]."&#10;&#10;Salutacions,&#10;Gemma</textarea>
+                                  </div>
+                                  <button type=\"submit\" class=\"btn btn-success\">Enviar correu</button>
+                              </form>
                           </div>
                           <!-- /.panel-body -->
                       </div>
