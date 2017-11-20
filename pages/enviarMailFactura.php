@@ -45,7 +45,7 @@
       <?php
       if ($_GET["id"] != NULL)
       {
-          $id = $_GET["id"];
+          $id = $_GET["numero_factura"];
           $result = getFacturaData($id);
           echo '<div id="page-wrapper">';
           if ($result->num_rows > 0) {
