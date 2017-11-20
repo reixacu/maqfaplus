@@ -409,7 +409,7 @@ function mostrarClientTaula($id){
                                         <td>".$row["id_client"]."</td>
                                     </tr>
                                     <tr>
-                                        <td>NIF</td>
+                                        <td>CIF</td>
                                         <td>".$row["nif_client"]."</td>
                                     </tr>
                                     ";
@@ -697,7 +697,7 @@ function printRadioFormesPagamentClient2($idClient) //copy paste per culpa den r
       while($row = $result->fetch_assoc()) {
           if ($row["id_fp"] == $fdefault)
           {
-            echo '<p class="form-control-static">'. $row["nom_fp"].'</p>'; 
+            echo '<p class="form-control-static">'. $row["nom_fp"].'</p>';
           }
       }
    }
