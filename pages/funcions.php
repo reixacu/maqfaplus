@@ -714,6 +714,6 @@ function printEmailClient($id)
         $data = $row["email_client"];
   }
   $conn->close();
-  echo $data;
+  return $data;
 }
 ?>
