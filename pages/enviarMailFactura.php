@@ -54,47 +54,6 @@
               echo"
               <div class=\"row\">
                   <div class=\"col-lg-12\">
-                      <table style='margin-top: 20px;'>
-                          <tr>
-                              <td><form action='mostrarFactura.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><i class=\"fa fa-arrow-left\"></i> Tornar a la factura</button></form></td>
-                          </tr>
-                      </table>
-                  </div>
-                  <!-- /.col-lg-12 -->
-              </div>
-              <!-- /.row -->
-              <div class=\"row\">
-                  <div class=\"col-lg-12\">
-                      <h1 class=\"page-header\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i> Enviar factura #". $row["id_factura"] . "</h1>
-                  </div>
-                  <!-- /.col-lg-12 -->
-              </div>
-              <!-- /.row -->
-              <div class=\"row\">
-                  <div class=\"col-lg-12\">
-                      <div class=\"panel panel-default\">
-                          <div class=\"panel-heading\">
-                              Client
-                          </div>
-                          <!-- /.panel-heading -->
-                          <div class=\"panel-body\">
-                          <a href='mostrarClient.php?id=" . $row["id_client_factura"] . "'>
-                              <h3><i class=\"fa fa-user\"></i> ";
-                              echo getClientCognomNom($row["id_client_factura"]);
-              echo "</h3></a>
-                          </div>
-                          <!-- /.panel-body -->
-                      </div>
-                      <!-- /.panel -->
-                  </div>
-              </div>
-                  <!-- /.row -->
-                  ";
-
-                  printRowDetallsFactura($id);
-
-              echo "
-                  <div class=\"col-lg-12\">
                       <div class=\"panel panel-default\">
                           <div class=\"panel-heading\">
                               Detalls de la Factura
