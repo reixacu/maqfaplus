@@ -5,7 +5,7 @@ $email= "jordi.reixach@newronia.com";
 $subject = "asdd";
 $cos = "asd";
 
-require 'PHPMailerAutoload.php';
+require('mailer/PHPMailerAutoload.php');
 
 $mail = new PHPMailer;
 
