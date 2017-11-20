@@ -56,7 +56,7 @@
                   <div class=\"col-lg-12\">
                       <table style='margin-top: 20px;'>
                           <tr>
-                              <td><form action='totesFactures.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><i class=\"fa fa-arrow-left\"></i> Tornar a la factura</button></form></td>
+                              <td><form action='mostrarFactura.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><i class=\"fa fa-arrow-left\"></i> Tornar a la factura</button></form></td>
                           </tr>
                       </table>
                   </div>
