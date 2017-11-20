@@ -1,9 +1,9 @@
 <?php
 
 
-$email= "jordi.reixach@newronia.com";
-$subject = "asdd";
-$cos = "asd";
+$email= $_POST["destinatari"];
+$subject = $_POST["assumpte"];
+$cos = $_POST["cos"];
 
 require('mailer/PHPMailerAutoload.php');
 
