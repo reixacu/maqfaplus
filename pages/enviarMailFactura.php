@@ -47,7 +47,7 @@
       {
           $id = $_GET["id"];
           $result = getFacturaData($id);
-          $numeroFactura = $_GET["numero_factura"];
+          //$numeroFactura = $_GET["numero_factura"];
           echo '<div id="page-wrapper">';
           if ($result->num_rows > 0) {
               // output data of each row
