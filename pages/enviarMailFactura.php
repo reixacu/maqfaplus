@@ -78,8 +78,13 @@
                           </div>
                           <!-- /.panel-heading -->
                           <div class=\"panel-body\">
+                              <h3>Email:</h3>
+                              <div class=\"form-group\">
+                                  <label>Serialització</label>
+                                  <input name=\"numeroFactura\" class=\"form-control\" placeholder=\"Número de factura\" value=\"a\">
+                              </div>
                               <form action='scriptAfegirLiniaFactura.php' method='get'><input type=\"hidden\" name=\"idFactura\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_factura"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-plus-square\"></i> Afegir línia</button></form><br />
-                              <h3>Productes</h3>";
+                              ";
                               printTaulaLiniesFactura($id);
               echo "
                           </div>
