@@ -4,6 +4,7 @@
 $email= $_POST["destinatari"];
 $subject = $_POST["assumpte"];
 $cos = $_POST["cos"];
+$idFactura = $_POST["id"];
 
 require('mailer/PHPMailerAutoload.php');
 
@@ -22,7 +23,7 @@ $mail->FromName = 'Maqfa';
 $mail->addAddress($email);     // Add a recipient
 
 $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+$mail->addAttachment('/home/reixacu/factura_' . $idFactura . '.pdf');         // Add attachments
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
