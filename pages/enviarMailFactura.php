@@ -80,7 +80,7 @@
                           <div class=\"panel-body\">
                               <div class=\"form-group\">
                                   <label>Destinatari:</label>
-                                  <input name=\"numeroFactura\" class=\"form-control\" placeholder=\"Número de factura\" value=\"".$printEmailClient."\">
+                                  <input name=\"numeroFactura\" class=\"form-control\" placeholder=\"Número de factura\" value=\"".$printEmailClient()."\">
                               </div>
                               <form action='scriptAfegirLiniaFactura.php' method='get'><input type=\"hidden\" name=\"idFactura\" value=\"" . $id . "\"><input type=\"hidden\" name=\"idClient\" value=\"" . $row["id_client_factura"] . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-plus-square\"></i> Afegir línia</button></form><br />
                               ";
