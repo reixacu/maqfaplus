@@ -84,11 +84,11 @@
                                   <input name=\"destinatari\" class=\"form-control\" value=\"".printEmailClient($row["id_client_factura"])."\">
                               </div>
                               <div class=\"form-group\">
-                                  <label>Destinatari:</label>
+                                  <label>Assumpte:</label>
                                   <input name=\"destinatari\" class=\"form-control\" value=\"Factura n ".$row["numero_factura"]."\">
                               </div>
                               <div class=\"form-group\">
-                                  <textarea name=\"cos\" class=\"form-control\" rows=\"3\">Bones,&#10;Adjuntem la factura nuero ".$row["numero_factura"]."&#10;Salutacions,&#10;Gemma</textarea>
+                                  <textarea name=\"cos\" class=\"form-control\" rows=\"9\">Bones,&#10;Adjuntem la factura nuero ".$row["numero_factura"]."&#10;Salutacions,&#10;Gemma</textarea>
                               </div>
                           </div>
                           <!-- /.panel-body -->
