@@ -45,6 +45,9 @@
     $row = $result->fetch_assoc();
     $result2 = getClientData($row["id_client_factura"]);
     $row2 = $result2->fetch_assoc();
+    $diesAdd = $row2["dies_fins_pagament_client"];
+    $dia1 = $row2["dia_mensual_pagament_client"];
+    $dia2 = $row2["dia_mensual_pagament_2_client"];
     ?>
 
     <div id="page-wrapper">
@@ -157,10 +160,6 @@
 
   var datafactura=document.getElementById("dataFactura");
   var datavenciment=document.getElementById("dataVenciment");
-
-  $diesAdd = $row2["dies_fins_pagament_client"];
-  $dia1 = $row2["dia_mensual_pagament_client"];
-  $dia2 = $row2["dia_mensual_pagament_2_client"];
 
   var diesAdd = <?php echo $diesAdd;?>;
   var dia1 = <?php echo $dia1;?>;
