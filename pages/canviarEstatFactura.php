@@ -199,7 +199,7 @@
       }*/
       var min=Math.min(dia1,dia2);
       var max=Math.max(dia1,dia2);
-      var valorinicialdatafactura = dateFormat(datafactura.value, "yyyy-mm-dd");
+      var valorinicialdatafactura = Date(datafactura.value); //dateFormat(datafactura.value, "yyyy-mm-dd");
       var act = valorinicialdatafactura.getDate(); //dia del datafactura
       var mesdatafactura = valorinicialdatafactura.getMonth();
       var anydatafactura = valorinicialdatafactura.getFullYear();
