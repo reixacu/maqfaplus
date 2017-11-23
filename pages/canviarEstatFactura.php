@@ -169,7 +169,7 @@
   var diesAdd = <?php echo $diesAdd;?>;
   var dia1 = <?php echo $dia1;?>;
   var dia2 = <?php echo $dia2;?>;
-  var data = Date(datafactura.value);
+  var data = new Date(datafactura.value);
   data = addDays(data,diesAdd);
 
   //var data1 = Date(2020,12,30);
@@ -199,7 +199,7 @@
       }*/
       var min=Math.min(dia1,dia2);
       var max=Math.max(dia1,dia2);
-      var valorinicialdatafactura = Date(datafactura.value); //dateFormat(datafactura.value, "yyyy-mm-dd");
+      var valorinicialdatafactura = new Date(datafactura.value); //dateFormat(datafactura.value, "yyyy-mm-dd");
       var act = valorinicialdatafactura.getDate(); //dia del datafactura
       var mesdatafactura = valorinicialdatafactura.getMonth();
       var anydatafactura = valorinicialdatafactura.getFullYear();
