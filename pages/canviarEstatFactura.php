@@ -184,26 +184,6 @@
   //datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
 
   datafactura.addEventListener('input', function (evt) {
-      /*if(dia1!=0 && dia2!=0){
-          if(dia1>dia2){
-            var temp=dia1;
-            dia1=dia2;
-            dia2=temp;
-          }
-
-          var diames = dateFormat(datafactura.value, "yyyy-mm-dd").getDate();
-          if(diames<=dia){
-            var diesmod = dia1-diames;
-            data.addDays(diesmod); //funsionarà?
-          }
-          else{
-            var diesmod = dia2-diames;
-            data.addDays(diesmod); //funsionarà?
-          }
-      }
-      else{
-        diesmod =
-      }*/
       var min=Math.min(dia1,dia2);
       var max=Math.max(dia1,dia2);
       var valorinicialdatafactura = new Date(datafactura.value); //dateFormat(datafactura.value, "yyyy-mm-dd");
@@ -218,7 +198,7 @@
 
 
       var valordatavenciment = new Date();
-      valordatavenciment.setDate(data.getDate() + diesadd2);
+      valordatavenciment.setDate(valorinicialdatafactura.getDate() + diesadd2);
       datavenciment.value = valordatavenciment.getFullYear() + "-" + valordatavenciment.getMonth() + "-" + valordatavenciment.getDate();
       //datavenciment.value=this.value;
   });
