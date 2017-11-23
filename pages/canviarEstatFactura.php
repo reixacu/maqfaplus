@@ -48,8 +48,11 @@
     <?php //$row["dia_mensual_pagament_2_client"] $row["dia_mensual_pagament_client"] ?>
     <script>
       var datafactura=document.getElementById("dataFactura");
+      var datavenciment=document.getElementById("dataVenciment");
       //datafactura.innerHTML = "My First JavaScript";
+      var data = Date(2020,12,30);
       datafactura.value="2016-05-01";
+      datavenciment.value=data;
       /*datafactura.addEventListener('input', function (evt)) {
         something(this.value);
       });*/
@@ -95,11 +98,11 @@
                                     <h1>Dates</h1>
                                     <div class="form-group">
                                         <label>Data de la factura</label><br \>
-                                        <input type="date" name="dataFactura" value="<?php printDataFactura($idFactura);?>">
+                                        <input type="date" id="dataFactura" name="dataFactura" value="<?php printDataFactura($idFactura);?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Data màxima pagament</label><br \>
-                                        <input type="date" name="dataVenciment" value="<?php printDataVencimentFactura($idFactura);?>">
+                                        <input type="date" id="dataVenciment" name="dataVenciment" value="<?php printDataVencimentFactura($idFactura);?>">
                                     </div>
 
                                 </div>
