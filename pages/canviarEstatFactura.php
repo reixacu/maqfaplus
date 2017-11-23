@@ -43,9 +43,11 @@
     $idFactura = $_GET["id"];
     $result = getFacturaData($idFactura);
     $row = $result->fetch_assoc();
-    $diesAdd = $row["dies_fins_pagament_client"];
-    $dia1 = $row["dia_mensual_pagament_client"];
-    $dia2 = $row["dia_mensual_pagament_2_client"];
+    $result2 = getClientData($row["id_client_factura"]);
+    $row2 = $result2->fetch_assoc();
+    $diesAdd = $row2["dies_fins_pagament_client"];
+    $dia1 = $row2["dia_mensual_pagament_client"];
+    $dia2 = $row2["dia_mensual_pagament_2_client"];
     ?>
 
     <div id="page-wrapper">
