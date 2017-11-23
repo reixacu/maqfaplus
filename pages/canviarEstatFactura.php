@@ -209,7 +209,9 @@
       else if(act<=max) diesadd2=max-act;
       else diesadd2=ultimdiamesactual-act+min;
 
-      var valordatavenciment = addDays(valorinicialdatafactura,diesadd2);
+
+      var valordatavenciment = new Date();
+      valordatavenciment.setDate(valorinicialdatafactura + diesadd2);
       datavenciment.value=dateFormat(valordatavenciment, "yyyy-mm-dd");
       //datavenciment.value=this.value;
   });
