@@ -43,6 +43,9 @@
     $idFactura = $_GET["id"];
     $result = getFacturaData($idFactura);
     $row = $result->fetch_assoc();
+    $diesAdd = $row["dies_fins_pagament_client"];
+    $dia1 = $row["dia_mensual_pagament_client"];
+    $dia2 = $row["dia_mensual_pagament_2_client"];
     ?>
 
     <div id="page-wrapper">
@@ -152,9 +155,9 @@
   var datavenciment=document.getElementById("dataVenciment");
   //var data1 = Date(2020,12,30);
 
-  var diesAdd = <?php echo $row["dies_fins_pagament_client"];?>
-  var dia1 = <?php echo $row["dia_mensual_pagament_client"];?>
-  var dia2 = <?php echo $row["dia_mensual_pagament_2_client"];?>
+  var diesAdd = <?php echo $diesAdd;?>;
+  var dia1 = <?php echo $dia1;?>;
+  var dia2 = <?php echo $dia2;?>;
 
   //document.getElementById("dataFactura").value = "2016-05-01";
   //datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
