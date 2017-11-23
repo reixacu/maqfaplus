@@ -159,6 +159,10 @@
                         <label>Dia mensual de pagament</label>
                         <?php mostrarcamp($mode,"diaMensualPagament",$mode!=0?$row["dia_mensual_pagament_client"]:"","Dia preferit del client per als pagaments");?>
                     </div>
+                    <div class="form-group">
+                        <label>Dia mensual de pagament 2</label>
+                        <?php mostrarcamp($mode,"diaMensualPagament2",$mode!=0?$row["dia_mensual_pagament_2_client"]:"","Dia preferit del client per als pagaments 2");?>
+                    </div>
 										<div class="form-group">
                         <label>IBAN</label>
                         <?php mostrarcamp($mode,"IBAN",$mode!=0?$row["numero_conta_client"]:"","IBAN");?>

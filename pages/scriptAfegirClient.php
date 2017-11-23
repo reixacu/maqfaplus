@@ -79,6 +79,7 @@
                         $formaPagament = $_POST["formaPagament"];
 						$diesFinsPagament = $_POST["diesFinsPagament"];
 						$diaMensualPagament = $_POST["diaMensualPagament"];
+            $diaMensualPagament2 = $_POST["diaMensualPagament2"];
 						$IBAN = $_POST["IBAN"];
 
 
@@ -97,11 +98,11 @@
                                 echo "ERROR: NO HAS EMPLENAT CAMPS OBLIGATORIS DEL FORMULARI";
                                 break;
                             case 0:
-                                $sql = "INSERT INTO `clients` (`id_client`, `nif_client`, `nom_client`, `cognom_client`, 
-                                `rao_social_client`, `nom_comercial_client`, `es_empresa_client`, `adreca_client`, 
-                                `poblacio_client`, `provincia_client`, `pais_client`, `cp_client`, `email_client`, 
-                                `fix1_client`, `fix2_client`, `mobil1_client`, `mobil2_client`, `persona_contacte1_client`, 
-                                `p1_email_client`, `persona_contacte2_client`, `p2_email_client`, `comentari_client`, 
+                                $sql = "INSERT INTO `clients` (`id_client`, `nif_client`, `nom_client`, `cognom_client`,
+                                `rao_social_client`, `nom_comercial_client`, `es_empresa_client`, `adreca_client`,
+                                `poblacio_client`, `provincia_client`, `pais_client`, `cp_client`, `email_client`,
+                                `fix1_client`, `fix2_client`, `mobil1_client`, `mobil2_client`, `persona_contacte1_client`,
+                                `p1_email_client`, `persona_contacte2_client`, `p2_email_client`, `comentari_client`,
                                 `forma_pagament_client`, `dies_fins_pagament_client`,`dia_mensual_pagament_client`,`numero_conta_client`) VALUES (NULL, '$nif', '$nom', '$cognoms', '', '', '0', '$direccio',
                                  '$poblacio', '$provincia', '$pais', '$cp', '$mail', '$fix1', '$fix2', '$mobil1',
                                   '$mobil2', '', '', '', '', '$comentari', '$formaPagament','$diesFinsPagament','$diaMensualPagament','$IBAN');";
@@ -111,12 +112,12 @@
                             case 1:
                                 $sql = "INSERT INTO `clients` (`id_client`, `nif_client`, `nom_client`, `cognom_client`,
                                 `rao_social_client`, `nom_comercial_client`, `es_empresa_client`, `adreca_client`,
-                                `poblacio_client`, `provincia_client`, `pais_client`, `cp_client`, `email_client`, 
-                                `fix1_client`, `fix2_client`, `mobil1_client`, `mobil2_client`, `persona_contacte1_client`, 
-                                `p1_email_client`, `persona_contacte2_client`, `p2_email_client`, `comentari_client`, 
-                                `forma_pagament_client`, `dies_fins_pagament_client`,`dia_mensual_pagament_client`,`numero_conta_client`) VALUES (NULL, '$nif', '', '', '$raoSocial', '$nomComercial', '1', 
-                                '$direccio', '$poblacio', '$provincia', '$pais', '$cp', '$mail', '$fix1', '$fix2', 
-                                '$mobil1', '$mobil2', '$p1', '$p1Mail', '$p2', '$p2Mail', '$comentari', '$formaPagament','$diesFinsPagament','$diaMensualPagament','$IBAN');";
+                                `poblacio_client`, `provincia_client`, `pais_client`, `cp_client`, `email_client`,
+                                `fix1_client`, `fix2_client`, `mobil1_client`, `mobil2_client`, `persona_contacte1_client`,
+                                `p1_email_client`, `persona_contacte2_client`, `p2_email_client`, `comentari_client`,
+                                `forma_pagament_client`, `dies_fins_pagament_client`,`dia_mensual_pagament_client`,`numero_conta_client`,`dia_mensual_pagament_2_client`) VALUES (NULL, '$nif', '', '', '$raoSocial', '$nomComercial', '1',
+                                '$direccio', '$poblacio', '$provincia', '$pais', '$cp', '$mail', '$fix1', '$fix2',
+                                '$mobil1', '$mobil2', '$p1', '$p1Mail', '$p2', '$p2Mail', '$comentari', '$formaPagament','$diesFinsPagament','$diaMensualPagament','$IBAN','$diaMensualPagament2');";
                                 insertClientBD($conn, $sql);
                                 $errorComprovarEsEmpresa = false;
                                 break;
@@ -136,7 +137,7 @@
                                     </tr>
                                 </table>
                                 <br />
-                            
+
                             <!-- /.col-lg-12 -->
                             ";
                             mostrarClientTaula(getClientIdFromNIF($nif));
