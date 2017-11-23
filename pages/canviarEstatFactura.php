@@ -177,7 +177,7 @@
   var dia1 = <?php echo $dia1;?>;
   var dia2 = <?php echo $dia2;?>;
   var inicialmesdiesmaxims = new Date(datafactura.value);
-  inicialmesdiesmaxims = addDays(data,diesAdd);
+  inicialmesdiesmaxims = addDays(inicialmesdiesmaxims,diesAdd);
 
   //var data1 = Date(2020,12,30);
   //document.getElementById("dataFactura").value = "2016-05-01";
