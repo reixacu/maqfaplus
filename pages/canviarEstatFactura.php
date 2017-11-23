@@ -45,8 +45,6 @@
     $row = $result->fetch_assoc();
     ?>
 
-
-
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -152,11 +150,17 @@
 <script>
   var datafactura=document.getElementById("dataFactura");
   var datavenciment=document.getElementById("dataVenciment");
-  //datafactura.innerHTML = "My First JavaScript";
-  var data1 = Date(2020,12,30);
-  document.getElementById("dataFactura").value = "2016-05-01";
-  datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
-  /*datafactura.addEventListener('input', function (evt)) {
-    something(this.value);
-  });*/
+  //var data1 = Date(2020,12,30);
+
+  var diesAdd = <?php echo $row["dies_fins_pagament_client"];?>
+  var dia1 = <?php echo $row["dia_mensual_pagament_client"];?>
+  var dia2 = <?php echo $row["dia_mensual_pagament_2_client"];?>
+
+  //document.getElementById("dataFactura").value = "2016-05-01";
+  //datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
+
+  datafactura.addEventListener('input', function (evt)) {
+    datavenciment.value=this.value;
+  });
+
 </script>
