@@ -212,7 +212,7 @@
 
       var valordatavenciment = new Date();
       valordatavenciment.setDate(valorinicialdatafactura.getDate() + diesadd2);
-      datavenciment.value=dateFormat(valordatavenciment, "yyyy-mm-dd");
+      datavenciment.value=dateFormat(valordatavenciment.getDate(), "yyyy-mm-dd");
       //datavenciment.value=this.value;
   });
 
