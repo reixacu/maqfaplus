@@ -201,7 +201,8 @@
       //tempdatavenciment.setDate(inicialmesdiesmaxims.getDate() + diesadd2);
       var tempdatavenciment = new Date(inicialmesdiesmaxims.getTime()); //copiem
       tempdatavenciment =  addDays(tempdatavenciment,diesadd2);
-      datavenciment.value = tempdatavenciment.getFullYear() + "-" + tempdatavenciment.getMonth()+1 + "-" + tempdatavenciment.getDate();
+      var elmesenjavascript = tempdatavenciment.getMonth()+1;
+      datavenciment.value = tempdatavenciment.getFullYear() + "-" + elmesenjavascript + "-" + tempdatavenciment.getDate();
   });
 
         /*var mesos_sumar=0; //DESDE inicialmesdiesmaxims
