@@ -30,6 +30,7 @@ $mail->isHTML(true);                                  // Set email format to HTM
 
 $mail->Subject = $subject;
 $mail->Body    = $cos;
+$mail->AddEmbeddedImage('logo.jpg', 'logo');
 //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {
