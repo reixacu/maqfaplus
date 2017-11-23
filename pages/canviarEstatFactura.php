@@ -45,9 +45,6 @@
     $row = $result->fetch_assoc();
     $result2 = getClientData($row["id_client_factura"]);
     $row2 = $result2->fetch_assoc();
-    $diesAdd = $row2["dies_fins_pagament_client"];
-    $dia1 = $row2["dia_mensual_pagament_client"];
-    $dia2 = $row2["dia_mensual_pagament_2_client"];
     ?>
 
     <div id="page-wrapper">
@@ -151,21 +148,66 @@
 
 </html>
 
-<?php //$row["dia_mensual_pagament_2_client"] $row["dia_mensual_pagament_client"] ?>
 <script>
+  Date.prototype.addDays = function(days) {
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
+  }
+
   var datafactura=document.getElementById("dataFactura");
   var datavenciment=document.getElementById("dataVenciment");
-  //var data1 = Date(2020,12,30);
+
+  $diesAdd = $row2["dies_fins_pagament_client"];
+  $dia1 = $row2["dia_mensual_pagament_client"];
+  $dia2 = $row2["dia_mensual_pagament_2_client"];
 
   var diesAdd = <?php echo $diesAdd;?>;
   var dia1 = <?php echo $dia1;?>;
   var dia2 = <?php echo $dia2;?>;
+  var data = Date(datafactura.value);
+  data = data.addDays(diesAdd);
 
+  //var data1 = Date(2020,12,30);
   //document.getElementById("dataFactura").value = "2016-05-01";
   //datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
 
   datafactura.addEventListener('input', function (evt) {
-    datavenciment.value=this.value;
+      /*if(dia1!=0 && dia2!=0){
+          if(dia1>dia2){
+            var temp=dia1;
+            dia1=dia2;
+            dia2=temp;
+          }
+
+          var diames = dateFormat(datafactura.value, "yyyy-mm-dd").getDate();
+          if(diames<=dia){
+            var diesmod = dia1-diames;
+            data.addDays(diesmod); //funsionarà?
+          }
+          else{
+            var diesmod = dia2-diames;
+            data.addDays(diesmod); //funsionarà?
+          }
+      }
+      else{
+        diesmod =
+      }*/
+      var min=Math.min(dia1,dia2);
+      var max=Math.max(dia1,dia2);
+      var valorinicialdatafactura = dateFormat(datafactura.value, "yyyy-mm-dd");
+      var act = valorinicialdatafactura.getDate(); //dia del datafactura
+      var mesdatafactura = valorinicialdatafactura.getMonth();
+      var anydatafactura = valorinicialdatafactura.getFullYear();
+      var ultimdiamesactual = new Date(anydatafactura,mesdatafactura,0).getDate(); //mesdatafactura+1??????????????????
+
+      if(act<=min) diesadd2=min-act;
+      else if(act<=max) diesadd2=max-act;
+      else diesadd2=ultimdiamesactual-act+min;
+
+      var valordatavenciment = valorinicialdatafactura.addDays(diesadd2);
+      datavenciment.value=dateFormat(valordatavenciment, "yyyy-mm-dd");
+      //datavenciment.value=this.value;
   });
 
 </script>
