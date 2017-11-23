@@ -98,7 +98,7 @@
                                 $sql = "UPDATE `clients` SET `nif_client` = '$nif', `nom_client` = '$nom',
                                 `cognom_client` = '$cognoms', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio',
                                 `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp',
-                                `email_client` = '$mail', `fix1_client` = '$fix1', `fix2_client` = '$fix2', `mobil1_client` = '$mobil1',
+                                `email_client` = '$mail', `fix1_client` = '$fix1', `fix2_client` = '$fix2', `mobil1_client` = '$mobil1',`dia_mensual_pagament_2_client` = '$diaMensualPagament2',
                                 `mobil2_client` = '$mobil2', `comentari_client` = '$comentari', `dia_mensual_pagament_client` = '$diaMensualPagament', `numero_conta_client` = '$IBAN',`dies_fins_pagament_client` = '$diesFinsPagament', `forma_pagament_client` = '$formaPagament' WHERE `clients`.`id_client` = $id;";
                                 insertClientBD($conn, $sql);
                                 $errorComprovarEsEmpresa = false;
