@@ -209,7 +209,7 @@
       else if(act<=max) diesadd2=max-act;
       else diesadd2=ultimdiamesactual-act+min;
 
-
+      var dateFormat = require('dateformat');
       var valordatavenciment = new Date();
       valordatavenciment.setDate(valorinicialdatafactura.getDate() + diesadd2);
       datavenciment.value=dateFormat(valordatavenciment.getDate(), "yyyy-mm-dd");
