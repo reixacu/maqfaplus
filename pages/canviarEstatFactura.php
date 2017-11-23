@@ -205,7 +205,7 @@
       if(elmesenjavascript<10)elmesenjavascript="0"+elmesenjavascript;
       var eldiaenjavascript = tempdatavenciment.getDate();
       if(eldiaenjavascript<10)eldiaenjavascript="0"+eldiaenjavascript;
-      datavenciment.value = tempdatavenciment.getFullYear() + "-" + elmesenjavascript + "-" + ;
+      datavenciment.value = tempdatavenciment.getFullYear() + "-" + elmesenjavascript + "-" + eldiaenjavascript;
   });
 
         /*var mesos_sumar=0; //DESDE inicialmesdiesmaxims
