@@ -98,7 +98,7 @@ $html = '
 	</tr>
 	<tr>
 		<td style="text-align:left">
-				XEVI FALGARONA COLL
+				FALGARONA COLL, FRANCESC XAVIER
 				<br /> Pol.Ind.La Canya
 				<br /> C/Roselló, 19
 				<br /> 17800 OLOT
