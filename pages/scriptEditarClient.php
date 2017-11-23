@@ -78,9 +78,10 @@
                         $provincia = $_POST["provincia"];
                         $pais = $_POST["pais"];
                         $formaPagament = $_POST["formaPagament"];
-						$diesFinsPagament = $_POST["diesFinsPagament"];
-						$diaMensualPagament = $_POST["diaMensualPagament"];
-						$IBAN = $_POST["IBAN"];
+            						$diesFinsPagament = $_POST["diesFinsPagament"];
+            						$diaMensualPagament = $_POST["diaMensualPagament"];
+                        $diaMensualPagament2 = $_POST["diaMensualPagament2"];
+            						$IBAN = $_POST["IBAN"];
 
                         $conn = new mysqli($servername, $username, $password, $dbname);
                         // Check connection
@@ -94,21 +95,22 @@
                         switch(checkEsEmpresaById($id))
                         {
                             case 0:
-                                $sql = "UPDATE `clients` SET `nif_client` = '$nif', `nom_client` = '$nom', 
-                                `cognom_client` = '$cognoms', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio', 
-                                `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp', 
-                                `email_client` = '$mail', `fix1_client` = '$fix1', `fix2_client` = '$fix2', `mobil1_client` = '$mobil1', 
+                                $sql = "UPDATE `clients` SET `nif_client` = '$nif', `nom_client` = '$nom',
+                                `cognom_client` = '$cognoms', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio',
+                                `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp',
+                                `email_client` = '$mail', `fix1_client` = '$fix1', `fix2_client` = '$fix2', `mobil1_client` = '$mobil1',
                                 `mobil2_client` = '$mobil2', `comentari_client` = '$comentari', `dia_mensual_pagament_client` = '$diaMensualPagament', `numero_conta_client` = '$IBAN',`dies_fins_pagament_client` = '$diesFinsPagament', `forma_pagament_client` = '$formaPagament' WHERE `clients`.`id_client` = $id;";
                                 insertClientBD($conn, $sql);
                                 $errorComprovarEsEmpresa = false;
                                 break;
-                            case 1:
-                                $sql = "UPDATE `clients` SET `nif_client` = '$nif', `rao_social_client` = '$raoSocial', 
-                                `nom_comercial_client` = '$nomComercial', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio', 
-                                `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp', 
-                                `email_client` = '$mail', `fix1_client` = '$fix1', `fix2_client` = '$fix2', `mobil1_client` = '$mobil1', 
-                                `mobil2_client` = '$mobil2', `persona_contacte1_client` = '$p1', `p1_email_client` = '$p1Mail', 
-                                `persona_contacte2_client` = '$p2', `p2_email_client` = '$p2Mail', `comentari_client` = '$comentari', `dia_mensual_pagament_client` = '$diaMensualPagament', `numero_conta_client` = '$IBAN',`dies_fins_pagament_client` = '$diesFinsPagament', `forma_pagament_client` = '$formaPagament' WHERE `clients`.`id_client` = $id;";
+                            case 1: //EMPRESA
+                                $sql = "UPDATE `clients` SET `nif_client` = '$nif', `rao_social_client` = '$raoSocial',
+                                `nom_comercial_client` = '$nomComercial', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio',
+                                `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp',
+                                `email_client` = '$mail', `fix1_client` = '$fix1', `fix2_client` = '$fix2', `mobil1_client` = '$mobil1',
+                                `mobil2_client` = '$mobil2', `persona_contacte1_client` = '$p1', `p1_email_client` = '$p1Mail', `dia_mensual_pagament_2_client` = '$diaMensualPagament2',
+                                `persona_contacte2_client` = '$p2', `p2_email_client` = '$p2Mail', `comentari_client` = '$comentari', `dia_mensual_pagament_client` = '$diaMensualPagament',
+                                 `numero_conta_client` = '$IBAN',`dies_fins_pagament_client` = '$diesFinsPagament', `forma_pagament_client` = '$formaPagament' WHERE `clients`.`id_client` = $id;";
                                 insertClientBD($conn, $sql);
                                 $errorComprovarEsEmpresa = false;
                                 break;
@@ -127,12 +129,11 @@
                                     </tr>
                                 </table>
                                 <br />
-                            
+
                             ";
                             mostrarClientTaula(getClientIdFromNIF($nif));
                             echo"</div>
                             <!-- /.col-lg-12 -->";
-
                         }
                         $conn->close();
                         ?>
