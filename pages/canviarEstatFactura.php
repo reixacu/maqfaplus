@@ -45,6 +45,16 @@
     $row = $result->fetch_assoc();
     ?>
 
+    <?php //$row["dia_mensual_pagament_2_client"] $row["dia_mensual_pagament_client"] ?>
+    <script>
+      var datafactura=document.getElementById("dataFactura");
+      //datafactura.innerHTML = "My First JavaScript";
+      datafactura.value="2016-05-01";
+      /*datafactura.addEventListener('input', function (evt)) {
+        something(this.value);
+      });*/
+    </script>
+
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
