@@ -10,7 +10,7 @@ echo $ruta;
 require('mailer/PHPMailerAutoload.php');
 
 $mail = new PHPMailer;
-
+$mail->charSet = "UTF-8"; 
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'authsmtp.maqfa.cat';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -32,7 +32,7 @@ $headers = "Content-Type: text/html; charset=UTF-8";
 
 $mail->Subject = $subject;
 $mail->Body    = $cos;
-$mail->Headers = $headers;
+
 $mail->AddEmbeddedImage('logo.jpg', 'logo');
 //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
