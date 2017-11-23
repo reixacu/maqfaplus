@@ -97,7 +97,7 @@
                                         <input type="date" id="dataVenciment" name="dataVenciment" value="<?php printDataVencimentFactura($idFactura);?>">
                                     </div>
                                     <div class="form-group">
-                                        <label>Data màxima pagament</label><br \>
+                                        <label>Valors preferits</label><br \>
                                         Dies fins pagament: <?php echo $row2["dies_fins_pagament_client"]; ?><br />
                                         Dia pagament 1: <?php echo $row2["dia_mensual_pagament_client"]; ?><br />
                                         Dia pagament 2: <?php echo $row2["dia_mensual_pagament_2_client"]; ?>
