@@ -134,7 +134,6 @@
                             mostrarClientTaula(getClientIdFromNIF($nif));
                             echo"</div>
                             <!-- /.col-lg-12 -->";
-
                         }
                         $conn->close();
                         ?>
