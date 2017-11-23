@@ -153,9 +153,9 @@
   var datafactura=document.getElementById("dataFactura");
   var datavenciment=document.getElementById("dataVenciment");
   //datafactura.innerHTML = "My First JavaScript";
-  var data = Date(2020,12,30);
+  var data1 = Date(2020,12,30);
   document.getElementById("dataFactura").value = "2016-05-01";
-  datavenciment.value=data;
+  datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
   /*datafactura.addEventListener('input', function (evt)) {
     something(this.value);
   });*/
