@@ -28,8 +28,11 @@ $mail->addAttachment($ruta);         // Add attachments
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
+$headers = "Content-Type: text/html; charset=UTF-8";
+
 $mail->Subject = $subject;
 $mail->Body    = $cos;
+$mail->Headers = $headers;
 $mail->AddEmbeddedImage('logo.jpg', 'logo');
 //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
