@@ -154,7 +154,7 @@
   var datavenciment=document.getElementById("dataVenciment");
   //datafactura.innerHTML = "My First JavaScript";
   var data = Date(2020,12,30);
-  document.getElementById("dataFactura").value = "2016-05-01";
+  document.getElementById("dataFactura").value = "-01/05/2016";
   datavenciment.value=data;
   /*datafactura.addEventListener('input', function (evt)) {
     something(this.value);
