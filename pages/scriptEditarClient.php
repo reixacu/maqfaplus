@@ -104,6 +104,7 @@
                                 $errorComprovarEsEmpresa = false;
                                 break;
                             case 1: //EMPRESA
+
                                 $sql = "UPDATE `clients` SET `nif_client` = '$nif', `rao_social_client` = '$raoSocial',
                                 `nom_comercial_client` = '$nomComercial', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio',
                                 `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp',
@@ -113,6 +114,7 @@
                                  `numero_conta_client` = '$IBAN',`dies_fins_pagament_client` = '$diesFinsPagament', `forma_pagament_client` = '$formaPagament' WHERE `clients`.`id_client` = $id;";
                                 insertClientBD($conn, $sql);
                                 $errorComprovarEsEmpresa = false;
+                                echo $sql;
                                 break;
                             case 2:
                                 echo "ERROR 1001. CONSULTA EL MANUAL";
