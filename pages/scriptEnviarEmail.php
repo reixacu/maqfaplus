@@ -5,7 +5,7 @@ $email= $_POST["destinatari"];
 $subject = $_POST["assumpte"];
 $cos = $_POST["cos"];
 $idFactura = $_POST["id"];
-$ruta = '/home/reixacu/factura_' . $idFactura . '.pdf';
+$ruta = '/home/pi/factures/factura_' . $idFactura . '.pdf';
 echo $ruta;
 require('mailer/PHPMailerAutoload.php');
 
