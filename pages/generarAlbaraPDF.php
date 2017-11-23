@@ -99,12 +99,12 @@ $html = '
 	<tr>
 		<td style="text-align:left">
 				FALGARONA COLL, FRANCESC XAVIER
-				<br /> Pol.Ind.La Canya
-				<br /> C/Roselló, 19
+				<br /> C/Roselló, 19   Pol.Ind.La Canya
 				<br /> 17800 OLOT
 				<br /> (Girona)
-				<br /> Tel. 608556991
 				<br /> NIF 46672373-Z
+				<br /> Tel. 608556991
+				<br /> xevifaco@maqfa.cat
 		</td>
 		<td style="text-align:right">';
 			if ($nomClient != "") $html = $html . $nomClient;
