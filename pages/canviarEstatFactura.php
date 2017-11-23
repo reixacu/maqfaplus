@@ -212,7 +212,7 @@
 
       var valordatavenciment = new Date();
       valordatavenciment.setDate(valorinicialdatafactura.getDate() + diesadd2);
-      datavenciment.value = valordatavenciment.getFullYear() + "-" + valordatavenciment.getMonth() + "-" + valordatavenciment.getDay();
+      datavenciment.value = valordatavenciment.getFullYear() + "-" + valordatavenciment.getMonth() + "-" + valordatavenciment.getDate();
       //datavenciment.value=this.value;
   });
 
