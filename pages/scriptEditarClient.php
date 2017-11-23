@@ -67,7 +67,7 @@
                         $p1Mail = $_POST["p1Mail"];
                         $p2Mail = $_POST["p2Mail"];
                         $direccio = $_POST["direccio"];
-                        $poblacio = str_replace($_POST["poblacio"], "'", "''");
+                        $poblacio = str_replace("'", "''", $_POST["poblacio"]);
                         $cp = $_POST["cp"];
                         $mail = $_POST["mail"];
                         $fix1 = $_POST["fix1"];
