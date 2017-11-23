@@ -90,7 +90,7 @@
                                   </div>
                                   <div class=\"form-group\">
                                       <label>Missatge:</label>
-                                      <textarea name=\"cos\" class=\"form-control\" rows=\"7\">Bones,&#10;&#10;Adjuntem la factura corresponent.&#10;&#10;Moltes gràcies.&#10;&#10;Gemma</textarea>
+                                      <textarea name=\"cos\" class=\"form-control\" rows=\"7\">Bones,<br /><br />Adjuntem la factura corresponent.<br /><br />Moltes gràcies.<br /><br />Gemma<br /><img src='cid:logo'></textarea>
                                   </div>
                                   <input type=\"hidden\" name=\"id\" value=\"" . $id . "\">
                                   <button type=\"submit\" class=\"btn btn-success\">Enviar correu</button>
