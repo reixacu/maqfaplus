@@ -90,7 +90,7 @@
                         }
                         echo "<div class=\"col-lg-6\">";
 
-                        // var per saber si no hi ha hagut error
+                        // var per saber si no hi ha hagut error dsfasdfads
                         $errorComprovarEsEmpresa = true;
                         switch(checkEsEmpresaById($id))
                         {
