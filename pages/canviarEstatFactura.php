@@ -184,8 +184,7 @@
   //datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
 
   datafactura.addEventListener('input', function (evt) {
-      var valorinicialdatafactura = new Date(datafactura.value); //dateFormat(datafactura.value, "yyyy-mm-dd");
-
+      //var valorinicialdatafactura = new Date(datafactura.value); //dateFormat(datafactura.value, "yyyy-mm-dd");
       var inicialmesdiesmaxims = new Date(datafactura.value);
       inicialmesdiesmaxims = addDays(inicialmesdiesmaxims,diesAdd);
 
@@ -198,10 +197,21 @@
       else if(act<=max) diesadd2=max-act;
       else diesadd2=ultimdiamesactual-act+min;
 
-      var valordatavenciment = new Date();
-      valordatavenciment.setDate(inicialmesdiesmaxims.getDate() + diesadd2);
-      datavenciment.value = valordatavenciment.getFullYear() + "-" + valordatavenciment.getMonth() + "-" + valordatavenciment.getDate();
-      //datavenciment.value=this.value;
+      //var tempdatavenciment = new Date();
+      //tempdatavenciment.setDate(inicialmesdiesmaxims.getDate() + diesadd2);
+      var tempdatavenciment = new Date(inicialmesdiesmaxims.getTime()); //copiem
+      tempdatavenciment =  addDays(tempdatavenciment,diesadd2);
+      datavenciment.value = tempdatavenciment.getFullYear() + "-" + tempdatavenciment.getMonth() + "-" + tempdatavenciment.getDate();
   });
 
+        /*var mesos_sumar=0; //DESDE inicialmesdiesmaxims
+        if(act<=min) diaresultat=min;
+        else if(act<=max) diaresultat=max;
+        else {diaresultat=min; mesos_sumar=1;}
+
+        DateDatavenciment=new Date()
+        var valordatavenciment = new Date();*/
+        //valordatavenciment.setDate(inicialmesdiesmaxims.getDate() + diesadd2);
+        //datavenciment.value = valordatavenciment.getFullYear() + "-" + valordatavenciment.getMonth() + "-" + valordatavenciment.getDate();
+        //datavenciment.value=this.value;
 </script>
