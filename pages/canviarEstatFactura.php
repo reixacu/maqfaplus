@@ -164,7 +164,7 @@
   //document.getElementById("dataFactura").value = "2016-05-01";
   //datavenciment.value=dateFormat(data1, "yyyy-mm-dd");
 
-  datafactura.addEventListener('input', function (evt)) {
+  datafactura.addEventListener('input', function (evt) {
     datavenciment.value=this.value;
   });
 
