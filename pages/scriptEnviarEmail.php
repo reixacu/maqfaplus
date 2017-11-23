@@ -10,7 +10,7 @@ echo $ruta;
 require('mailer/PHPMailerAutoload.php');
 
 $mail = new PHPMailer;
-$mail->charSet = "UTF-8"; 
+$mail->CharSet = 'UTF-8';
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'authsmtp.maqfa.cat';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
