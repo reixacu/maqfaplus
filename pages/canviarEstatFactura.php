@@ -152,10 +152,15 @@
 </html>
 
 <script>
-  Date.prototype.addDays = function(days) {
+  /*Date.prototype.addDays = function(days) {
     var dat = new Date(this.valueOf());
     dat.setDate(dat.getDate() + days);
     return dat;
+  }*/
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
 
   var datafactura=document.getElementById("dataFactura");
@@ -165,7 +170,7 @@
   var dia1 = <?php echo $dia1;?>;
   var dia2 = <?php echo $dia2;?>;
   var data = Date(datafactura.value);
-  data = data.addDays(diesAdd);
+  data = addDays(data,diesAdd);
 
   //var data1 = Date(2020,12,30);
   //document.getElementById("dataFactura").value = "2016-05-01";
@@ -204,7 +209,7 @@
       else if(act<=max) diesadd2=max-act;
       else diesadd2=ultimdiamesactual-act+min;
 
-      var valordatavenciment = valorinicialdatafactura.addDays(diesadd2);
+      var valordatavenciment = addDays(valorinicialdatafactura,diesadd2);
       datavenciment.value=dateFormat(valordatavenciment, "yyyy-mm-dd");
       //datavenciment.value=this.value;
   });
