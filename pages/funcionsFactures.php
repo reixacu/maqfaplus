@@ -616,7 +616,7 @@ function mostrarNumeroFactura($numDB) {
   if ($numDB == NULL || $numDB == "")
   {
     include "mysql.php";
-    $sql = "SELECT CASE (SELECT COUNT(*) FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='17' GROUP BY SUBSTRING(`numero_factura`,5,2)='17') WHEN 0 THEN '001' ELSE CONCAT(LPAD((CAST(SUBSTR(`numero_factura`,1,3) AS UNSIGNED)+1), 3, '0'),'/17') END AS A FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='17' ORDER BY `numero_factura` DESC LIMIT 1";
+    $sql = "SELECT CASE (SELECT COUNT(*) FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='18' GROUP BY SUBSTRING(`numero_factura`,5,2)='18') WHEN 0 THEN '001' ELSE CONCAT(LPAD((CAST(SUBSTR(`numero_factura`,1,3) AS UNSIGNED)+1), 3, '0'),'/18') END AS A FROM `factures` WHERE SUBSTRING(`numero_factura`,5,2)='18' ORDER BY `numero_factura` DESC LIMIT 1";
     $result = $conn->query($sql);
     if ($result->num_rows > 0)
     {
