@@ -43,7 +43,7 @@ if(!$mail->send()) {
 } else {
   echo "
                           <script>
-                          window.location.replace(\"mostrarFactura.php?id=".$idFactura."\");
+                          window.location.replace(\"enviarMailFactura.php?id=".$idFactura."\");
                           </script>
                           ";
 }
