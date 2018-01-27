@@ -40,7 +40,11 @@ if(!$mail->send()) {
     echo 'No s\'ha pogut enviar el missatge.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    echo 'Missatge enviat correctament';
+  echo "
+                          <script>
+                          window.location.replace(\"mostrarFactura.php?id=".$idFactura."\");
+                          </script>
+                          ";
 }
 
 
