@@ -23,6 +23,7 @@ $mail->From = 'xevifaco@maqfa.cat';
 $mail->FromName = 'Maqfa';
 $mail->addAddress($email);     // Add a recipient
 $mail->addBCC('reixacu@gmail.com');
+$mail->addBCC('jordi.reixach@newronia.com');
 
 $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
 $mail->addAttachment($ruta);         // Add attachments
