@@ -67,7 +67,7 @@
                         $p1Mail = $_POST["p1Mail"];
                         $p2Mail = $_POST["p2Mail"];
                         $direccio = $_POST["direccio"];
-                        $poblacio = $_POST["poblacio"];
+                        $poblacio = str_replace("'", "''", $_POST["poblacio"]);
                         $cp = $_POST["cp"];
                         $mail = $_POST["mail"];
                         $fix1 = $_POST["fix1"];
@@ -94,7 +94,7 @@
                         $errorComprovarEsEmpresa = true;
                         switch(checkEsEmpresaById($id))
                         {
-                            case 0:
+                            case 0: // deprecatd
                                 $sql = "UPDATE `clients` SET `nif_client` = '$nif', `nom_client` = '$nom',
                                 `cognom_client` = '$cognoms', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio',
                                 `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp',
@@ -104,6 +104,7 @@
                                 $errorComprovarEsEmpresa = false;
                                 break;
                             case 1: //EMPRESA
+
                                 $sql = "UPDATE `clients` SET `nif_client` = '$nif', `rao_social_client` = '$raoSocial',
                                 `nom_comercial_client` = '$nomComercial', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio',
                                 `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp',
@@ -113,6 +114,7 @@
                                  `numero_conta_client` = '$IBAN',`dies_fins_pagament_client` = '$diesFinsPagament', `forma_pagament_client` = '$formaPagament' WHERE `clients`.`id_client` = $id;";
                                 insertClientBD($conn, $sql);
                                 $errorComprovarEsEmpresa = false;
+                                //echo $sql;
                                 break;
                             case 2:
                                 echo "ERROR 1001. CONSULTA EL MANUAL";

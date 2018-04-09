@@ -97,13 +97,13 @@ $html = '
 	</tr>
 	<tr>
 		<td style="text-align:left">
-				XEVI FALGARONA COLL
-				<br /> Pol.Ind.La Canya
-				<br /> C/Roselló, 19
+				FALGARONA COLL, FRANCESC XAVIER
+				<br /> C/Roselló, 19   Pol.Ind.La Canya
 				<br /> 17800 OLOT
 				<br /> (Girona)
-				<br /> Tel. 608556991
 				<br /> NIF 46672373-Z
+				<br /> Tel. 608556991
+				<br /> xevifaco@maqfa.cat
 		</td>
 		<td style="text-align:right">';
 			if ($nomClient != "") $html = $html . $nomClient;
@@ -211,7 +211,7 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output( '/home/reixacu/factura_' . $idFactura . '.pdf', 'F');
+$pdf->Output( '/home/pi/factures/factura_' . $idFactura . '.pdf', 'F');
 $pdf->Output( 'factura_' . $numFactura . '.pdf', 'I');
 
 //============================================================+
