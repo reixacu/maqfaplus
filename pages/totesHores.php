@@ -84,7 +84,7 @@
                             </div>
                             <div class=\"col-lg-6\">
                                 <form role=\"form\" action=\"jojoojoojojo.php\" method=\"post\">
-                                    <input name=\"numHores\" class=\"form-inline\"><button type=\"submit\" class=\"btn btn-primary\">Restar h</button>
+                                    <input name=\"numHores\" class=\"form-inline\"><br /><button type=\"submit\" class=\"btn btn-primary\">Restar h</button>
                                 </form>
                             </div>
                         </div>
