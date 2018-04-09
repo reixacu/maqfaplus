@@ -195,6 +195,6 @@ function getTotalExtresMenysResta($sql, $idTreballador) {
     }
     $conn->close();
 
-    return /*$sumadorGlobal - */getHoresExtraRestaTreballador($idTreballador);
+    return $sumadorGlobal - getHoresExtraRestaTreballador($idTreballador);
 }
 ?>
