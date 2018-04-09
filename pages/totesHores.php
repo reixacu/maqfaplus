@@ -79,6 +79,21 @@
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         ";
+                        echo "testpanell";
+                    echo "
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=\"row\">
+            <div class=\"col-lg-12\">
+                <div class=\"panel panel-primary\">
+                    <div class=\"panel-heading\">
+                        Control d'hores
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class=\"panel-body\">
+                        ";
                         mostrarHores($sql, $id);
                     echo "
                     </div>
