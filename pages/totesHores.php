@@ -168,6 +168,7 @@ function getTotalExtresMenysResta($sql, $idTreballador) {
               {
                 $primer= false;
               }
+              $sumadorGlobal+=$sumaExtraMes;
               $sumaTotalMes = 0;
               $sumaExtraMes = 0;
             }
