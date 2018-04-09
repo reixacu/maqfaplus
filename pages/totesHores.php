@@ -128,6 +128,14 @@
 
 <?php
 
+function getHoresExtraRestaTreballador($id) {
+    $result = getTreballadorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["hores_extra_treballador"];
+    }
+}
+
 function getTotalExtresMenysResta($sql, $idTreballador) {
     $sumadorGlobal = 0;
     $ultimDia = date("Y-m-d");
@@ -187,6 +195,6 @@ function getTotalExtresMenysResta($sql, $idTreballador) {
     }
     $conn->close();
 
-    return $sumadorGlobal;
+    return $sumadorGlobal - getHoresExtraRestaTreballador($id);
 }
 ?>
