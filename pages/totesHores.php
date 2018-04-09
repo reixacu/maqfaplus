@@ -79,10 +79,10 @@
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         <div class=\"row\">
-                            <div class=\"col-lg-4\">
+                            <div class=\"col-lg-6\">
                                 <h2>Hores extra restants: ". imprimirTotalExtresMenysResta($sql, $id) ."</h2>
                             </div>
-                            <div class=\"col-lg-4\">
+                            <div class=\"col-lg-6\">
 
                             </div>
                         </div>
@@ -186,6 +186,6 @@ function imprimirTotalExtresMenysResta($sql, $idTreballador) {
     }
     $conn->close();
 
-    return  $sumadorGlobal;
+    return $sumadorGlobal;
 }
 ?>
