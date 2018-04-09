@@ -3,10 +3,7 @@ $idTreballador = $_POST["idTreballador"];
 $numHores = $_POST["numHores"];
 $numHores = $numHores * 100;
 
-echo $idTreballador;
-echo $numHores;
-
-if (modificarExtra($idHores, $horesHores)) {
+if (modificarExtra($idTreballador, $numHores)) {
     echo "
                             <script>
                             window.location.replace(\"totesHores.php?id=".$idTreballador."\");
@@ -18,7 +15,7 @@ if (modificarExtra($idHores, $horesHores)) {
 
 
 
-function modificarExtra($idTreballador, $horesHores)
+function modificarExtra($idTreballador, $numHores)
 {
   include "mysql.php";
   $sql = "UPDATE `treballadors` SET `hores_extra_treballador` = `hores_extra_treballador` + $numHores WHERE `treballadors`.`id_treballador` = $idTreballador";
