@@ -7,7 +7,7 @@ $numHores = $numHores * 100;
 if (modificarHores($idHores, $horesHores)) {
     echo "
                             <script>
-                            window.location.replace(\"mostrarFeina.php?id=".$idFeina."\");
+                            window.location.replace(\"totesHores.php?id=".$idTreballador."\");
                             </script>
                             ";
 } else {
