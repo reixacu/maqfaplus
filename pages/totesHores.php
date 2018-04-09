@@ -63,13 +63,28 @@
                     {
                         echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Totes les hores</h1></td>";
                       }else{
-                          echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Hores ". getNomTreballador($id) ."</h1></td>";
+                          echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Horres ". getNomTreballador($id) ."</h1></td>";
                         }
                         echo "
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
+        <div class=\"row\">
+            <div class=\"col-lg-12\">
+                <div class=\"panel panel-primary\">
+                    <div class=\"panel-heading\">
+                        Control d'hores
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class=\"panel-body\">
+                        ";
+                        echo "testpanell";
+                    echo "
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class=\"row\">
             <div class=\"col-lg-12\">
                 <div class=\"panel panel-primary\">
