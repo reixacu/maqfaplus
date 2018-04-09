@@ -3,6 +3,8 @@ $idTreballador = $_POST["idTreballador"];
 $numHores = $_POST["numHores"];
 $numHores = $numHores * 100;
 
+echo $idTreballador;
+echo $numHores;
 
 if (modificarExtra($idHores, $horesHores)) {
     echo "
