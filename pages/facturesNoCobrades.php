@@ -134,7 +134,7 @@
 function printFiltreDataForm($desde, $fins, $idClient)
 {
   echo "
-  <form action=\"totesFactures.php\" method=\"get\">
+  <form action=\".\" method=\"get\">
     <input type=\"hidden\" value=\"".$idClient."\" name=\"idClient\">
     <input type=\"date\" name=\"desde\" value=\"".$desde."\"> fins
     <input type=\"date\" name=\"fins\" value=\"".$fins."\">
