@@ -80,7 +80,7 @@
                     <div class=\"panel-body\">
                         <div class=\"row\">
                             <div class=\"col-lg-6\">
-                                <h2>Hores extra restants: ". imprimirTotalExtresMenysResta($sql, $id) ."</h2>
+                                <h2>Hores extra restants: ". number_format(getTotalExtresMenysResta($sql, $id) / 100,2) ."</h2>
                             </div>
                             <div class=\"col-lg-6\">
 
@@ -128,7 +128,7 @@
 
 <?php
 
-function imprimirTotalExtresMenysResta($sql, $idTreballador) {
+function getTotalExtresMenysResta($sql, $idTreballador) {
     $sumadorGlobal = 0;
     $ultimDia = date("Y-m-d");
     $ultimDia = date('Y-m-d', strtotime("+3 months", strtotime($ultimDia)));
