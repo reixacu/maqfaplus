@@ -83,7 +83,9 @@
                                 <h2>Hores extra restants: ". number_format(getTotalExtresMenysResta($sql, $id) / 100,2) ."</h2>
                             </div>
                             <div class=\"col-lg-6\">
-
+                                <form role=\"form\" action=\"jojoojoojojo.php\" method=\"post\">
+                                    <input name=\"numHores\" class=\"form-control\"><button type=\"submit\" class=\"btn btn-primary\">Restar h</button>
+                                </form>
                             </div>
                         </div>
                     </div>
