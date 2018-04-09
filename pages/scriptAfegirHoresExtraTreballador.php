@@ -6,7 +6,7 @@ $numHores = $_POST["numHores"];
 $numHores = $numHores * 100;
 
 
-if (modificarEtra($idHores, $horesHores)) {
+if (modificarExtra($idHores, $horesHores)) {
     echo "
                             <script>
                             window.location.replace(\"totesHores.php?id=".$idTreballador."\");
