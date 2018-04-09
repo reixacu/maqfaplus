@@ -186,6 +186,6 @@ function imprimirTotalExtresMenysResta($sql, $idTreballador) {
     }
     $conn->close();
 
-    echo  $sumadorGlobal;
+    return  $sumadorGlobal;
 }
 ?>
