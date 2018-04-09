@@ -1,6 +1,4 @@
 <?php
-
-error_reporting(E_ALL);
 $idTreballador = $_POST["idTreballador"];
 $numHores = $_POST["numHores"];
 $numHores = $numHores * 100;
