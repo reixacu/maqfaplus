@@ -55,7 +55,7 @@
 
     ?>
     <?php
-    $sql = "SELECT * FROM `factures`  WHERE `pagament_realitzat_factura`=0 AND `numero_factura` != '' ORDER BY `factures`.`id_factura` DESC ";
+    $sql = "SELECT * FROM `factures`  WHERE `pagament_realitzat_factura`=0 AND `numero_factura` != '' AND `factures`.`data_factura` >= '$desde' AND `factures`.`data_factura` <= '$fins' ORDER BY `factures`.`id_factura` DESC ";
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
