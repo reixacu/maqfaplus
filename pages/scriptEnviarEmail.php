@@ -30,7 +30,7 @@ $mail->addBCC('reixacu@gmail.com');
 
 
 // OOJOJOJOJO
-mail_enviat_factura
+//mail_enviat_factura
 
 
 
@@ -62,7 +62,7 @@ if(!$mail->send()) {
       echo "ERROR: " . $sql . "<br>" . $conn->error;
       return false;
   }
-  
+
   echo "
                           <script>
                           window.location.replace(\"mostrarFactura.php?id=".$idFactura."\");
