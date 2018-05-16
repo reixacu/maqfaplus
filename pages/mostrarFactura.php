@@ -44,6 +44,7 @@
     include_once "funcionsHores.php";
     include_once "funcionsFactures.php";
     include_once "funcionsFeines.php";
+
     ?>
     <?php
     if ($_GET["id"] != NULL)
@@ -61,8 +62,15 @@
                         <tr>
                             <td><form action='totesFactures.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tornar a factures</button></form></td>
                             <!--<td><form action='eliminarFeina.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i> Eliminar feina</button></form></td>-->
-                            <td><form action='generarFacturaPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir factura</button></form>
-                            <td><form action='enviarMailFactura.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-envelope \"></i> Enviar factura</button></form>
+                            <td><form action='generarFacturaPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir factura</button></form>";
+                             if ($row["mail_enviat_factura"] == "1")
+                             {
+                               echo "<td><form action='enviarMailFactura.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-envelope \"></i><i class=\"fas fa-check-circle\"></i> Tornar a enviar</button></form>";
+                             }
+                             else {
+                               echo "<td><form action='enviarMailFactura.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-envelope \"></i> Enviar factura</button></form>";
+                             }
+                            echo "
 
                         </tr>
                     </table>
