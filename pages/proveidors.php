@@ -44,7 +44,7 @@
             <div class="col-lg-12">
                 <table cellpadding="10">
                     <tr>
-                        <td><h1 class="page-header"><i class="fa fa-globe"></i> Tots els clients</h1></td>
+                        <td><h1 class="page-header"><i class="fa fa-globe"></i> Tots els proveidors</h1></td>
                         <td><form action="mostrarProveidor.php" method="get"><input type="hidden" name="mode" value="0"> <button style="margin-top: 5px; margin-left: 15px" type='submit' class="btn btn-primary "><i class="fa fa-user-plus"></i> Afegir un proveidor</button></form></td>
                     </tr>
                 </table>
@@ -88,7 +88,7 @@
                                     }
                                 }
                             } else {
-                                echo "No hi ha cap client particular";
+                                echo "No hi ha cap proveidor";
                             }
                             //SELECT `id_client`, `nif_client`, `nom_client`, `cognom_client` FROM `clients`
                             $conn->close();
