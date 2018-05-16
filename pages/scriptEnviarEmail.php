@@ -57,10 +57,10 @@ if(!$mail->send()) {
   include "mysql.php";
   $sql = "UPDATE `factures` SET `mail_enviat_factura` = '1' WHERE `factures`.`id_factura` = '$idFactura'";
   if ($conn->query($sql) === TRUE) {
-      return true;
+      echo "bdok"
   } else {
       echo "ERROR: " . $sql . "<br>" . $conn->error;
-      return false;
+
   }
 
   echo "
