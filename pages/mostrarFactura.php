@@ -65,7 +65,7 @@
                             <td><form action='generarFacturaPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir factura</button></form>";
                              if ($row["mail_enviat_factura"] == "1")
                              {
-                               echo "<td><form action='enviarMailFactura.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-envelope \"></i><i class=\"fas fa-check-circle\"></i> Tornar a enviar</button></form>";
+                               echo "<td><form action='enviarMailFactura.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-envelope \"></i><i class=\"fas fa-check-circle\"></i> Tornar a enviar</button></form>";
                              }
                              else {
                                echo "<td><form action='enviarMailFactura.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-envelope \"></i> Enviar factura</button></form>";
