@@ -57,12 +57,11 @@ if(!$mail->send()) {
   include "mysql.php";
   $sql = "UPDATE `factures` SET `mail_enviat_factura` = '1' WHERE `factures`.`id_factura` = '$idFactura'";
   if ($conn->query($sql) === TRUE) {
-      echo "bdok"
+      echo "bdok";
   } else {
       echo "ERROR: " . $sql . "<br>" . $conn->error;
 
   }
-
   echo "
                           <script>
                           window.location.replace(\"mostrarFactura.php?id=".$idFactura."\");
