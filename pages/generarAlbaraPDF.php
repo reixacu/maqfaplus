@@ -200,6 +200,7 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
+$pdf->Output( '/home/pi/factures/albara_' . $idFactura . '.pdf', 'F');
 $pdf->Output( 'albara_' . $numFactura . '.pdf', 'I');
 
 //============================================================+
