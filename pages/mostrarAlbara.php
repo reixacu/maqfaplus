@@ -61,6 +61,15 @@
                         <tr>
                             <td><form action='totsAlbarans.php'><button style='margin: 5px;' type='submit' class=\"btn btn-primary\"><i class=\"fa fa-arrow-left\"></i> Tots els albarans</button></form></td>
                             <td><form action='generarAlbaraPDF.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-print \"></i> Imprimir albarà</button></form>
+                            ";
+                             if ($row["mail_enviat_factura"] == "1")
+                             {
+                               echo "<td><form action='enviarMailAlbara.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-success\"><i class=\"fa fa-envelope \"></i> <i class=\"fa fa-check-circle\"></i> Tornar a enviar</button></form>";
+                             }
+                             else {
+                               echo "<td><form action='enviarMailAlbara.php' method='get'><input type=\"hidden\" name=\"id\" value=\"" . $id . "\"><button style='margin: 5px;' type='submit' class=\"btn btn-info\"><i class=\"fa fa-envelope \"></i> Enviar albarà</button></form>";
+                             }
+                            echo "
                         </tr>
                     </table>
                 </div>
