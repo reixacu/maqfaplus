@@ -23,7 +23,18 @@ $mail->From = 'xevifaco@maqfa.cat';
 $mail->FromName = 'Maqfa';
 $mail->addAddress($email);     // Add a recipient
 $mail->addBCC('reixacu@gmail.com');
-$mail->addBCC('xevifaco@maqfa.cat');
+//$mail->addBCC('xevifaco@maqfa.cat');
+
+
+
+
+
+// OOJOJOJOJO
+mail_enviat_factura
+
+
+
+
 
 $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
 $mail->addAttachment($ruta);         // Add attachments
@@ -42,6 +53,16 @@ if(!$mail->send()) {
     echo 'No s\'ha pogut enviar el missatge.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
+
+  include "mysql.php";
+  $sql = "UPDATE `factures` SET `mail_enviat_factura` = '1' WHERE `factures`.`id_factura` = '$idFactura'";
+  if ($conn->query($sql) === TRUE) {
+      return true;
+  } else {
+      echo "ERROR: " . $sql . "<br>" . $conn->error;
+      return false;
+  }
+  
   echo "
                           <script>
                           window.location.replace(\"mostrarFactura.php?id=".$idFactura."\");
