@@ -92,7 +92,7 @@
 
                         // var per saber si no hi ha hagut error dsfasdfads
                         $errorComprovarEsEmpresa = true;
-                        switch(1))
+                        switch(1)
                         {
                             case 1: //EMPRESA
 
