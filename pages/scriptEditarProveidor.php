@@ -92,17 +92,8 @@
 
                         // var per saber si no hi ha hagut error dsfasdfads
                         $errorComprovarEsEmpresa = true;
-                        switch(checkEsEmpresaById($id))
+                        switch(1))
                         {
-                            case 0: // deprecatd
-                                $sql = "UPDATE `proveidors` SET `nif_client` = '$nif', `nom_client` = '$nom',
-                                `cognom_client` = '$cognoms', `adreca_client` = '$direccio', `poblacio_client` = '$poblacio',
-                                `provincia_client` = '$provincia', `pais_client` = '$pais', `cp_client` = '$cp',
-                                `email_client` = '$mail', `fix1_client` = '$fix1', `fix2_client` = '$fix2', `mobil1_client` = '$mobil1',`dia_mensual_pagament_2_client` = '$diaMensualPagament2',
-                                `mobil2_client` = '$mobil2', `comentari_client` = '$comentari', `dia_mensual_pagament_client` = '$diaMensualPagament', `numero_conta_client` = '$IBAN',`dies_fins_pagament_client` = '$diesFinsPagament', `forma_pagament_client` = '$formaPagament' WHERE `proveidors`.`id_client` = $id;";
-                                insertClientBD($conn, $sql);
-                                $errorComprovarEsEmpresa = false;
-                                break;
                             case 1: //EMPRESA
 
                                 $sql = "UPDATE `proveidors` SET `nif_client` = '$nif', `rao_social_client` = '$raoSocial',
