@@ -71,7 +71,7 @@
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
                         ";
-                        mostrarFeines($sql);
+                        mostrarCompres($sql);
                     echo "
                     </div>
                 </div>

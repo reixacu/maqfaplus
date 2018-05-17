@@ -694,6 +694,51 @@ function deleteFeinaBD($id)
     }
 }
 
+function mostrarCompres($sql) {
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Data compra</th>
+                                            <th>Data venciment</th>
+                                            <th>Pagament realitzat</th>
+                                            <th>IVA</th>
+                                            <th>Import amb IVA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+            switch (1)
+            {
+                case 1:
+                    echo "<tr class=\"info\">
+                                                            <td><a href='mostrarCompra.php?id=".$row["id_compra"]."'>". $row["id_compra"] . "</td>
+                                                            <td>". getDataDMY($row["data_compra"]) . "</td>
+                                                            <td>". getDataDMY($row["data_venciment_compra"]) . "</td>
+                                                            <td>". $row["pagament_realitzat_compra"] . "</td>
+                                                            <td>". $row["iva_compra"] . "</td>
+                                                            <td>". $row["import_iva_compra"] . "</td>
+                                                        </tr>";
+                    break;
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No hi ha compres";
+    }
+    $conn->close();
+}
+
 function mostrarFeines($sql) {
     include "mysql.php";
     $result = $conn->query($sql);
