@@ -9,5 +9,6 @@
   IVA compra:
   <input name="ivaCompra" type="text" value="21" /> <br />
   Import amb IVA:
-	<input name="importIva" type="text" value="" /> <br /> 
+	<input name="importIva" type="text" value="" /> <br />
+  <input type="submit" value="Afegir">
 </form>
