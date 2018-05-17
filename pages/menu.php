@@ -125,7 +125,7 @@ include "funcions.php";
                             <a href="mostrarProveidor.php?mode=0"><i class="fa fa-plus"></i> Afegir proveidor</a>
                         </li>
                         <li>
-                            <a href="totsProveidors.php"><i class="fa fa-address-book-o"></i></i> Tots els proveidors</a>
+                            <a href="proveidors.php"><i class="fa fa-address-book-o"></i></i> Tots els proveidors</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
