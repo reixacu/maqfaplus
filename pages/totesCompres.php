@@ -44,7 +44,7 @@
 <div id="wrapper">
     <?php
     include "menu.php";
-    include "funcionsCompres.php";
+    //include "funcionsCompres.php";
     ?>
     <?php
     $sql = "SELECT * FROM `comrpres` ORDER BY `compres`.`id_compra` DESC";
