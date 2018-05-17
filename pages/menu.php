@@ -119,6 +119,30 @@ include "funcions.php";
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-address-book fa-fw"></i> Proveidors<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="mostrarProveidor.php?mode=0"><i class="fa fa-plus"></i> Afegir proveidor</a>
+                        </li>
+                        <li>
+                            <a href="totsProveidors.php"><i class="fa fa-address-book-o"></i></i> Tots els proveidors</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-shopping-basket fa-fw"></i> Compres<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="afegirCompra.php"><i class="fa fa-cart-plus"></i> Nova compra</a>
+                        </li>
+                        <li>
+                            <a href="totesCompres.php"><i class="fa fa-shopping-cart"></i></i> Totes les compres</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-id-card-o fa-fw"></i> Treballadors<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <?php imprimirMenuTreballadors();?>
