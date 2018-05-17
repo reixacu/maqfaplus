@@ -47,7 +47,7 @@
     //include "funcionsCompres.php";
     ?>
     <?php
-    $sql = "SELECT * FROM `comrpres` ORDER BY `compres`.`id_compra` DESC";
+    $sql = "SELECT * FROM `compres` ORDER BY `compres`.`id_compra` DESC";
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
