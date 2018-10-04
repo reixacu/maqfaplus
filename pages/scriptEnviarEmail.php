@@ -12,11 +12,11 @@ require('mailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
 $mail->CharSet = 'UTF-8';
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'authsmtp.maqfa.cat';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                            // Enable SMTP authentication
 $mail->Username = 'xevifaco@maqfa.cat';                 // SMTP username
-$mail->Password = 'gemaionxe';                           // SMTP password
-//$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+$mail->Password = 'rwfnswihxegprtmg';                           // SMTP password
+$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 $mail->Port = 25;
 
 $mail->From = 'xevifaco@maqfa.cat';
@@ -42,6 +42,15 @@ if(!$mail->send()) {
     echo 'No s\'ha pogut enviar el missatge.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
+
+  include "mysql.php";
+  $sql = "UPDATE `factures` SET `mail_enviat_factura` = 1 WHERE `factures`.`id_factura` = '$idFactura'";
+  if ($conn->query($sql) === TRUE) {
+      echo "bdok";
+  } else {
+      echo "ERROR: " . $sql . "<br>" . $conn->error;
+
+  }
   echo "
                           <script>
                           window.location.replace(\"mostrarFactura.php?id=".$idFactura."\");

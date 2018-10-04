@@ -39,9 +39,23 @@
     <?php
     include "funcionsFactures.php";
     include "menu.php";
+
+    if(isset($_GET['fins'])) {
+      $fins = $_GET['fins'];
+    } else {
+      $fins = date('Y-m-d');
+    }
+
+    if(isset($_GET['desde'])) {
+      $desde = $_GET['desde'];
+    } else {
+      $desde = date('Y-m-d', strtotime("-3 months", strtotime($fins)));
+    }
+
+
     ?>
     <?php
-    $sql = "SELECT * FROM `factures`  WHERE `pagament_realitzat_factura`=0 AND `numero_factura` != '' ORDER BY `factures`.`id_factura` DESC ";
+    $sql = "SELECT * FROM `factures`  WHERE `pagament_realitzat_factura`=0 AND `numero_factura` != '' AND `factures`.`data_venciment_factura` >= '$desde' AND `factures`.`data_venciment_factura` <= '$fins' ORDER BY `factures`.`id_factura` DESC ";
     echo "
     <div id=\"page-wrapper\">
         <div class=\"row\">
@@ -52,6 +66,29 @@
                         <td><form class=\"page-header\" action='afegirFactura.php'> <button style=\"margin-top: 5px; margin-left: 15px\" type='submit' class=\"btn btn-primary \"><i class=\"fa fa-plus\"></i> Afegir una factura</button></form></td>
                     </tr>
                 </table>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class=\"row\">
+            <div class=\"col-lg-12\">
+                <div class=\"panel panel-primary\">
+                    <div class=\"panel-heading\">
+                        Filtre
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class=\"panel-body\">
+                      <div class=\"row\">
+                        <div class=\"col-lg-12\">
+                          ";
+                            printFiltreDataForm($desde, $fins, $idClient);
+                            echo "
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -91,3 +128,19 @@
 </body>
 
 </html>
+
+<?php
+
+function printFiltreDataForm($desde, $fins, $idClient)
+{
+  echo "
+  <form action=\"facturesNoCobrades.php\" method=\"get\">
+    <input type=\"hidden\" value=\"".$idClient."\" name=\"idClient\">
+    <input type=\"date\" name=\"desde\" value=\"".$desde."\"> fins
+    <input type=\"date\" name=\"fins\" value=\"".$fins."\">
+    <button type=\"submit\" class=\"btn btn-primary btn-sm\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i> Filtrar data</button>
+  </form>
+  ";
+}
+
+ ?>

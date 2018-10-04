@@ -37,6 +37,15 @@ function getClientData($numClient)
     $conn->close();
     return $result;
 }
+// Retorna un array amb totes les dades d'un  proveidor
+function getProveidorData($numClient)
+{
+    include "mysql.php";
+    $sql = "SELECT * FROM proveidors WHERE id_client=$numClient;";
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
 
 // Retorna un array amb totes les dades d'una feina
 function getFeinaData($idFeina)
@@ -376,6 +385,20 @@ function getClientIdFromNIF($nif){
     return $id;
 }
 
+function getProveidorIdFromNIF($nif){
+    include "mysql.php";
+    $sql = "SELECT id_client FROM proveidors WHERE nif_client='$nif';";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $id = $row["id_client"];
+    } else {
+        return 0;
+    }
+    $conn->close();
+    return $id;
+}
+
 //Converteix la data de format ISO 8601 a format DD-MM-YYYY
 function getDataDMY($data){
     $dataFormatINT = strtotime($data);
@@ -406,6 +429,124 @@ function mostrarClientTaula($id){
                                 <tbody>
                                     <tr>
                                         <td>Número de client</td>
+                                        <td>".$row["id_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CIF</td>
+                                        <td>".$row["nif_client"]."</td>
+                                    </tr>
+                                    ";
+        if ($row["es_empresa_client"] == 0) {
+            echo"
+                                <tr>
+                                    <td>Nom</td>
+                                    <td>".$row["nom_client"]."</td>
+                                </tr>
+                                <tr>
+                                    <td>Cognoms</td>
+                                    <td>".$row["cognom_client"]."</td>
+                                </tr>
+            ";
+        } else {
+            echo "
+                                    <tr>
+                                        <td>Raó social</td>
+                                        <td>".$row["rao_social_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nom comercial</td>
+                                        <td>".$row["nom_comercial_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Persona contacte 1</td>
+                                        <td>".$row["persona_contacte1_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Correu contacte 1</td>
+                                        <td>".$row["p1_email_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Persona contacte 2</td>
+                                        <td>".$row["persona_contacte2_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email contacte 2</td>
+                                        <td>".$row["p2_email_client"]."</td>
+                                    </tr>
+            ";
+        }
+        echo "
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>".$row["email_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fix 1</td>
+                                        <td>".$row["fix1_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fix 2</td>
+                                        <td>".$row["fix2_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mòbil 1</td>
+                                        <td>".$row["mobil1_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mòbil 2</td>
+                                        <td>".$row["mobil2_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Direcció</td>
+                                        <td>".$row["adreca_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Població</td>
+                                        <td>".$row["poblacio_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Codi postal</td>
+                                        <td>".$row["cp_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Provincia</td>
+                                        <td>".$row["provincia_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pais</td>
+                                        <td>".$row["pais_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dies fins a pagament</td>
+                                        <td>".$row["forma_pagament_client"]."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Comentari</td>
+                                        <td>".$row["comentari_client"]."</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->";
+
+    }
+}
+
+function mostrarProveidorTaula($id){
+    $result = getProveidorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        echo "<div class=\"table-responsive\">
+                            <table class=\"table table-striped table-bordered table-hover\">
+                                <thead>
+                                    <tr>
+                                        <th>Camp</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Número de proveidor</td>
                                         <td>".$row["id_client"]."</td>
                                     </tr>
                                     <tr>
@@ -551,6 +692,51 @@ function deleteFeinaBD($id)
     } else {
         echo "ERROR AL ELIMINAR EL CLIENT: " . mysqli_error($conn);
     }
+}
+
+function mostrarCompres($sql) {
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "
+                          <div class=\"table-responsive\">
+                                <table class=\"table\">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Data compra</th>
+                                            <th>Data venciment</th>
+                                            <th>Pagament realitzat</th>
+                                            <th>IVA</th>
+                                            <th>Import amb IVA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        while($row = $result->fetch_assoc()) {
+            switch (1)
+            {
+                case 1:
+                    echo "<tr class=\"info\">
+                                                            <td><a href='mostrarCompra.php?id=".$row["id_compra"]."'>". $row["id_compra"] . "</td>
+                                                            <td>". getDataDMY($row["data_compra"]) . "</td>
+                                                            <td>". getDataDMY($row["data_venciment_compra"]) . "</td>
+                                                            <td>". $row["pagament_realitzat_compra"] . "</td>
+                                                            <td>". $row["iva_compra"] . "</td>
+                                                            <td>". $row["import_iva_compra"] . "</td>
+                                                        </tr>";
+                    break;
+            }
+        }
+        echo "
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    ";
+    } else {
+        echo "No hi ha compres";
+    }
+    $conn->close();
 }
 
 function mostrarFeines($sql) {

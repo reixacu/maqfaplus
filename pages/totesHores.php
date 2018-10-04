@@ -63,7 +63,7 @@
                     {
                         echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Totes les hores</h1></td>";
                       }else{
-                          echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Horres ". getNomTreballador($id) ."</h1></td>";
+                          echo "<td><h1 class=\"page-header\"><i class=\"fa fa-globe\"></i> Hores ". getNomTreballador($id) ."</h1></td>";
                         }
                         echo "
             </div>
@@ -74,13 +74,20 @@
             <div class=\"col-lg-12\">
                 <div class=\"panel panel-primary\">
                     <div class=\"panel-heading\">
-                        Control d'hores
+                        Control d'hores extra
                     </div>
                     <!-- /.panel-heading -->
                     <div class=\"panel-body\">
-                        ";
-                        echo "testpanell";
-                    echo "
+                        <div class=\"row\">
+                            <div class=\"col-lg-6\">
+                                <h2>Hores extra restants: ". number_format(getTotalExtresMenysResta($sql, $id) / 100,2) ."</h2>
+                            </div>
+                            <div class=\"col-lg-6\">
+                                <form role=\"form\" action=\"scriptAfegirHoresExtraTreballador.php\" method=\"post\">
+                                    <input type=\"hidden\" name=\"idTreballador\" value=". $id ."><input name=\"numHores\" class=\"form-control\"><br /><button type=\"submit\" class=\"btn btn-primary\">Restar h</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,3 +127,76 @@
 </body>
 
 </html>
+
+<?php
+
+function getHoresExtraRestaTreballador($id) {
+    $result = getTreballadorData($id);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["hores_extra_treballador"];
+    }
+}
+
+function getTotalExtresMenysResta($sql, $idTreballador) {
+    $sumadorGlobal = 0;
+    $ultimDia = date("Y-m-d");
+    $ultimDia = date('Y-m-d', strtotime("+3 months", strtotime($ultimDia)));
+    $sumaTotalDia = 0;
+    $sumaExtraDia = 0;
+    $primer = true;
+    $sumaTotalMes= 0;
+    $sumaExtraMes = 0;
+    $diaNou;
+    $mesNou;
+    if ($idTreballador != 0) {
+      $horesDiaTreballador = getHoresTreballador($idTreballador);
+    } else {
+      $horesDiaTreballador = 800;
+    }
+    include "mysql.php";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            if (date_format(date_create($ultimDia), 'Y-m-d') > date_format(date_create($row["dia_hores"]), 'Y-m-d') ) $diaNou = true;
+            if (date_format(date_create($ultimDia), 'Y-m') > date_format(date_create($row["dia_hores"]), 'Y-m') ) $mesNou = true;
+
+            if ($diaNou)
+            {
+              $ultimDia = $row["dia_hores"];
+              $sumaExtraMes+=$sumaExtraDia;
+              $sumaTotalMes+=$sumaTotalDia;
+              $sumaExtraDia = 0;
+              $sumaTotalDia = 0;
+            }
+
+            if($mesNou)
+            {
+              if (!$primer)
+              {
+              } else
+              {
+                $primer= false;
+              }
+              $sumadorGlobal+=$sumaExtraMes;
+              $sumaTotalMes = 0;
+              $sumaExtraMes = 0;
+            }
+
+            $sumaTotalDia+=$row["hores_hores"];
+            if ($sumaTotalDia > $horesDiaTreballador) $sumaExtraDia = $sumaTotalDia - $horesDiaTreballador;
+          $diaNou = false;
+          $mesNou = false;
+        }
+        $sumaExtraMes+=$sumaExtraDia;
+        $sumaTotalMes+=$sumaTotalDia;
+        $sumadorGlobal+=$sumaExtraMes;
+
+    } else {
+        return 0;
+    }
+    $conn->close();
+
+    return $sumadorGlobal - getHoresExtraRestaTreballador($idTreballador);
+}
+?>
